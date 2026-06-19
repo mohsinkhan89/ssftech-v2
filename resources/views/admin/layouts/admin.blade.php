@@ -18,38 +18,23 @@
     <style>
         :root {
             --red: #e40914;
-            --red-glow: rgba(228, 9, 20, 0.35);
+            --red-glow: rgba(228, 9, 20, 0.2);
             --red-dark: #ba0610;
-            --bg-dark: #050609;
-            --panel-bg: rgba(15, 18, 28, 0.65);
-            --border-color: rgba(255, 255, 255, 0.05);
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
+            --bg-light: #f1f5f9;
+            --panel-dark: #0f172a;
+            --border-light: #e2e8f0;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
             --sidebar-width: 270px;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at 10% 10%, #151b2c 0%, #07090f 60%, #020305 100%);
-            color: var(--text-primary);
+            background: var(--bg-light);
+            color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-        }
-
-        /* Subtle glowing background blobs */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 15%;
-            right: 10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(228, 9, 20, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            filter: blur(40px);
         }
 
         /* Scrollbar customization */
@@ -57,28 +42,29 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.05);
         }
+
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.15);
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--red);
         }
 
-        /* Sidebar Styling */
+        /* Sidebar Styling (Dark Mode) */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(10, 13, 22, 0.7);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-right: 1px solid var(--border-color);
+            background: #0f172a;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
             padding: 30px 24px;
             z-index: 1000;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -92,7 +78,7 @@
             align-items: center;
             justify-content: center;
             padding-bottom: 35px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             margin-bottom: 30px;
         }
 
@@ -117,7 +103,7 @@
             align-items: center;
             gap: 15px;
             padding: 14px 18px;
-            color: var(--text-secondary);
+            color: #94a3b8;
             text-decoration: none;
             border-radius: 10px;
             font-weight: 500;
@@ -127,7 +113,7 @@
         }
 
         .nav-link-custom:hover {
-            color: var(--text-primary);
+            color: #ffffff;
             background: rgba(255, 255, 255, 0.03);
             border-color: rgba(255, 255, 255, 0.03);
             transform: translateX(4px);
@@ -152,11 +138,11 @@
         }
 
         .sidebar-footer {
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
         }
 
-        /* Main Content Wrapper */
+        /* Main Content Wrapper (Light Mode friendly) */
         .main-wrapper {
             margin-left: var(--sidebar-width);
             min-height: 100vh;
@@ -166,18 +152,17 @@
             z-index: 1;
         }
 
+        /* Header Panel (Dark Mode) */
         .header-panel {
-            background: var(--panel-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 20px 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             animation: fadeInDown 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -185,15 +170,15 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             padding: 8px 16px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
         .admin-profile:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             border-color: rgba(255, 255, 255, 0.08);
         }
 
@@ -222,15 +207,13 @@
 
         .admin-role {
             font-size: 11px;
-            color: var(--text-secondary);
+            color: #94a3b8;
         }
 
-        /* Dashboard Cards & Layout */
+        /* Dashboard Cards & Layout (Light Mode) */
         .dashboard-card {
-            background: var(--panel-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border: 1px solid var(--border-light);
             border-radius: 18px;
             padding: 30px;
             height: 100%;
@@ -240,7 +223,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            color: var(--text-dark);
         }
 
         .dashboard-card::before {
@@ -250,13 +234,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.005) 0%, transparent 100%);
             pointer-events: none;
         }
 
         .dashboard-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
             border-color: rgba(228, 9, 20, 0.25);
         }
 
@@ -271,14 +255,13 @@
             width: 58px;
             height: 58px;
             border-radius: 14px;
-            background: rgba(228, 9, 20, 0.08);
+            background: rgba(228, 9, 20, 0.06);
             color: var(--red);
             font-size: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: inset 0 0 12px rgba(228, 9, 20, 0.05);
-            border: 1px solid rgba(228, 9, 20, 0.15);
+            border: 1px solid rgba(228, 9, 20, 0.12);
             transition: all 0.3s ease;
         }
 
@@ -294,9 +277,9 @@
             font-weight: 600;
             padding: 4px 10px;
             border-radius: 20px;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(16, 185, 129, 0.08);
             color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.12);
         }
 
         .card-value {
@@ -304,22 +287,20 @@
             font-weight: 800;
             margin-bottom: 6px;
             letter-spacing: -1px;
-            background: linear-gradient(180deg, #fff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0f172a;
         }
 
         .card-label {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 14px;
             font-weight: 500;
         }
 
         /* Modern Progress Bar in Cards */
         .card-progress {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 2px;
+            height: 5px;
+            background: #f1f5f9;
+            border-radius: 3px;
             margin-top: 15px;
             overflow: hidden;
         }
@@ -327,29 +308,29 @@
         .card-progress-bar {
             height: 100%;
             background: linear-gradient(90deg, var(--red) 0%, #ff4b55 100%);
-            border-radius: 2px;
-            box-shadow: 0 0 8px var(--red-glow);
+            border-radius: 3px;
         }
 
-        /* Quick Action Grid Card */
+        /* Quick Action Grid Card (Light Mode) */
         .action-card {
-            background: linear-gradient(135deg, rgba(25, 30, 48, 0.45) 0%, rgba(10, 12, 20, 0.45) 100%);
-            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border: 1px solid var(--border-light);
             border-radius: 12px;
             padding: 16px;
             display: flex;
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            color: #fff;
+            color: var(--text-dark);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.015);
         }
 
         .action-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(228, 9, 20, 0.3);
+            background: #f8fafc;
+            border-color: rgba(228, 9, 20, 0.25);
             transform: translateX(4px);
-            color: #fff;
+            color: var(--text-dark);
         }
 
         .action-icon {
@@ -360,8 +341,8 @@
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
         }
 
@@ -369,30 +350,31 @@
             background: var(--red);
             color: white;
             box-shadow: 0 4px 15px var(--red-glow);
+            border-color: var(--red);
         }
 
         .action-info h6 {
             margin: 0;
             font-weight: 600;
             font-size: 14px;
+            color: #0f172a;
         }
 
         .action-info p {
             margin: 0;
             font-size: 11px;
-            color: var(--text-secondary);
+            color: var(--text-muted);
         }
 
-        /* Tables styling */
+        /* Tables styling (Light Mode) */
         .custom-table-container {
-            background: var(--panel-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border: 1px solid var(--border-light);
             border-radius: 18px;
             padding: 30px;
             margin-bottom: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            color: var(--text-dark);
         }
 
         .table-title-area {
@@ -407,17 +389,18 @@
             font-weight: 700;
             margin: 0;
             letter-spacing: -0.5px;
+            color: #0f172a;
         }
 
         .custom-table {
-            color: var(--text-primary) !important;
+            color: var(--text-dark) !important;
             margin-bottom: 0;
         }
 
         .custom-table th {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-weight: 600;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-bottom: 1px solid #e2e8f0 !important;
             padding: 16px;
             font-size: 12.5px;
             text-transform: uppercase;
@@ -427,9 +410,9 @@
         .custom-table td {
             padding: 18px 16px;
             vertical-align: middle;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid #f1f5f9;
             font-size: 14px;
-            color: #cbd5e1;
+            color: #334155;
         }
 
         .custom-table tbody tr {
@@ -438,7 +421,7 @@
         }
 
         .custom-table tbody tr:hover {
-            background: rgba(255, 255, 255, 0.015);
+            background: #f8fafc;
         }
 
         /* Profile avatar initials generator */
@@ -452,7 +435,7 @@
             font-weight: 700;
             color: white;
             font-size: 14px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Buttons and inputs */
@@ -476,9 +459,9 @@
         }
 
         .btn-dark-custom {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             font-weight: 500;
             padding: 10px 20px;
             border-radius: 10px;
@@ -487,15 +470,15 @@
         }
 
         .btn-dark-custom:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: #f1f5f9;
+            border-color: #94a3b8;
+            color: #0f172a;
         }
 
         .form-control-custom {
-            background: rgba(0, 0, 0, 0.4) !important;
-            border: 1px solid var(--border-color) !important;
-            color: white !important;
+            background: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #0f172a !important;
             border-radius: 10px !important;
             padding: 12px 18px !important;
             font-size: 14px !important;
@@ -504,14 +487,14 @@
 
         .form-control-custom:focus {
             border-color: var(--red) !important;
-            box-shadow: 0 0 0 3px rgba(228, 9, 20, 0.25) !important;
+            box-shadow: 0 0 0 3px rgba(228, 9, 20, 0.15) !important;
             outline: none;
         }
 
         .form-select-custom {
-            background: rgba(0, 0, 0, 0.4) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") no-repeat right 18px center/12px 10px !important;
-            border: 1px solid var(--border-color) !important;
-            color: white !important;
+            background: #ffffff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%230f172a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") no-repeat right 18px center/12px 10px !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #0f172a !important;
             border-radius: 10px !important;
             padding: 12px 18px !important;
             font-size: 14px !important;
@@ -519,11 +502,11 @@
 
         .form-select-custom:focus {
             border-color: var(--red) !important;
-            box-shadow: 0 0 0 3px rgba(228, 9, 20, 0.25) !important;
+            box-shadow: 0 0 0 3px rgba(228, 9, 20, 0.15) !important;
         }
 
         label {
-            color: var(--text-secondary);
+            color: #475569;
             font-size: 13px;
             font-weight: 500;
             margin-bottom: 8px;
@@ -540,24 +523,21 @@
         }
 
         .badge-website {
-            background: rgba(56, 189, 248, 0.08);
-            color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.05);
+            background: rgba(56, 189, 248, 0.1);
+            color: #0284c7;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         .badge-ecommerce {
-            background: rgba(245, 158, 11, 0.08);
-            color: #f59e0b;
-            border: 1px solid rgba(245, 158, 11, 0.15);
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.05);
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.2);
         }
 
         .badge-webapp {
-            background: rgba(168, 85, 247, 0.08);
-            color: #a855f7;
-            border: 1px solid rgba(168, 85, 247, 0.15);
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.05);
+            background: rgba(168, 85, 247, 0.1);
+            color: #7c3aed;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         /* Actions styling */
@@ -577,48 +557,48 @@
 
         .btn-edit {
             background: rgba(59, 130, 246, 0.08);
-            color: #3b82f6;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+            border: 1px solid rgba(59, 130, 246, 0.12);
         }
 
         .btn-edit:hover {
-            background: #3b82f6;
+            background: #2563eb;
             color: white;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
             transform: scale(1.08);
         }
 
         .btn-delete {
             background: rgba(239, 68, 68, 0.08);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.12);
         }
 
         .btn-delete:hover {
-            background: #ef4444;
+            background: #dc2626;
             color: white;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
             transform: scale(1.08);
         }
 
         .btn-view {
             background: rgba(16, 185, 129, 0.08);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.12);
         }
 
         .btn-view:hover {
-            background: #10b981;
+            background: #059669;
             color: white;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
             transform: scale(1.08);
         }
 
         /* Alert overrides */
         .alert-custom {
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            color: #10b981;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
             border-radius: 12px;
             padding: 16px 22px;
             margin-bottom: 30px;
@@ -702,12 +682,28 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.clients.index') }}"
+                        class="nav-link-custom {{ Request::is('admin/clients*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-handshake"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.messages.index') }}"
                         class="nav-link-custom {{ Request::is('admin/messages*') ? 'active' : '' }}">
                         <i class="fa-solid fa-envelope"></i>
                         <span>Messages</span>
                     </a>
                 </li>
+                @if (Auth::user()->role === 'administrator')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}"
+                            class="nav-link-custom {{ Request::is('admin/users*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
 
@@ -715,7 +711,8 @@
             <form action="{{ route('admin.logout') }}" method="POST" id="logoutForm">
                 @csrf
                 <a href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit()"
-                    class="nav-link-custom text-danger" style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.1);">
+                    class="nav-link-custom text-danger"
+                    style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.1);">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>
@@ -735,8 +732,10 @@
                 <div class="d-none d-md-block">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/admin') }}" class="text-secondary text-decoration-none" style="font-size: 13px;">Admin</a></li>
-                            <li class="breadcrumb-item active text-white" aria-current="page" style="font-size: 13px;">@yield('page_title', 'Dashboard')</li>
+                            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"
+                                    class="text-secondary text-decoration-none" style="font-size: 13px;">Admin</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page" style="font-size: 13px;">
+                                @yield('page_title', 'Dashboard')</li>
                         </ol>
                     </nav>
                 </div>
@@ -744,18 +743,21 @@
 
             <div class="d-flex align-items-center gap-3">
                 <!-- Notifications Bell -->
-                <button class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; position: relative;">
+                <button class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center"
+                    style="width: 38px; height: 38px; position: relative;">
                     <i class="fa-regular fa-bell"></i>
-                    <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle" style="top: 10px; right: 2px; box-shadow: 0 0 6px var(--red-glow); background-color: var(--red) !important;"></span>
+                    <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle"
+                        style="top: 10px; right: 2px; box-shadow: 0 0 6px var(--red-glow); background-color: var(--red) !important;"></span>
                 </button>
-                
+
                 <div class="admin-profile">
                     <div class="admin-avatar">
                         {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="admin-info d-none d-sm-block">
                         <span class="admin-name">{{ Auth::user()->name ?? 'Administrator' }}</span>
-                        <span class="admin-role">System Admin</span>
+                        <span
+                            class="admin-role">{{ Auth::user()->role === 'administrator' ? 'Super Admin' : (Auth::user()->role === 'admin' ? 'Admin' : 'Author') }}</span>
                     </div>
                 </div>
             </div>

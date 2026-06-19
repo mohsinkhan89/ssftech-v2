@@ -9,7 +9,9 @@ class Project extends Model
     protected $fillable = [
         'title',
         'category',
-        'image',
+        'image_desktop',
+        'image_tablet',
+        'image_mobile',
         'project_url'
     ];
 }

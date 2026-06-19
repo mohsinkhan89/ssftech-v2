@@ -3,6 +3,34 @@
     <title>Home - SSF Tech</title>
 @endsection
 @section('css')
+<style>
+    /* Desktop image display (default/preview-desktop) */
+    .portfolio-slider .project-img-desktop {
+        display: block !important;
+    }
+    .portfolio-slider .project-img-tablet,
+    .portfolio-slider .project-img-mobile {
+        display: none !important;
+    }
+
+    /* Tablet active display */
+    .portfolio-slider.preview-tablet .project-img-tablet {
+        display: block !important;
+    }
+    .portfolio-slider.preview-tablet .project-img-desktop,
+    .portfolio-slider.preview-tablet .project-img-mobile {
+        display: none !important;
+    }
+
+    /* Mobile active display */
+    .portfolio-slider.preview-mobile .project-img-mobile {
+        display: block !important;
+    }
+    .portfolio-slider.preview-mobile .project-img-desktop,
+    .portfolio-slider.preview-mobile .project-img-tablet {
+        display: none !important;
+    }
+</style>
 @endsection
 @section('body')
     <section id="home" class="hero-section">
@@ -157,22 +185,11 @@
                     industries.
                     Here are some of the brands that trust us.</p>
                 <div class="client-logo-grid">
-                    <div class="client-logo-card"><i class="fa-solid fa-bolt"></i><span>TechNova</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-cubes"></i><span>Digicorp</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-chart-line"></i><span>Finvest</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-shop"></i><span>Marketly</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-cloud"></i><span>CloudMint</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-shield-halved"></i><span>SecureX</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-graduation-cap"></i><span>LearnPro</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-truck-fast"></i><span>SwiftLogix</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-heart-pulse"></i><span>HealthGrid</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-utensils"></i><span>Foodora</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-pen-nib"></i><span>BrandLab</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-headset"></i><span>Supportly</span></div>
+                    @forelse($clients as $client)
+                        <div class="client-logo-card"><i class="{{ $client->icon }}"></i><span>{{ $client->name }}</span></div>
+                    @empty
+                        <div class="client-logo-card"><i class="fa-solid fa-handshake"></i><span>Your Brand</span></div>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -221,7 +238,14 @@
                             <article class="project-card" data-project-url="{{ $project->project_url ?? '#contact' }}">
                                 <div class="project-visual">
                                     <div class="browser-frame">
-                                        <img src="{{ url($project->image) }}" alt="{{ $project->title }} preview">
+                                        <!-- Desktop Layout -->
+                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}" alt="{{ $project->title }} desktop preview">
+                                        
+                                        <!-- Tablet Layout (Fallback to desktop if not set) -->
+                                        <img class="project-img-tablet" src="{{ url($project->image_tablet ?? $project->image_desktop) }}" alt="{{ $project->title }} tablet preview">
+                                        
+                                        <!-- Mobile Layout (Fallback to desktop if not set) -->
+                                        <img class="project-img-mobile" src="{{ url($project->image_mobile ?? $project->image_desktop) }}" alt="{{ $project->title }} mobile preview">
                                     </div>
                                 </div>
                                 <div class="project-meta">

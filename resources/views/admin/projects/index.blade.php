@@ -16,9 +16,11 @@
 <div class="custom-table-container">
     <div class="table-title-area">
         <h3 class="table-title"><i class="fa-solid fa-layer-group text-red me-2"></i> Current Projects</h3>
+        @if(Auth::user()->role !== 'author')
         <a href="{{ route('admin.projects.create') }}" class="btn btn-red">
             <i class="fa-solid fa-plus me-2"></i> Add Project
         </a>
+        @endif
     </div>
 
     @if($projects->isEmpty())
@@ -36,17 +38,24 @@
                         <th>Category</th>
                         <th>Target URL</th>
                         <th>Created At</th>
+                        @if(Auth::user()->role !== 'author')
                         <th class="text-end" style="width: 120px;">Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($projects as $project)
                         <tr>
                             <td>
-                                @if($project->image)
-                                    <img src="{{ url($project->image) }}" alt="{{ $project->title }}" class="rounded" style="width: 70px; height: 45px; object-fit: cover; border: 1px solid var(--border-color);">
+                                @if($project->image_desktop)
+                                    <img src="{{ url($project->image_desktop) }}" alt="{{ $project->title }}" class="rounded" style="width: 75px; height: 48px; object-fit: cover; border: 1px solid var(--border-color);">
+                                    <div class="mt-1" style="font-size: 10px; display: flex; gap: 4px;">
+                                        <span class="badge bg-secondary">D</span>
+                                        @if($project->image_tablet) <span class="badge bg-info">T</span> @endif
+                                        @if($project->image_mobile) <span class="badge bg-success">M</span> @endif
+                                    </div>
                                 @else
-                                    <div class="rounded bg-dark d-flex align-items-center justify-content-center text-secondary" style="width: 70px; height: 45px;">
+                                    <div class="rounded bg-dark d-flex align-items-center justify-content-center text-secondary" style="width: 75px; height: 48px;">
                                         <i class="fa-regular fa-image"></i>
                                     </div>
                                 @endif
@@ -69,6 +78,7 @@
                                 @endif
                             </td>
                             <td>{{ $project->created_at->format('M d, Y') }}</td>
+                            @if(Auth::user()->role !== 'author')
                             <td class="text-end">
                                 <a href="{{ route('admin.projects.edit', $project->id) }}" class="action-btn btn-edit" title="Edit Project">
                                     <i class="fa-solid fa-pencil"></i>
@@ -81,6 +91,7 @@
                                     </button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

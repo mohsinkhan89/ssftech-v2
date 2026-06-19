@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('category'); // website, ecommerce, webapp
-            $table->string('image_desktop');
-            $table->string('image_tablet')->nullable();
-            $table->string('image_mobile')->nullable();
-            $table->string('project_url')->nullable();
+            $table->string('name');
+            $table->string('icon'); // e.g. fa-solid fa-bolt
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('clients');
     }
 };

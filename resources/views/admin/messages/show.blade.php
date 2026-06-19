@@ -57,6 +57,7 @@
                     <i class="fa-solid fa-reply me-2"></i> Reply via Email
                 </a>
 
+                @if(Auth::user()->role !== 'author')
                 <form action="{{ route('admin.messages.destroy', $message->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this message permanently?')">
                     @csrf
                     @method('DELETE')
@@ -64,6 +65,7 @@
                         <i class="fa-solid fa-trash-can me-1"></i> Delete Message
                     </button>
                 </form>
+                @endif
             </div>
         </div>
     </div>

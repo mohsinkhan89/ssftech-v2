@@ -49,16 +49,40 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <label for="image">Project Visual / Image</label>
-                    <input type="file" name="image" id="image" class="form-control form-control-custom" accept="image/*" required onchange="previewImage(event)">
-                    <small class="text-muted d-block mt-2">Recommended resolution: 1200x800px. Formats: PNG, JPG, WEBP.</small>
-                    
-                    <!-- Live Image Preview Area -->
-                    <div class="mt-3 d-none" id="previewContainer">
-                        <label>Preview:</label>
-                        <div class="rounded overflow-hidden border border-secondary" style="max-width: 300px; height: 180px;">
-                            <img id="imagePreview" src="#" alt="Image Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="row mb-4">
+                    <!-- Desktop Image -->
+                    <div class="col-md-4 mb-3">
+                        <label for="image_desktop" class="fw-semibold">Desktop Image (Required)</label>
+                        <input type="file" name="image_desktop" id="image_desktop" class="form-control form-control-custom" accept="image/*" required onchange="previewDeviceImage(event, 'desktop')">
+                        <small class="text-muted d-block mt-2">Format: PNG, JPG, WEBP. Max: 5MB.</small>
+                        <div class="mt-3 d-none" id="previewContainer_desktop">
+                            <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 120px;">
+                                <img id="imagePreview_desktop" src="#" alt="Desktop Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tablet Image -->
+                    <div class="col-md-4 mb-3">
+                        <label for="image_tablet" class="fw-semibold">Tablet Image (Optional)</label>
+                        <input type="file" name="image_tablet" id="image_tablet" class="form-control form-control-custom" accept="image/*" onchange="previewDeviceImage(event, 'tablet')">
+                        <small class="text-muted d-block mt-2">Format: PNG, JPG, WEBP. Max: 5MB.</small>
+                        <div class="mt-3 d-none" id="previewContainer_tablet">
+                            <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 120px;">
+                                <img id="imagePreview_tablet" src="#" alt="Tablet Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Image -->
+                    <div class="col-md-4 mb-3">
+                        <label for="image_mobile" class="fw-semibold">Mobile Image (Optional)</label>
+                        <input type="file" name="image_mobile" id="image_mobile" class="form-control form-control-custom" accept="image/*" onchange="previewDeviceImage(event, 'mobile')">
+                        <small class="text-muted d-block mt-2">Format: PNG, JPG, WEBP. Max: 5MB.</small>
+                        <div class="mt-3 d-none" id="previewContainer_mobile">
+                            <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 120px;">
+                                <img id="imagePreview_mobile" src="#" alt="Mobile Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,10 +100,10 @@
 
 @section('js')
 <script>
-    function previewImage(event) {
+    function previewDeviceImage(event, device) {
         const input = event.target;
-        const container = document.getElementById('previewContainer');
-        const preview = document.getElementById('imagePreview');
+        const container = document.getElementById('previewContainer_' + device);
+        const preview = document.getElementById('imagePreview_' + device);
         
         if (input.files && input.files[0]) {
             const reader = new FileReader();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Message;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -11,7 +12,8 @@ class FrontendController extends Controller
     public function index()
     {
         $projects = Project::orderBy('created_at', 'desc')->get();
-        return view('frontend.index', compact('projects'));
+        $clients = Client::orderBy('created_at', 'asc')->get();
+        return view('frontend.index', compact('projects', 'clients'));
     }
 
     public function submitContact(Request $request)

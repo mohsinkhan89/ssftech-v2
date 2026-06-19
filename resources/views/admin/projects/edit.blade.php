@@ -49,25 +49,86 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <label for="image">Replace Visual / Image (Optional)</label>
-                    <input type="file" name="image" id="image" class="form-control form-control-custom" accept="image/*" onchange="previewImage(event)">
-                    <small class="text-muted d-block mt-2">Leave blank to keep current image. Recommended resolution: 1200x800px.</small>
-                    
-                    <div class="row mt-3">
-                        <!-- Current Image Display -->
-                        <div class="col-6" id="currentImageContainer">
-                            <label class="d-block">Current Image:</label>
-                            <div class="rounded overflow-hidden border border-secondary" style="max-width: 250px; height: 150px;">
-                                <img src="{{ url($project->image) }}" alt="Current image" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="row mb-4">
+                    <!-- Desktop Image -->
+                    <div class="col-md-4 mb-4">
+                        <label for="image_desktop" class="fw-semibold">Desktop Image</label>
+                        <input type="file" name="image_desktop" id="image_desktop" class="form-control form-control-custom mb-2" accept="image/*" onchange="previewDeviceImage(event, 'desktop')">
+                        <small class="text-muted d-block mb-3">Format: PNG, JPG, WEBP.</small>
+                        
+                        <div class="d-flex flex-column gap-2">
+                            <!-- Current Image -->
+                            <div>
+                                <label class="d-block" style="font-size: 11px;">Current:</label>
+                                <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 100px;">
+                                    <img src="{{ url($project->image_desktop) }}" alt="Current desktop" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                            
+                            <!-- Preview Image -->
+                            <div class="d-none" id="previewContainer_desktop">
+                                <label class="d-block" style="font-size: 11px;">New Preview:</label>
+                                <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 100px;">
+                                    <img id="imagePreview_desktop" src="#" alt="New Desktop Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Live Preview for newly selected image -->
-                        <div class="col-6 d-none" id="previewContainer">
-                            <label class="d-block">New Image Preview:</label>
-                            <div class="rounded overflow-hidden border border-secondary" style="max-width: 250px; height: 150px;">
-                                <img id="imagePreview" src="#" alt="New Image Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                    <!-- Tablet Image -->
+                    <div class="col-md-4 mb-4">
+                        <label for="image_tablet" class="fw-semibold">Tablet Image</label>
+                        <input type="file" name="image_tablet" id="image_tablet" class="form-control form-control-custom mb-2" accept="image/*" onchange="previewDeviceImage(event, 'tablet')">
+                        <small class="text-muted d-block mb-3">Format: PNG, JPG, WEBP.</small>
+                        
+                        <div class="d-flex flex-column gap-2">
+                            <!-- Current Image -->
+                            <div>
+                                <label class="d-block" style="font-size: 11px;">Current:</label>
+                                <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 100px;">
+                                    @if($project->image_tablet)
+                                        <img src="{{ url($project->image_tablet) }}" alt="Current tablet" style="width: 100%; height: 100%; object-fit: cover;">
+                                    @else
+                                        <div class="d-flex align-items-center justify-content-center text-muted bg-dark" style="width: 100%; height: 100px; font-size: 12px;">Not Uploaded</div>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <!-- Preview Image -->
+                            <div class="d-none" id="previewContainer_tablet">
+                                <label class="d-block" style="font-size: 11px;">New Preview:</label>
+                                <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 100px;">
+                                    <img id="imagePreview_tablet" src="#" alt="New Tablet Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Image -->
+                    <div class="col-md-4 mb-4">
+                        <label for="image_mobile" class="fw-semibold">Mobile Image</label>
+                        <input type="file" name="image_mobile" id="image_mobile" class="form-control form-control-custom mb-2" accept="image/*" onchange="previewDeviceImage(event, 'mobile')">
+                        <small class="text-muted d-block mb-3">Format: PNG, JPG, WEBP.</small>
+                        
+                        <div class="d-flex flex-column gap-2">
+                            <!-- Current Image -->
+                            <div>
+                                <label class="d-block" style="font-size: 11px;">Current:</label>
+                                <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 100px;">
+                                    @if($project->image_mobile)
+                                        <img src="{{ url($project->image_mobile) }}" alt="Current mobile" style="width: 100%; height: 100%; object-fit: cover;">
+                                    @else
+                                        <div class="d-flex align-items-center justify-content-center text-muted bg-dark" style="width: 100%; height: 100px; font-size: 12px;">Not Uploaded</div>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <!-- Preview Image -->
+                            <div class="d-none" id="previewContainer_mobile">
+                                <label class="d-block" style="font-size: 11px;">New Preview:</label>
+                                <div class="rounded overflow-hidden border border-secondary" style="width: 100%; height: 100px;">
+                                    <img id="imagePreview_mobile" src="#" alt="New Mobile Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,10 +147,10 @@
 
 @section('js')
 <script>
-    function previewImage(event) {
+    function previewDeviceImage(event, device) {
         const input = event.target;
-        const container = document.getElementById('previewContainer');
-        const preview = document.getElementById('imagePreview');
+        const container = document.getElementById('previewContainer_' + device);
+        const preview = document.getElementById('imagePreview_' + device);
         
         if (input.files && input.files[0]) {
             const reader = new FileReader();

@@ -42,13 +42,16 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.05);
         }
+
         ::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, 0.15);
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--red);
         }
@@ -231,7 +234,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.005) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.005) 0%, transparent 100%);
             pointer-events: none;
         }
 
@@ -432,7 +435,7 @@
             font-weight: 700;
             color: white;
             font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Buttons and inputs */
@@ -679,12 +682,28 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.clients.index') }}"
+                        class="nav-link-custom {{ Request::is('admin/clients*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-handshake"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.messages.index') }}"
                         class="nav-link-custom {{ Request::is('admin/messages*') ? 'active' : '' }}">
                         <i class="fa-solid fa-envelope"></i>
                         <span>Messages</span>
                     </a>
                 </li>
+                @if (Auth::user()->role === 'administrator')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}"
+                            class="nav-link-custom {{ Request::is('admin/users*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
 
@@ -692,7 +711,8 @@
             <form action="{{ route('admin.logout') }}" method="POST" id="logoutForm">
                 @csrf
                 <a href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit()"
-                    class="nav-link-custom text-danger" style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.1);">
+                    class="nav-link-custom text-danger"
+                    style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.1);">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>
@@ -712,8 +732,10 @@
                 <div class="d-none d-md-block">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/admin') }}" class="text-secondary text-decoration-none" style="font-size: 13px;">Admin</a></li>
-                            <li class="breadcrumb-item active text-white" aria-current="page" style="font-size: 13px;">@yield('page_title', 'Dashboard')</li>
+                            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"
+                                    class="text-secondary text-decoration-none" style="font-size: 13px;">Admin</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page" style="font-size: 13px;">
+                                @yield('page_title', 'Dashboard')</li>
                         </ol>
                     </nav>
                 </div>
@@ -721,18 +743,21 @@
 
             <div class="d-flex align-items-center gap-3">
                 <!-- Notifications Bell -->
-                <button class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; position: relative;">
+                <button class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center"
+                    style="width: 38px; height: 38px; position: relative;">
                     <i class="fa-regular fa-bell"></i>
-                    <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle" style="top: 10px; right: 2px; box-shadow: 0 0 6px var(--red-glow); background-color: var(--red) !important;"></span>
+                    <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle"
+                        style="top: 10px; right: 2px; box-shadow: 0 0 6px var(--red-glow); background-color: var(--red) !important;"></span>
                 </button>
-                
+
                 <div class="admin-profile">
                     <div class="admin-avatar">
                         {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="admin-info d-none d-sm-block">
                         <span class="admin-name">{{ Auth::user()->name ?? 'Administrator' }}</span>
-                        <span class="admin-role">System Admin</span>
+                        <span
+                            class="admin-role">{{ Auth::user()->role === 'administrator' ? 'Super Admin' : (Auth::user()->role === 'admin' ? 'Admin' : 'Author') }}</span>
                     </div>
                 </div>
             </div>

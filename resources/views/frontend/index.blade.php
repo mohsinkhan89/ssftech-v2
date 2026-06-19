@@ -185,22 +185,11 @@
                     industries.
                     Here are some of the brands that trust us.</p>
                 <div class="client-logo-grid">
-                    <div class="client-logo-card"><i class="fa-solid fa-bolt"></i><span>TechNova</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-cubes"></i><span>Digicorp</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-chart-line"></i><span>Finvest</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-shop"></i><span>Marketly</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-cloud"></i><span>CloudMint</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-shield-halved"></i><span>SecureX</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-graduation-cap"></i><span>LearnPro</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-truck-fast"></i><span>SwiftLogix</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-heart-pulse"></i><span>HealthGrid</span>
-                    </div>
-                    <div class="client-logo-card"><i class="fa-solid fa-utensils"></i><span>Foodora</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-pen-nib"></i><span>BrandLab</span></div>
-                    <div class="client-logo-card"><i class="fa-solid fa-headset"></i><span>Supportly</span></div>
+                    @forelse($clients as $client)
+                        <div class="client-logo-card"><i class="{{ $client->icon }}"></i><span>{{ $client->name }}</span></div>
+                    @empty
+                        <div class="client-logo-card"><i class="fa-solid fa-handshake"></i><span>Your Brand</span></div>
+                    @endforelse
                 </div>
             </div>
         </div>

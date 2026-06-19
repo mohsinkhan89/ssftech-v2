@@ -16,8 +16,12 @@
 
 <!-- Statistics Section -->
 <div class="row g-4 mb-5">
+    @php
+        $isAdmin = Auth::user()->role === 'administrator';
+        $colClass = $isAdmin ? 'col-md-6 col-xl-3' : 'col-md-6 col-xl-4';
+    @endphp
     <!-- Total Projects Card -->
-    <div class="col-md-6 col-xl-4">
+    <div class="{{ $colClass }}">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon">
@@ -27,7 +31,7 @@
             </div>
             <div>
                 <div class="card-value">{{ $projectsCount }}</div>
-                <div class="card-label">Total Projects in Portfolio</div>
+                <div class="card-label">Total Projects</div>
                 <div class="card-progress">
                     <div class="card-progress-bar" style="width: {{ min(100, max(15, $projectsCount * 10)) }}%"></div>
                 </div>
@@ -36,7 +40,7 @@
     </div>
 
     <!-- Total Inquiries Card -->
-    <div class="col-md-6 col-xl-4">
+    <div class="{{ $colClass }}">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon" style="background: rgba(16, 185, 129, 0.08); color: #10b981; border-color: rgba(16, 185, 129, 0.15);">
@@ -46,7 +50,7 @@
             </div>
             <div>
                 <div class="card-value">{{ $messagesCount }}</div>
-                <div class="card-label">Total Inquiries Received</div>
+                <div class="card-label">Total Inquiries</div>
                 <div class="card-progress">
                     <div class="card-progress-bar" style="width: {{ min(100, max(15, $messagesCount * 8)) }}%; background: linear-gradient(90deg, #10b981 0%, #34d399 100%); box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);"></div>
                 </div>
@@ -54,12 +58,55 @@
         </div>
     </div>
 
-    <!-- Quick Shortcuts Card -->
-    <div class="col-md-12 col-xl-4">
-        <div class="dashboard-card" style="justify-content: flex-start;">
-            <h5 class="fw-bold mb-3" style="font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-secondary);">Quick Access</h5>
-            <div class="row g-2">
-                <div class="col-6">
+    <!-- Total Clients Card -->
+    <div class="{{ $colClass }}">
+        <div class="dashboard-card">
+            <div class="card-icon-wrapper">
+                <div class="card-icon" style="background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-color: rgba(245, 158, 11, 0.15);">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <span class="card-trend" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.15);"><i class="fa-solid fa-star me-1"></i> Trusted</span>
+            </div>
+            <div>
+                <div class="card-value">{{ $clientsCount }}</div>
+                <div class="card-label">Total Clients</div>
+                <div class="card-progress">
+                    <div class="card-progress-bar" style="width: {{ min(100, max(15, $clientsCount * 8)) }}%; background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%); box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if($isAdmin)
+    <!-- Total Users Card -->
+    <div class="{{ $colClass }}">
+        <div class="dashboard-card">
+            <div class="card-icon-wrapper">
+                <div class="card-icon" style="background: rgba(168, 85, 247, 0.08); color: #a855f7; border-color: rgba(168, 85, 247, 0.15);">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="card-trend" style="background: rgba(168, 85, 247, 0.1); color: #a855f7; border-color: rgba(168, 85, 247, 0.15);"><i class="fa-solid fa-user-shield me-1"></i> Active</span>
+            </div>
+            <div>
+                <div class="card-value">{{ $usersCount }}</div>
+                <div class="card-label">System Users</div>
+                <div class="card-progress">
+                    <div class="card-progress-bar" style="width: {{ min(100, max(15, $usersCount * 25)) }}%; background: linear-gradient(90deg, #a855f7 0%, #c084fc 100%); box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+</div>
+
+<!-- Quick Shortcuts Section -->
+<div class="row g-4 mb-5">
+    <div class="col-12">
+        <div class="custom-table-container">
+            <h5 class="fw-bold mb-4" style="font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-muted);">Quick Access Shortcuts</h5>
+            <div class="row g-3">
+                @if(Auth::user()->role !== 'author')
+                <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.projects.create') }}" class="action-card">
                         <div class="action-icon">
                             <i class="fa-solid fa-plus text-danger"></i>
@@ -70,7 +117,54 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-6">
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.clients.create') }}" class="action-card">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-plus text-warning"></i>
+                        </div>
+                        <div class="action-info">
+                            <h6>Add Client</h6>
+                            <p>Create client brand</p>
+                        </div>
+                    </a>
+                </div>
+                @endif
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.projects.index') }}" class="action-card">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-folder-open text-primary"></i>
+                        </div>
+                        <div class="action-info">
+                            <h6>Projects</h6>
+                            <p>Manage portfolio</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.clients.index') }}" class="action-card">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-handshake text-warning"></i>
+                        </div>
+                        <div class="action-info">
+                            <h6>Clients</h6>
+                            <p>Manage trusted brands</p>
+                        </div>
+                    </a>
+                </div>
+                @if($isAdmin)
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.users.create') }}" class="action-card">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-user-plus text-success"></i>
+                        </div>
+                        <div class="action-info">
+                            <h6>Add User</h6>
+                            <p>Create system login</p>
+                        </div>
+                    </a>
+                </div>
+                @endif
+                <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.messages.index') }}" class="action-card">
                         <div class="action-icon">
                             <i class="fa-solid fa-inbox text-success"></i>
@@ -81,21 +175,10 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-6">
-                    <a href="{{ route('admin.projects.index') }}" class="action-card">
-                        <div class="action-icon">
-                            <i class="fa-solid fa-list-check text-info"></i>
-                        </div>
-                        <div class="action-info">
-                            <h6>Portfolio</h6>
-                            <p>Manage items</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6">
+                <div class="col-md-3 col-sm-6">
                     <a href="{{ url('/') }}" target="_blank" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-globe text-warning"></i>
+                            <i class="fa-solid fa-globe text-info"></i>
                         </div>
                         <div class="action-info">
                             <h6>View Site</h6>

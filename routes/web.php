@@ -22,14 +22,38 @@ Route::middleware('auth')->group(function () {
 
     // Projects CRUD
     Route::get('/admin/projects', [AdminController::class, 'projectsIndex'])->name('admin.projects.index');
-    Route::get('/admin/projects/create', [AdminController::class, 'projectsCreate'])->name('admin.projects.create');
-    Route::post('/admin/projects', [AdminController::class, 'projectsStore'])->name('admin.projects.store');
-    Route::get('/admin/projects/{project}/edit', [AdminController::class, 'projectsEdit'])->name('admin.projects.edit');
-    Route::put('/admin/projects/{project}', [AdminController::class, 'projectsUpdate'])->name('admin.projects.update');
-    Route::delete('/admin/projects/{project}', [AdminController::class, 'projectsDestroy'])->name('admin.projects.destroy');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/projects/create', [AdminController::class, 'projectsCreate'])->name('admin.projects.create');
+        Route::post('/admin/projects', [AdminController::class, 'projectsStore'])->name('admin.projects.store');
+        Route::get('/admin/projects/{project}/edit', [AdminController::class, 'projectsEdit'])->name('admin.projects.edit');
+        Route::put('/admin/projects/{project}', [AdminController::class, 'projectsUpdate'])->name('admin.projects.update');
+        Route::delete('/admin/projects/{project}', [AdminController::class, 'projectsDestroy'])->name('admin.projects.destroy');
+    });
 
     // Messages Viewer
     Route::get('/admin/messages', [AdminController::class, 'messagesIndex'])->name('admin.messages.index');
     Route::get('/admin/messages/{message}', [AdminController::class, 'messagesShow'])->name('admin.messages.show');
-    Route::delete('/admin/messages/{message}', [AdminController::class, 'messagesDestroy'])->name('admin.messages.destroy');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::delete('/admin/messages/{message}', [AdminController::class, 'messagesDestroy'])->name('admin.messages.destroy');
+    });
+
+    // Clients CRUD
+    Route::get('/admin/clients', [AdminController::class, 'clientsIndex'])->name('admin.clients.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/clients/create', [AdminController::class, 'clientsCreate'])->name('admin.clients.create');
+        Route::post('/admin/clients', [AdminController::class, 'clientsStore'])->name('admin.clients.store');
+        Route::get('/admin/clients/{client}/edit', [AdminController::class, 'clientsEdit'])->name('admin.clients.edit');
+        Route::put('/admin/clients/{client}', [AdminController::class, 'clientsUpdate'])->name('admin.clients.update');
+        Route::delete('/admin/clients/{client}', [AdminController::class, 'clientsDestroy'])->name('admin.clients.destroy');
+    });
+
+    // Users CRUD (Only Administrator)
+    Route::middleware('role:administrator')->group(function () {
+        Route::get('/admin/users', [AdminController::class, 'usersIndex'])->name('admin.users.index');
+        Route::get('/admin/users/create', [AdminController::class, 'usersCreate'])->name('admin.users.create');
+        Route::post('/admin/users', [AdminController::class, 'usersStore'])->name('admin.users.store');
+        Route::get('/admin/users/{user}/edit', [AdminController::class, 'usersEdit'])->name('admin.users.edit');
+        Route::put('/admin/users/{user}', [AdminController::class, 'usersUpdate'])->name('admin.users.update');
+        Route::delete('/admin/users/{user}', [AdminController::class, 'usersDestroy'])->name('admin.users.destroy');
+    });
 });

@@ -16,9 +16,11 @@
 <div class="custom-table-container">
     <div class="table-title-area">
         <h3 class="table-title"><i class="fa-solid fa-layer-group text-red me-2"></i> Current Projects</h3>
+        @if(Auth::user()->role !== 'author')
         <a href="{{ route('admin.projects.create') }}" class="btn btn-red">
             <i class="fa-solid fa-plus me-2"></i> Add Project
         </a>
+        @endif
     </div>
 
     @if($projects->isEmpty())
@@ -36,7 +38,9 @@
                         <th>Category</th>
                         <th>Target URL</th>
                         <th>Created At</th>
+                        @if(Auth::user()->role !== 'author')
                         <th class="text-end" style="width: 120px;">Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -74,6 +78,7 @@
                                 @endif
                             </td>
                             <td>{{ $project->created_at->format('M d, Y') }}</td>
+                            @if(Auth::user()->role !== 'author')
                             <td class="text-end">
                                 <a href="{{ route('admin.projects.edit', $project->id) }}" class="action-btn btn-edit" title="Edit Project">
                                     <i class="fa-solid fa-pencil"></i>
@@ -86,6 +91,7 @@
                                     </button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

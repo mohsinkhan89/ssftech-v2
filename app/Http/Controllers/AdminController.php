@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Message;
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -48,9 +51,11 @@ class AdminController extends Controller
     {
         $projectsCount = Project::count();
         $messagesCount = Message::count();
+        $clientsCount = Client::count();
+        $usersCount = User::count();
         $recentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'recentMessages'));
+        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'usersCount', 'recentMessages'));
     }
 
     // List Projects
@@ -230,6 +235,133 @@ class AdminController extends Controller
     {
         $message->delete();
         return redirect()->route('admin.messages.index')->with('success', 'Message deleted successfully!');
+    }
+
+    // List Clients
+    public function clientsIndex()
+    {
+        $clients = Client::orderBy('created_at', 'desc')->get();
+        return view('admin.clients.index', compact('clients'));
+    }
+
+    // Create Client Form
+    public function clientsCreate()
+    {
+        return view('admin.clients.create');
+    }
+
+    // Store Client
+    public function clientsStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+        ]);
+
+        Client::create($request->only(['name', 'icon']));
+
+        return redirect()->route('admin.clients.index')->with('success', 'Client created successfully!');
+    }
+
+    // Edit Client Form
+    public function clientsEdit(Client $client)
+    {
+        return view('admin.clients.edit', compact('client'));
+    }
+
+    // Update Client
+    public function clientsUpdate(Request $request, Client $client)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+        ]);
+
+        $client->update($request->only(['name', 'icon']));
+
+        return redirect()->route('admin.clients.index')->with('success', 'Client updated successfully!');
+    }
+
+    // Delete Client
+    public function clientsDestroy(Client $client)
+    {
+        $client->delete();
+        return redirect()->route('admin.clients.index')->with('success', 'Client deleted successfully!');
+    }
+
+    // List Users
+    public function usersIndex()
+    {
+        $users = User::orderBy('created_at', 'desc')->get();
+        return view('admin.users.index', compact('users'));
+    }
+
+    // Create User Form
+    public function usersCreate()
+    {
+        return view('admin.users.create');
+    }
+
+    // Store User
+    public function usersStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|string|in:administrator,admin,author',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully!');
+    }
+
+    // Edit User Form
+    public function usersEdit(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    // Update User
+    public function usersUpdate(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'required|string|in:administrator,admin,author',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully!');
+    }
+
+    // Delete User
+    public function usersDestroy(User $user)
+    {
+        if ($user->id === Auth::id()) {
+            return redirect()->route('admin.users.index')->withErrors(['error' => 'You cannot delete your own user account.']);
+        }
+
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully!');
     }
 }
 

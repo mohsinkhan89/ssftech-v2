@@ -62,6 +62,7 @@
                                 <a href="{{ route('admin.messages.show', $msg->id) }}" class="action-btn btn-view" title="View Message Details">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
+                                @if(Auth::user()->role !== 'author')
                                 <form action="{{ route('admin.messages.destroy', $msg->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this message?')">
                                     @csrf
                                     @method('DELETE')
@@ -69,6 +70,7 @@
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

@@ -18,12 +18,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create Default Admin User
+        // Create Default Users with different roles
+        User::updateOrCreate(
+            ['email' => 'superadmin@ssftech.com'],
+            [
+                'name' => 'Super Administrator',
+                'password' => Hash::make('password123'),
+                'role' => 'administrator',
+            ]
+        );
+
         User::updateOrCreate(
             ['email' => 'admin@ssftech.com'],
             [
-                'name' => 'Admin',
+                'name' => 'Admin User',
                 'password' => Hash::make('password123'),
+                'role' => 'admin',
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'author@ssftech.com'],
+            [
+                'name' => 'Author User',
+                'password' => Hash::make('password123'),
+                'role' => 'author',
             ]
         );
 
@@ -59,6 +78,29 @@ class DatabaseSeeder extends Seeder
             Project::updateOrCreate(
                 ['title' => $project['title']],
                 $project
+            );
+        }
+
+        // Seed Default Clients
+        $defaultClients = [
+            ['name' => 'TechNova', 'icon' => 'fa-solid fa-bolt'],
+            ['name' => 'Digicorp', 'icon' => 'fa-solid fa-cubes'],
+            ['name' => 'Finvest', 'icon' => 'fa-solid fa-chart-line'],
+            ['name' => 'Marketly', 'icon' => 'fa-solid fa-shop'],
+            ['name' => 'CloudMint', 'icon' => 'fa-solid fa-cloud'],
+            ['name' => 'SecureX', 'icon' => 'fa-solid fa-shield-halved'],
+            ['name' => 'LearnPro', 'icon' => 'fa-solid fa-graduation-cap'],
+            ['name' => 'SwiftLogix', 'icon' => 'fa-solid fa-truck-fast'],
+            ['name' => 'HealthGrid', 'icon' => 'fa-solid fa-heart-pulse'],
+            ['name' => 'Foodora', 'icon' => 'fa-solid fa-utensils'],
+            ['name' => 'BrandLab', 'icon' => 'fa-solid fa-pen-nib'],
+            ['name' => 'Supportly', 'icon' => 'fa-solid fa-headset'],
+        ];
+
+        foreach ($defaultClients as $client) {
+            \App\Models\Client::updateOrCreate(
+                ['name' => $client['name']],
+                $client
             );
         }
     }

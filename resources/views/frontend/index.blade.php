@@ -3,6 +3,34 @@
     <title>Home - SSF Tech</title>
 @endsection
 @section('css')
+<style>
+    /* Desktop image display (default/preview-desktop) */
+    .portfolio-slider .project-img-desktop {
+        display: block !important;
+    }
+    .portfolio-slider .project-img-tablet,
+    .portfolio-slider .project-img-mobile {
+        display: none !important;
+    }
+
+    /* Tablet active display */
+    .portfolio-slider.preview-tablet .project-img-tablet {
+        display: block !important;
+    }
+    .portfolio-slider.preview-tablet .project-img-desktop,
+    .portfolio-slider.preview-tablet .project-img-mobile {
+        display: none !important;
+    }
+
+    /* Mobile active display */
+    .portfolio-slider.preview-mobile .project-img-mobile {
+        display: block !important;
+    }
+    .portfolio-slider.preview-mobile .project-img-desktop,
+    .portfolio-slider.preview-mobile .project-img-tablet {
+        display: none !important;
+    }
+</style>
 @endsection
 @section('body')
     <section id="home" class="hero-section">
@@ -221,7 +249,14 @@
                             <article class="project-card" data-project-url="{{ $project->project_url ?? '#contact' }}">
                                 <div class="project-visual">
                                     <div class="browser-frame">
-                                        <img src="{{ url($project->image) }}" alt="{{ $project->title }} preview">
+                                        <!-- Desktop Layout -->
+                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}" alt="{{ $project->title }} desktop preview">
+                                        
+                                        <!-- Tablet Layout (Fallback to desktop if not set) -->
+                                        <img class="project-img-tablet" src="{{ url($project->image_tablet ?? $project->image_desktop) }}" alt="{{ $project->title }} tablet preview">
+                                        
+                                        <!-- Mobile Layout (Fallback to desktop if not set) -->
+                                        <img class="project-img-mobile" src="{{ url($project->image_mobile ?? $project->image_desktop) }}" alt="{{ $project->title }} mobile preview">
                                     </div>
                                 </div>
                                 <div class="project-meta">

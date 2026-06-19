@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('category'); // website, ecommerce, webapp
-            $table->string('image');
+            $table->string('image_desktop');
+            $table->string('image_tablet')->nullable();
+            $table->string('image_mobile')->nullable();
             $table->string('project_url')->nullable();
             $table->timestamps();
         });

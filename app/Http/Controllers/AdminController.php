@@ -72,24 +72,41 @@ class AdminController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'required|string|in:website,ecommerce,webapp',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'image_desktop' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'image_tablet' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'image_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'project_url' => 'nullable|string|max:255',
         ]);
 
         $projectData = $request->only(['title', 'category', 'project_url']);
+        
+        $destinationPath = public_path('uploads/projects');
+        if (!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true);
+        }
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            
-            // Ensure path exists
-            $destinationPath = public_path('uploads/projects');
-            if (!File::exists($destinationPath)) {
-                File::makeDirectory($destinationPath, 0755, true);
-            }
-            
+        // Upload desktop image
+        if ($request->hasFile('image_desktop')) {
+            $image = $request->file('image_desktop');
+            $imageName = time() . '_desktop_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imageName);
-            $projectData['image'] = 'uploads/projects/' . $imageName;
+            $projectData['image_desktop'] = 'uploads/projects/' . $imageName;
+        }
+
+        // Upload tablet image
+        if ($request->hasFile('image_tablet')) {
+            $image = $request->file('image_tablet');
+            $imageName = time() . '_tablet_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $projectData['image_tablet'] = 'uploads/projects/' . $imageName;
+        }
+
+        // Upload mobile image
+        if ($request->hasFile('image_mobile')) {
+            $image = $request->file('image_mobile');
+            $imageName = time() . '_mobile_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $projectData['image_mobile'] = 'uploads/projects/' . $imageName;
         }
 
         Project::create($projectData);
@@ -109,31 +126,56 @@ class AdminController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'required|string|in:website,ecommerce,webapp',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'image_desktop' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'image_tablet' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'image_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'project_url' => 'nullable|string|max:255',
         ]);
 
         $projectData = $request->only(['title', 'category', 'project_url']);
 
-        if ($request->hasFile('image')) {
-            // Delete old image if it exists and is in the uploads directory
-            if ($project->image && File::exists(public_path($project->image))) {
-                // Ensure we don't accidentally delete default seeded assets if they are in frontend/assets
-                if (str_contains($project->image, 'uploads/projects')) {
-                    File::delete(public_path($project->image));
+        $destinationPath = public_path('uploads/projects');
+        if (!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true);
+        }
+
+        // Update desktop image
+        if ($request->hasFile('image_desktop')) {
+            if ($project->image_desktop && File::exists(public_path($project->image_desktop))) {
+                if (str_contains($project->image_desktop, 'uploads/projects')) {
+                    File::delete(public_path($project->image_desktop));
                 }
             }
-
-            $image = $request->file('image');
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            
-            $destinationPath = public_path('uploads/projects');
-            if (!File::exists($destinationPath)) {
-                File::makeDirectory($destinationPath, 0755, true);
-            }
-            
+            $image = $request->file('image_desktop');
+            $imageName = time() . '_desktop_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imageName);
-            $projectData['image'] = 'uploads/projects/' . $imageName;
+            $projectData['image_desktop'] = 'uploads/projects/' . $imageName;
+        }
+
+        // Update tablet image
+        if ($request->hasFile('image_tablet')) {
+            if ($project->image_tablet && File::exists(public_path($project->image_tablet))) {
+                if (str_contains($project->image_tablet, 'uploads/projects')) {
+                    File::delete(public_path($project->image_tablet));
+                }
+            }
+            $image = $request->file('image_tablet');
+            $imageName = time() . '_tablet_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $projectData['image_tablet'] = 'uploads/projects/' . $imageName;
+        }
+
+        // Update mobile image
+        if ($request->hasFile('image_mobile')) {
+            if ($project->image_mobile && File::exists(public_path($project->image_mobile))) {
+                if (str_contains($project->image_mobile, 'uploads/projects')) {
+                    File::delete(public_path($project->image_mobile));
+                }
+            }
+            $image = $request->file('image_mobile');
+            $imageName = time() . '_mobile_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $projectData['image_mobile'] = 'uploads/projects/' . $imageName;
         }
 
         $project->update($projectData);
@@ -144,10 +186,24 @@ class AdminController extends Controller
     // Delete Project
     public function projectsDestroy(Project $project)
     {
-        // Delete image if exists
-        if ($project->image && File::exists(public_path($project->image))) {
-            if (str_contains($project->image, 'uploads/projects')) {
-                File::delete(public_path($project->image));
+        // Delete desktop image if exists
+        if ($project->image_desktop && File::exists(public_path($project->image_desktop))) {
+            if (str_contains($project->image_desktop, 'uploads/projects')) {
+                File::delete(public_path($project->image_desktop));
+            }
+        }
+        
+        // Delete tablet image if exists
+        if ($project->image_tablet && File::exists(public_path($project->image_tablet))) {
+            if (str_contains($project->image_tablet, 'uploads/projects')) {
+                File::delete(public_path($project->image_tablet));
+            }
+        }
+
+        // Delete mobile image if exists
+        if ($project->image_mobile && File::exists(public_path($project->image_mobile))) {
+            if (str_contains($project->image_mobile, 'uploads/projects')) {
+                File::delete(public_path($project->image_mobile));
             }
         }
 

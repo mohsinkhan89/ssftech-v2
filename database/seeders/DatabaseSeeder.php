@@ -32,19 +32,25 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Inspire FM',
                 'category' => 'website',
-                'image' => 'frontend/assets/images/client-view/inspire-desktop.png',
+                'image_desktop' => 'frontend/assets/images/client-view/inspire-desktop.png',
+                'image_tablet' => 'frontend/assets/images/client-view/inspire-desktop.png',
+                'image_mobile' => 'frontend/assets/images/client-view/inspire-mobile.png',
                 'project_url' => '#contact'
             ],
             [
                 'title' => 'Granny Annexe',
                 'category' => 'webapp',
-                'image' => 'frontend/assets/images/client-view/granny-desktop.png',
+                'image_desktop' => 'frontend/assets/images/client-view/granny-desktop.png',
+                'image_tablet' => 'frontend/assets/images/client-view/granny-desktop.png',
+                'image_mobile' => 'frontend/assets/images/client-view/granny-mobile.png',
                 'project_url' => '#contact'
             ],
             [
                 'title' => 'Finvest',
                 'category' => 'ecommerce',
-                'image' => 'frontend/assets/images/extracted/contact-card-shot.png',
+                'image_desktop' => 'frontend/assets/images/extracted/contact-card-shot.png',
+                'image_tablet' => 'frontend/assets/images/extracted/contact-card-shot.png',
+                'image_mobile' => 'frontend/assets/images/extracted/contact-card-shot.png',
                 'project_url' => '#contact'
             ]
         ];

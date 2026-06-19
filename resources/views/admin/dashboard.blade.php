@@ -18,7 +18,7 @@
 <div class="row g-4 mb-5">
     @php
         $isAdmin = Auth::user()->role === 'administrator';
-        $colClass = $isAdmin ? 'col-md-6 col-xl-3' : 'col-md-6 col-xl-4';
+        $colClass = 'col-md-6 col-xl-3';
     @endphp
     <!-- Total Projects Card -->
     <div class="{{ $colClass }}">
@@ -77,6 +77,25 @@
         </div>
     </div>
 
+    <!-- Total Reviews Card -->
+    <div class="{{ $colClass }}">
+        <div class="dashboard-card">
+            <div class="card-icon-wrapper">
+                <div class="card-icon" style="background: rgba(236, 72, 153, 0.08); color: #ec4899; border-color: rgba(236, 72, 153, 0.15);">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <span class="card-trend" style="background: rgba(236, 72, 153, 0.1); color: #ec4899; border-color: rgba(236, 72, 153, 0.15);"><i class="fa-solid fa-heart me-1"></i> Reviews</span>
+            </div>
+            <div>
+                <div class="card-value">{{ $testimonialsCount }}</div>
+                <div class="card-label">Client Reviews</div>
+                <div class="card-progress">
+                    <div class="card-progress-bar" style="width: {{ min(100, max(15, $testimonialsCount * 12)) }}%; background: linear-gradient(90deg, #ec4899 0%, #f472b6 100%); box-shadow: 0 0 8px rgba(236, 72, 153, 0.3);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if($isAdmin)
     <!-- Total Users Card -->
     <div class="{{ $colClass }}">
@@ -128,6 +147,17 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.testimonials.create') }}" class="action-card">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-plus text-danger"></i>
+                        </div>
+                        <div class="action-info">
+                            <h6>Add Review</h6>
+                            <p>Create client review</p>
+                        </div>
+                    </a>
+                </div>
                 @endif
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.projects.index') }}" class="action-card">
@@ -148,6 +178,17 @@
                         <div class="action-info">
                             <h6>Clients</h6>
                             <p>Manage trusted brands</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.testimonials.index') }}" class="action-card">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-comments text-danger"></i>
+                        </div>
+                        <div class="action-info">
+                            <h6>Reviews</h6>
+                            <p>Manage testimonials</p>
                         </div>
                     </a>
                 </div>
@@ -266,4 +307,3 @@
     </div>
 </div>
 @endsection
-

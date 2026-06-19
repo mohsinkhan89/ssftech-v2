@@ -175,6 +175,68 @@
     </section>
 
 
+    <section class="reviews-section section-pad" id="reviews">
+        <div class="container">
+            <div class="reviews-panel reveal">
+                <div class="reviews-copy">
+                    <p class="eyebrow">Client Reviews</p>
+                    <h2 class="reviews-title">Trusted by Visionaries,<br>Driven by <span>Results</span></h2>
+                    <p class="reviews-text">We take pride in delivering exceptional solutions that drive growth and build lasting partnerships.</p>
+
+                    <div class="review-stats">
+                        <div class="review-stat">
+                            <span><i class="fa-regular fa-face-smile"></i></span>
+                            <strong>{{ $happyClients }}+</strong>
+                            <small>Happy Clients</small>
+                        </div>
+                        <div class="review-stat">
+                            <span><i class="fa-regular fa-star"></i></span>
+                            <strong>{{ $averageRating }}/5</strong>
+                            <small>Client Rating</small>
+                        </div>
+                        <div class="review-stat">
+                            <span><i class="fa-solid fa-award"></i></span>
+                            <strong>98%</strong>
+                            <small>Project Success</small>
+                        </div>
+                    </div>
+
+                    <div class="review-controls" aria-label="Review slider controls">
+                        <button class="review-prev" type="button" aria-label="Previous review"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="review-next" type="button" aria-label="Next review"><i class="fa-solid fa-chevron-right"></i></button>
+                        <div class="review-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="reviews-stage">
+                    <div class="reviews-slider swiper">
+                        <div class="swiper-wrapper">
+                            @foreach($testimonials as $testimonial)
+                                <div class="swiper-slide">
+                                    <article class="review-card">
+                                        <div class="review-card-head">
+                                            <span class="review-quote">&ldquo;</span>
+                                            <div class="review-stars">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <i class="{{ $i <= $testimonial->rating ? 'fa-solid' : 'fa-regular' }} fa-star"></i>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        <img class="review-avatar" src="{{ url($testimonial->avatar ?: 'frontend/assets/images/extracted/client-avatar-2.png') }}" alt="{{ $testimonial->name }}">
+                                        <p>{{ $testimonial->review }}</p>
+                                        <strong>{{ $testimonial->name }}</strong>
+                                        <small>{{ trim(($testimonial->designation ? $testimonial->designation . ', ' : '') . $testimonial->company, ', ') }}</small>
+                                    </article>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <section class="clients-section">
         <div class="container">

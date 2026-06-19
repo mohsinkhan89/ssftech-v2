@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Message;
 use App\Models\Client;
+use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,10 +53,11 @@ class AdminController extends Controller
         $projectsCount = Project::count();
         $messagesCount = Message::count();
         $clientsCount = Client::count();
+        $testimonialsCount = Testimonial::count();
         $usersCount = User::count();
         $recentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'usersCount', 'recentMessages'));
+        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'usersCount', 'recentMessages'));
     }
 
     // List Projects
@@ -289,6 +291,103 @@ class AdminController extends Controller
         return redirect()->route('admin.clients.index')->with('success', 'Client deleted successfully!');
     }
 
+    public function testimonialsIndex()
+    {
+        $testimonials = Testimonial::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.testimonials.index', compact('testimonials'));
+    }
+
+    public function testimonialsCreate()
+    {
+        return view('admin.testimonials.create');
+    }
+
+    public function testimonialsStore(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'review' => 'required|string',
+            'rating' => 'required|integer|min:1|max:5',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'sort_order' => 'nullable|integer|min:0',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['is_active'] = $request->boolean('is_active');
+
+        if ($request->hasFile('avatar')) {
+            $destinationPath = public_path('uploads/testimonials');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0755, true);
+            }
+
+            $image = $request->file('avatar');
+            $imageName = time() . '_testimonial_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $data['avatar'] = 'uploads/testimonials/' . $imageName;
+        }
+
+        Testimonial::create($data);
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Review created successfully!');
+    }
+
+    public function testimonialsEdit(Testimonial $testimonial)
+    {
+        return view('admin.testimonials.edit', compact('testimonial'));
+    }
+
+    public function testimonialsUpdate(Request $request, Testimonial $testimonial)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'review' => 'required|string',
+            'rating' => 'required|integer|min:1|max:5',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'sort_order' => 'nullable|integer|min:0',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['is_active'] = $request->boolean('is_active');
+
+        if ($request->hasFile('avatar')) {
+            if ($testimonial->avatar && File::exists(public_path($testimonial->avatar)) && str_contains($testimonial->avatar, 'uploads/testimonials')) {
+                File::delete(public_path($testimonial->avatar));
+            }
+
+            $destinationPath = public_path('uploads/testimonials');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0755, true);
+            }
+
+            $image = $request->file('avatar');
+            $imageName = time() . '_testimonial_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $data['avatar'] = 'uploads/testimonials/' . $imageName;
+        }
+
+        $testimonial->update($data);
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Review updated successfully!');
+    }
+
+    public function testimonialsDestroy(Testimonial $testimonial)
+    {
+        if ($testimonial->avatar && File::exists(public_path($testimonial->avatar)) && str_contains($testimonial->avatar, 'uploads/testimonials')) {
+            File::delete(public_path($testimonial->avatar));
+        }
+
+        $testimonial->delete();
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Review deleted successfully!');
+    }
+
     // List Users
     public function usersIndex()
     {
@@ -364,4 +463,3 @@ class AdminController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully!');
     }
 }
-

@@ -3,34 +3,37 @@
     <title>Home - SSF Tech</title>
 @endsection
 @section('css')
-<style>
-    /* Desktop image display (default/preview-desktop) */
-    .portfolio-slider .project-img-desktop {
-        display: block !important;
-    }
-    .portfolio-slider .project-img-tablet,
-    .portfolio-slider .project-img-mobile {
-        display: none !important;
-    }
+    <style>
+        /* Desktop image display (default/preview-desktop) */
+        .portfolio-slider .project-img-desktop {
+            display: block !important;
+        }
 
-    /* Tablet active display */
-    .portfolio-slider.preview-tablet .project-img-tablet {
-        display: block !important;
-    }
-    .portfolio-slider.preview-tablet .project-img-desktop,
-    .portfolio-slider.preview-tablet .project-img-mobile {
-        display: none !important;
-    }
+        .portfolio-slider .project-img-tablet,
+        .portfolio-slider .project-img-mobile {
+            display: none !important;
+        }
 
-    /* Mobile active display */
-    .portfolio-slider.preview-mobile .project-img-mobile {
-        display: block !important;
-    }
-    .portfolio-slider.preview-mobile .project-img-desktop,
-    .portfolio-slider.preview-mobile .project-img-tablet {
-        display: none !important;
-    }
-</style>
+        /* Tablet active display */
+        .portfolio-slider.preview-tablet .project-img-tablet {
+            display: block !important;
+        }
+
+        .portfolio-slider.preview-tablet .project-img-desktop,
+        .portfolio-slider.preview-tablet .project-img-mobile {
+            display: none !important;
+        }
+
+        /* Mobile active display */
+        .portfolio-slider.preview-mobile .project-img-mobile {
+            display: block !important;
+        }
+
+        .portfolio-slider.preview-mobile .project-img-desktop,
+        .portfolio-slider.preview-mobile .project-img-tablet {
+            display: none !important;
+        }
+    </style>
 @endsection
 @section('body')
     <section id="home" class="hero-section">
@@ -181,7 +184,8 @@
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
                     <h2 class="reviews-title">Trusted by Visionaries,<br>Driven by <span>Results</span></h2>
-                    <p class="reviews-text">We take pride in delivering exceptional solutions that drive growth and build lasting partnerships.</p>
+                    <p class="reviews-text">We take pride in delivering exceptional solutions that drive growth and build
+                        lasting partnerships.</p>
 
                     <div class="review-stats">
                         <div class="review-stat">
@@ -202,27 +206,32 @@
                     </div>
 
                     <div class="review-controls" aria-label="Review slider controls">
-                        <button class="review-prev" type="button" aria-label="Previous review"><i class="fa-solid fa-chevron-left"></i></button>
-                        <button class="review-next" type="button" aria-label="Next review"><i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="review-prev" type="button" aria-label="Previous review"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button class="review-next" type="button" aria-label="Next review"><i
+                                class="fa-solid fa-chevron-right"></i></button>
                         <div class="review-pagination"></div>
                     </div>
                 </div>
 
                 <div class="reviews-stage">
-                    <div class="reviews-slider swiper">
-                        <div class="swiper-wrapper">
-                            @foreach($testimonials as $testimonial)
-                                <div class="swiper-slide">
+                    <div class="reviews-slider-custom">
+                        <div class="reviews-track">
+                            @foreach ($testimonials as $testimonial)
+                                <div class="reviews-slide">
                                     <article class="review-card">
                                         <div class="review-card-head">
                                             <span class="review-quote">&ldquo;</span>
                                             <div class="review-stars">
-                                                @for($i = 1; $i <= 5; $i++)
-                                                    <i class="{{ $i <= $testimonial->rating ? 'fa-solid' : 'fa-regular' }} fa-star"></i>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <i
+                                                        class="{{ $i <= $testimonial->rating ? 'fa-solid' : 'fa-regular' }} fa-star"></i>
                                                 @endfor
                                             </div>
                                         </div>
-                                        <img class="review-avatar" src="{{ url($testimonial->avatar ?: 'frontend/assets/images/extracted/client-avatar-2.png') }}" alt="{{ $testimonial->name }}">
+                                        <img class="review-avatar"
+                                            src="{{ url($testimonial->avatar ?: 'frontend/assets/images/extracted/client-avatar-2.png') }}"
+                                            alt="{{ $testimonial->name }}">
                                         <p>{{ $testimonial->review }}</p>
                                         <strong>{{ $testimonial->name }}</strong>
                                         <small>{{ trim(($testimonial->designation ? $testimonial->designation . ', ' : '') . $testimonial->company, ', ') }}</small>
@@ -248,7 +257,8 @@
                     Here are some of the brands that trust us.</p>
                 <div class="client-logo-grid">
                     @forelse($clients as $client)
-                        <div class="client-logo-card"><i class="{{ $client->icon }}"></i><span>{{ $client->name }}</span></div>
+                        <div class="client-logo-card"><i
+                                class="{{ $client->icon }}"></i><span>{{ $client->name }}</span></div>
                     @empty
                         <div class="client-logo-card"><i class="fa-solid fa-handshake"></i><span>Your Brand</span></div>
                     @endforelse
@@ -295,25 +305,31 @@
                 <button class="portfolio-arrow portfolio-prev" type="button" aria-label="Previous project"><i
                         class="fa-solid fa-chevron-left"></i></button>
                 <div class="swiper-wrapper">
-                    @foreach($projects as $project)
+                    @foreach ($projects as $project)
                         <div class="swiper-slide" data-category="{{ $project->category }}">
                             <article class="project-card" data-project-url="{{ $project->project_url ?? '#contact' }}">
                                 <div class="project-visual">
                                     <div class="browser-frame">
                                         <!-- Desktop Layout -->
-                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}" alt="{{ $project->title }} desktop preview">
-                                        
+                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}"
+                                            alt="{{ $project->title }} desktop preview">
+
                                         <!-- Tablet Layout (Fallback to desktop if not set) -->
-                                        <img class="project-img-tablet" src="{{ url($project->image_tablet ?? $project->image_desktop) }}" alt="{{ $project->title }} tablet preview">
-                                        
+                                        <img class="project-img-tablet"
+                                            src="{{ url($project->image_tablet ?? $project->image_desktop) }}"
+                                            alt="{{ $project->title }} tablet preview">
+
                                         <!-- Mobile Layout (Fallback to desktop if not set) -->
-                                        <img class="project-img-mobile" src="{{ url($project->image_mobile ?? $project->image_desktop) }}" alt="{{ $project->title }} mobile preview">
+                                        <img class="project-img-mobile"
+                                            src="{{ url($project->image_mobile ?? $project->image_desktop) }}"
+                                            alt="{{ $project->title }} mobile preview">
                                     </div>
                                 </div>
                                 <div class="project-meta">
                                     <strong>{{ $project->title }}</strong>
                                     <span>{{ $project->category == 'webapp' ? 'Web App' : ($project->category == 'ecommerce' ? 'E-Commerce' : 'Website') }}</span>
-                                    <a href="{{ $project->project_url ?? '#contact' }}" aria-label="View {{ $project->title }} project">
+                                    <a href="{{ $project->project_url ?? '#contact' }}"
+                                        aria-label="View {{ $project->title }} project">
                                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                     </a>
                                 </div>
@@ -425,13 +441,16 @@
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <input class="form-control" type="text" name="name" placeholder="Your Name" aria-label="Your Name" required>
+                                <input class="form-control" type="text" name="name" placeholder="Your Name"
+                                    aria-label="Your Name" required>
                             </div>
                             <div class="col-md-4">
-                                <input class="form-control" type="email" name="email" placeholder="Your Email" aria-label="Your Email" required>
+                                <input class="form-control" type="email" name="email" placeholder="Your Email"
+                                    aria-label="Your Email" required>
                             </div>
                             <div class="col-md-4">
-                                <input class="form-control" type="tel" name="phone" placeholder="Your Phone" aria-label="Your Phone">
+                                <input class="form-control" type="tel" name="phone" placeholder="Your Phone"
+                                    aria-label="Your Phone">
                             </div>
                             <div class="col-12">
                                 <select class="form-select" name="service" aria-label="Service you need">
@@ -443,7 +462,8 @@
                                 </select>
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control" name="message" rows="4" placeholder="Tell us about your project..." aria-label="Project details" required></textarea>
+                                <textarea class="form-control" name="message" rows="4" placeholder="Tell us about your project..."
+                                    aria-label="Project details" required></textarea>
                             </div>
                             <div class="col-12">
                                 <div id="formResponse" class="mb-3 d-none"></div>
@@ -469,66 +489,77 @@
     </section>
 @endsection
 @section('js')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contactForm');
-        const responseDiv = document.getElementById('formResponse');
-        const submitBtn = document.getElementById('submitBtn');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const responseDiv = document.getElementById('formResponse');
+            const submitBtn = document.getElementById('submitBtn');
 
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Show loading state
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ms-2"></i>';
-                
-                responseDiv.className = 'mb-3 d-none';
-                
-                const formData = new FormData(form);
-                
-                fetch('{{ route("contact.submit") }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: formData
-                })
-                .then(response => response.json().then(data => ({ status: response.status, body: data })))
-                .then(res => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-arrow-right"></i>';
-                    
-                    if (res.status === 200 && res.body.success) {
-                        // Success
-                        responseDiv.className = 'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded';
-                        responseDiv.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message;
-                        responseDiv.classList.remove('d-none');
-                        form.reset();
-                    } else {
-                        // Error
-                        let errMsg = 'Something went wrong. Please try again.';
-                        if (res.body.errors) {
-                            errMsg = Object.values(res.body.errors).flat().join('<br>');
-                        } else if (res.body.message) {
-                            errMsg = res.body.message;
-                        }
-                        responseDiv.className = 'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded';
-                        responseDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + errMsg;
-                        responseDiv.classList.remove('d-none');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-arrow-right"></i>';
-                    
-                    responseDiv.className = 'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded';
-                    responseDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i> Network error. Please check your connection and try again.';
-                    responseDiv.classList.remove('d-none');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ms-2"></i>';
+
+                    responseDiv.className = 'mb-3 d-none';
+
+                    const formData = new FormData(form);
+
+                    fetch('{{ route('contact.submit') }}', {
+                            method: 'POST',
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: formData
+                        })
+                        .then(response => response.json().then(data => ({
+                            status: response.status,
+                            body: data
+                        })))
+                        .then(res => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML =
+                            'Send Message <i class="fa-solid fa-arrow-right"></i>';
+
+                            if (res.status === 200 && res.body.success) {
+                                // Success
+                                responseDiv.className =
+                                    'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded';
+                                responseDiv.innerHTML =
+                                    '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message;
+                                responseDiv.classList.remove('d-none');
+                                form.reset();
+                            } else {
+                                // Error
+                                let errMsg = 'Something went wrong. Please try again.';
+                                if (res.body.errors) {
+                                    errMsg = Object.values(res.body.errors).flat().join('<br>');
+                                } else if (res.body.message) {
+                                    errMsg = res.body.message;
+                                }
+                                responseDiv.className =
+                                    'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded';
+                                responseDiv.innerHTML =
+                                    '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + errMsg;
+                                responseDiv.classList.remove('d-none');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML =
+                            'Send Message <i class="fa-solid fa-arrow-right"></i>';
+
+                            responseDiv.className =
+                                'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded';
+                            responseDiv.innerHTML =
+                                '<i class="fa-solid fa-triangle-exclamation me-2"></i> Network error. Please check your connection and try again.';
+                            responseDiv.classList.remove('d-none');
+                        });
                 });
-            });
-        }
-    });
-</script>
+            }
+        });
+    </script>
 @endsection

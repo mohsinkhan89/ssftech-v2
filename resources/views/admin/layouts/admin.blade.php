@@ -689,6 +689,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.testimonials.index') }}"
+                        class="nav-link-custom {{ Request::is('admin/testimonials*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>Reviews</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.messages.index') }}"
                         class="nav-link-custom {{ Request::is('admin/messages*') ? 'active' : '' }}">
                         <i class="fa-solid fa-envelope"></i>

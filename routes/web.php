@@ -47,6 +47,16 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/clients/{client}', [AdminController::class, 'clientsDestroy'])->name('admin.clients.destroy');
     });
 
+    // Testimonials CRUD
+    Route::get('/admin/testimonials', [AdminController::class, 'testimonialsIndex'])->name('admin.testimonials.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/testimonials/create', [AdminController::class, 'testimonialsCreate'])->name('admin.testimonials.create');
+        Route::post('/admin/testimonials', [AdminController::class, 'testimonialsStore'])->name('admin.testimonials.store');
+        Route::get('/admin/testimonials/{testimonial}/edit', [AdminController::class, 'testimonialsEdit'])->name('admin.testimonials.edit');
+        Route::put('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsUpdate'])->name('admin.testimonials.update');
+        Route::delete('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsDestroy'])->name('admin.testimonials.destroy');
+    });
+
     // Users CRUD (Only Administrator)
     Route::middleware('role:administrator')->group(function () {
         Route::get('/admin/users', [AdminController::class, 'usersIndex'])->name('admin.users.index');

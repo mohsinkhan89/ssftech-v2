@@ -5,6 +5,7 @@
   const sections = document.querySelectorAll("main section[id]");
   const backToTop = document.querySelector(".back-to-top");
   const testimonialsSlider = document.querySelector(".testimonials-slider");
+  const reviewsSlider = document.querySelector(".reviews-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
@@ -84,6 +85,41 @@
       navigation: {
         nextEl: ".testimonial-next",
         prevEl: ".testimonial-prev"
+      }
+    });
+  }
+
+  if (reviewsSlider && window.Swiper) {
+    new window.Swiper(reviewsSlider, {
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      spaceBetween: 28,
+      speed: 650,
+      grabCursor: true,
+      autoplay: {
+        delay: 3600,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      keyboard: {
+        enabled: true
+      },
+      pagination: {
+        el: ".review-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".review-next",
+        prevEl: ".review-prev"
+      },
+      breakpoints: {
+        0: {
+          spaceBetween: 16
+        },
+        992: {
+          spaceBetween: 28
+        }
       }
     });
   }

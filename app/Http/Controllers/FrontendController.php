@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Message;
 use App\Models\Client;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -13,7 +14,43 @@ class FrontendController extends Controller
     {
         $projects = Project::orderBy('created_at', 'desc')->get();
         $clients = Client::orderBy('created_at', 'asc')->get();
-        return view('frontend.index', compact('projects', 'clients'));
+        $testimonials = Testimonial::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $happyClients = max(120, $clients->count());
+        $averageRating = $testimonials->isNotEmpty() ? number_format($testimonials->avg('rating'), 1) : '4.9';
+
+        if ($testimonials->isEmpty()) {
+            $testimonials = collect([
+                (object) [
+                    'name' => 'Sarah Thompson',
+                    'designation' => 'Marketing Director',
+                    'company' => 'BrightWave',
+                    'review' => 'Excellent communication, timely delivery, and outstanding results. Truly a reliable partner for our digital journey.',
+                    'rating' => 5,
+                    'avatar' => 'frontend/assets/images/extracted/client-avatar-1.png',
+                ],
+                (object) [
+                    'name' => 'Michael Johnson',
+                    'designation' => 'CEO',
+                    'company' => 'TechNova Solutions',
+                    'review' => 'Their team understood our vision perfectly and delivered a solution that exceeded our expectations. Highly professional and dedicated!',
+                    'rating' => 5,
+                    'avatar' => 'frontend/assets/images/extracted/client-avatar-2.png',
+                ],
+                (object) [
+                    'name' => 'David Patel',
+                    'designation' => 'Founder',
+                    'company' => 'InnovateX',
+                    'review' => 'From strategy to execution, everything was seamless. They transformed our ideas into real business value.',
+                    'rating' => 5,
+                    'avatar' => 'frontend/assets/images/extracted/client-avatar-3.png',
+                ],
+            ]);
+        }
+
+        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating'));
     }
 
     public function submitContact(Request $request)

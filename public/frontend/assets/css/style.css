@@ -1050,10 +1050,10 @@ a {
 }
 
 .reviews-slide {
-  width: clamp(246px, 22vw, 310px);
-  height: 370px;
+  width: clamp(280px, 20vw, 340px);
+  height: 430px;
   opacity: .3;
-  transition: opacity .55s ease, filter .55s ease;
+  transition: opacity .55s ease, filter .55s ease, transform .55s ease;
   user-select: none;
   filter: saturate(.8);
 }
@@ -1062,19 +1062,19 @@ a {
   opacity: 1;
   z-index: 5;
   filter: saturate(1.08);
+  transform: scale(1.08);
 }
 
 .reviews-slider-custom .swiper-slide-prev,
 .reviews-slider-custom .swiper-slide-next {
-  opacity: .82;
+  opacity: .72;
   z-index: 3;
 }
 
 .review-card {
   position: relative;
   overflow: hidden;
-  /* min-height: 370px; */
-  min-height: 400px;
+  min-height: 430px;
   height: 100%;
   padding: 28px 28px 26px;
   border: 1px solid rgba(228, 9, 20, .36);
@@ -1088,11 +1088,11 @@ a {
 
 .reviews-slider-custom .swiper-slide-active .review-card {
   text-align: center;
-  border-color: rgba(228, 9, 20, .74);
+  border-color: rgba(255, 16, 27, .95);
   background:
     radial-gradient(circle at 50% 21%, rgba(228, 9, 20, .36), transparent 28%),
     linear-gradient(145deg, rgba(54, 55, 60, .94), rgba(9, 10, 14, .98));
-  box-shadow: 0 34px 68px rgba(0, 0, 0, .44), 0 0 0 1px rgba(228, 9, 20, .22);
+  box-shadow: 0 34px 68px rgba(0, 0, 0, .44), 0 0 0 1px rgba(228, 9, 20, .45), 0 0 34px rgba(228, 9, 20, .3);
 }
 
 .review-card-head {
@@ -1117,12 +1117,21 @@ a {
 
 .review-avatar {
   display: block;
-  width: 120px;
-  height: 120px;
-  margin: -2px auto 0px;
+  width: 104px;
+  height: 104px;
+  margin: 8px auto 20px;
   object-fit: cover;
   border-radius: 50%;
-  transition: box-shadow .35s ease;
+  filter: grayscale(100%);
+  opacity: .72;
+  transition: width .35s ease, height .35s ease, opacity .35s ease, filter .35s ease;
+}
+
+.reviews-slider-custom .swiper-slide-active .review-avatar {
+  width: 138px;
+  height: 138px;
+  filter: none;
+  opacity: 1;
 }
 
 .review-card p {
@@ -1141,6 +1150,8 @@ a {
 
 .reviews-slider-custom .swiper-slide-active .review-card p {
   color: #fff;
+  font-size: 16px;
+  line-height: 1.68;
 }
 
 .review-card strong {
@@ -1275,13 +1286,12 @@ a {
 }
 
 .portfolio-pagination {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
+  position: static;
+  width: auto !important;
   display: flex;
   justify-content: center;
   gap: 8px;
+  margin-top: 26px;
 }
 
 .portfolio-pagination .swiper-pagination-bullet {
@@ -2601,15 +2611,7 @@ a {
   }
 
   .reviews-stage {
-    min-height: 0;
-  }
-
-  .reviews-slider .swiper-slide {
-    width: min(78vw, 290px);
-  }
-
-  .reviews-slider .swiper-slide-active {
-    width: min(86vw, 320px);
+    min-height: 430px;
   }
 
   .testimonials-slider {
@@ -2838,37 +2840,33 @@ a {
   }
 
   .review-card {
-    min-height: 330px;
+    min-height: 390px;
     padding: 24px 20px;
   }
 
   .reviews-slide {
     width: min(300px, calc(100vw - 76px));
-    height: 330px;
-    transform: scale(.78);
-  }
-
-  .reviews-slider-custom .reviews-slide.active {
-    transform: scale(1);
-  }
-
-  .reviews-slider-custom .reviews-slide.is-prev {
-    transform: translateX(26px) translateY(8px) rotate(-1.5deg) scale(.72);
-  }
-
-  .reviews-slider-custom .reviews-slide.is-next {
-    transform: translateX(-26px) translateY(8px) rotate(1.5deg) scale(.72);
+    height: 390px;
   }
 
   .review-avatar {
-    width: 78px;
-    height: 78px;
+    width: 86px;
+    height: 86px;
     margin-bottom: 18px;
+  }
+
+  .reviews-slider-custom .swiper-slide-active .review-avatar {
+    width: 104px;
+    height: 104px;
   }
 
   .review-card p {
     font-size: 13px;
     line-height: 1.65;
+  }
+
+  .reviews-slider-custom .swiper-slide-active .review-card p {
+    font-size: 14px;
   }
 
   .review-card strong {

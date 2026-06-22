@@ -95,22 +95,26 @@
   if (reviewsSlider && window.Swiper) {
     new window.Swiper(reviewsSlider, {
       loop: true,
+      loopAdditionalSlides: 4,
       centeredSlides: true,
       slidesPerView: "auto",
-      spaceBetween: 28,
-      speed: 850,
+      initialSlide: 1,
+      spaceBetween: 24,
+      speed: 900,
       grabCursor: true,
       watchSlidesProgress: true,
+      observer: true,
+      observeParents: true,
       effect: "coverflow",
       coverflowEffect: {
         rotate: 0,
-        stretch: 10,
-        depth: 150,
+        stretch: 52,
+        depth: 210,
         modifier: 1.35,
         slideShadows: false
       },
       autoplay: {
-        delay: 2800,
+        delay: 2500,
         disableOnInteraction: false,
         pauseOnMouseEnter: false
       },
@@ -129,20 +133,34 @@
       },
       breakpoints: {
         0: {
-          spaceBetween: 16,
+          spaceBetween: 18,
           coverflowEffect: {
             rotate: 0,
             stretch: 0,
-            depth: 90,
+            depth: 80,
             modifier: 1,
             slideShadows: false
           }
         },
         768: {
-          spaceBetween: 22
+          spaceBetween: 18,
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 18,
+            depth: 130,
+            modifier: 1.15,
+            slideShadows: false
+          }
         },
         1200: {
-          spaceBetween: 28
+          spaceBetween: 24,
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 52,
+            depth: 210,
+            modifier: 1.35,
+            slideShadows: false
+          }
         }
       }
     });
@@ -206,10 +224,6 @@
       pagination: {
         el: ".portfolio-pagination",
         clickable: true
-      },
-      navigation: {
-        nextEl: ".portfolio-next",
-        prevEl: ".portfolio-prev"
       },
       breakpoints: {
         0: {

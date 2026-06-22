@@ -217,7 +217,10 @@
                 <div class="reviews-stage">
                     <div class="reviews-slider-custom swiper">
                         <div class="reviews-track swiper-wrapper">
-                            @foreach ($testimonials as $testimonial)
+                            @php
+                                $reviewSlides = $testimonials->count() < 4 ? $testimonials->concat($testimonials)->concat($testimonials) : $testimonials;
+                            @endphp
+                            @foreach ($reviewSlides as $testimonial)
                                 <div class="reviews-slide swiper-slide">
                                     <article class="review-card">
                                         <div class="review-card-head">
@@ -312,8 +315,6 @@
                 </div>
             </div>
             <div class="portfolio-slider swiper reveal delay-2">
-                <button class="portfolio-arrow portfolio-prev" type="button" aria-label="Previous project"><i
-                        class="fa-solid fa-chevron-left"></i></button>
                 <div class="swiper-wrapper">
                     @foreach ($projects as $project)
                         <div class="swiper-slide" data-category="{{ $project->category }}">
@@ -347,8 +348,6 @@
                         </div>
                     @endforeach
                 </div>
-                <button class="portfolio-arrow portfolio-next" type="button" aria-label="Next project"><i
-                        class="fa-solid fa-chevron-right"></i></button>
                 <div class="portfolio-pagination"></div>
             </div>
         </div>

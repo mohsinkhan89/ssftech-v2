@@ -685,7 +685,7 @@
                     <a href="{{ route('admin.clients.index') }}"
                         class="nav-link-custom {{ Request::is('admin/clients*') ? 'active' : '' }}">
                         <i class="fa-solid fa-handshake"></i>
-                        <span>Clients</span>
+                        <span>Partners</span>
                     </a>
                 </li>
                 <li class="nav-item">

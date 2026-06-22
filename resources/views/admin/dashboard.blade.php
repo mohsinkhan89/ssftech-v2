@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <!-- Total Clients Card -->
+    <!-- Total Partners Card -->
     <div class="{{ $colClass }}">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
@@ -69,7 +69,7 @@
             </div>
             <div>
                 <div class="card-value">{{ $clientsCount }}</div>
-                <div class="card-label">Total Clients</div>
+                <div class="card-label">Total Partners</div>
                 <div class="card-progress">
                     <div class="card-progress-bar" style="width: {{ min(100, max(15, $clientsCount * 8)) }}%; background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%); box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);"></div>
                 </div>
@@ -142,8 +142,8 @@
                             <i class="fa-solid fa-plus text-warning"></i>
                         </div>
                         <div class="action-info">
-                            <h6>Add Client</h6>
-                            <p>Create client brand</p>
+                            <h6>Add Partner</h6>
+                            <p>Upload partner logo</p>
                         </div>
                     </a>
                 </div>
@@ -176,8 +176,8 @@
                             <i class="fa-solid fa-handshake text-warning"></i>
                         </div>
                         <div class="action-info">
-                            <h6>Clients</h6>
-                            <p>Manage trusted brands</p>
+                            <h6>Partners</h6>
+                            <p>Manage partner logos</p>
                         </div>
                     </a>
                 </div>

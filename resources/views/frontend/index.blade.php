@@ -215,10 +215,10 @@
                 </div>
 
                 <div class="reviews-stage">
-                    <div class="reviews-slider-custom">
-                        <div class="reviews-track">
+                    <div class="reviews-slider-custom swiper">
+                        <div class="reviews-track swiper-wrapper">
                             @foreach ($testimonials as $testimonial)
-                                <div class="reviews-slide">
+                                <div class="reviews-slide swiper-slide">
                                     <article class="review-card">
                                         <div class="review-card-head">
                                             <span class="review-quote">&ldquo;</span>
@@ -247,25 +247,35 @@
 
 
 
+    @if($clients->isNotEmpty())
     <section class="clients-section">
         <div class="container">
             <div class="clients-panel reveal">
-                <p class="eyebrow text-center">Our Clients</p>
-                <h2 class="section-title light text-center">Trusted by Innovative Businesses</h2>
-                <p class="clients-copy">We've had the privilege of working with a diverse range of clients across
-                    industries.
-                    Here are some of the brands that trust us.</p>
-                <div class="client-logo-grid">
-                    @forelse($clients as $client)
-                        <div class="client-logo-card"><i
-                                class="{{ $client->icon }}"></i><span>{{ $client->name }}</span></div>
-                    @empty
-                        <div class="client-logo-card"><i class="fa-solid fa-handshake"></i><span>Your Brand</span></div>
-                    @endforelse
+                <div class="clients-head">
+                    <p class="eyebrow text-center">Our Partners</p>
+                    <h2 class="section-title text-center">Trusted Partnerships That <span>Drive Success</span></h2>
+                    <p class="clients-copy">We collaborate with forward-thinking organizations and technology leaders
+                        to deliver exceptional results and create lasting impact.</p>
                 </div>
+
+                <div class="clients-carousel-wrap">
+                    <div class="client-logo-slider swiper">
+                        <div class="client-logo-track swiper-wrapper">
+                            @foreach($clients as $client)
+                                <div class="client-logo-slide swiper-slide">
+                                    <div class="client-logo-card">
+                                        <img src="{{ url($client->image) }}" alt="{{ $client->name }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="client-pagination"></div>
             </div>
         </div>
     </section>
+    @endif
 
     <section class="portfolio-section section-pad" id="portfolio">
         <div class="container">
@@ -344,122 +354,80 @@
         </div>
     </section>
 
-    <section class="faq-section section-pad">
-        <div class="container">
-            <div class="faq-shell">
-                <div class="faq-intro reveal">
-                    <span class="faq-badge"><i class="fa-solid fa-circle-question"></i> Support Center</span>
-                    <p class="eyebrow">Frequently Asked Questions</p>
-                    <h2 class="section-title light">Clear answers before we start building.</h2>
-                    <p class="faq-copy">From timelines to support, these are the questions clients usually ask
-                        before starting a
-                        website or digital project with SSF Tech.</p>
-                    <div class="faq-mini-grid">
-                        <div><strong>2-4</strong><span>Week launch window</span></div>
-                        <div><strong>100%</strong><span>Responsive delivery</span></div>
-                    </div>
-                </div>
-                <div class="faq-content reveal delay-2">
-                    <div class="accordion faq-list" id="faqAccordion">
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">How
-                                    long does it take to build a website?</button></h3>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">It typically takes 2-4 weeks depending on the
-                                    complexity and features
-                                    required.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq2">Will my
-                                    website be mobile-friendly?</button></h3>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes. Every layout is built to work smoothly on mobile,
-                                    tablet, laptop, and
-                                    desktop screens.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq3">Do you
-                                    provide website maintenance?</button></h3>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, we provide ongoing maintenance, updates, backups,
-                                    and technical
-                                    support.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq4">Can you
-                                    redesign my existing website?</button></h3>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, we can refresh your existing website with a modern
-                                    design and better
-                                    performance.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq5">Is SEO
-                                    included in the packages?</button></h3>
-                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Basic on-page SEO setup is included, with advanced SEO
-                                    available as an
-                                    add-on.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq6">Do you offer
-                                    support after the project is
-                                    completed?</button></h3>
-                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, post-launch support is available to keep your
-                                    website stable and
-                                    updated.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="contact" class="contact-section section-pad">
         <div class="container">
-            <div class="contact-divider"></div>
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 reveal">
+            <div class="contact-shell">
+                <div class="contact-info reveal">
                     <p class="eyebrow">Get In Touch</p>
-                    <h2 class="section-title">Let's Start <span>Your Project</span></h2>
-                    <p class="muted">Have a project in mind? Fill out the form and we'll get back to you shortly.
-                    </p>
+                    <h2 class="section-title light">Let's Build Something Amazing <span>Together</span></h2>
+                    <p class="contact-copy">Have a project in mind or want to learn more about our services? We'd love to
+                        hear from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <span><i class="fa-solid fa-phone"></i></span>
+                            <div>
+                                <small>Call Us</small>
+                                <strong>+44 1234 567 890</strong>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span><i class="fa-solid fa-envelope"></i></span>
+                            <div>
+                                <small>Email Us</small>
+                                <strong>hello@ssftech.co.uk</strong>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span><i class="fa-solid fa-location-dot"></i></span>
+                            <div>
+                                <small>Visit Us</small>
+                                <strong>London, United Kingdom</strong>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span><i class="fa-regular fa-clock"></i></span>
+                            <div>
+                                <small>Working Hours</small>
+                                <strong>Mon - Fri: 9:00 AM - 6:00 PM</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <p>Follow Us</p>
+                        <div>
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-card reveal delay-2">
+                    <div class="contact-form-head">
+                        <span><i class="fa-regular fa-envelope"></i></span>
+                        <div>
+                            <h3>Send Us a Message</h3>
+                            <p>Fill out the form and we'll get back to you shortly.</p>
+                        </div>
+                    </div>
                     <form class="contact-form" id="contactForm">
                         @csrf
                         <div class="row g-3">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control" type="text" name="name" placeholder="Your Name"
                                     aria-label="Your Name" required>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control" type="email" name="email" placeholder="Your Email"
                                     aria-label="Your Email" required>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control" type="tel" name="phone" placeholder="Your Phone"
                                     aria-label="Your Phone">
                             </div>
-                            <div class="col-12">
-                                <select class="form-select" name="service" aria-label="Service you need">
-                                    <option value="" selected disabled>Service You Need</option>
-                                    <option value="Web Development">Web Development</option>
-                                    <option value="Digital Marketing">Digital Marketing</option>
-                                    <option value="Graphic Designing">Graphic Designing</option>
-                                    <option value="IT Support">IT Support</option>
-                                </select>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="service" placeholder="Subject"
+                                    aria-label="Subject">
                             </div>
                             <div class="col-12">
                                 <textarea class="form-control" name="message" rows="4" placeholder="Tell us about your project..."
@@ -474,15 +442,84 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-6 reveal delay-2">
-                    <aside class="contact-card">
-                        <h3>We're here to help you turn your ideas into powerful digital solutions.</h3>
-                        <ul>
-                            <li><span><i class="fa-solid fa-phone"></i></span> +44 1234 567890</li>
-                            <li><span><i class="fa-regular fa-envelope"></i></span> info@ssftech.co.uk</li>
-                            <li><span><i class="fa-solid fa-location-dot"></i></span> London, United Kingdom</li>
-                        </ul>
-                    </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section section-pad">
+        <div class="container">
+            <div class="faq-shell">
+                <div class="faq-intro reveal">
+                    <p class="eyebrow">FAQ'S</p>
+                    <h2 class="section-title light">Frequently Asked <span>Questions</span></h2>
+                    <p class="faq-copy">Find answers to common queries about our services, process, and policies.</p>
+                    <div class="faq-question-card">
+                        <span class="faq-question-icon"><i class="fa-solid fa-headset"></i></span>
+                        <h3>Still have questions?</h3>
+                        <p>Can't find the answer you're looking for? Our team is here to help!</p>
+                        <a class="btn btn-brand" href="#contact">
+                            Ask a Question <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="faq-content reveal delay-2">
+                    <div class="accordion faq-list" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header"><button class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">What services do
+                                    you offer?</button></h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">We offer a wide range of digital services including Web
+                                    Development, Mobile App Development, Digital Marketing, UI/UX Design, and IT Support
+                                    tailored to your business needs.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq2">How long does a typical project
+                                    take?</button></h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Most projects take 2-6 weeks depending on scope, content,
+                                    integrations, and review cycles.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq3">Do you work with startups and small
+                                    businesses?</button></h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Yes, we build practical digital solutions for startups,
+                                    growing brands, and established teams.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq4">What is your pricing model?</button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Pricing is based on project requirements, timeline, and the
+                                    level of ongoing support you need.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq5">How do you ensure data
+                                    security?</button></h3>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">We follow secure development practices, careful access
+                                    control, protected deployments, and regular backup recommendations.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide post-launch
+                                    support?</button></h3>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">Yes, post-launch support is available to keep your website,
+                                    app, or campaign stable and improving.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

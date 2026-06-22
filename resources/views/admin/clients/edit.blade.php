@@ -1,14 +1,14 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Edit Client')
-@section('page_title', 'Modify Client')
+@section('title', 'Edit Partner')
+@section('page_title', 'Modify Partner')
 
 @section('content')
 <div class="row">
     <div class="col-lg-8 col-xl-6 mx-auto">
         <div class="custom-table-container">
             <div class="table-title-area mb-4">
-                <h3 class="table-title"><i class="fa-solid fa-pencil text-red me-2"></i> Edit Client Details</h3>
+                <h3 class="table-title"><i class="fa-solid fa-pencil text-red me-2"></i> Edit Partner Details</h3>
                 <a href="{{ route('admin.clients.index') }}" class="btn btn-dark-custom btn-sm">
                     <i class="fa-solid fa-arrow-left me-1"></i> Back to List
                 </a>
@@ -24,51 +24,37 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.clients.update', $client->id) }}" method="POST">
+            <form action="{{ route('admin.clients.update', $client->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label for="name">Client Name</label>
-                    <input type="text" name="name" id="name" class="form-control form-control-custom" placeholder="e.g. TechNova, Finvest" value="{{ old('name', $client->name) }}" required>
+                    <label for="name">Partner Name</label>
+                    <input type="text" name="name" id="name" class="form-control form-control-custom" placeholder="e.g. AWS, Microsoft, Google Cloud" value="{{ old('name', $client->name) }}" required>
                 </div>
 
-                <div class="mb-4">
-                    <label for="icon">FontAwesome Icon Class String</label>
-                    <div class="input-group">
-                        <input type="text" name="icon" id="icon" class="form-control form-control-custom" placeholder="e.g. fa-solid fa-bolt" value="{{ old('icon', $client->icon) }}" required>
-                        <span class="input-group-text bg-dark text-white border-secondary" style="border-radius: 0 10px 10px 0; min-width: 60px; justify-content: center;">
-                            <i id="icon-preview" class="{{ old('icon', $client->icon) }} fs-5"></i>
-                        </span>
+                @if($client->image)
+                    <div class="mb-3">
+                        <label>Current Logo</label>
+                        <div class="bg-white rounded-3 border p-3 d-inline-flex align-items-center justify-content-center" style="width: 180px; height: 110px;">
+                            <img src="{{ url($client->image) }}" alt="{{ $client->name }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
                     </div>
-                    <small class="text-muted d-block mt-2">You can use any free class name from <a href="https://fontawesome.com/search?o=r&m=free" target="_blank" class="text-info text-decoration-none">FontAwesome v6 Free Library</a> (e.g. <code>fa-solid fa-bolt</code>, <code>fa-brands fa-apple</code>, etc.)</small>
+                @endif
+
+                <div class="mb-4">
+                    <label for="image">Replace Partner Logo</label>
+                    <input type="file" name="image" id="image" class="form-control form-control-custom" accept="image/*">
+                    <small class="text-muted d-block mt-2">Leave empty to keep the current logo. PNG, JPG, SVG, GIF, or WEBP up to 2MB.</small>
                 </div>
 
                 <div class="d-grid mt-4">
                     <button type="submit" class="btn btn-red py-2 fw-semibold">
-                        <i class="fa-solid fa-floppy-disk me-2"></i> Update Client
+                        <i class="fa-solid fa-floppy-disk me-2"></i> Update Partner
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-@endsection
-
-@section('js')
-<script>
-    const iconInput = document.getElementById('icon');
-    const iconPreview = document.getElementById('icon-preview');
-
-    if (iconInput && iconPreview) {
-        iconInput.addEventListener('input', function() {
-            const iconClass = this.value.trim();
-            if (iconClass) {
-                iconPreview.className = iconClass;
-            } else {
-                iconPreview.className = 'fa-solid fa-circle-question';
-            }
-        });
-    }
-</script>
 @endsection

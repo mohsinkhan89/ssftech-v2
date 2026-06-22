@@ -5,7 +5,8 @@
   const sections = document.querySelectorAll("main section[id]");
   const backToTop = document.querySelector(".back-to-top");
   const testimonialsSlider = document.querySelector(".testimonials-slider");
-  const reviewsSlider = document.querySelector(".reviews-slider");
+  const reviewsSlider = document.querySelector(".reviews-slider-custom");
+  const clientsSlider = document.querySelector(".client-logo-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
@@ -24,7 +25,9 @@
         ".project-card",
         ".accordion-item",
         ".contact-form",
-        ".contact-card",
+        ".contact-detail",
+        ".contact-socials",
+        ".contact-form-card",
         ".footer-about",
         ".footer-links",
         ".footer-contact-social",
@@ -92,22 +95,37 @@
   if (reviewsSlider && window.Swiper) {
     new window.Swiper(reviewsSlider, {
       loop: true,
+      loopAdditionalSlides: 4,
       centeredSlides: true,
       slidesPerView: "auto",
-      spaceBetween: 28,
-      speed: 650,
+      initialSlide: 1,
+      spaceBetween: 24,
+      speed: 900,
       grabCursor: true,
+      watchSlidesProgress: true,
+      observer: true,
+      observeParents: true,
+      effect: "coverflow",
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 52,
+        depth: 210,
+        modifier: 1.35,
+        slideShadows: false
+      },
       autoplay: {
-        delay: 3600,
+        delay: 2500,
         disableOnInteraction: false,
-        pauseOnMouseEnter: true
+        pauseOnMouseEnter: false
       },
       keyboard: {
         enabled: true
       },
       pagination: {
         el: ".review-pagination",
-        clickable: true
+        clickable: true,
+        bulletClass: "review-bullet",
+        bulletActiveClass: "active"
       },
       navigation: {
         nextEl: ".review-next",
@@ -115,10 +133,75 @@
       },
       breakpoints: {
         0: {
-          spaceBetween: 16
+          spaceBetween: 18,
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 80,
+            modifier: 1,
+            slideShadows: false
+          }
+        },
+        768: {
+          spaceBetween: 18,
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 18,
+            depth: 130,
+            modifier: 1.15,
+            slideShadows: false
+          }
+        },
+        1200: {
+          spaceBetween: 24,
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 52,
+            depth: 210,
+            modifier: 1.35,
+            slideShadows: false
+          }
+        }
+      }
+    });
+  }
+
+  if (clientsSlider && window.Swiper) {
+    new window.Swiper(clientsSlider, {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+      speed: 650,
+      grabCursor: true,
+      autoplay: {
+        delay: 2600,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      pagination: {
+        el: ".client-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".client-next",
+        prevEl: ".client-prev"
+      },
+      breakpoints: {
+        576: {
+          slidesPerView: 2,
+          spaceBetween: 12
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 12
         },
         992: {
-          spaceBetween: 28
+          slidesPerView: 4,
+          spaceBetween: 12
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 10
         }
       }
     });
@@ -141,10 +224,6 @@
       pagination: {
         el: ".portfolio-pagination",
         clickable: true
-      },
-      navigation: {
-        nextEl: ".portfolio-next",
-        prevEl: ".portfolio-prev"
       },
       breakpoints: {
         0: {

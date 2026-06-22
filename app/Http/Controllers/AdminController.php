@@ -255,14 +255,24 @@ class AdminController extends Controller
     // Store Client
     public function clientsStore(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
-            'icon' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        Client::create($request->only(['name', 'icon']));
+        $destinationPath = public_path('uploads/clients');
+        if (!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true);
+        }
 
-        return redirect()->route('admin.clients.index')->with('success', 'Client created successfully!');
+        $image = $request->file('image');
+        $imageName = time() . '_client_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $imageName);
+        $data['image'] = 'uploads/clients/' . $imageName;
+
+        Client::create($data);
+
+        return redirect()->route('admin.clients.index')->with('success', 'Partner created successfully!');
     }
 
     // Edit Client Form
@@ -274,21 +284,41 @@ class AdminController extends Controller
     // Update Client
     public function clientsUpdate(Request $request, Client $client)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
-            'icon' => 'required|string|max:255',
+            'image' => ($client->image ? 'nullable' : 'required') . '|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $client->update($request->only(['name', 'icon']));
+        if ($request->hasFile('image')) {
+            if ($client->image && File::exists(public_path($client->image)) && str_contains($client->image, 'uploads/clients')) {
+                File::delete(public_path($client->image));
+            }
 
-        return redirect()->route('admin.clients.index')->with('success', 'Client updated successfully!');
+            $destinationPath = public_path('uploads/clients');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0755, true);
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '_client_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $data['image'] = 'uploads/clients/' . $imageName;
+        }
+
+        $client->update($data);
+
+        return redirect()->route('admin.clients.index')->with('success', 'Partner updated successfully!');
     }
 
     // Delete Client
     public function clientsDestroy(Client $client)
     {
+        if ($client->image && File::exists(public_path($client->image)) && str_contains($client->image, 'uploads/clients')) {
+            File::delete(public_path($client->image));
+        }
+
         $client->delete();
-        return redirect()->route('admin.clients.index')->with('success', 'Client deleted successfully!');
+        return redirect()->route('admin.clients.index')->with('success', 'Partner deleted successfully!');
     }
 
     public function testimonialsIndex()

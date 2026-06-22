@@ -10,5 +10,10 @@ class Client extends Model
         'name',
         'icon',
         'image',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'integer',
     ];
 }

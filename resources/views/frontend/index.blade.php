@@ -530,6 +530,28 @@
             const form = document.getElementById('contactForm');
             const responseDiv = document.getElementById('formResponse');
             const submitBtn = document.getElementById('submitBtn');
+            let responseTimer;
+
+            function showFormResponse(className, message) {
+                clearTimeout(responseTimer);
+
+                responseDiv.className = className;
+                responseDiv.innerHTML = message;
+                responseDiv.classList.remove('d-none');
+                responseDiv.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                responseDiv.style.opacity = '1';
+                responseDiv.style.transform = 'translateY(0)';
+
+                responseTimer = setTimeout(function() {
+                    responseDiv.style.opacity = '0';
+                    responseDiv.style.transform = 'translateY(-8px)';
+
+                    setTimeout(function() {
+                        responseDiv.className = 'mb-3 d-none';
+                        responseDiv.innerHTML = '';
+                    }, 350);
+                }, 3500);
+            }
 
             if (form) {
                 form.addEventListener('submit', function(e) {
@@ -540,6 +562,7 @@
                     submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ms-2"></i>';
 
                     responseDiv.className = 'mb-3 d-none';
+                    clearTimeout(responseTimer);
 
                     const formData = new FormData(form);
 
@@ -561,11 +584,10 @@
 
                             if (res.status === 200 && res.body.success) {
                                 // Success
-                                responseDiv.className =
-                                    'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded';
-                                responseDiv.innerHTML =
-                                    '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message;
-                                responseDiv.classList.remove('d-none');
+                                showFormResponse(
+                                    'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded',
+                                    '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message
+                                );
                                 form.reset();
                             } else {
                                 // Error
@@ -575,11 +597,10 @@
                                 } else if (res.body.message) {
                                     errMsg = res.body.message;
                                 }
-                                responseDiv.className =
-                                    'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded';
-                                responseDiv.innerHTML =
-                                    '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + errMsg;
-                                responseDiv.classList.remove('d-none');
+                                showFormResponse(
+                                    'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
+                                    '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + errMsg
+                                );
                             }
                         })
                         .catch(error => {
@@ -588,11 +609,10 @@
                             submitBtn.innerHTML =
                             'Send Message <i class="fa-solid fa-arrow-right"></i>';
 
-                            responseDiv.className =
-                                'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded';
-                            responseDiv.innerHTML =
-                                '<i class="fa-solid fa-triangle-exclamation me-2"></i> Network error. Please check your connection and try again.';
-                            responseDiv.classList.remove('d-none');
+                            showFormResponse(
+                                'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
+                                '<i class="fa-solid fa-triangle-exclamation me-2"></i> Network error. Please check your connection and try again.'
+                            );
                         });
                 });
             }

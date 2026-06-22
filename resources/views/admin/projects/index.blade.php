@@ -37,6 +37,7 @@
                         <th>Project Title</th>
                         <th>Category</th>
                         <th>Target URL</th>
+                        <th>Status</th>
                         <th>Created At</th>
                         @if(Auth::user()->role !== 'author')
                         <th class="text-end" style="width: 120px;">Actions</th>
@@ -75,6 +76,21 @@
                                     </a>
                                 @else
                                     <span class="text-muted">None</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if(Auth::user()->role !== 'author')
+                                    <form action="{{ route('admin.projects.toggle-status', $project->id) }}" method="POST" class="status-toggle-form">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="status-toggle-btn {{ $project->status ? 'is-active' : 'is-inactive' }}">
+                                            {{ $project->status ? 'Active' : 'Inactive' }}
+                                        </button>
+                                    </form>
+                                @else
+                                    <span class="badge {{ $project->status ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary' }}">
+                                        {{ $project->status ? 'Active' : 'Inactive' }}
+                                    </span>
                                 @endif
                             </td>
                             <td>{{ $project->created_at->format('M d, Y') }}</td>

@@ -12,9 +12,9 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $projects = Project::orderBy('created_at', 'desc')->get();
-        $clients = Client::whereNotNull('image')->orderBy('created_at', 'asc')->get();
-        $testimonials = Testimonial::where('is_active', true)
+        $projects = Project::where('status', 1)->orderBy('created_at', 'desc')->get();
+        $clients = Client::where('status', 1)->whereNotNull('image')->orderBy('created_at', 'asc')->get();
+        $testimonials = Testimonial::where('status', 1)
             ->orderBy('sort_order')
             ->orderBy('created_at', 'desc')
             ->get();

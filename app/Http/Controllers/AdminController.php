@@ -219,6 +219,13 @@ class AdminController extends Controller
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully!');
     }
 
+    public function projectsToggleStatus(Project $project)
+    {
+        $project->update(['status' => $project->status ? 0 : 1]);
+
+        return redirect()->route('admin.projects.index')->with('success', 'Project status updated successfully!');
+    }
+
     // List Messages
     public function messagesIndex()
     {
@@ -321,6 +328,13 @@ class AdminController extends Controller
         return redirect()->route('admin.clients.index')->with('success', 'Partner deleted successfully!');
     }
 
+    public function clientsToggleStatus(Client $client)
+    {
+        $client->update(['status' => $client->status ? 0 : 1]);
+
+        return redirect()->route('admin.clients.index')->with('success', 'Partner status updated successfully!');
+    }
+
     public function testimonialsIndex()
     {
         $testimonials = Testimonial::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
@@ -346,7 +360,8 @@ class AdminController extends Controller
         ]);
 
         $data['sort_order'] = $data['sort_order'] ?? 0;
-        $data['is_active'] = $request->boolean('is_active');
+        $data['status'] = $request->boolean('is_active') ? 1 : 0;
+        $data['is_active'] = (bool) $data['status'];
 
         if ($request->hasFile('avatar')) {
             $destinationPath = public_path('uploads/testimonials');
@@ -384,7 +399,8 @@ class AdminController extends Controller
         ]);
 
         $data['sort_order'] = $data['sort_order'] ?? 0;
-        $data['is_active'] = $request->boolean('is_active');
+        $data['status'] = $request->boolean('is_active') ? 1 : 0;
+        $data['is_active'] = (bool) $data['status'];
 
         if ($request->hasFile('avatar')) {
             if ($testimonial->avatar && File::exists(public_path($testimonial->avatar)) && str_contains($testimonial->avatar, 'uploads/testimonials')) {
@@ -416,6 +432,17 @@ class AdminController extends Controller
         $testimonial->delete();
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Review deleted successfully!');
+    }
+
+    public function testimonialsToggleStatus(Testimonial $testimonial)
+    {
+        $status = $testimonial->status ? 0 : 1;
+        $testimonial->update([
+            'status' => $status,
+            'is_active' => (bool) $status,
+        ]);
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Review status updated successfully!');
     }
 
     // List Users

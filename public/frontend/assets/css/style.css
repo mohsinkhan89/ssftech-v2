@@ -617,7 +617,7 @@ a {
   overflow: hidden;
   color: var(--ink);
   border-radius: 8px;
-  padding: 48px 34px 44px;
+  padding: 48px 0px 44px;
   background: #fff;
 }
 
@@ -670,8 +670,8 @@ a {
 .clients-carousel-wrap {
   position: relative;
   z-index: 3;
-  max-width: 1120px;
-  margin: 0 auto;
+  /* max-width: 1120px;
+  margin: 0 auto; */
 }
 
 .client-logo-slider {
@@ -688,8 +688,9 @@ a {
 }
 
 .client-logo-card {
-  min-height: 140px;
-  height: 100%;
+  /* min-height: 140px; */
+  /* height: 100%; */
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -831,20 +832,26 @@ a {
   position: relative;
   z-index: 3;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 8px;
   margin-top: 34px;
 }
 
-.client-pagination .swiper-pagination-bullet {
-  width: 14px;
-  height: 14px;
+.client-pagination .client-bullet {
+  width: 6px;
+  height: 6px;
+  display: block;
   margin: 0 !important;
-  background: #d4d5d9;
+  border-radius: 999px;
+  background: #c9cbd1;
   opacity: 1;
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-.client-pagination .swiper-pagination-bullet-active {
+.client-pagination .client-bullet.active {
+  width: 58px;
   background: var(--red);
 }
 
@@ -3177,9 +3184,8 @@ a {
     margin-top: 24px;
   }
 
-  .client-pagination .swiper-pagination-bullet {
-    width: 11px;
-    height: 11px;
+  .client-pagination .client-bullet.active {
+    width: 44px;
   }
 
   .testimonials-slider {

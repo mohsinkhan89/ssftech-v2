@@ -35,6 +35,7 @@
                     <tr>
                         <th style="width: 150px;">Logo</th>
                         <th>Partner Name</th>
+                        <th>Status</th>
                         <th>Created At</th>
                         @if(Auth::user()->role !== 'author')
                         <th class="text-end" style="width: 120px;">Actions</th>
@@ -55,6 +56,21 @@
                             </td>
                             <td>
                                 <div class="fw-bold">{{ $client->name }}</div>
+                            </td>
+                            <td>
+                                @if(Auth::user()->role !== 'author')
+                                    <form action="{{ route('admin.clients.toggle-status', $client->id) }}" method="POST" class="status-toggle-form">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="status-toggle-btn {{ $client->status ? 'is-active' : 'is-inactive' }}">
+                                            {{ $client->status ? 'Active' : 'Inactive' }}
+                                        </button>
+                                    </form>
+                                @else
+                                    <span class="badge {{ $client->status ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary' }}">
+                                        {{ $client->status ? 'Active' : 'Inactive' }}
+                                    </span>
+                                @endif
                             </td>
                             <td>{{ $client->created_at->format('M d, Y') }}</td>
                             @if(Auth::user()->role !== 'author')

@@ -180,7 +180,9 @@
       },
       pagination: {
         el: ".client-pagination",
-        clickable: true
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
       },
       navigation: {
         nextEl: ".client-next",

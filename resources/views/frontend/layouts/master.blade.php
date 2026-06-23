@@ -19,6 +19,24 @@
 </head>
 
 <body>
+    <div class="site-loader" role="status" aria-live="polite" aria-label="Loading SSF Tech">
+        <div class="loader-grid" aria-hidden="true"></div>
+        <div class="loader-core">
+            <div class="loader-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="loader-mark">
+                <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="">
+            </div>
+            <div class="loader-copy">
+                <strong>SSF Tech</strong>
+                <small>Initializing digital solutions</small>
+            </div>
+            <div class="loader-progress" aria-hidden="true"><span></span></div>
+        </div>
+    </div>
     @include('frontend.inc.header')
     <main>
         @yield('body')

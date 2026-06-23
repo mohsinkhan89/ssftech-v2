@@ -98,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 reveal delay-2">
+                <div class="col-lg-6 reveal mm-0 delay-2">
                     <div class="about-image float-soft">
                         <img src="{{ url('frontend/assets/images/extracted/about-team-shot.png') }}"
                             alt="Digital team working together">

@@ -61,6 +61,7 @@
                         </a>
                     </div>
                 </div>
+                
                 <div class="col-lg-6 col-xl-5 mm-0 offset-xl-1">
                     <div class="hero-form-card hero-anim delay-3">
                         <div class="hero-form-head">

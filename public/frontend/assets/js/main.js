@@ -1,4 +1,5 @@
 (function () {
+  const loader = document.querySelector(".site-loader");
   const header = document.querySelector(".site-header");
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   const navCollapse = document.querySelector(".navbar-collapse");
@@ -10,6 +11,32 @@
   const portfolioSlider = document.querySelector(".portfolio-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
+
+  if (loader) {
+    document.body.classList.add("loader-active");
+    let loaderHidden = false;
+
+    const hideLoader = () => {
+      if (loaderHidden) {
+        return;
+      }
+
+      loaderHidden = true;
+      loader.classList.add("is-hidden");
+      document.body.classList.remove("loader-active");
+
+      setTimeout(() => {
+        loader.remove();
+      }, 650);
+    };
+
+    if (document.readyState === "complete") {
+      setTimeout(hideLoader, 450);
+    } else {
+      window.addEventListener("load", () => setTimeout(hideLoader, 450), { once: true });
+      setTimeout(hideLoader, 3200);
+    }
+  }
 
   document
     .querySelectorAll(

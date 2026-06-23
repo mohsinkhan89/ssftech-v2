@@ -8,6 +8,25 @@
     @yield('title')
     <title>SSF Tech - Digital Solutions</title>
     @yield('css')
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{url('frontend/assets/images/favicons/apple-icon-57x57.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{url('frontend/assets/images/favicons/apple-icon-60x60.png')}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{url('frontend/assets/images/favicons/apple-icon-72x72.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{url('frontend/assets/images/favicons/apple-icon-76x76.png')}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{url('frontend/assets/images/favicons/apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{url('frontend/assets/images/favicons/apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{url('frontend/assets/images/favicons/apple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{url('frontend/assets/images/favicons/apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url('frontend/assets/images/favicons/apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{url('frontend/assets/images/favicons/android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url('frontend/assets/images/favicons//favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{url('frontend/assets/images/favicons//favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url('frontend/assets/images/favicons//favicon-16x16.png')}}">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#e40914">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#e40914">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
@@ -19,6 +38,24 @@
 </head>
 
 <body>
+    <div class="site-loader" role="status" aria-live="polite" aria-label="Loading SSF Tech">
+        <div class="loader-grid" aria-hidden="true"></div>
+        <div class="loader-core">
+            <div class="loader-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="loader-mark">
+                <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="">
+            </div>
+            <div class="loader-copy">
+                <strong>SSF Tech</strong>
+                <small>Initializing digital solutions</small>
+            </div>
+            <div class="loader-progress" aria-hidden="true"><span></span></div>
+        </div>
+    </div>
     @include('frontend.inc.header')
     <main>
         @yield('body')

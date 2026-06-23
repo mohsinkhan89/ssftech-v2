@@ -12,6 +12,11 @@ class Project extends Model
         'image_desktop',
         'image_tablet',
         'image_mobile',
-        'project_url'
+        'project_url',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'integer',
     ];
 }

@@ -71,9 +71,19 @@
                                 </span>
                             </td>
                             <td>
-                                <span class="badge {{ $testimonial->is_active ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary' }}">
-                                    {{ $testimonial->is_active ? 'Active' : 'Hidden' }}
-                                </span>
+                                @if(Auth::user()->role !== 'author')
+                                    <form action="{{ route('admin.testimonials.toggle-status', $testimonial->id) }}" method="POST" class="status-toggle-form">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="status-toggle-btn {{ $testimonial->status ? 'is-active' : 'is-inactive' }}">
+                                            {{ $testimonial->status ? 'Active' : 'Inactive' }}
+                                        </button>
+                                    </form>
+                                @else
+                                    <span class="badge {{ $testimonial->status ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary' }}">
+                                        {{ $testimonial->status ? 'Active' : 'Inactive' }}
+                                    </span>
+                                @endif
                             </td>
                             <td>{{ $testimonial->sort_order }}</td>
                             @if(Auth::user()->role !== 'author')

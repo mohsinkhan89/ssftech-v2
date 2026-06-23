@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin/projects', [AdminController::class, 'projectsStore'])->name('admin.projects.store');
         Route::get('/admin/projects/{project}/edit', [AdminController::class, 'projectsEdit'])->name('admin.projects.edit');
         Route::put('/admin/projects/{project}', [AdminController::class, 'projectsUpdate'])->name('admin.projects.update');
+        Route::patch('/admin/projects/{project}/toggle-status', [AdminController::class, 'projectsToggleStatus'])->name('admin.projects.toggle-status');
         Route::delete('/admin/projects/{project}', [AdminController::class, 'projectsDestroy'])->name('admin.projects.destroy');
     });
 
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin/clients', [AdminController::class, 'clientsStore'])->name('admin.clients.store');
         Route::get('/admin/clients/{client}/edit', [AdminController::class, 'clientsEdit'])->name('admin.clients.edit');
         Route::put('/admin/clients/{client}', [AdminController::class, 'clientsUpdate'])->name('admin.clients.update');
+        Route::patch('/admin/clients/{client}/toggle-status', [AdminController::class, 'clientsToggleStatus'])->name('admin.clients.toggle-status');
         Route::delete('/admin/clients/{client}', [AdminController::class, 'clientsDestroy'])->name('admin.clients.destroy');
     });
 
@@ -54,6 +56,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin/testimonials', [AdminController::class, 'testimonialsStore'])->name('admin.testimonials.store');
         Route::get('/admin/testimonials/{testimonial}/edit', [AdminController::class, 'testimonialsEdit'])->name('admin.testimonials.edit');
         Route::put('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsUpdate'])->name('admin.testimonials.update');
+        Route::patch('/admin/testimonials/{testimonial}/toggle-status', [AdminController::class, 'testimonialsToggleStatus'])->name('admin.testimonials.toggle-status');
         Route::delete('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsDestroy'])->name('admin.testimonials.destroy');
     });
 

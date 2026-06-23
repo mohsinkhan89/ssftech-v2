@@ -256,6 +256,21 @@
         </form>
     </div>
 
+    <script>
+        const loginError = document.querySelector('.error-message');
+
+        if (loginError) {
+            setTimeout(function() {
+                loginError.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                loginError.style.opacity = '0';
+                loginError.style.transform = 'translateY(-8px)';
+
+                setTimeout(function() {
+                    loginError.remove();
+                }, 350);
+            }, 3500);
+        }
+    </script>
 </body>
 
 </html>

@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
     <!-- Custom Style -->
     <style>
         :root {
@@ -242,6 +244,63 @@
             transform: translateY(-6px);
             box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
             border-color: rgba(228, 9, 20, 0.25);
+        }
+
+        .dashboard-cards-slider {
+            width: 100%;
+            overflow: hidden;
+            padding: 4px 4px 34px;
+        }
+
+        .dashboard-cards-slider .swiper-wrapper {
+            align-items: stretch;
+        }
+
+        .dashboard-cards-slider .swiper-slide {
+            height: auto;
+        }
+
+        .dashboard-cards-slider .dashboard-card {
+            min-height: 210px;
+        }
+
+        .dashboard-cards-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .dashboard-cards-arrows button {
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #fff;
+            color: #0f172a;
+            transition: all 0.25s ease;
+        }
+
+        .dashboard-cards-arrows button:hover {
+            border-color: var(--red);
+            background: var(--red);
+            color: #fff;
+            box-shadow: 0 8px 20px var(--red-glow);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-cards-arrows button.swiper-button-disabled,
+        .dashboard-cards-arrows button.swiper-button-disabled:hover {
+            cursor: not-allowed;
+            opacity: 0.38;
+            border-color: #cbd5e1;
+            background: #fff;
+            color: #94a3b8;
+            box-shadow: none;
+            transform: none;
         }
 
         .card-icon-wrapper {
@@ -594,6 +653,75 @@
             transform: scale(1.08);
         }
 
+        .status-toggle-form {
+            display: inline-flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        .status-toggle-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1;
+            transition: all 0.25s ease;
+        }
+
+        .status-toggle-btn::before {
+            content: "";
+            width: 46px;
+            height: 24px;
+            border-radius: 999px;
+            background: #cbd5e1;
+            box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+            transition: all 0.25s ease;
+        }
+
+        .status-toggle-btn::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            margin-left: 3px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 2px 7px rgba(15, 23, 42, 0.25);
+            transition: transform 0.25s ease;
+        }
+
+        .status-toggle-btn.is-active {
+            color: #059669;
+        }
+
+        .status-toggle-btn.is-active::before {
+            background: #10b981;
+            box-shadow: inset 0 0 0 1px rgba(5, 150, 105, 0.12), 0 4px 12px rgba(16, 185, 129, 0.22);
+        }
+
+        .status-toggle-btn.is-active::after {
+            transform: translateX(22px);
+        }
+
+        .status-toggle-btn.is-inactive {
+            color: #64748b;
+        }
+
+        .status-toggle-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .status-toggle-btn:hover::before {
+            box-shadow: inset 0 0 0 1px rgba(239, 22, 31, 0.18), 0 4px 12px rgba(239, 22, 31, 0.16);
+        }
+
         /* Alert overrides */
         .alert-custom {
             background: #ecfdf5;
@@ -602,6 +730,15 @@
             border-radius: 12px;
             padding: 16px 22px;
             margin-bottom: 30px;
+        }
+
+        .alert.auto-dismiss-alert {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .alert.auto-dismiss-alert.is-hiding {
+            opacity: 0;
+            transform: translateY(-8px);
         }
 
         /* Animations */
@@ -778,6 +915,7 @@
 
     <!-- Bootstrap & Custom Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // Sidebar responsive toggle
         const toggleBtn = document.getElementById('sidebarToggleBtn');
@@ -795,6 +933,23 @@
                 }
             });
         }
+
+        document.querySelectorAll('.alert').forEach(function(alertEl) {
+            alertEl.classList.add('auto-dismiss-alert');
+
+            setTimeout(function() {
+                alertEl.classList.add('is-hiding');
+
+                setTimeout(function() {
+                    if (window.bootstrap && bootstrap.Alert) {
+                        bootstrap.Alert.getOrCreateInstance(alertEl).close();
+                        return;
+                    }
+
+                    alertEl.remove();
+                }, 350);
+            }, 3500);
+        });
     </script>
     @yield('js')
 </body>

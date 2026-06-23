@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer-shell">
             <div class="row g-4 footer-main">
-                <div class="col-lg-3 col-md-4 footer-about">
+                <div class="col-lg-3 col-md-6 footer-about">
                     <a class="brand-lockup footer-brand" href="#home" aria-label="SSF Tech home">
                         <div class="footer-logo">
                             <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 footer-links footer-links-about">
+                <div class="col-lg-3 col-md-6 footer-links footer-links-about">
                     <h4>About Us</h4>
                     <a href="#about"><span><i class="fa-solid fa-chevron-right"></i></span>About Us</a>
                     <a href="#contact"><span><i class="fa-solid fa-chevron-right"></i></span>Contact Us</a>
@@ -28,7 +28,7 @@
                     <a href="#terms"><span><i class="fa-solid fa-chevron-right"></i></span>Terms and
                         Conditions</a>
                 </div>
-                <div class="col-lg-3 col-md-4 footer-links">
+                <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Services</h4>
                     <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>Web Development</a>
                     <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>Google Ads</a>
@@ -36,7 +36,7 @@
                         Marketing</a>
                     <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>SEO</a>
                 </div>
-                <div class="col-lg-3 col-md-12 footer-contact-social">
+                <div class="col-lg-3 col-md-6 footer-contact-social">
                     <h4>Contact Us</h4>
                     <div class="footer-contact-list">
                         <div class="footer-contact-item top-icon">

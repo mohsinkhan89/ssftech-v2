@@ -15,13 +15,13 @@
 @endphp
 
 <!-- Statistics Section -->
-<div class="row g-4 mb-5">
+<div class="dashboard-cards-slider swiper mb-5">
     @php
         $isAdmin = Auth::user()->role === 'administrator';
-        $colClass = 'col-md-6 col-xl-3';
     @endphp
+    <div class="swiper-wrapper">
     <!-- Total Projects Card -->
-    <div class="{{ $colClass }}">
+    <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon">
@@ -40,7 +40,7 @@
     </div>
 
     <!-- Total Inquiries Card -->
-    <div class="{{ $colClass }}">
+    <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon" style="background: rgba(16, 185, 129, 0.08); color: #10b981; border-color: rgba(16, 185, 129, 0.15);">
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Total Partners Card -->
-    <div class="{{ $colClass }}">
+    <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon" style="background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-color: rgba(245, 158, 11, 0.15);">
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Total Reviews Card -->
-    <div class="{{ $colClass }}">
+    <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon" style="background: rgba(236, 72, 153, 0.08); color: #ec4899; border-color: rgba(236, 72, 153, 0.15);">
@@ -98,7 +98,7 @@
 
     @if($isAdmin)
     <!-- Total Users Card -->
-    <div class="{{ $colClass }}">
+    <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
                 <div class="card-icon" style="background: rgba(168, 85, 247, 0.08); color: #a855f7; border-color: rgba(168, 85, 247, 0.15);">
@@ -116,6 +116,15 @@
         </div>
     </div>
     @endif
+    </div>
+    <div class="dashboard-cards-arrows" aria-label="Dashboard card slider controls">
+        <button class="dashboard-cards-prev" type="button" aria-label="Previous dashboard card">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="dashboard-cards-next" type="button" aria-label="Next dashboard card">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
 </div>
 
 <!-- Quick Shortcuts Section -->
@@ -128,7 +137,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.projects.create') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-plus text-danger"></i>
+                            <i class="fa-solid fa-plus"></i>
                         </div>
                         <div class="action-info">
                             <h6>Add Project</h6>
@@ -139,7 +148,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.clients.create') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-plus text-warning"></i>
+                            <i class="fa-solid fa-plus"></i>
                         </div>
                         <div class="action-info">
                             <h6>Add Partner</h6>
@@ -150,7 +159,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.testimonials.create') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-plus text-danger"></i>
+                            <i class="fa-solid fa-plus"></i>
                         </div>
                         <div class="action-info">
                             <h6>Add Review</h6>
@@ -162,7 +171,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.projects.index') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-folder-open text-primary"></i>
+                            <i class="fa-solid fa-folder-open"></i>
                         </div>
                         <div class="action-info">
                             <h6>Projects</h6>
@@ -173,7 +182,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.clients.index') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-handshake text-warning"></i>
+                            <i class="fa-solid fa-handshake"></i>
                         </div>
                         <div class="action-info">
                             <h6>Partners</h6>
@@ -184,7 +193,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.testimonials.index') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-comments text-danger"></i>
+                            <i class="fa-solid fa-comments"></i>
                         </div>
                         <div class="action-info">
                             <h6>Reviews</h6>
@@ -196,7 +205,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.users.create') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-user-plus text-success"></i>
+                            <i class="fa-solid fa-user-plus"></i>
                         </div>
                         <div class="action-info">
                             <h6>Add User</h6>
@@ -208,7 +217,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.messages.index') }}" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-inbox text-success"></i>
+                            <i class="fa-solid fa-inbox"></i>
                         </div>
                         <div class="action-info">
                             <h6>Inbox</h6>
@@ -219,7 +228,7 @@
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ url('/') }}" target="_blank" class="action-card">
                         <div class="action-icon">
-                            <i class="fa-solid fa-globe text-info"></i>
+                            <i class="fa-solid fa-globe"></i>
                         </div>
                         <div class="action-info">
                             <h6>View Site</h6>
@@ -306,4 +315,48 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dashboardSlider = document.querySelector('.dashboard-cards-slider');
+
+        if (!dashboardSlider || !window.Swiper) {
+            return;
+        }
+
+        new window.Swiper(dashboardSlider, {
+            loop: false,
+            rewind: false,
+            slidesPerView: 1,
+            spaceBetween: 18,
+            speed: 700,
+            grabCursor: true,
+            autoplay: {
+                delay: 2400,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            navigation: {
+                nextEl: '.dashboard-cards-next',
+                prevEl: '.dashboard-cards-prev'
+            },
+            breakpoints: {
+                576: {
+                    slidesPerView: 2,
+                    spaceBetween: 18
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 24
+                }
+            }
+        });
+    });
+</script>
 @endsection

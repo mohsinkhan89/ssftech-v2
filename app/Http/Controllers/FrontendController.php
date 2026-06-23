@@ -58,9 +58,12 @@ class FrontendController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:255',
+            'phone' => ['required', 'regex:/^\+44\s\d{4}\s\d{6}$/'],
             'service' => 'nullable|string|max:255',
             'message' => 'required|string',
+        ], [
+            'phone.required' => 'The phone number field is required.',
+            'phone.regex' => 'Please enter a valid UK phone number in this format: +44 7123 456789.',
         ]);
 
         Message::create($validated);

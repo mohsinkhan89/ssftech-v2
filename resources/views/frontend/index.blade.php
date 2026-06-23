@@ -45,7 +45,7 @@
         </div>
         <div class="hero-pulse"></div>
         <div class="container position-relative">
-            <div class="row min-vh-hero align-items-center">
+            <div class="row min-vh-hero align-items-center g-5">
                 <div class="col-lg-6 col-xl-5">
                     <p class="eyebrow hero-anim">Welcome to SSF Tech</p>
                     <h1 class="hero-anim delay-1">Navigating New <span>Horizons!</span></h1>
@@ -59,6 +59,56 @@
                             <span class="play-circle"><i class="fa-solid fa-play"></i></span>
                             View Our Work
                         </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-5 mm-0 offset-xl-1">
+                    <div class="hero-form-card hero-anim delay-3">
+                        <div class="hero-form-head">
+                            <span><i class="fa-solid fa-paper-plane"></i></span>
+                            <div>
+                                <small>Start your project</small>
+                                <h3>Get a Free Quote</h3>
+                            </div>
+                        </div>
+                        <form class="contact-form hero-contact-form js-contact-form" id="heroContactForm"
+                            data-response="#heroFormResponse" data-button="#heroSubmitBtn">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="name" placeholder="Your Name"
+                                        aria-label="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="email" name="email" placeholder="Your Email"
+                                        aria-label="Your Email" autocomplete="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control uk-phone-mask" type="tel" name="phone"
+                                        placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel"
+                                        autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$"
+                                        title="Enter a UK number in this format: +44 7123 456789" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select" name="service" aria-label="Select Service" required>
+                                        <option value="">Select Service</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="Digital Marketing">Digital Marketing</option>
+                                        <option value="Graphic Designing">Graphic Designing</option>
+                                        <option value="IT Support">IT Support</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" name="message" rows="3" placeholder="Tell us about your project..."
+                                        aria-label="Project details" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div id="heroFormResponse" class="mb-3 d-none"></div>
+                                    <button class="btn btn-brand" type="submit" id="heroSubmitBtn">
+                                        Request Quote <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -409,7 +459,8 @@
                             <p>Fill out the form and we'll get back to you shortly.</p>
                         </div>
                     </div>
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form js-contact-form" id="contactForm" data-response="#formResponse"
+                        data-button="#submitBtn">
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -418,11 +469,13 @@
                             </div>
                             <div class="col-md-6">
                                 <input class="form-control" type="email" name="email" placeholder="Your Email"
-                                    aria-label="Your Email" required>
+                                    aria-label="Your Email" autocomplete="email" required>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="tel" name="phone" placeholder="Your Phone"
-                                    aria-label="Your Phone">
+                                <input class="form-control uk-phone-mask" type="tel" name="phone"
+                                    placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel"
+                                    autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$"
+                                    title="Enter a UK number in this format: +44 7123 456789" required>
                             </div>
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="service" placeholder="Subject"
@@ -527,37 +580,84 @@
 @section('js')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contactForm');
-            const responseDiv = document.getElementById('formResponse');
-            const submitBtn = document.getElementById('submitBtn');
-            let responseTimer;
+            function formatUkPhone(value) {
+                let digits = value.replace(/\D/g, '');
 
-            function showFormResponse(className, message) {
-                clearTimeout(responseTimer);
+                if (digits.startsWith('44')) {
+                    digits = digits.slice(2);
+                }
 
-                responseDiv.className = className;
-                responseDiv.innerHTML = message;
-                responseDiv.classList.remove('d-none');
-                responseDiv.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-                responseDiv.style.opacity = '1';
-                responseDiv.style.transform = 'translateY(0)';
+                if (digits.startsWith('0')) {
+                    digits = digits.slice(1);
+                }
 
-                responseTimer = setTimeout(function() {
-                    responseDiv.style.opacity = '0';
-                    responseDiv.style.transform = 'translateY(-8px)';
+                digits = digits.slice(0, 10);
 
-                    setTimeout(function() {
-                        responseDiv.className = 'mb-3 d-none';
-                        responseDiv.innerHTML = '';
-                    }, 350);
-                }, 3500);
+                if (!digits) {
+                    return '';
+                }
+
+                if (digits.length <= 4) {
+                    return '+44 ' + digits;
+                }
+
+                return '+44 ' + digits.slice(0, 4) + ' ' + digits.slice(4);
             }
 
-            if (form) {
+            document.querySelectorAll('.uk-phone-mask').forEach(function(input) {
+                input.addEventListener('input', function() {
+                    input.value = formatUkPhone(input.value);
+                });
+
+                input.addEventListener('blur', function() {
+                    input.value = formatUkPhone(input.value);
+                });
+            });
+
+            document.querySelectorAll('.js-contact-form').forEach(function(form) {
+                const responseDiv = document.querySelector(form.dataset.response);
+                const submitBtn = document.querySelector(form.dataset.button);
+                const originalButtonHtml = submitBtn ? submitBtn.innerHTML : '';
+                let responseTimer;
+
+                if (!responseDiv || !submitBtn) {
+                    return;
+                }
+
+                function showFormResponse(className, message) {
+                    clearTimeout(responseTimer);
+
+                    responseDiv.className = className;
+                    responseDiv.innerHTML = message;
+                    responseDiv.classList.remove('d-none');
+                    responseDiv.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                    responseDiv.style.opacity = '1';
+                    responseDiv.style.transform = 'translateY(0)';
+
+                    responseTimer = setTimeout(function() {
+                        responseDiv.style.opacity = '0';
+                        responseDiv.style.transform = 'translateY(-8px)';
+
+                        setTimeout(function() {
+                            responseDiv.className = 'mb-3 d-none';
+                            responseDiv.innerHTML = '';
+                        }, 350);
+                    }, 3500);
+                }
+
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
 
-                    // Show loading state
+                    const phoneInput = form.querySelector('.uk-phone-mask');
+                    if (phoneInput) {
+                        phoneInput.value = formatUkPhone(phoneInput.value);
+                    }
+
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ms-2"></i>';
 
@@ -579,18 +679,15 @@
                         })))
                         .then(res => {
                             submitBtn.disabled = false;
-                            submitBtn.innerHTML =
-                            'Send Message <i class="fa-solid fa-arrow-right"></i>';
+                            submitBtn.innerHTML = originalButtonHtml;
 
                             if (res.status === 200 && res.body.success) {
-                                // Success
                                 showFormResponse(
                                     'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded',
                                     '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message
                                 );
                                 form.reset();
                             } else {
-                                // Error
                                 let errMsg = 'Something went wrong. Please try again.';
                                 if (res.body.errors) {
                                     errMsg = Object.values(res.body.errors).flat().join('<br>');
@@ -606,8 +703,7 @@
                         .catch(error => {
                             console.error('Error:', error);
                             submitBtn.disabled = false;
-                            submitBtn.innerHTML =
-                            'Send Message <i class="fa-solid fa-arrow-right"></i>';
+                            submitBtn.innerHTML = originalButtonHtml;
 
                             showFormResponse(
                                 'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
@@ -615,7 +711,7 @@
                             );
                         });
                 });
-            }
+            });
         });
     </script>
 @endsection

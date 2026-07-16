@@ -1459,16 +1459,42 @@ a {
 }
 
 .portfolio-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 28px;
+  column-gap: 28px;
   margin-bottom: 22px;
 }
 
+.portfolio-head > div {
+  display: contents;
+}
+
+.portfolio-head .eyebrow,
+.portfolio-head .section-title {
+  grid-column: 1 / -1;
+}
+
+.portfolio-head .section-title {
+  margin-bottom: 22px;
+  text-wrap: wrap;
+}
+
 .portfolio-head .muted {
+  grid-column: 1;
   max-width: 510px;
   margin: 0;
+}
+
+.portfolio-head .btn-brand {
+  grid-column: 2;
+  align-self: end;
+}
+
+@media (min-width: 1200px) {
+  .portfolio-head .section-title {
+    white-space: nowrap;
+  }
 }
 
 .portfolio-controls {
@@ -3005,8 +3031,14 @@ a {
   }
 
   .portfolio-head {
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .portfolio-head > div {
+    display: block;
+    width: 100%;
   }
 
   .portfolio-controls {
@@ -4646,6 +4678,20 @@ a {
   box-shadow: 0 0 20px rgba(228, 9, 20, .7);
 }
 
+.review-avatar-initials,
+.reviews-slider-custom .swiper-slide-active .review-avatar-initials {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #292a31, #0b0c11);
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 2px;
+  filter: none;
+  user-select: none;
+}
+
 .review-card p,
 .reviews-slider-custom .swiper-slide-active .review-card p {
   max-width: 490px;
@@ -4778,6 +4824,11 @@ a {
   .reviews-slider-custom .swiper-slide-active .review-avatar {
     width: 112px;
     height: 112px;
+  }
+
+  .review-avatar-initials,
+  .reviews-slider-custom .swiper-slide-active .review-avatar-initials {
+    font-size: 28px;
   }
 
   .review-card p,

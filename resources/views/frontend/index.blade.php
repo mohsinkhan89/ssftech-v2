@@ -243,7 +243,7 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="reviews-title">We've helped a lot of businesses&mdash;<br>but don't just take <span>our word for it</span></h2>
+                    <h2 class="reviews-title">We've helped a lot of businesses but don't just take <br> <span>our word for it</span></h2>
                     <p class="reviews-text">We're proud to help businesses grow with reliable digital solutions,
                         outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
                         makes a real difference.</p>
@@ -284,9 +284,20 @@
                                                 @endfor
                                             </div>
                                         </div>
-                                        <img class="review-avatar"
-                                            src="{{ url($testimonial->avatar ?: 'frontend/assets/images/extracted/client-avatar-2.png') }}"
-                                            alt="{{ $testimonial->name }}">
+                                        @if ($testimonial->avatar)
+                                            <img class="review-avatar" src="{{ url($testimonial->avatar) }}"
+                                                alt="{{ $testimonial->name }}">
+                                        @else
+                                            @php
+                                                $nameParts = collect(preg_split('/\s+/', trim($testimonial->name)))->filter();
+                                                $initials = $nameParts
+                                                    ->take(2)
+                                                    ->map(fn ($part) => mb_strtoupper(mb_substr($part, 0, 1)))
+                                                    ->implode('');
+                                            @endphp
+                                            <span class="review-avatar review-avatar-initials"
+                                                aria-label="{{ $testimonial->name }}">{{ $initials ?: '?' }}</span>
+                                        @endif
                                         <p>{{ $testimonial->review }}</p>
                                         <strong>{{ $testimonial->name }}</strong>
                                         <small>{{ trim(($testimonial->designation ? $testimonial->designation . ', ' : '') . $testimonial->company, ', ') }}</small>
@@ -339,8 +350,7 @@
             <div class="portfolio-head reveal">
                 <div>
                     <p class="eyebrow">Our Work</p>
-                    <h2 class="section-title">Digital Experiences We've Created for <span>Our Clients</span>
-                        </h2>
+                    <h2 class="section-title">Digital Experiences We've <br> Created for <span>Our Clients</span></h2>
                     <p class="muted">From modern websites to complete digital solutions, we help businesses achieve
                         their goals. Browse our recent work to see what we've created.</p>
                 </div>

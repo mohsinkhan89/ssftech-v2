@@ -458,21 +458,21 @@
                         data-button="#submitBtn">
                         @csrf
                         <div class="row g-3">
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="text" name="name" placeholder="Your Name"
                                     aria-label="Your Name" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="email" name="email" placeholder="Your Email"
                                     aria-label="Your Email" autocomplete="email" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control uk-phone-mask" type="tel" name="phone"
                                     placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel"
                                     autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$"
                                     title="Enter a UK number in this format: +44 7123 456789" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="text" name="service" placeholder="Subject"
                                     aria-label="Subject">
                             </div>

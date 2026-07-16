@@ -1735,6 +1735,11 @@ a {
   display: block;
 }
 
+.portfolio-slider.preview-tablet .project-img-tablet,
+.portfolio-slider.preview-mobile .project-img-mobile {
+  object-fit: fill;
+}
+
 .project-meta {
   min-height: 64px;
   display: grid;

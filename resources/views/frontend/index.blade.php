@@ -200,40 +200,21 @@
             <h2 class="section-title reveal delay-1">Bespoke Digital Solutions for Every Business</h2>
             <p class="muted reveal delay-1">We offer a complete range of services to help your brand grow online, from
                 the very first line of code through to ongoing support.</p>
-            <div class="row g-4">
-                <div class="col-md-6 col-xl-3 reveal">
-                    <article class="service-card"><span class="service-icon"><i class="fa-solid fa-laptop-code"></i></span>
-                        <h3>Web Development</h3>
-                        <p>Custom websites built with modern technology, designed for strong performance, easy management
-                            and long term scalability.</p><a
-                            href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3 reveal delay-1">
-                    <article class="service-card"><span class="service-icon"><i class="fa-solid fa-bullhorn"></i></span>
-                        <h3>Digital Marketing</h3>
-                        <p>Results focused marketing strategies that grow your brand, reach the right audience and turn
-                            clicks into paying customers.</p>
-                        <a href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3 reveal delay-2">
-                    <article class="service-card"><span class="service-icon"><i class="fa-solid fa-pen-nib"></i></span>
-                        <h3>Graphic Designing</h3>
-                        <p>Creative, memorable designs that tell your brand's story and leave a lasting impression on every
-                            visitor.</p><a
-                            href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3 reveal delay-3">
-                    <article class="service-card"><span class="service-icon"><i class="fa-solid fa-headset"></i></span>
-                        <h3>IT Support</h3>
-                        <p>Reliable, responsive support and maintenance that keeps your systems running smoothly, day in
-                            and day out.</p><a
-                            href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                    </article>
+            <div class="services-slider swiper reveal delay-2">
+                <div class="swiper-wrapper">
+                    @foreach ($services as $service)
+                        <div class="swiper-slide">
+                            <article class="service-card">
+                                <span class="service-icon"><i class="{{ $service->icon }}"></i></span>
+                                <h3>{{ $service->title }}</h3>
+                                <p>{{ $service->description }}</p>
+                                <a href="{{ $service->link ?: '#contact' }}">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            </article>
+                        </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="service-pagination"></div>
         </div>
     </section>
 

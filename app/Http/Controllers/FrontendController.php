@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Client;
 use App\Models\Testimonial;
 use App\Models\Faq;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -22,6 +23,7 @@ class FrontendController extends Controller
         $happyClients = max(120, $clients->count());
         $averageRating = $testimonials->isNotEmpty() ? number_format($testimonials->avg('rating'), 1) : '4.9';
         $faqs = Faq::where('status', true)->orderBy('sort_order')->orderBy('created_at')->get();
+        $services = Service::where('status', true)->orderBy('sort_order')->orderBy('created_at')->get();
 
         if ($testimonials->isEmpty()) {
             $testimonials = collect([
@@ -52,7 +54,7 @@ class FrontendController extends Controller
             ]);
         }
 
-        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs'));
+        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs', 'services'));
     }
 
     public function submitContact(Request $request)

@@ -9,6 +9,7 @@
   const reviewsSlider = document.querySelector(".reviews-slider-custom");
   const clientsSlider = document.querySelector(".client-logo-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
+  const servicesSlider = document.querySelector(".services-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
 
@@ -145,6 +146,32 @@
         clickable: true,
         bulletClass: "review-bullet",
         bulletActiveClass: "active"
+      }
+    });
+  }
+
+  if (servicesSlider && window.Swiper) {
+    new window.Swiper(servicesSlider, {
+      slidesPerView: 1,
+      spaceBetween: 18,
+      speed: 700,
+      grabCursor: true,
+      watchOverflow: true,
+      pagination: {
+        el: ".service-pagination",
+        clickable: true,
+        bulletClass: "service-bullet",
+        bulletActiveClass: "active"
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 22
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 24
+        }
       }
     });
   }

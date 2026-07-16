@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Client;
 use App\Models\Testimonial;
 use App\Models\Faq;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,10 +57,11 @@ class AdminController extends Controller
         $clientsCount = Client::count();
         $testimonialsCount = Testimonial::count();
         $faqsCount = Faq::count();
+        $servicesCount = Service::count();
         $usersCount = User::count();
         $recentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'usersCount', 'recentMessages'));
+        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'servicesCount', 'usersCount', 'recentMessages'));
     }
 
     // List Projects
@@ -507,6 +509,71 @@ class AdminController extends Controller
         $faq->delete();
 
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully!');
+    }
+
+    public function servicesIndex()
+    {
+        $services = Service::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.services.index', compact('services'));
+    }
+
+    public function servicesCreate()
+    {
+        return view('admin.services.create');
+    }
+
+    public function servicesStore(Request $request)
+    {
+        $data = $this->validateService($request);
+        $data['status'] = $request->boolean('status');
+        Service::create($data);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service created successfully!');
+    }
+
+    public function servicesEdit(Service $service)
+    {
+        return view('admin.services.edit', compact('service'));
+    }
+
+    public function servicesUpdate(Request $request, Service $service)
+    {
+        $data = $this->validateService($request);
+        $data['status'] = $request->boolean('status');
+        $service->update($data);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service updated successfully!');
+    }
+
+    public function servicesToggleStatus(Service $service)
+    {
+        $service->update(['status' => ! $service->status]);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service status updated successfully!');
+    }
+
+    public function servicesDestroy(Service $service)
+    {
+        $service->delete();
+
+        return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully!');
+    }
+
+    private function validateService(Request $request): array
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],
+            'link' => ['nullable', 'string', 'max:255', 'regex:/^(#|\/|https?:\/\/)/i'],
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['link'] = $data['link'] ?: '#contact';
+
+        return $data;
     }
 
     // List Users

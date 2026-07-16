@@ -71,6 +71,17 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/faqs/{faq}', [AdminController::class, 'faqsDestroy'])->name('admin.faqs.destroy');
     });
 
+    // Services CRUD
+    Route::get('/admin/services', [AdminController::class, 'servicesIndex'])->name('admin.services.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/services/create', [AdminController::class, 'servicesCreate'])->name('admin.services.create');
+        Route::post('/admin/services', [AdminController::class, 'servicesStore'])->name('admin.services.store');
+        Route::get('/admin/services/{service}/edit', [AdminController::class, 'servicesEdit'])->name('admin.services.edit');
+        Route::put('/admin/services/{service}', [AdminController::class, 'servicesUpdate'])->name('admin.services.update');
+        Route::patch('/admin/services/{service}/toggle-status', [AdminController::class, 'servicesToggleStatus'])->name('admin.services.toggle-status');
+        Route::delete('/admin/services/{service}', [AdminController::class, 'servicesDestroy'])->name('admin.services.destroy');
+    });
+
     // Users CRUD (Only Administrator)
     Route::middleware('role:administrator')->group(function () {
         Route::get('/admin/users', [AdminController::class, 'usersIndex'])->name('admin.users.index');

@@ -725,14 +725,14 @@ a {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 28px 22px;
-  box-shadow: var(--card-shadow);
+  /* box-shadow: var(--card-shadow); */
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .service-card:hover,
 .testimonial-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 22px 44px rgba(11, 14, 20, .12);
+  /* box-shadow: 0 22px 44px rgba(11, 14, 20, .12); */
 }
 
 .service-icon {
@@ -769,6 +769,47 @@ a {
 
 .service-card a:hover i {
   transform: translateX(4px);
+}
+
+.services-slider {
+  margin-top: 28px;
+  padding: 2px 2px 18px;
+}
+
+.services-slider .swiper-wrapper {
+  align-items: stretch;
+}
+
+.services-slider .swiper-slide {
+  height: auto;
+}
+
+.service-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 12px;
+  margin-top: 16px;
+}
+
+.service-pagination .service-bullet {
+  width: 9px;
+  height: 9px;
+  display: block;
+  border-radius: 999px;
+  background: #c9cbd1;
+  cursor: pointer;
+  transition: width .3s ease, background-color .3s ease;
+}
+
+.service-pagination .service-bullet.active {
+  width: 38px;
+  background: var(--red);
+}
+
+.service-pagination:has(.service-bullet:only-child) {
+  display: none;
 }
 
 .industries-section {

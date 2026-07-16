@@ -10,6 +10,7 @@ use App\Models\Faq;
 use App\Models\Service;
 use App\Models\SocialLink;
 use App\Models\SiteSetting;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -17,7 +18,7 @@ class FrontendController extends Controller
     public function blogIndex()
     {
         [$siteSetting, $socialLinks] = $this->frontendSettings();
-        $articles = $this->blogArticles();
+        $articles = Blog::where('status', true)->latest('published_at')->get();
 
         return view('frontend.blog.index', compact('siteSetting', 'socialLinks', 'articles'));
     }
@@ -25,7 +26,7 @@ class FrontendController extends Controller
     public function blogShow(string $slug)
     {
         [$siteSetting, $socialLinks] = $this->frontendSettings();
-        $articles = $this->blogArticles();
+        $articles = Blog::where('status', true)->latest('published_at')->get();
         $article = $articles->firstWhere('slug', $slug);
 
         abort_unless($article, 404);
@@ -53,17 +54,6 @@ class FrontendController extends Controller
         ];
     }
 
-    private function blogArticles()
-    {
-        return collect([
-            (object) ['slug' => 'modern-web-design', 'category' => 'Web Design', 'icon' => 'fa-solid fa-globe', 'date' => '14 Feb 2026', 'read_time' => '5 min read', 'title' => 'How Modern Web Design Builds Trust and Conversions', 'excerpt' => 'Discover how clean layouts, speed, and strong UX help businesses turn visitors into customers.', 'image' => 'frontend/assets/images/blog/web-design-insights.png'],
-            (object) ['slug' => 'digital-marketing-growth', 'category' => 'Marketing', 'icon' => 'fa-solid fa-bullseye', 'date' => '22 Feb 2026', 'read_time' => '4 min read', 'title' => 'Digital Marketing Strategies That Deliver Real Growth', 'excerpt' => 'Explore proven tactics to boost visibility, generate leads, and create measurable business impact.', 'image' => 'frontend/assets/images/blog/marketing-growth.png', 'hero_image' => 'frontend/assets/images/blog/article-hero-marketing.png', 'featured_image' => 'frontend/assets/images/blog/article-featured-marketing.png', 'content_banner' => 'frontend/assets/images/blog/article-content-marketing.png'],
-            (object) ['slug' => 'brand-identity-online', 'category' => 'Branding', 'icon' => 'fa-solid fa-id-badge', 'date' => '01 Mar 2026', 'read_time' => '6 min read', 'title' => 'Building a Brand Identity That Stands Out Online', 'excerpt' => 'Learn how consistent visuals and messaging help position your business for long-term success.', 'image' => 'frontend/assets/images/blog/brand-identity.png'],
-            (object) ['slug' => 'ui-ux-trends-2026', 'category' => 'Design', 'icon' => 'fa-solid fa-pen-ruler', 'date' => '10 Feb 2026', 'read_time' => '6 min read', 'title' => 'UI/UX Trends to Watch in 2026', 'excerpt' => 'Explore the latest UI/UX trends shaping digital experiences and how they impact users and business results.', 'image' => 'frontend/assets/images/blog/web-design-insights.png'],
-            (object) ['slug' => 'scalable-web-development', 'category' => 'Development', 'icon' => 'fa-solid fa-code', 'date' => '05 Feb 2026', 'read_time' => '7 min read', 'title' => 'Web Development Best Practices for Scalable Websites', 'excerpt' => 'Follow proven development practices to build fast, secure, and scalable websites that grow with your business.', 'image' => 'frontend/assets/images/blog/marketing-growth.png'],
-            (object) ['slug' => 'ai-digital-experiences', 'category' => 'Technology', 'icon' => 'fa-solid fa-microchip', 'date' => '28 Jan 2026', 'read_time' => '5 min read', 'title' => 'How AI Is Transforming Digital Experiences', 'excerpt' => 'From automation to personalization, learn how AI technologies are changing how businesses connect with their audience.', 'image' => 'frontend/assets/images/blog/brand-identity.png'],
-        ]);
-    }
 
     public function index()
     {
@@ -79,6 +69,7 @@ class FrontendController extends Controller
         $services = Service::where('status', true)->orderBy('sort_order')->orderBy('created_at')->get();
         $socialLinks = SocialLink::where('status', true)->whereNotNull('url')->where('url', '!=', '')->orderBy('sort_order')->get();
         $siteSetting = SiteSetting::first();
+        $blogs = Blog::where('status', true)->latest('published_at')->take(3)->get();
 
         if ($testimonials->isEmpty()) {
             $testimonials = collect([
@@ -109,7 +100,7 @@ class FrontendController extends Controller
             ]);
         }
 
-        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs', 'services', 'socialLinks', 'siteSetting'));
+        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs', 'services', 'socialLinks', 'siteSetting', 'blogs'));
     }
 
     public function submitContact(Request $request)

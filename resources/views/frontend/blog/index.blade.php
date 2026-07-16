@@ -27,7 +27,7 @@
                             <select aria-label="Filter by category"><option>All Categories</option><option>Web Design</option><option>Development</option><option>Marketing</option><option>Branding</option><option>Technology</option></select>
                             <select aria-label="Sort articles"><option>Latest</option><option>Oldest</option><option>Most Popular</option></select>
                         </div>
-                        <span>Showing 1–6 of {{ $articles->count() }} results</span>
+                        <span>Showing 1–{{ $articles->count() }} of {{ $articles->count() }} results</span>
                     </div>
 
                     <div class="blog-list">

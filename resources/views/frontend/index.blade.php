@@ -340,57 +340,11 @@
             </div>
 
             <div class="row g-4 insights-grid">
-                <div class="col-lg-4 col-md-6 reveal">
-                    <article class="insight-card">
-                        <img src="{{ url('frontend/assets/images/blog/web-design-insights.png') }}"
-                            alt="Modern web design workspace">
-                        <div class="insight-card-body">
-                            <div class="insight-meta">
-                                <span class="insight-category"><i class="fa-solid fa-globe"></i> Web Design</span>
-                                <span><i class="fa-regular fa-calendar"></i> 14 Feb 2026</span>
-                                <span><i class="fa-regular fa-clock"></i> 5 min read</span>
-                            </div>
-                            <h3>How Modern Web Design Builds Trust and Conversions</h3>
-                            <p>Discover how clean layouts, speed, and strong UX help businesses turn visitors into
-                                customers.</p>
-                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-lg-4 col-md-6 reveal delay-1">
-                    <article class="insight-card">
-                        <img src="{{ url('frontend/assets/images/blog/marketing-growth.png') }}"
-                            alt="Digital marketing analytics and growth target">
-                        <div class="insight-card-body">
-                            <div class="insight-meta">
-                                <span class="insight-category"><i class="fa-solid fa-bullseye"></i> Marketing</span>
-                                <span><i class="fa-regular fa-calendar"></i> 22 Feb 2026</span>
-                                <span><i class="fa-regular fa-clock"></i> 4 min read</span>
-                            </div>
-                            <h3>Digital Marketing Strategies That Deliver Real Growth</h3>
-                            <p>Explore proven tactics to boost visibility, generate leads, and create measurable business
-                                impact.</p>
-                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-lg-4 col-md-6 reveal delay-2">
-                    <article class="insight-card">
-                        <img src="{{ url('frontend/assets/images/blog/brand-identity.png') }}"
-                            alt="Premium brand identity stationery">
-                        <div class="insight-card-body">
-                            <div class="insight-meta">
-                                <span class="insight-category"><i class="fa-regular fa-id-badge"></i> Branding</span>
-                                <span><i class="fa-regular fa-calendar"></i> 01 Mar 2026</span>
-                                <span><i class="fa-regular fa-clock"></i> 6 min read</span>
-                            </div>
-                            <h3>Building a Brand Identity That Stands Out Online</h3>
-                            <p>Learn how consistent visuals and messaging help position your business for long-term
-                                success.</p>
-                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
+                @foreach($blogs as $blog)
+                    <div class="col-lg-4 col-md-6 reveal {{ $loop->index ? 'delay-'.$loop->index : '' }}">
+                        <article class="insight-card"><img src="{{ url($blog->image) }}" alt="{{ $blog->title }}"><div class="insight-card-body"><div class="insight-meta"><span class="insight-category"><i class="{{ $blog->icon }}"></i> {{ $blog->category }}</span><span><i class="fa-regular fa-calendar"></i> {{ $blog->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $blog->read_time }}</span></div><h3>{{ $blog->title }}</h3><p>{{ $blog->excerpt }}</p><a href="{{ route('blog.show',$blog->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a></div></article>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

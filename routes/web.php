@@ -89,6 +89,17 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/services/{service}', [AdminController::class, 'servicesDestroy'])->name('admin.services.destroy');
     });
 
+    // Blogs CRUD
+    Route::get('/admin/blogs', [AdminController::class, 'blogsIndex'])->name('admin.blogs.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/blogs/create', [AdminController::class, 'blogsCreate'])->name('admin.blogs.create');
+        Route::post('/admin/blogs', [AdminController::class, 'blogsStore'])->name('admin.blogs.store');
+        Route::get('/admin/blogs/{blog}/edit', [AdminController::class, 'blogsEdit'])->name('admin.blogs.edit');
+        Route::put('/admin/blogs/{blog}', [AdminController::class, 'blogsUpdate'])->name('admin.blogs.update');
+        Route::patch('/admin/blogs/{blog}/toggle-status', [AdminController::class, 'blogsToggleStatus'])->name('admin.blogs.toggle-status');
+        Route::delete('/admin/blogs/{blog}', [AdminController::class, 'blogsDestroy'])->name('admin.blogs.destroy');
+    });
+
     // Social Links CRUD
     Route::get('/admin/social-links', [AdminController::class, 'socialLinksIndex'])->name('admin.social-links.index');
     Route::middleware('role:administrator,admin')->group(function () {

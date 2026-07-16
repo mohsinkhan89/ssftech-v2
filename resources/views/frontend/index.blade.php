@@ -257,7 +257,7 @@
                                     <div class="reviews-slide swiper-slide">
                                         <article class="review-card">
                                         <div class="review-card-head">
-                                            <span class="review-quote">&ldquo;</span>
+                                            <span class="review-quote" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
                                             <div class="review-stars">
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     <i

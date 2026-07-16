@@ -20,6 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
+    // Current User Profile
+    Route::get('/admin/profile', [AdminController::class, 'profileShow'])->name('admin.profile.show');
+    Route::put('/admin/profile', [AdminController::class, 'profileUpdate'])->name('admin.profile.update');
+    Route::put('/admin/profile/password', [AdminController::class, 'profileUpdatePassword'])->name('admin.profile.password');
+
     // Projects CRUD
     Route::get('/admin/projects', [AdminController::class, 'projectsIndex'])->name('admin.projects.index');
     Route::middleware('role:administrator,admin')->group(function () {
@@ -58,6 +63,45 @@ Route::middleware('auth')->group(function () {
         Route::put('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsUpdate'])->name('admin.testimonials.update');
         Route::patch('/admin/testimonials/{testimonial}/toggle-status', [AdminController::class, 'testimonialsToggleStatus'])->name('admin.testimonials.toggle-status');
         Route::delete('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsDestroy'])->name('admin.testimonials.destroy');
+    });
+
+    // FAQs CRUD
+    Route::get('/admin/faqs', [AdminController::class, 'faqsIndex'])->name('admin.faqs.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/faqs/create', [AdminController::class, 'faqsCreate'])->name('admin.faqs.create');
+        Route::post('/admin/faqs', [AdminController::class, 'faqsStore'])->name('admin.faqs.store');
+        Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'faqsEdit'])->name('admin.faqs.edit');
+        Route::put('/admin/faqs/{faq}', [AdminController::class, 'faqsUpdate'])->name('admin.faqs.update');
+        Route::patch('/admin/faqs/{faq}/toggle-status', [AdminController::class, 'faqsToggleStatus'])->name('admin.faqs.toggle-status');
+        Route::delete('/admin/faqs/{faq}', [AdminController::class, 'faqsDestroy'])->name('admin.faqs.destroy');
+    });
+
+    // Services CRUD
+    Route::get('/admin/services', [AdminController::class, 'servicesIndex'])->name('admin.services.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/services/create', [AdminController::class, 'servicesCreate'])->name('admin.services.create');
+        Route::post('/admin/services', [AdminController::class, 'servicesStore'])->name('admin.services.store');
+        Route::get('/admin/services/{service}/edit', [AdminController::class, 'servicesEdit'])->name('admin.services.edit');
+        Route::put('/admin/services/{service}', [AdminController::class, 'servicesUpdate'])->name('admin.services.update');
+        Route::patch('/admin/services/{service}/toggle-status', [AdminController::class, 'servicesToggleStatus'])->name('admin.services.toggle-status');
+        Route::delete('/admin/services/{service}', [AdminController::class, 'servicesDestroy'])->name('admin.services.destroy');
+    });
+
+    // Social Links CRUD
+    Route::get('/admin/social-links', [AdminController::class, 'socialLinksIndex'])->name('admin.social-links.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/social-links/create', [AdminController::class, 'socialLinksCreate'])->name('admin.social-links.create');
+        Route::post('/admin/social-links', [AdminController::class, 'socialLinksStore'])->name('admin.social-links.store');
+        Route::get('/admin/social-links/{socialLink}/edit', [AdminController::class, 'socialLinksEdit'])->name('admin.social-links.edit');
+        Route::put('/admin/social-links/{socialLink}', [AdminController::class, 'socialLinksUpdate'])->name('admin.social-links.update');
+        Route::patch('/admin/social-links/{socialLink}/toggle-status', [AdminController::class, 'socialLinksToggleStatus'])->name('admin.social-links.toggle-status');
+        Route::delete('/admin/social-links/{socialLink}', [AdminController::class, 'socialLinksDestroy'])->name('admin.social-links.destroy');
+    });
+
+    // Site Settings
+    Route::get('/admin/settings', [AdminController::class, 'settingsIndex'])->name('admin.settings.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::post('/admin/settings/logo', [AdminController::class, 'settingsUpdateLogo'])->name('admin.settings.logo');
     });
 
     // Users CRUD (Only Administrator)

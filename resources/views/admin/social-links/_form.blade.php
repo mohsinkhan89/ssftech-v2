@@ -1,0 +1,8 @@
+@if($errors->any())<div class="alert alert-danger"><ul class="mb-0">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
+<div class="row g-3">
+    <div class="col-md-6"><label for="platform">Platform Name</label><input type="text" name="platform" id="platform" class="form-control form-control-custom" value="{{ old('platform', $socialLink->platform ?? '') }}" placeholder="Facebook" required></div>
+    <div class="col-md-6"><label for="icon">Font Awesome Icon Class</label><input type="text" name="icon" id="icon" class="form-control form-control-custom" value="{{ old('icon', $socialLink->icon ?? 'fa-brands fa-facebook-f') }}" required><small class="text-muted">Example: fa-brands fa-instagram</small></div>
+    <div class="col-12"><label for="url">Profile URL</label><input type="url" name="url" id="url" class="form-control form-control-custom" value="{{ old('url', $socialLink->url ?? '') }}" placeholder="https://facebook.com/your-page"><small class="text-muted">Empty URL will not be shown on the frontend.</small></div>
+    <div class="col-md-6"><label for="sort_order">Display Order</label><input type="number" min="0" name="sort_order" id="sort_order" class="form-control form-control-custom" value="{{ old('sort_order', $socialLink->sort_order ?? 0) }}"></div>
+    <div class="col-md-6 d-flex align-items-end"><div class="form-check mb-2"><input class="form-check-input" type="checkbox" name="status" value="1" id="status" @checked(old('status', $socialLink->status ?? true))><label class="form-check-label mb-0" for="status">Show on frontend</label></div></div>
+</div>

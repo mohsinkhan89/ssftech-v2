@@ -38,9 +38,9 @@
                 </thead>
                 <tbody>
                     @foreach($messages as $msg)
-                        <tr>
+                        <tr class="{{ $msg->read_at ? '' : 'table-danger-subtle' }}">
                             <td>
-                                <div class="fw-bold">{{ $msg->name }}</div>
+                                <div class="fw-bold">{{ $msg->name }} @if(!$msg->read_at)<span class="badge bg-danger ms-1">New</span>@endif</div>
                             </td>
                             <td>
                                 <a href="mailto:{{ $msg->email }}" class="text-info text-decoration-none">{{ $msg->email }}</a>

@@ -3,7 +3,7 @@
         <div class="container">
             <a class="navbar-brand brand-lockup" href="#home" aria-label="SSF Tech home">
                 <div class="header-logo">
-                    <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="">
+                    <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"

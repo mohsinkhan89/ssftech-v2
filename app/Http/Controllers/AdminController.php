@@ -6,6 +6,10 @@ use App\Models\Project;
 use App\Models\Message;
 use App\Models\Client;
 use App\Models\Testimonial;
+use App\Models\Faq;
+use App\Models\Service;
+use App\Models\SocialLink;
+use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,10 +58,47 @@ class AdminController extends Controller
         $messagesCount = Message::count();
         $clientsCount = Client::count();
         $testimonialsCount = Testimonial::count();
+        $faqsCount = Faq::count();
+        $servicesCount = Service::count();
+        $socialLinksCount = SocialLink::count();
         $usersCount = User::count();
         $recentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'usersCount', 'recentMessages'));
+        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'servicesCount', 'socialLinksCount', 'usersCount', 'recentMessages'));
+    }
+
+    public function profileShow()
+    {
+        return view('admin.profile.show', ['user' => Auth::user()]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        ]);
+        $user->update($data);
+
+        return back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function profileUpdatePassword(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if (! Hash::check($data['current_password'], $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.'])->withInput();
+        }
+
+        $user->update(['password' => Hash::make($data['password'])]);
+
+        return back()->with('success', 'Password updated successfully!');
     }
 
     // List Projects
@@ -236,6 +277,10 @@ class AdminController extends Controller
     // Show Message Detail
     public function messagesShow(Message $message)
     {
+        if (! $message->read_at) {
+            $message->update(['read_at' => now()]);
+        }
+
         return view('admin.messages.show', compact('message'));
     }
 
@@ -443,6 +488,222 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Review status updated successfully!');
+    }
+
+    public function faqsIndex()
+    {
+        $faqs = Faq::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.faqs.index', compact('faqs'));
+    }
+
+    public function faqsCreate()
+    {
+        return view('admin.faqs.create');
+    }
+
+    public function faqsStore(Request $request)
+    {
+        $data = $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['status'] = $request->boolean('status');
+        Faq::create($data);
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully!');
+    }
+
+    public function faqsEdit(Faq $faq)
+    {
+        return view('admin.faqs.edit', compact('faq'));
+    }
+
+    public function faqsUpdate(Request $request, Faq $faq)
+    {
+        $data = $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['status'] = $request->boolean('status');
+        $faq->update($data);
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully!');
+    }
+
+    public function faqsToggleStatus(Faq $faq)
+    {
+        $faq->update(['status' => ! $faq->status]);
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ status updated successfully!');
+    }
+
+    public function faqsDestroy(Faq $faq)
+    {
+        $faq->delete();
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully!');
+    }
+
+    public function servicesIndex()
+    {
+        $services = Service::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.services.index', compact('services'));
+    }
+
+    public function servicesCreate()
+    {
+        return view('admin.services.create');
+    }
+
+    public function servicesStore(Request $request)
+    {
+        $data = $this->validateService($request);
+        $data['status'] = $request->boolean('status');
+        Service::create($data);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service created successfully!');
+    }
+
+    public function servicesEdit(Service $service)
+    {
+        return view('admin.services.edit', compact('service'));
+    }
+
+    public function servicesUpdate(Request $request, Service $service)
+    {
+        $data = $this->validateService($request);
+        $data['status'] = $request->boolean('status');
+        $service->update($data);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service updated successfully!');
+    }
+
+    public function servicesToggleStatus(Service $service)
+    {
+        $service->update(['status' => ! $service->status]);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service status updated successfully!');
+    }
+
+    public function servicesDestroy(Service $service)
+    {
+        $service->delete();
+
+        return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully!');
+    }
+
+    private function validateService(Request $request): array
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],
+            'link' => ['nullable', 'string', 'max:255', 'regex:/^(#|\/|https?:\/\/)/i'],
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['link'] = $data['link'] ?: '#contact';
+
+        return $data;
+    }
+
+    public function socialLinksIndex()
+    {
+        $socialLinks = SocialLink::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.social-links.index', compact('socialLinks'));
+    }
+
+    public function socialLinksCreate()
+    {
+        return view('admin.social-links.create');
+    }
+
+    public function socialLinksStore(Request $request)
+    {
+        $data = $this->validateSocialLink($request);
+        $data['status'] = $request->boolean('status');
+        SocialLink::create($data);
+        return redirect()->route('admin.settings.index')->with('success', 'Social link created successfully!');
+    }
+
+    public function socialLinksEdit(SocialLink $socialLink)
+    {
+        return view('admin.social-links.edit', compact('socialLink'));
+    }
+
+    public function socialLinksUpdate(Request $request, SocialLink $socialLink)
+    {
+        $data = $this->validateSocialLink($request);
+        $data['status'] = $request->boolean('status');
+        $socialLink->update($data);
+        return redirect()->route('admin.settings.index')->with('success', 'Social link updated successfully!');
+    }
+
+    public function socialLinksToggleStatus(SocialLink $socialLink)
+    {
+        $socialLink->update(['status' => ! $socialLink->status]);
+        return redirect()->route('admin.settings.index')->with('success', 'Social link status updated successfully!');
+    }
+
+    public function socialLinksDestroy(SocialLink $socialLink)
+    {
+        $socialLink->delete();
+        return redirect()->route('admin.settings.index')->with('success', 'Social link deleted successfully!');
+    }
+
+    private function validateSocialLink(Request $request): array
+    {
+        $data = $request->validate([
+            'platform' => 'required|string|max:100',
+            'url' => ['nullable', 'url:http,https', 'max:255'],
+            'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        return $data;
+    }
+
+    public function settingsIndex()
+    {
+        $siteSetting = SiteSetting::firstOrCreate([]);
+        $socialLinks = SocialLink::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+
+        return view('admin.settings.index', compact('siteSetting', 'socialLinks'));
+    }
+
+    public function settingsUpdateLogo(Request $request)
+    {
+        $request->validate([
+            'logo' => 'required|image|mimes:png,jpg,jpeg,webp,svg|max:2048',
+        ]);
+
+        $siteSetting = SiteSetting::firstOrCreate([]);
+        $destinationPath = public_path('uploads/settings');
+        if (! File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true);
+        }
+
+        if ($siteSetting->logo && str_contains($siteSetting->logo, 'uploads/settings') && File::exists(public_path($siteSetting->logo))) {
+            File::delete(public_path($siteSetting->logo));
+        }
+
+        $logo = $request->file('logo');
+        $logoName = time() . '_logo_' . uniqid() . '.' . $logo->getClientOriginalExtension();
+        $logo->move($destinationPath, $logoName);
+        $siteSetting->update(['logo' => 'uploads/settings/' . $logoName]);
+
+        return redirect()->route('admin.settings.index')->with('success', 'Site logo updated successfully!');
     }
 
     // List Users

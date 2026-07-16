@@ -9,6 +9,7 @@
   const reviewsSlider = document.querySelector(".reviews-slider-custom");
   const clientsSlider = document.querySelector(".client-logo-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
+  const servicesSlider = document.querySelector(".services-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
 
@@ -123,23 +124,15 @@
     new window.Swiper(reviewsSlider, {
       loop: true,
       loopAdditionalSlides: 4,
-      centeredSlides: true,
-      slidesPerView: "auto",
+      centeredSlides: false,
+      slidesPerView: 1,
       initialSlide: 1,
-      spaceBetween: 24,
+      spaceBetween: 0,
       speed: 900,
       grabCursor: true,
       watchSlidesProgress: true,
       observer: true,
       observeParents: true,
-      effect: "coverflow",
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 52,
-        depth: 210,
-        modifier: 1.35,
-        slideShadows: false
-      },
       autoplay: {
         delay: 2500,
         disableOnInteraction: false,
@@ -153,41 +146,31 @@
         clickable: true,
         bulletClass: "review-bullet",
         bulletActiveClass: "active"
-      },
-      navigation: {
-        nextEl: ".review-next",
-        prevEl: ".review-prev"
+      }
+    });
+  }
+
+  if (servicesSlider && window.Swiper) {
+    new window.Swiper(servicesSlider, {
+      slidesPerView: 1,
+      spaceBetween: 18,
+      speed: 700,
+      grabCursor: true,
+      watchOverflow: true,
+      pagination: {
+        el: ".service-pagination",
+        clickable: true,
+        bulletClass: "service-bullet",
+        bulletActiveClass: "active"
       },
       breakpoints: {
-        0: {
-          spaceBetween: 18,
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 80,
-            modifier: 1,
-            slideShadows: false
-          }
-        },
         768: {
-          spaceBetween: 18,
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 18,
-            depth: 130,
-            modifier: 1.15,
-            slideShadows: false
-          }
+          slidesPerView: 2,
+          spaceBetween: 22
         },
         1200: {
-          spaceBetween: 24,
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 52,
-            depth: 210,
-            modifier: 1.35,
-            slideShadows: false
-          }
+          slidesPerView: 4,
+          spaceBetween: 24
         }
       }
     });

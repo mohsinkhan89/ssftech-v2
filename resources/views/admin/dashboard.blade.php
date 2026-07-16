@@ -81,6 +81,17 @@
     <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
+                <div class="card-icon" style="background: rgba(99, 102, 241, .08); color: #4f46e5; border-color: rgba(99, 102, 241, .15);"><i class="fa-solid fa-layer-group"></i></div>
+                <span class="card-trend" style="color:#4f46e5"><i class="fa-solid fa-list me-1"></i> Content</span>
+            </div>
+            <div><div class="card-value">{{ $servicesCount }}</div><div class="card-label">Total Services</div><div class="card-progress"><div class="card-progress-bar" style="width:{{ min(100, max(15, $servicesCount * 12)) }}%; background:linear-gradient(90deg,#4f46e5,#818cf8)"></div></div></div>
+        </div>
+    </div>
+
+    <!-- Total Reviews Card -->
+    <div class="swiper-slide">
+        <div class="dashboard-card">
+            <div class="card-icon-wrapper">
                 <div class="card-icon" style="background: rgba(236, 72, 153, 0.08); color: #ec4899; border-color: rgba(236, 72, 153, 0.15);">
                     <i class="fa-solid fa-comments"></i>
                 </div>
@@ -91,6 +102,28 @@
                 <div class="card-label">Client Reviews</div>
                 <div class="card-progress">
                     <div class="card-progress-bar" style="width: {{ min(100, max(15, $testimonialsCount * 12)) }}%; background: linear-gradient(90deg, #ec4899 0%, #f472b6 100%); box-shadow: 0 0 8px rgba(236, 72, 153, 0.3);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total FAQs Card -->
+    <div class="swiper-slide"><div class="dashboard-card"><div class="card-icon-wrapper"><div class="card-icon"><i class="fa-solid fa-share-nodes"></i></div><span class="card-trend">Content</span></div><div><div class="card-value">{{ $socialLinksCount }}</div><div class="card-label">Social Links</div><div class="card-progress"><div class="card-progress-bar" style="width:{{ min(100, max(15, $socialLinksCount * 20)) }}%"></div></div></div></div></div>
+
+    <!-- Total FAQs Card -->
+    <div class="swiper-slide">
+        <div class="dashboard-card">
+            <div class="card-icon-wrapper">
+                <div class="card-icon" style="background: rgba(14, 165, 233, 0.08); color: #0284c7; border-color: rgba(14, 165, 233, 0.15);">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+                <span class="card-trend" style="background: rgba(14, 165, 233, 0.1); color: #0284c7; border-color: rgba(14, 165, 233, 0.15);"><i class="fa-solid fa-list me-1"></i> Content</span>
+            </div>
+            <div>
+                <div class="card-value">{{ $faqsCount }}</div>
+                <div class="card-label">Total FAQs</div>
+                <div class="card-progress">
+                    <div class="card-progress-bar" style="width: {{ min(100, max(15, $faqsCount * 12)) }}%; background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);"></div>
                 </div>
             </div>
         </div>
@@ -167,6 +200,15 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.services.create') }}" class="action-card"><div class="action-icon"><i class="fa-solid fa-plus"></i></div><div class="action-info"><h6>Add Service</h6><p>Create a new service</p></div></a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.faqs.create') }}" class="action-card">
+                        <div class="action-icon"><i class="fa-solid fa-plus"></i></div>
+                        <div class="action-info"><h6>Add FAQ</h6><p>Create a new question</p></div>
+                    </a>
+                </div>
                 @endif
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.projects.index') }}" class="action-card">
@@ -201,6 +243,16 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.services.index') }}" class="action-card"><div class="action-icon"><i class="fa-solid fa-layer-group"></i></div><div class="action-info"><h6>Services</h6><p>Manage services</p></div></a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.faqs.index') }}" class="action-card">
+                        <div class="action-icon"><i class="fa-solid fa-circle-question"></i></div>
+                        <div class="action-info"><h6>FAQs</h6><p>Manage questions</p></div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6"><a href="{{ route('admin.settings.index') }}" class="action-card"><div class="action-icon"><i class="fa-solid fa-gear"></i></div><div class="action-info"><h6>Settings</h6><p>Manage logo and social links</p></div></a></div>
                 @if($isAdmin)
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.users.create') }}" class="action-card">

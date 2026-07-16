@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('admin.layouts.admin', function ($view) {
+            if (! Auth::check()) {
+                return;
+            }
+
+            $view->with([
+                'headerNotifications' => Message::latest()->limit(10)->get(),
+                'unreadNotificationsCount' => Message::whereNull('read_at')->count(),
+            ]);
+        });
     }
 }

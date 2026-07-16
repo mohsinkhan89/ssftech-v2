@@ -718,6 +718,23 @@ class AdminController extends Controller
         return redirect()->route('admin.settings.index')->with('success', 'CSS and JS versions updated successfully!');
     }
 
+    public function settingsUpdateContactDetails(Request $request)
+    {
+        $data = $request->validate([
+            'contact_address' => 'nullable|string|max:1000',
+            'contact_phone' => 'nullable|string|max:50',
+            'contact_email' => 'nullable|email|max:255',
+        ]);
+
+        $data = collect($data)
+            ->filter(fn ($value, $field) => $request->exists($field))
+            ->all();
+
+        SiteSetting::firstOrCreate([])->update($data);
+
+        return redirect()->route('admin.settings.index')->with('success', 'Contact details updated successfully!');
+    }
+
     // List Users
     public function usersIndex()
     {

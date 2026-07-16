@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SiteSetting extends Model
 {
-    protected $fillable = ['logo', 'css_version', 'js_version'];
+    protected $fillable = [
+        'logo',
+        'css_version',
+        'js_version',
+        'contact_address',
+        'contact_phone',
+        'contact_email',
+    ];
 }

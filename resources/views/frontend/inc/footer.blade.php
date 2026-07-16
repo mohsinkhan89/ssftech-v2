@@ -38,22 +38,25 @@
                         Marketing</a>
                     <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>SEO</a>
                 </div>
+                @if($siteSetting?->contact_address || $siteSetting?->contact_phone || $siteSetting?->contact_email)
                 <div class="col-lg-3 col-md-6 footer-contact-social">
                     <h4>Contact Us</h4>
                     <div class="footer-contact-list">
+                        @if($siteSetting?->contact_address)
                         <div class="footer-contact-item top-icon">
                             <span><i class="fa-solid fa-location-dot"></i></span>
-                            <div>
-                                71-75 Shelton Street, London, England, WC2H 9JQ
-                                <small>Registered in England &amp; Wales No.16275441</small>
-                            </div>
+                            <div>{!! nl2br(e($siteSetting->contact_address)) !!}</div>
                         </div>
-                        <div class="footer-contact-item"><span><i class="fa-solid fa-phone"></i></span>07773
-                            941324</div>
-                        <div class="footer-contact-item"><span><i
-                                    class="fa-solid fa-envelope"></i></span>info@ssftech.co.uk</div>
+                        @endif
+                        @if($siteSetting?->contact_phone)
+                            <a class="footer-contact-item text-decoration-none" href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSetting->contact_phone) }}"><span><i class="fa-solid fa-phone"></i></span>{{ $siteSetting->contact_phone }}</a>
+                        @endif
+                        @if($siteSetting?->contact_email)
+                            <a class="footer-contact-item text-decoration-none" href="mailto:{{ $siteSetting->contact_email }}"><span><i class="fa-solid fa-envelope"></i></span>{{ $siteSetting->contact_email }}</a>
+                        @endif
                     </div>
                 </div>
+                @endif
                 <!-- <div class="col-12 footer-newsletter">
               <h4>Subscribe To Our Newsletter</h4>
               <p>Subscribe To Newsletter To Stay Up To Date On Our Latest News.</p>

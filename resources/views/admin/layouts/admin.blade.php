@@ -282,6 +282,79 @@
             font-size: 12px;
         }
 
+        .admin-toast-stack {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            width: min(380px, calc(100vw - 40px));
+        }
+
+        .admin-sweet-toast {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 16px 44px 16px 16px;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--toast-color);
+            border-radius: 12px;
+            background: #fff;
+            color: #334155;
+            box-shadow: 0 16px 42px rgba(15, 23, 42, .2);
+            animation: toastSlideIn .4s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .admin-sweet-toast .toast-symbol {
+            flex: 0 0 36px;
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--toast-color) 12%, white);
+            color: var(--toast-color);
+            font-size: 18px;
+        }
+
+        .admin-sweet-toast .toast-close {
+            position: absolute;
+            top: 10px;
+            right: 11px;
+            border: 0;
+            background: transparent;
+            color: #94a3b8;
+        }
+
+        .admin-sweet-toast .toast-progress {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--toast-color);
+            transform-origin: left;
+            animation: toastProgress 4.5s linear forwards;
+        }
+
+        .admin-sweet-toast.toast-success { --toast-color: #10b981; }
+        .admin-sweet-toast.toast-warning { --toast-color: #f59e0b; }
+        .admin-sweet-toast.toast-error { --toast-color: #ef4444; }
+
+        .fade-in .alert-custom {
+            display: none !important;
+        }
+
+        @keyframes toastSlideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes toastProgress {
+            to { transform: scaleX(0); }
+        }
+
         .admin-avatar {
             width: 38px;
             height: 38px;
@@ -893,6 +966,21 @@
 
 <body>
 
+    @php
+        $toastType = session('success') ? 'success' : (session('warning') ? 'warning' : ((session('error') || $errors->any()) ? 'error' : null));
+        $toastMessage = session('success') ?? session('warning') ?? session('error') ?? ($errors->any() ? $errors->first() : null);
+    @endphp
+    @if($toastMessage)
+        <div class="admin-toast-stack" aria-live="polite" aria-atomic="true">
+            <div class="admin-sweet-toast toast-{{ $toastType }}" role="alert" data-admin-toast>
+                <span class="toast-symbol"><i class="fa-solid {{ $toastType === 'success' ? 'fa-check' : ($toastType === 'warning' ? 'fa-triangle-exclamation' : 'fa-xmark') }}"></i></span>
+                <div><strong class="d-block text-dark mb-1">{{ ucfirst($toastType) }}</strong><span style="font-size:13px;">{{ $toastMessage }}</span></div>
+                <button type="button" class="toast-close" aria-label="Close notification"><i class="fa-solid fa-xmark"></i></button>
+                <span class="toast-progress"></span>
+            </div>
+        </div>
+    @endif
+
     <!-- Sidebar -->
     <div class="sidebar" id="adminSidebar">
         <div>
@@ -1072,6 +1160,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        document.querySelectorAll('[data-admin-toast]').forEach(function(toast) {
+            const closeToast = function() {
+                toast.style.transition = 'opacity .25s ease, transform .25s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(24px)';
+                setTimeout(function() { toast.remove(); }, 250);
+            };
+
+            toast.querySelector('.toast-close')?.addEventListener('click', closeToast);
+            setTimeout(closeToast, 4500);
+        });
+
         // Sidebar responsive toggle
         const toggleBtn = document.getElementById('sidebarToggleBtn');
         const sidebar = document.getElementById('adminSidebar');

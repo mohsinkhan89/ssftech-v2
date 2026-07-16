@@ -43,6 +43,45 @@
 </div>
 
 <div class="custom-table-container">
+    <div class="row g-4 align-items-start">
+        <div class="col-lg-4">
+            <h3 class="table-title mb-2"><i class="fa-solid fa-address-book text-red me-2"></i> Footer Contact Details</h3>
+            <p class="text-muted small mb-0">Empty fields are automatically hidden from the footer. If all fields are empty, the complete Contact Us column will be hidden.</p>
+        </div>
+        <div class="col-lg-8">
+            @if(Auth::user()->role !== 'author')
+                <form action="{{ route('admin.settings.contact-details') }}" method="POST">@csrf @method('PUT')
+                    <div class="row g-3 align-items-end">
+                        <div class="col-xl-4 col-md-6">
+                            <label for="contact_address">Address</label>
+                            <input type="text" name="contact_address" id="contact_address" class="form-control form-control-custom" value="{{ old('contact_address', $siteSetting->contact_address) }}" placeholder="Business address">
+                            @error('contact_address')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <label for="contact_phone">Phone Number</label>
+                            <input type="text" name="contact_phone" id="contact_phone" class="form-control form-control-custom" value="{{ old('contact_phone', $siteSetting->contact_phone) }}" placeholder="+44 7773 941324">
+                            @error('contact_phone')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <label for="contact_email">Email / Gmail</label>
+                            <input type="email" name="contact_email" id="contact_email" class="form-control form-control-custom" value="{{ old('contact_email', $siteSetting->contact_email) }}" placeholder="info@example.com">
+                            @error('contact_email')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="col-xl-2 col-md-6">
+                            <button class="btn btn-red w-100" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i>Save</button>
+                        </div>
+                    </div>
+                </form>
+            @else
+                <p><strong>Address:</strong> {{ $siteSetting->contact_address ?: 'Not set' }}</p>
+                <p><strong>Phone:</strong> {{ $siteSetting->contact_phone ?: 'Not set' }}</p>
+                <p class="mb-0"><strong>Email:</strong> {{ $siteSetting->contact_email ?: 'Not set' }}</p>
+            @endif
+        </div>
+    </div>
+</div>
+
+<div class="custom-table-container">
     <div class="row align-items-center g-4">
         <div class="col-lg-4">
             <h3 class="table-title mb-2"><i class="fa-solid fa-code text-red me-2"></i> Asset Versions</h3>

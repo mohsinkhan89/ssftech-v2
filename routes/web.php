@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/blog', [FrontendController::class, 'blogIndex'])->name('blog.index');
+Route::get('/blog/{slug}', [FrontendController::class, 'blogShow'])->name('blog.show');
 Route::post('/contact', [FrontendController::class, 'submitContact'])->name('contact.submit');
 
 // Admin Auth Routes (Guest)

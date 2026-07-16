@@ -40,7 +40,7 @@
                                     <p>{{ $article->excerpt }}</p>
                                     <div class="blog-list-footer">
                                         <div><span><i class="fa-regular fa-calendar"></i> {{ $article->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $article->read_time }}</span></div>
-                                        <a href="{{ route('index') }}#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="{{ route('blog.show', $article->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </article>
@@ -75,7 +75,7 @@
                     <div class="blog-sidebar-card">
                         <h3>Popular Posts</h3>
                         @foreach($articles->take(5) as $article)
-                            <a class="popular-post" href="#">
+                            <a class="popular-post" href="{{ route('blog.show', $article->slug) }}">
                                 <img src="{{ url($article->image) }}" alt="">
                                 <span><strong>{{ \Illuminate\Support\Str::limit($article->title, 48) }}</strong><small>{{ $article->date }}</small></span>
                             </a>

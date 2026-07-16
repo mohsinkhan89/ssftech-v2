@@ -1,6 +1,10 @@
 @extends('frontend.layouts.master')
 @section('title')
-    <title>Home - SSF Tech</title>
+    <title>SSF Tech | Web Development and Digital Marketing Agency UK</title>
+@endsection
+@section('metas')
+    <meta name="description"
+        content="SSF Tech is a UK based web development and digital marketing agency. We design, build and grow websites that deliver real results for your business.">
 @endsection
 @section('css')
     <style>
@@ -46,13 +50,12 @@
         <div class="hero-pulse"></div>
         <div class="container position-relative">
             <div class="row min-vh-hero align-items-center g-5">
-                <div class="col-lg-6 col-xl-5">
-                    <p class="eyebrow hero-anim">Welcome to SSF Tech</p>
-                    <h1 class="hero-anim delay-1">Navigating New <span>Horizons!</span></h1>
+                <div class="col-lg-6 col-xl-6">
+                    <p class="eyebrow hero-anim">Smarter Digital Solutions</p>
+                    <h1 class="hero-anim delay-1">Creating Digital Experiences That <span>Deliver Results</span></h1>
                     <h2 class="hero-anim delay-2">You dream, we design, we deliver</h2>
-                    <p class="hero-copy hero-anim delay-3">We are a result-driven web development and digital
-                        marketing company
-                        helping brands grow with powerful digital solutions.</p>
+                    <p class="hero-copy hero-anim delay-3">We create high performing websites and digital marketing
+                        strategies that help businesses grow, attract more customers and achieve real results.</p>
                     <div class="hero-actions hero-anim delay-4">
                         <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a>
                         <a href="#portfolio" class="play-link" aria-label="View our work">
@@ -62,7 +65,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-6 col-xl-5 mm-0 offset-xl-1">
+                <div class="col-lg-6 col-xl-6 mm-0">
                     <div class="hero-form-card hero-anim delay-3">
                         <div class="hero-form-head">
                             <span><i class="fa-solid fa-paper-plane"></i></span>
@@ -75,21 +78,21 @@
                             data-response="#heroFormResponse" data-button="#heroSubmitBtn">
                             @csrf
                             <div class="row g-3">
-                                <div class="col-md-6">
+                                <div class="col-lg-6 col-md-6">
                                     <input class="form-control" type="text" name="name" placeholder="Your Name"
                                         aria-label="Your Name" required>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-lg-6 col-md-6">
                                     <input class="form-control" type="email" name="email" placeholder="Your Email"
                                         aria-label="Your Email" autocomplete="email" required>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-lg-6 col-md-6">
                                     <input class="form-control uk-phone-mask" type="tel" name="phone"
                                         placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel"
                                         autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$"
                                         title="Enter a UK number in this format: +44 7123 456789" required>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-lg-6 col-md-6">
                                     <select class="form-select" name="service" aria-label="Select Service" required>
                                         <option value="">Select Service</option>
                                         <option value="Web Development">Web Development</option>
@@ -121,14 +124,11 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6 reveal">
                     <p class="eyebrow">About Us</p>
-                    <h2 class="section-title">Building Digital Experiences That <span>Drive Results</span></h2>
-                    <p class="muted">Welcome to SSF Tech, your premier website development company in the UK. We
-                        transform your
-                        vision into captivating websites with our expert development services. From sleek designs to
-                        seamless
-                        functionality, we specialize in boosting conversions and crafting digital brilliance for
-                        your brand's
-                        online success.</p>
+                    <h2 class="section-title">Your Trusted Partner for <span>Digital Success</span></h2>
+                    <p class="muted">Welcome to SSF Tech, a trusted website development company based in the UK. We turn
+                        your vision into a captivating website through expert design and development. From sleek, modern
+                        interfaces to seamless functionality, we specialise in boosting conversions and creating digital
+                        experiences that help your brand succeed online.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-icon"><i class="fa-regular fa-calendar-days"></i></span>
@@ -166,15 +166,17 @@
     <section id="industries" class="industries-section">
         <div class="container">
             <p class="eyebrow reveal">Industries We Serve</p>
-            <h2 class="section-title light reveal delay-1">Empowering Businesses Across Industries</h2>
+            <h2 class="section-title light reveal delay-1">Helping Businesses Thrive Across Every Industry</h2>
+            <p class="muted text-white reveal delay-1">Whatever industry you operate in, our team has the experience and
+                knowledge to build a digital solution that fits your goals and your customers.</p>
             <div class="industry-grid reveal delay-2">
-                <div><i class="fa-solid fa-graduation-cap"></i>Education &<br>Learning</div>
-                <div><i class="fa-solid fa-microphone-lines"></i>On-Demand<br>Solutions</div>
-                <div><i class="fa-solid fa-photo-film"></i>Media &<br>Entertainment</div>
-                <div><i class="fa-solid fa-kitchen-set"></i>Foods &<br>Drink</div>
-                <div><i class="fa-solid fa-spa"></i>Health &<br>Fitness</div>
+                <div><i class="fa-solid fa-graduation-cap"></i>Education and<br>Learning</div>
+                <div><i class="fa-solid fa-microphone-lines"></i>On Demand<br>Solutions</div>
+                <div><i class="fa-solid fa-photo-film"></i>Media and<br>Entertainment</div>
+                <div><i class="fa-solid fa-kitchen-set"></i>Food and<br>Drink</div>
+                <div><i class="fa-solid fa-spa"></i>Health and<br>Fitness</div>
                 <div><i class="fa-regular fa-heart"></i>Lifestyle</div>
-                <div><i class="fa-solid fa-truck-fast"></i>Transportation &<br>Logistic</div>
+                <div><i class="fa-solid fa-truck-fast"></i>Transportation and<br>Logistics</div>
             </div>
         </div>
     </section>
@@ -183,8 +185,9 @@
         <div class="container">
             <div class="cta-banner reveal">
                 <div class="cta-content">
-                    <p>Let's Build Something Amazing Together</p>
-                    <h2>Ready to elevate your<br>business to the next level?</h2>
+                    <p>Ready to Build Something Amazing?</p>
+                    <h2>Let's build something amazing together.</h2>
+                    <p>Get in touch today and discover how SSF Tech can help your brand grow online.</p>
                     <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -194,33 +197,39 @@
     <section id="services" class="services-section">
         <div class="container">
             <p class="eyebrow reveal">Our Services</p>
-            <h2 class="section-title reveal delay-1">Solutions We Provide</h2>
+            <h2 class="section-title reveal delay-1">Bespoke Digital Solutions for Every Business</h2>
+            <p class="muted reveal delay-1">We offer a complete range of services to help your brand grow online, from
+                the very first line of code through to ongoing support.</p>
             <div class="row g-4">
                 <div class="col-md-6 col-xl-3 reveal">
                     <article class="service-card"><span class="service-icon"><i class="fa-solid fa-laptop-code"></i></span>
                         <h3>Web Development</h3>
-                        <p>Custom websites built with modern technologies for performance and scalability.</p><a
+                        <p>Custom websites built with modern technology, designed for strong performance, easy management
+                            and long term scalability.</p><a
                             href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                     </article>
                 </div>
                 <div class="col-md-6 col-xl-3 reveal delay-1">
                     <article class="service-card"><span class="service-icon"><i class="fa-solid fa-bullhorn"></i></span>
                         <h3>Digital Marketing</h3>
-                        <p>Results-driven marketing strategies to grow your brand and reach the right audience.</p>
+                        <p>Results focused marketing strategies that grow your brand, reach the right audience and turn
+                            clicks into paying customers.</p>
                         <a href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                     </article>
                 </div>
                 <div class="col-md-6 col-xl-3 reveal delay-2">
                     <article class="service-card"><span class="service-icon"><i class="fa-solid fa-pen-nib"></i></span>
                         <h3>Graphic Designing</h3>
-                        <p>Creative designs that speak your brand's story and leave a lasting impression.</p><a
+                        <p>Creative, memorable designs that tell your brand's story and leave a lasting impression on every
+                            visitor.</p><a
                             href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                     </article>
                 </div>
                 <div class="col-md-6 col-xl-3 reveal delay-3">
                     <article class="service-card"><span class="service-icon"><i class="fa-solid fa-headset"></i></span>
                         <h3>IT Support</h3>
-                        <p>Reliable support and maintenance services to keep your business running smoothly.</p><a
+                        <p>Reliable, responsive support and maintenance that keeps your systems running smoothly, day in
+                            and day out.</p><a
                             href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                     </article>
                 </div>
@@ -234,25 +243,26 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="reviews-title">Trusted by Visionaries,<br>Driven by <span>Results</span></h2>
-                    <p class="reviews-text">We take pride in delivering exceptional solutions that drive growth and build
-                        lasting partnerships.</p>
+                    <h2 class="reviews-title">We've helped a lot of businesses&mdash;<br>but don't just take <span>our word for it</span></h2>
+                    <p class="reviews-text">We're proud to help businesses grow with reliable digital solutions,
+                        outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
+                        makes a real difference.</p>
 
                     <div class="review-stats">
                         <div class="review-stat">
                             <span><i class="fa-regular fa-face-smile"></i></span>
-                            <strong>{{ $happyClients }}+</strong>
+                            <strong>120+</strong>
                             <small>Happy Clients</small>
                         </div>
                         <div class="review-stat">
                             <span><i class="fa-regular fa-star"></i></span>
-                            <strong>{{ $averageRating }}/5</strong>
+                            <strong>5.0/5</strong>
                             <small>Client Rating</small>
                         </div>
                         <div class="review-stat">
                             <span><i class="fa-solid fa-award"></i></span>
                             <strong>98%</strong>
-                            <small>Project Success</small>
+                            <small>Project Success Rate</small>
                         </div>
                     </div>
 
@@ -266,10 +276,17 @@
                 </div>
 
                 <div class="reviews-stage">
+                    <p class="eyebrow">What Our Clients Say</p>
                     <div class="reviews-slider-custom swiper">
                         <div class="reviews-track swiper-wrapper">
                             @php
-                                $reviewSlides = $testimonials->count() < 4 ? $testimonials->concat($testimonials)->concat($testimonials) : $testimonials;
+                                $documentTestimonials = collect([
+                                    (object) ['name' => 'James Wilson', 'designation' => 'Director', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'SSF Tech created a professional website that exceeded our expectations. The process was smooth, and the results have been excellent.'],
+                                    (object) ['name' => 'Sarah Thompson', 'designation' => 'Business Owner', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'The team was responsive, knowledgeable and delivered our project on time. We highly recommend SSF Tech.'],
+                                    (object) ['name' => 'Michael Bennett', 'designation' => 'Managing Director', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'Our new website looks fantastic and has helped us attract more customers. A great experience from start to finish.'],
+                                    (object) ['name' => 'Emma Richardson', 'designation' => 'Marketing Manager', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'Reliable service, excellent communication and outstanding results. We look forward to working with SSF Tech again.'],
+                                ]);
+                                $reviewSlides = $documentTestimonials->concat($testimonials);
                             @endphp
                             @foreach ($reviewSlides as $testimonial)
                                 <div class="reviews-slide swiper-slide">
@@ -301,46 +318,45 @@
 
 
 
-    @if($clients->isNotEmpty())
     <section class="clients-section">
         <div class="container">
             <div class="clients-panel reveal">
                 <div class="clients-head">
                     <p class="eyebrow text-center">Our Partners</p>
-                    <h2 class="section-title text-center">Trusted Partnerships That <span>Drive Success</span></h2>
-                    <p class="clients-copy">We collaborate with forward-thinking organizations and technology leaders
-                        to deliver exceptional results and create lasting impact.</p>
+                    <h2 class="section-title text-center">Building Success Through <span>Trusted Partnerships</span></h2>
+                    <p class="clients-copy">We partner with innovative businesses and leading technology providers to
+                        create digital solutions that deliver lasting results.</p>
                 </div>
 
-                <div class="clients-carousel-wrap">
-                    <div class="client-logo-slider swiper">
-                        <div class="client-logo-track swiper-wrapper">
-                            @foreach($clients as $client)
-                                <div class="client-logo-slide swiper-slide">
-                                    <div class="client-logo-card">
-                                        <img src="{{ url($client->image) }}" alt="{{ $client->name }}">
+                @if($clients->isNotEmpty())
+                    <div class="clients-carousel-wrap">
+                        <div class="client-logo-slider swiper">
+                            <div class="client-logo-track swiper-wrapper">
+                                @foreach($clients as $client)
+                                    <div class="client-logo-slide swiper-slide">
+                                        <div class="client-logo-card">
+                                            <img src="{{ url($client->image) }}" alt="{{ $client->name }}">
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="client-pagination"></div>
+                    <div class="client-pagination"></div>
+                @endif
             </div>
         </div>
     </section>
-    @endif
 
     <section class="portfolio-section section-pad" id="portfolio">
         <div class="container">
             <div class="portfolio-head reveal">
                 <div>
                     <p class="eyebrow">Our Work</p>
-                    <h2 class="section-title">Digital Experiences<br>We've Crafted for <span>Our Clients.</span>
-                    </h2>
-                    <p class="muted">We design and develop high-performing websites that help businesses grow.
-                        Here are some of
-                        our recent projects.</p>
+                    <h2 class="section-title">Digital Experiences We've Created for <span>Our Clients</span>
+                        </h2>
+                    <p class="muted">From modern websites to complete digital solutions, we help businesses achieve
+                        their goals. Browse our recent work to see what we've created.</p>
                 </div>
                 <a href="#contact" class="btn btn-brand">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
             </div>
@@ -409,9 +425,9 @@
             <div class="contact-shell">
                 <div class="contact-info reveal">
                     <p class="eyebrow">Get In Touch</p>
-                    <h2 class="section-title light">Let's Build Something Amazing <span>Together</span></h2>
-                    <p class="contact-copy">Have a project in mind or want to learn more about our services? We'd love to
-                        hear from you.</p>
+                    <h2 class="section-title light">Outshine Your Competitors with <span>Smart Digital Solutions</span></h2>
+                    <p class="contact-copy">Have a project in mind? Get in touch with our team today and let's create a
+                        digital solution that helps your business grow.</p>
                     <div class="contact-details">
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-phone"></i></span>
@@ -505,7 +521,8 @@
                 <div class="faq-intro reveal">
                     <p class="eyebrow">FAQ'S</p>
                     <h2 class="section-title light">Frequently Asked <span>Questions</span></h2>
-                    <p class="faq-copy">Find answers to common queries about our services, process, and policies.</p>
+                    <p class="faq-copy">Find answers to some of the most common questions about our services, our process
+                        and how we work.</p>
                     <div class="faq-question-card">
                         <span class="faq-question-icon"><i class="fa-solid fa-headset"></i></span>
                         <h3>Still have questions?</h3>
@@ -519,12 +536,12 @@
                     <div class="accordion faq-list" id="faqAccordion">
                         <div class="accordion-item">
                             <h3 class="accordion-header"><button class="accordion-button" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">What services do
-                                    you offer?</button></h3>
+                                    data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">What services does
+                                    SSF Tech offer?</button></h3>
                             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">We offer a wide range of digital services including Web
-                                    Development, Mobile App Development, Digital Marketing, UI/UX Design, and IT Support
-                                    tailored to your business needs.</div>
+                                <div class="accordion-body">We offer a full range of digital services including web
+                                    development, mobile app development, digital marketing, UI and UX design, and IT
+                                    support, all tailored to suit your business needs.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
@@ -532,8 +549,9 @@
                                     data-bs-toggle="collapse" data-bs-target="#faq2">How long does a typical project
                                     take?</button></h3>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Most projects take 2-6 weeks depending on scope, content,
-                                    integrations, and review cycles.</div>
+                                <div class="accordion-body">Most projects take between two and six weeks, depending on the
+                                    scope of work, the amount of content involved, any integrations required and how
+                                    quickly feedback is provided during review.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
@@ -541,8 +559,8 @@
                                     data-bs-toggle="collapse" data-bs-target="#faq3">Do you work with startups and small
                                     businesses?</button></h3>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, we build practical digital solutions for startups,
-                                    growing brands, and established teams.</div>
+                                <div class="accordion-body">Yes, we build practical and affordable digital solutions for
+                                    startups, growing brands and established teams alike.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
@@ -550,8 +568,8 @@
                                     data-bs-toggle="collapse" data-bs-target="#faq4">What is your pricing model?</button>
                             </h3>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Pricing is based on project requirements, timeline, and the
-                                    level of ongoing support you need.</div>
+                                <div class="accordion-body">Pricing is based on your specific project requirements,
+                                    timeline and the level of ongoing support you need, so every quote is tailored to you.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
@@ -560,16 +578,17 @@
                                     security?</button></h3>
                             <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">We follow secure development practices, careful access
-                                    control, protected deployments, and regular backup recommendations.</div>
+                                    control, protected deployments and regular backup recommendations to help keep your
+                                    data safe.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide post-launch
-                                    support?</button></h3>
+                                    data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide support after
+                                    launch?</button></h3>
                             <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, post-launch support is available to keep your website,
-                                    app, or campaign stable and improving.</div>
+                                <div class="accordion-body">Yes, ongoing support is available after your website, app or
+                                    campaign goes live, helping keep everything stable and continually improving.</div>
                             </div>
                         </div>
                     </div>

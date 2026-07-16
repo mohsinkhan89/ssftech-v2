@@ -478,7 +478,8 @@ a {
 
 .hero-form-card {
   position: relative;
-  max-width: 500px;
+  /* max-width: 500px; */
+  max-width: 650px;
   margin-left: auto;
   padding: 30px;
   overflow: hidden;
@@ -798,6 +799,10 @@ a {
 
 .industry-grid div:last-child {
   border-right: 0;
+}
+
+.industry-grid div:last-child {
+  display: flex!important;
 }
 
 .industry-grid i {
@@ -2769,9 +2774,20 @@ a {
   padding: 0px 150px;
 }
 
-@media (min-width: 768px) {
+.industry-grid div:last-child {
+    display: flex !important;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .industry-grid div:nth-child(6),
+  .industry-grid div:nth-child(3) {
+    border-right: 0px!important;
+  }
+  .industry-grid div:nth-child(4) {
+    border-right: 1px solid rgba(255, 255, 255, .18)!important;
+  }
   .industry-grid div:last-child {
-    display: none;
+    display: none!important;
   }
   .hero-section .col-lg-6.mm-0 {
     margin-top: 0px;
@@ -3069,6 +3085,10 @@ a {
 }
 
 @media (max-width: 767px) {
+  .industry-grid div:last-child {
+    display: none !important;
+  }
+
   :root {
     --section-space: 54px;
   }
@@ -3943,7 +3963,7 @@ a {
     margin-top: 24px;
   }
   .industry-grid div:last-child {
-    display: none;
+    display: none!important;
   }
 
   .industry-grid div {

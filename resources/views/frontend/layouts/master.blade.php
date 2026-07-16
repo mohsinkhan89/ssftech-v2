@@ -5,8 +5,11 @@
     @yield('metas')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @yield('title')
-    <title>SSF Tech - Digital Solutions</title>
+    @hasSection('title')
+        @yield('title')
+    @else
+        <title>SSF Tech - Digital Solutions</title>
+    @endif
     @yield('css')
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{url('frontend/assets/images/favicons/apple-icon-57x57.png')}}">

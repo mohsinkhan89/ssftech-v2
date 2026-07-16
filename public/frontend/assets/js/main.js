@@ -12,6 +12,29 @@
   const servicesSlider = document.querySelector(".services-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
+  const cookieConsent = document.getElementById("cookieConsent");
+
+  if (cookieConsent) {
+    const consentMatch = document.cookie.match(/(?:^|; )ssf_cookie_consent=([^;]*)/);
+    const savedConsent = consentMatch ? decodeURIComponent(consentMatch[1]) : null;
+
+    if (!savedConsent) {
+      cookieConsent.hidden = false;
+    }
+
+    cookieConsent.querySelectorAll("[data-cookie-choice]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const choice = button.dataset.cookieChoice;
+        document.cookie = `ssf_cookie_consent=${encodeURIComponent(choice)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+        document.documentElement.dataset.cookieConsent = choice;
+        window.dispatchEvent(new CustomEvent("ssf:cookie-consent", { detail: { choice } }));
+        cookieConsent.classList.add("is-hiding");
+        setTimeout(() => {
+          cookieConsent.hidden = true;
+        }, 250);
+      });
+    });
+  }
 
   if (loader) {
     document.body.classList.add("loader-active");

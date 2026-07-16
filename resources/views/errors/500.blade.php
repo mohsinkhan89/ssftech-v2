@@ -1,0 +1,5 @@
+@extends('errors.layout')
+@section('code', '500')
+@section('title', 'Server Error')
+@section('heading', 'Something Went Wrong')
+@section('message', 'Our system encountered an unexpected problem. The technical team can investigate it while you safely return to the homepage.')

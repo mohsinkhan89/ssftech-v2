@@ -64,6 +64,7 @@
         @yield('body')
     </main>
     @include('frontend.inc.footer')
+    @include('frontend.inc.cookie-consent')
 
     <button class="back-to-top" type="button" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>

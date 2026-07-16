@@ -706,6 +706,18 @@ class AdminController extends Controller
         return redirect()->route('admin.settings.index')->with('success', 'Site logo updated successfully!');
     }
 
+    public function settingsUpdateAssetVersions(Request $request)
+    {
+        $data = $request->validate([
+            'css_version' => ['required', 'string', 'max:50', 'regex:/^[a-zA-Z0-9._-]+$/'],
+            'js_version' => ['required', 'string', 'max:50', 'regex:/^[a-zA-Z0-9._-]+$/'],
+        ]);
+
+        SiteSetting::firstOrCreate([])->update($data);
+
+        return redirect()->route('admin.settings.index')->with('success', 'CSS and JS versions updated successfully!');
+    }
+
     // List Users
     public function usersIndex()
     {

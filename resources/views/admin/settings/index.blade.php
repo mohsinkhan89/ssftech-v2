@@ -41,4 +41,34 @@
         </div>
     </div>
 </div>
+
+<div class="custom-table-container">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-4">
+            <h3 class="table-title mb-2"><i class="fa-solid fa-code text-red me-2"></i> Asset Versions</h3>
+            <p class="text-muted small mb-0">Change a version after updating CSS or JavaScript to clear visitors' browser cache.</p>
+        </div>
+        <div class="col-lg-8">
+            @if(Auth::user()->role !== 'author')
+                <form action="{{ route('admin.settings.asset-versions') }}" method="POST">@csrf @method('PUT')
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-5">
+                            <label for="css_version">CSS Version</label>
+                            <input type="text" name="css_version" id="css_version" class="form-control form-control-custom" value="{{ old('css_version', $siteSetting->css_version ?: '1.0.0') }}" placeholder="1.0.0" required>
+                            @error('css_version')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="col-md-5">
+                            <label for="js_version">JS Version</label>
+                            <input type="text" name="js_version" id="js_version" class="form-control form-control-custom" value="{{ old('js_version', $siteSetting->js_version ?: '1.0.0') }}" placeholder="1.0.0" required>
+                            @error('js_version')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="col-md-2"><button class="btn btn-red w-100" type="submit"><i class="fa-solid fa-rotate me-1"></i> Update</button></div>
+                    </div>
+                </form>
+            @else
+                <div class="row"><div class="col-6"><small class="text-muted">CSS Version</small><strong class="d-block">{{ $siteSetting->css_version }}</strong></div><div class="col-6"><small class="text-muted">JS Version</small><strong class="d-block">{{ $siteSetting->js_version }}</strong></div></div>
+            @endif
+        </div>
+    </div>
+</div>
 @endsection

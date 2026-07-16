@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:administrator,admin')->group(function () {
         Route::post('/admin/settings/logo', [AdminController::class, 'settingsUpdateLogo'])->name('admin.settings.logo');
         Route::put('/admin/settings/asset-versions', [AdminController::class, 'settingsUpdateAssetVersions'])->name('admin.settings.asset-versions');
+        Route::put('/admin/settings/contact-details', [AdminController::class, 'settingsUpdateContactDetails'])->name('admin.settings.contact-details');
     });
 
     // Users CRUD (Only Administrator)

@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Message;
 use App\Models\Client;
 use App\Models\Testimonial;
+use App\Models\Faq;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,10 +55,11 @@ class AdminController extends Controller
         $messagesCount = Message::count();
         $clientsCount = Client::count();
         $testimonialsCount = Testimonial::count();
+        $faqsCount = Faq::count();
         $usersCount = User::count();
         $recentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'usersCount', 'recentMessages'));
+        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'usersCount', 'recentMessages'));
     }
 
     // List Projects
@@ -443,6 +445,68 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Review status updated successfully!');
+    }
+
+    public function faqsIndex()
+    {
+        $faqs = Faq::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.faqs.index', compact('faqs'));
+    }
+
+    public function faqsCreate()
+    {
+        return view('admin.faqs.create');
+    }
+
+    public function faqsStore(Request $request)
+    {
+        $data = $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['status'] = $request->boolean('status');
+        Faq::create($data);
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully!');
+    }
+
+    public function faqsEdit(Faq $faq)
+    {
+        return view('admin.faqs.edit', compact('faq'));
+    }
+
+    public function faqsUpdate(Request $request, Faq $faq)
+    {
+        $data = $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['status'] = $request->boolean('status');
+        $faq->update($data);
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully!');
+    }
+
+    public function faqsToggleStatus(Faq $faq)
+    {
+        $faq->update(['status' => ! $faq->status]);
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ status updated successfully!');
+    }
+
+    public function faqsDestroy(Faq $faq)
+    {
+        $faq->delete();
+
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully!');
     }
 
     // List Users

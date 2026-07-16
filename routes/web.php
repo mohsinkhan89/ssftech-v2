@@ -60,6 +60,17 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/testimonials/{testimonial}', [AdminController::class, 'testimonialsDestroy'])->name('admin.testimonials.destroy');
     });
 
+    // FAQs CRUD
+    Route::get('/admin/faqs', [AdminController::class, 'faqsIndex'])->name('admin.faqs.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/faqs/create', [AdminController::class, 'faqsCreate'])->name('admin.faqs.create');
+        Route::post('/admin/faqs', [AdminController::class, 'faqsStore'])->name('admin.faqs.store');
+        Route::get('/admin/faqs/{faq}/edit', [AdminController::class, 'faqsEdit'])->name('admin.faqs.edit');
+        Route::put('/admin/faqs/{faq}', [AdminController::class, 'faqsUpdate'])->name('admin.faqs.update');
+        Route::patch('/admin/faqs/{faq}/toggle-status', [AdminController::class, 'faqsToggleStatus'])->name('admin.faqs.toggle-status');
+        Route::delete('/admin/faqs/{faq}', [AdminController::class, 'faqsDestroy'])->name('admin.faqs.destroy');
+    });
+
     // Users CRUD (Only Administrator)
     Route::middleware('role:administrator')->group(function () {
         Route::get('/admin/users', [AdminController::class, 'usersIndex'])->name('admin.users.index');

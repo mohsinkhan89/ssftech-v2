@@ -530,63 +530,23 @@
                 </div>
                 <div class="faq-content reveal delay-2">
                     <div class="accordion faq-list" id="faqAccordion">
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">What services does
-                                    SSF Tech offer?</button></h3>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">We offer a full range of digital services including web
-                                    development, mobile app development, digital marketing, UI and UX design, and IT
-                                    support, all tailored to suit your business needs.</div>
+                        @forelse ($faqs as $faq)
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq{{ $faq->id }}"
+                                        aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                        aria-controls="faq{{ $faq->id }}">{{ $faq->question }}</button>
+                                </h3>
+                                <div id="faq{{ $faq->id }}"
+                                    class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">{{ $faq->answer }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq2">How long does a typical project
-                                    take?</button></h3>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Most projects take between two and six weeks, depending on the
-                                    scope of work, the amount of content involved, any integrations required and how
-                                    quickly feedback is provided during review.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq3">Do you work with startups and small
-                                    businesses?</button></h3>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, we build practical and affordable digital solutions for
-                                    startups, growing brands and established teams alike.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq4">What is your pricing model?</button>
-                            </h3>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Pricing is based on your specific project requirements,
-                                    timeline and the level of ongoing support you need, so every quote is tailored to you.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq5">How do you ensure data
-                                    security?</button></h3>
-                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">We follow secure development practices, careful access
-                                    control, protected deployments and regular backup recommendations to help keep your
-                                    data safe.</div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#faq6">Do you provide support after
-                                    launch?</button></h3>
-                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Yes, ongoing support is available after your website, app or
-                                    campaign goes live, helping keep everything stable and continually improving.</div>
-                            </div>
-                        </div>
+                        @empty
+                            <p class="faq-copy mb-0">FAQs will be available soon.</p>
+                        @endforelse
                     </div>
                 </div>
             </div>

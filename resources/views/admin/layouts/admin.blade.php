@@ -833,6 +833,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.faqs.index') }}"
+                        class="nav-link-custom {{ Request::is('admin/faqs*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>FAQs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.messages.index') }}"
                         class="nav-link-custom {{ Request::is('admin/messages*') ? 'active' : '' }}">
                         <i class="fa-solid fa-envelope"></i>

@@ -96,6 +96,25 @@
         </div>
     </div>
 
+    <!-- Total FAQs Card -->
+    <div class="swiper-slide">
+        <div class="dashboard-card">
+            <div class="card-icon-wrapper">
+                <div class="card-icon" style="background: rgba(14, 165, 233, 0.08); color: #0284c7; border-color: rgba(14, 165, 233, 0.15);">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+                <span class="card-trend" style="background: rgba(14, 165, 233, 0.1); color: #0284c7; border-color: rgba(14, 165, 233, 0.15);"><i class="fa-solid fa-list me-1"></i> Content</span>
+            </div>
+            <div>
+                <div class="card-value">{{ $faqsCount }}</div>
+                <div class="card-label">Total FAQs</div>
+                <div class="card-progress">
+                    <div class="card-progress-bar" style="width: {{ min(100, max(15, $faqsCount * 12)) }}%; background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if($isAdmin)
     <!-- Total Users Card -->
     <div class="swiper-slide">
@@ -167,6 +186,12 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.faqs.create') }}" class="action-card">
+                        <div class="action-icon"><i class="fa-solid fa-plus"></i></div>
+                        <div class="action-info"><h6>Add FAQ</h6><p>Create a new question</p></div>
+                    </a>
+                </div>
                 @endif
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.projects.index') }}" class="action-card">
@@ -199,6 +224,12 @@
                             <h6>Reviews</h6>
                             <p>Manage testimonials</p>
                         </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="{{ route('admin.faqs.index') }}" class="action-card">
+                        <div class="action-icon"><i class="fa-solid fa-circle-question"></i></div>
+                        <div class="action-info"><h6>FAQs</h6><p>Manage questions</p></div>
                     </a>
                 </div>
                 @if($isAdmin)

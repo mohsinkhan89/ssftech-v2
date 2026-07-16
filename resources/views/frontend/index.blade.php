@@ -326,6 +326,75 @@
         </div>
     </section>
 
+    <section class="insights-section section-pad" id="blog">
+        <div class="container">
+            <div class="insights-head reveal">
+                <div>
+                    <p class="eyebrow">Our Blog</p>
+                    <h2 class="section-title light">Latest Insights &amp; <span>Digital Trends</span></h2>
+                    <p>We share practical insights, proven strategies, and the latest in design and technology to help
+                        your business grow smarter and faster.</p>
+                </div>
+                <a href="{{ route('blog.index') }}" class="btn btn-brand insights-all"><i class="fa-solid fa-newspaper"></i> View All
+                    Articles <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4 insights-grid">
+                <div class="col-lg-4 col-md-6 reveal">
+                    <article class="insight-card">
+                        <img src="{{ url('frontend/assets/images/blog/web-design-insights.png') }}"
+                            alt="Modern web design workspace">
+                        <div class="insight-card-body">
+                            <div class="insight-meta">
+                                <span class="insight-category"><i class="fa-solid fa-globe"></i> Web Design</span>
+                                <span><i class="fa-regular fa-calendar"></i> 14 Feb 2026</span>
+                                <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>How Modern Web Design Builds Trust and Conversions</h3>
+                            <p>Discover how clean layouts, speed, and strong UX help businesses turn visitors into
+                                customers.</p>
+                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal delay-1">
+                    <article class="insight-card">
+                        <img src="{{ url('frontend/assets/images/blog/marketing-growth.png') }}"
+                            alt="Digital marketing analytics and growth target">
+                        <div class="insight-card-body">
+                            <div class="insight-meta">
+                                <span class="insight-category"><i class="fa-solid fa-bullseye"></i> Marketing</span>
+                                <span><i class="fa-regular fa-calendar"></i> 22 Feb 2026</span>
+                                <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+                            </div>
+                            <h3>Digital Marketing Strategies That Deliver Real Growth</h3>
+                            <p>Explore proven tactics to boost visibility, generate leads, and create measurable business
+                                impact.</p>
+                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal delay-2">
+                    <article class="insight-card">
+                        <img src="{{ url('frontend/assets/images/blog/brand-identity.png') }}"
+                            alt="Premium brand identity stationery">
+                        <div class="insight-card-body">
+                            <div class="insight-meta">
+                                <span class="insight-category"><i class="fa-regular fa-id-badge"></i> Branding</span>
+                                <span><i class="fa-regular fa-calendar"></i> 01 Mar 2026</span>
+                                <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3>Building a Brand Identity That Stands Out Online</h3>
+                            <p>Learn how consistent visuals and messaging help position your business for long-term
+                                success.</p>
+                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="portfolio-section section-pad" id="portfolio">
         <div class="container">
             <div class="portfolio-head reveal">

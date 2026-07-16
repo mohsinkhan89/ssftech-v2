@@ -251,12 +251,12 @@
                     <div class="review-stats">
                         <div class="review-stat">
                             <span><i class="fa-regular fa-face-smile"></i></span>
-                            <strong>120+</strong>
+                            <strong>{{ $happyClients }}+</strong>
                             <small>Happy Clients</small>
                         </div>
                         <div class="review-stat">
                             <span><i class="fa-regular fa-star"></i></span>
-                            <strong>5.0/5</strong>
+                            <strong>{{ $averageRating }}/5</strong>
                             <small>Client Rating</small>
                         </div>
                         <div class="review-stat">
@@ -266,31 +266,15 @@
                         </div>
                     </div>
 
-                    <div class="review-controls" aria-label="Review slider controls">
-                        <button class="review-prev" type="button" aria-label="Previous review"><i
-                                class="fa-solid fa-chevron-left"></i></button>
-                        <button class="review-next" type="button" aria-label="Next review"><i
-                                class="fa-solid fa-chevron-right"></i></button>
-                        <div class="review-pagination"></div>
-                    </div>
                 </div>
 
                 <div class="reviews-stage">
-                    <p class="eyebrow">What Our Clients Say</p>
-                    <div class="reviews-slider-custom swiper">
-                        <div class="reviews-track swiper-wrapper">
-                            @php
-                                $documentTestimonials = collect([
-                                    (object) ['name' => 'James Wilson', 'designation' => 'Director', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'SSF Tech created a professional website that exceeded our expectations. The process was smooth, and the results have been excellent.'],
-                                    (object) ['name' => 'Sarah Thompson', 'designation' => 'Business Owner', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'The team was responsive, knowledgeable and delivered our project on time. We highly recommend SSF Tech.'],
-                                    (object) ['name' => 'Michael Bennett', 'designation' => 'Managing Director', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'Our new website looks fantastic and has helped us attract more customers. A great experience from start to finish.'],
-                                    (object) ['name' => 'Emma Richardson', 'designation' => 'Marketing Manager', 'company' => '', 'rating' => 5, 'avatar' => null, 'review' => 'Reliable service, excellent communication and outstanding results. We look forward to working with SSF Tech again.'],
-                                ]);
-                                $reviewSlides = $documentTestimonials->concat($testimonials);
-                            @endphp
-                            @foreach ($reviewSlides as $testimonial)
-                                <div class="reviews-slide swiper-slide">
-                                    <article class="review-card">
+                    <div class="reviews-carousel-shell">
+                        <div class="reviews-slider-custom swiper">
+                            <div class="reviews-track swiper-wrapper">
+                                @foreach ($testimonials as $testimonial)
+                                    <div class="reviews-slide swiper-slide">
+                                        <article class="review-card">
                                         <div class="review-card-head">
                                             <span class="review-quote">&ldquo;</span>
                                             <div class="review-stars">
@@ -306,11 +290,13 @@
                                         <p>{{ $testimonial->review }}</p>
                                         <strong>{{ $testimonial->name }}</strong>
                                         <small>{{ trim(($testimonial->designation ? $testimonial->designation . ', ' : '') . $testimonial->company, ', ') }}</small>
-                                    </article>
-                                </div>
-                            @endforeach
+                                        </article>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
+                    <div class="review-pagination"></div>
                 </div>
             </div>
         </div>

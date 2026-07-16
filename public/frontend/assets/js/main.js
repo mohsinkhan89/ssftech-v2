@@ -123,23 +123,15 @@
     new window.Swiper(reviewsSlider, {
       loop: true,
       loopAdditionalSlides: 4,
-      centeredSlides: true,
-      slidesPerView: "auto",
+      centeredSlides: false,
+      slidesPerView: 1,
       initialSlide: 1,
-      spaceBetween: 24,
+      spaceBetween: 0,
       speed: 900,
       grabCursor: true,
       watchSlidesProgress: true,
       observer: true,
       observeParents: true,
-      effect: "coverflow",
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 52,
-        depth: 210,
-        modifier: 1.35,
-        slideShadows: false
-      },
       autoplay: {
         delay: 2500,
         disableOnInteraction: false,
@@ -153,42 +145,6 @@
         clickable: true,
         bulletClass: "review-bullet",
         bulletActiveClass: "active"
-      },
-      navigation: {
-        nextEl: ".review-next",
-        prevEl: ".review-prev"
-      },
-      breakpoints: {
-        0: {
-          spaceBetween: 18,
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 80,
-            modifier: 1,
-            slideShadows: false
-          }
-        },
-        768: {
-          spaceBetween: 18,
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 18,
-            depth: 130,
-            modifier: 1.15,
-            slideShadows: false
-          }
-        },
-        1200: {
-          spaceBetween: 24,
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 52,
-            depth: 210,
-            modifier: 1.35,
-            slideShadows: false
-          }
-        }
       }
     });
   }

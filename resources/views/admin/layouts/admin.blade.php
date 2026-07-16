@@ -184,6 +184,44 @@
             border-color: rgba(255, 255, 255, 0.08);
         }
 
+        .admin-profile {
+            cursor: pointer;
+        }
+
+        .profile-dropdown-menu {
+            width: 270px;
+            margin-top: 12px !important;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .18);
+        }
+
+        .profile-dropdown-menu .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 9px;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: #f8fafc;
+            color: var(--red);
+        }
+
+        .sidebar-status-card {
+            padding: 13px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 12px;
+            background: rgba(255,255,255,.035);
+            color: #cbd5e1;
+            font-size: 12px;
+        }
+
         .admin-avatar {
             width: 38px;
             height: 38px;
@@ -873,15 +911,13 @@
         </div>
 
         <div class="sidebar-footer">
-            <form action="{{ route('admin.logout') }}" method="POST" id="logoutForm">
-                @csrf
-                <a href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit()"
-                    class="nav-link-custom text-danger"
-                    style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.1);">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Logout</span>
+            <div class="sidebar-status-card">
+                <div class="d-flex align-items-center gap-2 mb-2"><span class="bg-success rounded-circle" style="width:8px;height:8px;"></span><strong class="text-white">Website Online</strong></div>
+                <div class="text-secondary mb-3">Admin panel connected</div>
+                <a href="{{ url('/') }}" target="_blank" class="text-white text-decoration-none d-flex align-items-center justify-content-between">
+                    <span><i class="fa-solid fa-arrow-up-right-from-square me-2 text-danger"></i>View Website</span><i class="fa-solid fa-chevron-right small"></i>
                 </a>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -908,21 +944,33 @@
 
             <div class="d-flex align-items-center gap-3">
                 <!-- Notifications Bell -->
-                <button class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center"
+                <a href="{{ route('admin.messages.index') }}" class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center"
                     style="width: 38px; height: 38px; position: relative;">
                     <i class="fa-regular fa-bell"></i>
                     <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle"
                         style="top: 10px; right: 2px; box-shadow: 0 0 6px var(--red-glow); background-color: var(--red) !important;"></span>
-                </button>
+                </a>
 
-                <div class="admin-profile">
-                    <div class="admin-avatar">
-                        {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
+                <div class="dropdown">
+                    <div class="admin-profile" data-bs-toggle="dropdown" aria-expanded="false" role="button" tabindex="0">
+                        <div class="admin-avatar">{{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}</div>
+                        <div class="admin-info d-none d-sm-block">
+                            <span class="admin-name">{{ Auth::user()->name ?? 'Administrator' }}</span>
+                            <span class="admin-role">{{ Auth::user()->role === 'administrator' ? 'Super Admin' : (Auth::user()->role === 'admin' ? 'Admin' : 'Author') }}</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-secondary small"></i>
                     </div>
-                    <div class="admin-info d-none d-sm-block">
-                        <span class="admin-name">{{ Auth::user()->name ?? 'Administrator' }}</span>
-                        <span
-                            class="admin-role">{{ Auth::user()->role === 'administrator' ? 'Super Admin' : (Auth::user()->role === 'admin' ? 'Admin' : 'Author') }}</span>
+                    <div class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+                        <div class="px-2 py-2 mb-1"><strong class="d-block text-dark">{{ Auth::user()->name }}</strong><small class="text-muted">{{ Auth::user()->email }}</small></div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('admin.profile.show') }}"><i class="fa-regular fa-user"></i> View & Edit Profile</a>
+                        <a class="dropdown-item" href="{{ route('admin.profile.show') }}#password"><i class="fa-solid fa-key"></i> Change Password</a>
+                        <a class="dropdown-item" href="{{ route('admin.settings.index') }}"><i class="fa-solid fa-gear"></i> Site Settings</a>
+                        <a class="dropdown-item" href="{{ url('/') }}" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
+                        <div class="dropdown-divider"></div>
+                        <form action="{{ route('admin.logout') }}" method="POST">@csrf
+                            <button type="submit" class="dropdown-item text-danger w-100"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>

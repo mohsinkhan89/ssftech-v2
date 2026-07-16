@@ -20,6 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
+    // Current User Profile
+    Route::get('/admin/profile', [AdminController::class, 'profileShow'])->name('admin.profile.show');
+    Route::put('/admin/profile', [AdminController::class, 'profileUpdate'])->name('admin.profile.update');
+    Route::put('/admin/profile/password', [AdminController::class, 'profileUpdatePassword'])->name('admin.profile.password');
+
     // Projects CRUD
     Route::get('/admin/projects', [AdminController::class, 'projectsIndex'])->name('admin.projects.index');
     Route::middleware('role:administrator,admin')->group(function () {

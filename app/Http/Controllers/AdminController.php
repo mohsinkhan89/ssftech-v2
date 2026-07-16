@@ -67,6 +67,40 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'servicesCount', 'socialLinksCount', 'usersCount', 'recentMessages'));
     }
 
+    public function profileShow()
+    {
+        return view('admin.profile.show', ['user' => Auth::user()]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        ]);
+        $user->update($data);
+
+        return back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function profileUpdatePassword(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if (! Hash::check($data['current_password'], $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.'])->withInput();
+        }
+
+        $user->update(['password' => Hash::make($data['password'])]);
+
+        return back()->with('success', 'Password updated successfully!');
+    }
+
     // List Projects
     public function projectsIndex()
     {

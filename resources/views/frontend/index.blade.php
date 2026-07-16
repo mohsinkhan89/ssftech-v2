@@ -406,27 +406,33 @@
                     <p class="contact-copy">Have a project in mind? Get in touch with our team today and let's create a
                         digital solution that helps your business grow.</p>
                     <div class="contact-details">
+                        @if($siteSetting?->contact_phone)
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-phone"></i></span>
                             <div>
                                 <small>Call Us</small>
-                                <strong>+44 1234 567 890</strong>
+                                <strong><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSetting->contact_phone) }}">{{ $siteSetting->contact_phone }}</a></strong>
                             </div>
                         </div>
+                        @endif
+                        @if($siteSetting?->contact_email)
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-envelope"></i></span>
                             <div>
                                 <small>Email Us</small>
-                                <strong>hello@ssftech.co.uk</strong>
+                                <strong><a href="mailto:{{ $siteSetting->contact_email }}">{{ $siteSetting->contact_email }}</a></strong>
                             </div>
                         </div>
+                        @endif
+                        @if($siteSetting?->contact_address)
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-location-dot"></i></span>
                             <div>
                                 <small>Visit Us</small>
-                                <strong>London, United Kingdom</strong>
+                                <strong>{!! nl2br(e($siteSetting->contact_address)) !!}</strong>
                             </div>
                         </div>
+                        @endif
                         <div class="contact-detail">
                             <span><i class="fa-regular fa-clock"></i></span>
                             <div>
@@ -458,21 +464,21 @@
                         data-button="#submitBtn">
                         @csrf
                         <div class="row g-3">
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="text" name="name" placeholder="Your Name"
                                     aria-label="Your Name" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="email" name="email" placeholder="Your Email"
                                     aria-label="Your Email" autocomplete="email" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control uk-phone-mask" type="tel" name="phone"
                                     placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel"
                                     autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$"
                                     title="Enter a UK number in this format: +44 7123 456789" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="text" name="service" placeholder="Subject"
                                     aria-label="Subject">
                             </div>

@@ -406,27 +406,33 @@
                     <p class="contact-copy">Have a project in mind? Get in touch with our team today and let's create a
                         digital solution that helps your business grow.</p>
                     <div class="contact-details">
+                        @if($siteSetting?->contact_phone)
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-phone"></i></span>
                             <div>
                                 <small>Call Us</small>
-                                <strong>+44 1234 567 890</strong>
+                                <strong><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSetting->contact_phone) }}">{{ $siteSetting->contact_phone }}</a></strong>
                             </div>
                         </div>
+                        @endif
+                        @if($siteSetting?->contact_email)
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-envelope"></i></span>
                             <div>
                                 <small>Email Us</small>
-                                <strong>hello@ssftech.co.uk</strong>
+                                <strong><a href="mailto:{{ $siteSetting->contact_email }}">{{ $siteSetting->contact_email }}</a></strong>
                             </div>
                         </div>
+                        @endif
+                        @if($siteSetting?->contact_address)
                         <div class="contact-detail">
                             <span><i class="fa-solid fa-location-dot"></i></span>
                             <div>
                                 <small>Visit Us</small>
-                                <strong>London, United Kingdom</strong>
+                                <strong>{!! nl2br(e($siteSetting->contact_address)) !!}</strong>
                             </div>
                         </div>
+                        @endif
                         <div class="contact-detail">
                             <span><i class="fa-regular fa-clock"></i></span>
                             <div>

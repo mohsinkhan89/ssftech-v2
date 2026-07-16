@@ -2070,6 +2070,15 @@ a {
   line-height: 1.35;
 }
 
+.contact-detail strong a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-detail strong a:hover {
+  color: var(--red);
+}
+
 .contact-socials {
   margin-top: 22px;
 }
@@ -2317,7 +2326,7 @@ a {
 
 .footer-contact-item.top-icon span {
   position: relative;
-  top: -28px;
+  top: -20px;
 }
 
 .footer-contact-item {

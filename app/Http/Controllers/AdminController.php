@@ -8,6 +8,8 @@ use App\Models\Client;
 use App\Models\Testimonial;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\SocialLink;
+use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,10 +60,11 @@ class AdminController extends Controller
         $testimonialsCount = Testimonial::count();
         $faqsCount = Faq::count();
         $servicesCount = Service::count();
+        $socialLinksCount = SocialLink::count();
         $usersCount = User::count();
         $recentMessages = Message::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'servicesCount', 'usersCount', 'recentMessages'));
+        return view('admin.dashboard', compact('projectsCount', 'messagesCount', 'clientsCount', 'testimonialsCount', 'faqsCount', 'servicesCount', 'socialLinksCount', 'usersCount', 'recentMessages'));
     }
 
     // List Projects
@@ -574,6 +577,95 @@ class AdminController extends Controller
         $data['link'] = $data['link'] ?: '#contact';
 
         return $data;
+    }
+
+    public function socialLinksIndex()
+    {
+        $socialLinks = SocialLink::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+        return view('admin.social-links.index', compact('socialLinks'));
+    }
+
+    public function socialLinksCreate()
+    {
+        return view('admin.social-links.create');
+    }
+
+    public function socialLinksStore(Request $request)
+    {
+        $data = $this->validateSocialLink($request);
+        $data['status'] = $request->boolean('status');
+        SocialLink::create($data);
+        return redirect()->route('admin.settings.index')->with('success', 'Social link created successfully!');
+    }
+
+    public function socialLinksEdit(SocialLink $socialLink)
+    {
+        return view('admin.social-links.edit', compact('socialLink'));
+    }
+
+    public function socialLinksUpdate(Request $request, SocialLink $socialLink)
+    {
+        $data = $this->validateSocialLink($request);
+        $data['status'] = $request->boolean('status');
+        $socialLink->update($data);
+        return redirect()->route('admin.settings.index')->with('success', 'Social link updated successfully!');
+    }
+
+    public function socialLinksToggleStatus(SocialLink $socialLink)
+    {
+        $socialLink->update(['status' => ! $socialLink->status]);
+        return redirect()->route('admin.settings.index')->with('success', 'Social link status updated successfully!');
+    }
+
+    public function socialLinksDestroy(SocialLink $socialLink)
+    {
+        $socialLink->delete();
+        return redirect()->route('admin.settings.index')->with('success', 'Social link deleted successfully!');
+    }
+
+    private function validateSocialLink(Request $request): array
+    {
+        $data = $request->validate([
+            'platform' => 'required|string|max:100',
+            'url' => ['nullable', 'url:http,https', 'max:255'],
+            'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
+        ]);
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        return $data;
+    }
+
+    public function settingsIndex()
+    {
+        $siteSetting = SiteSetting::firstOrCreate([]);
+        $socialLinks = SocialLink::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+
+        return view('admin.settings.index', compact('siteSetting', 'socialLinks'));
+    }
+
+    public function settingsUpdateLogo(Request $request)
+    {
+        $request->validate([
+            'logo' => 'required|image|mimes:png,jpg,jpeg,webp,svg|max:2048',
+        ]);
+
+        $siteSetting = SiteSetting::firstOrCreate([]);
+        $destinationPath = public_path('uploads/settings');
+        if (! File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true);
+        }
+
+        if ($siteSetting->logo && str_contains($siteSetting->logo, 'uploads/settings') && File::exists(public_path($siteSetting->logo))) {
+            File::delete(public_path($siteSetting->logo));
+        }
+
+        $logo = $request->file('logo');
+        $logoName = time() . '_logo_' . uniqid() . '.' . $logo->getClientOriginalExtension();
+        $logo->move($destinationPath, $logoName);
+        $siteSetting->update(['logo' => 'uploads/settings/' . $logoName]);
+
+        return redirect()->route('admin.settings.index')->with('success', 'Site logo updated successfully!');
     }
 
     // List Users

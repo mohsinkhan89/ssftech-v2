@@ -82,6 +82,23 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/services/{service}', [AdminController::class, 'servicesDestroy'])->name('admin.services.destroy');
     });
 
+    // Social Links CRUD
+    Route::get('/admin/social-links', [AdminController::class, 'socialLinksIndex'])->name('admin.social-links.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/social-links/create', [AdminController::class, 'socialLinksCreate'])->name('admin.social-links.create');
+        Route::post('/admin/social-links', [AdminController::class, 'socialLinksStore'])->name('admin.social-links.store');
+        Route::get('/admin/social-links/{socialLink}/edit', [AdminController::class, 'socialLinksEdit'])->name('admin.social-links.edit');
+        Route::put('/admin/social-links/{socialLink}', [AdminController::class, 'socialLinksUpdate'])->name('admin.social-links.update');
+        Route::patch('/admin/social-links/{socialLink}/toggle-status', [AdminController::class, 'socialLinksToggleStatus'])->name('admin.social-links.toggle-status');
+        Route::delete('/admin/social-links/{socialLink}', [AdminController::class, 'socialLinksDestroy'])->name('admin.social-links.destroy');
+    });
+
+    // Site Settings
+    Route::get('/admin/settings', [AdminController::class, 'settingsIndex'])->name('admin.settings.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::post('/admin/settings/logo', [AdminController::class, 'settingsUpdateLogo'])->name('admin.settings.logo');
+    });
+
     // Users CRUD (Only Administrator)
     Route::middleware('role:administrator')->group(function () {
         Route::get('/admin/users', [AdminController::class, 'usersIndex'])->name('admin.users.index');

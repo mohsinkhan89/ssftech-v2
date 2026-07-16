@@ -5,20 +5,22 @@
                 <div class="col-lg-3 col-md-6 footer-about">
                     <a class="brand-lockup footer-brand" href="#home" aria-label="SSF Tech home">
                         <div class="footer-logo">
-                            <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
+                            <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
                         </div>
                     </a>
                     <p class="footer-tagline">Innovative technology solutions that empower businesses and drive
                         digital
                         transformation.</p>
+                    @if($socialLinks->isNotEmpty())
                     <div class="follow-us">
                         <h5>Follow Us</h5>
                         <div class="socials">
-                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            @foreach($socialLinks as $socialLink)
+                                <a href="{{ $socialLink->url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $socialLink->platform }}"><i class="{{ $socialLink->icon }}"></i></a>
+                            @endforeach
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links footer-links-about">
                     <h4>About Us</h4>

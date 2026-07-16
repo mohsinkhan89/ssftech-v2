@@ -8,6 +8,8 @@ use App\Models\Client;
 use App\Models\Testimonial;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\SocialLink;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -24,6 +26,8 @@ class FrontendController extends Controller
         $averageRating = $testimonials->isNotEmpty() ? number_format($testimonials->avg('rating'), 1) : '4.9';
         $faqs = Faq::where('status', true)->orderBy('sort_order')->orderBy('created_at')->get();
         $services = Service::where('status', true)->orderBy('sort_order')->orderBy('created_at')->get();
+        $socialLinks = SocialLink::where('status', true)->whereNotNull('url')->where('url', '!=', '')->orderBy('sort_order')->get();
+        $siteSetting = SiteSetting::first();
 
         if ($testimonials->isEmpty()) {
             $testimonials = collect([
@@ -54,7 +58,7 @@ class FrontendController extends Controller
             ]);
         }
 
-        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs', 'services'));
+        return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs', 'services', 'socialLinks', 'siteSetting'));
     }
 
     public function submitContact(Request $request)

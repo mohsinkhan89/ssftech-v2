@@ -435,15 +435,16 @@
                             </div>
                         </div>
                     </div>
+                    @if($socialLinks->isNotEmpty())
                     <div class="contact-socials">
                         <p>Follow Us</p>
                         <div>
-                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            @foreach($socialLinks as $socialLink)
+                                <a href="{{ $socialLink->url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $socialLink->platform }}"><i class="{{ $socialLink->icon }}"></i></a>
+                            @endforeach
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="contact-form-card reveal delay-2">
                     <div class="contact-form-head">

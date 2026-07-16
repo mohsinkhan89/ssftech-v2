@@ -50,7 +50,7 @@
                 <span></span>
             </div>
             <div class="loader-mark">
-                <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="">
+                <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
             </div>
             <div class="loader-copy">
                 <strong>SSF Tech</strong>

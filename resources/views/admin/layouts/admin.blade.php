@@ -800,7 +800,7 @@
         <div>
             <div class="sidebar-brand">
                 <a href="{{ url('/') }}" target="_blank">
-                    <img src="{{ url('frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech Logo">
+                    <img src="{{ url(optional(\App\Models\SiteSetting::first())->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech Logo">
                 </a>
             </div>
             <ul class="nav-menu">
@@ -862,6 +862,13 @@
                         </a>
                     </li>
                 @endif
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.index') }}"
+                        class="nav-link-custom {{ Request::is('admin/settings*') || Request::is('admin/social-links*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
             </ul>
         </div>
 

@@ -108,6 +108,9 @@
     </div>
 
     <!-- Total FAQs Card -->
+    <div class="swiper-slide"><div class="dashboard-card"><div class="card-icon-wrapper"><div class="card-icon"><i class="fa-solid fa-share-nodes"></i></div><span class="card-trend">Content</span></div><div><div class="card-value">{{ $socialLinksCount }}</div><div class="card-label">Social Links</div><div class="card-progress"><div class="card-progress-bar" style="width:{{ min(100, max(15, $socialLinksCount * 20)) }}%"></div></div></div></div></div>
+
+    <!-- Total FAQs Card -->
     <div class="swiper-slide">
         <div class="dashboard-card">
             <div class="card-icon-wrapper">
@@ -249,6 +252,7 @@
                         <div class="action-info"><h6>FAQs</h6><p>Manage questions</p></div>
                     </a>
                 </div>
+                <div class="col-md-3 col-sm-6"><a href="{{ route('admin.settings.index') }}" class="action-card"><div class="action-icon"><i class="fa-solid fa-gear"></i></div><div class="action-info"><h6>Settings</h6><p>Manage logo and social links</p></div></a></div>
                 @if($isAdmin)
                 <div class="col-md-3 col-sm-6">
                     <a href="{{ route('admin.users.create') }}" class="action-card">

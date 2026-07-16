@@ -11,6 +11,11 @@ class Message extends Model
         'email',
         'phone',
         'service',
-        'message'
+        'message',
+        'read_at',
+    ];
+
+    protected $casts = [
+        'read_at' => 'datetime',
     ];
 }

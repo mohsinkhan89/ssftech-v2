@@ -277,6 +277,10 @@ class AdminController extends Controller
     // Show Message Detail
     public function messagesShow(Message $message)
     {
+        if (! $message->read_at) {
+            $message->update(['read_at' => now()]);
+        }
+
         return view('admin.messages.show', compact('message'));
     }
 

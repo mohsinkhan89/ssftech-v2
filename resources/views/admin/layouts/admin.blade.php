@@ -213,6 +213,66 @@
             color: var(--red);
         }
 
+        .notification-dropdown-menu {
+            width: min(390px, calc(100vw - 24px));
+            max-height: 520px;
+            margin-top: 12px !important;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .2);
+        }
+
+        .notification-list {
+            max-height: 390px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            display: flex;
+            gap: 12px;
+            padding: 13px 16px;
+            color: #334155;
+            text-decoration: none;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background .2s ease;
+        }
+
+        .notification-item:hover,
+        .notification-item.is-unread {
+            background: #fff7f7;
+            color: #0f172a;
+        }
+
+        .notification-item-icon {
+            flex: 0 0 38px;
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: rgba(228, 9, 20, .1);
+            color: var(--red);
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            min-width: 19px;
+            height: 19px;
+            padding: 0 5px;
+            display: grid;
+            place-items: center;
+            border: 2px solid #0f172a;
+            border-radius: 999px;
+            background: var(--red);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
         .sidebar-status-card {
             padding: 13px;
             border: 1px solid rgba(255,255,255,.08);
@@ -944,12 +1004,38 @@
 
             <div class="d-flex align-items-center gap-3">
                 <!-- Notifications Bell -->
-                <a href="{{ route('admin.messages.index') }}" class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center"
-                    style="width: 38px; height: 38px; position: relative;">
-                    <i class="fa-regular fa-bell"></i>
-                    <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle"
-                        style="top: 10px; right: 2px; box-shadow: 0 0 6px var(--red-glow); background-color: var(--red) !important;"></span>
-                </a>
+                <div class="dropdown">
+                    <button class="btn btn-dark-custom p-0 rounded-circle d-flex align-items-center justify-content-center"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open notifications"
+                        style="width:38px;height:38px;position:relative;">
+                        <i class="fa-regular fa-bell"></i>
+                        @if($unreadNotificationsCount > 0)
+                            <span class="notification-count">{{ $unreadNotificationsCount > 99 ? '99+' : $unreadNotificationsCount }}</span>
+                        @endif
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end notification-dropdown-menu">
+                        <div class="d-flex align-items-center justify-content-between px-3 py-3 border-bottom">
+                            <div><strong class="text-dark">Notifications</strong><small class="d-block text-muted">Latest 10 customer requests</small></div>
+                            @if($unreadNotificationsCount > 0)<span class="badge bg-danger-subtle text-danger">{{ $unreadNotificationsCount }} unread</span>@endif
+                        </div>
+                        <div class="notification-list">
+                            @forelse($headerNotifications as $notification)
+                                <a href="{{ route('admin.messages.show', $notification) }}" class="notification-item {{ $notification->read_at ? '' : 'is-unread' }}">
+                                    <span class="notification-item-icon"><i class="fa-regular fa-envelope"></i></span>
+                                    <span class="flex-grow-1 overflow-hidden">
+                                        <strong class="d-block text-truncate" style="font-size:13px;">{{ $notification->name }}</strong>
+                                        <span class="d-block text-muted text-truncate" style="font-size:11px;">{{ $notification->service ?: 'General Inquiry' }} — {{ $notification->message }}</span>
+                                        <small class="text-secondary" style="font-size:10px;">{{ $notification->created_at->diffForHumans() }}</small>
+                                    </span>
+                                    @if(!$notification->read_at)<span class="bg-danger rounded-circle mt-2" style="width:7px;height:7px;"></span>@endif
+                                </a>
+                            @empty
+                                <div class="text-center text-muted py-5"><i class="fa-regular fa-bell-slash fa-2x mb-2"></i><p class="mb-0 small">No notifications yet.</p></div>
+                            @endforelse
+                        </div>
+                        <a href="{{ route('admin.messages.index') }}" class="d-block text-center text-danger fw-semibold text-decoration-none px-3 py-3 border-top" style="font-size:12px;">View All Requests <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
 
                 <div class="dropdown">
                     <div class="admin-profile" data-bs-toggle="dropdown" aria-expanded="false" role="button" tabindex="0">

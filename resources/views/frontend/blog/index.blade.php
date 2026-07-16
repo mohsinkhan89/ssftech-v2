@@ -9,14 +9,11 @@
 
 @section('body')
     <section class="blog-hero">
-        <div class="container blog-hero-inner">
+        <div class="container">
             <div class="blog-hero-copy reveal">
                 <div class="blog-breadcrumb"><a href="{{ route('index') }}">Home</a><i class="fa-solid fa-chevron-right"></i><span>Blog</span></div>
                 <h1>Our Blog <span>&amp; Insights</span></h1>
                 <p>Stay updated with the latest insights, trends, and strategies in digital design, development, and marketing.</p>
-            </div>
-            <div class="blog-hero-visual reveal delay-1">
-                <img src="{{ url('frontend/assets/images/blog/web-design-insights.png') }}" alt="SSF Tech digital insights">
             </div>
         </div>
     </section>
@@ -38,7 +35,7 @@
                             <article class="blog-list-card reveal">
                                 <img src="{{ url($article->image) }}" alt="{{ $article->title }}">
                                 <div class="blog-list-card-body">
-                                    <span class="blog-list-category">{{ $article->category }}</span>
+                                    <span class="blog-list-category"><i class="{{ $article->icon }}"></i> {{ $article->category }}</span>
                                     <h2>{{ $article->title }}</h2>
                                     <p>{{ $article->excerpt }}</p>
                                     <div class="blog-list-footer">
@@ -63,8 +60,15 @@
 
                     <div class="blog-sidebar-card">
                         <h3>Categories</h3>
-                        @foreach(['All Categories' => 24, 'Web Design' => 6, 'Development' => 5, 'Marketing' => 6, 'Branding' => 4, 'Technology' => 3] as $category => $count)
-                            <a class="blog-category-link" href="#"><span><i class="fa-regular fa-square"></i> {{ $category }}</span><strong>({{ $count }})</strong></a>
+                        @foreach([
+                            ['name' => 'All Categories', 'count' => 24, 'icon' => 'fa-solid fa-table-cells-large'],
+                            ['name' => 'Web Design', 'count' => 6, 'icon' => 'fa-solid fa-laptop-code'],
+                            ['name' => 'Development', 'count' => 5, 'icon' => 'fa-solid fa-code'],
+                            ['name' => 'Marketing', 'count' => 6, 'icon' => 'fa-solid fa-bullhorn'],
+                            ['name' => 'Branding', 'count' => 4, 'icon' => 'fa-solid fa-pen-nib'],
+                            ['name' => 'Technology', 'count' => 3, 'icon' => 'fa-solid fa-microchip'],
+                        ] as $category)
+                            <a class="blog-category-link" href="#"><span><i class="{{ $category['icon'] }}"></i> {{ $category['name'] }}</span><strong>({{ $category['count'] }})</strong></a>
                         @endforeach
                     </div>
 

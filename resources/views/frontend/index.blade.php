@@ -335,7 +335,7 @@
                     <p>We share practical insights, proven strategies, and the latest in design and technology to help
                         your business grow smarter and faster.</p>
                 </div>
-                <a href="#blog" class="btn btn-brand insights-all"><i class="fa-solid fa-newspaper"></i> View All
+                <a href="{{ route('blog.index') }}" class="btn btn-brand insights-all"><i class="fa-solid fa-newspaper"></i> View All
                     Articles <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 

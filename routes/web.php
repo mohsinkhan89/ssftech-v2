@@ -102,6 +102,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/settings', [AdminController::class, 'settingsIndex'])->name('admin.settings.index');
     Route::middleware('role:administrator,admin')->group(function () {
         Route::post('/admin/settings/logo', [AdminController::class, 'settingsUpdateLogo'])->name('admin.settings.logo');
+        Route::put('/admin/settings/asset-versions', [AdminController::class, 'settingsUpdateAssetVersions'])->name('admin.settings.asset-versions');
     });
 
     // Users CRUD (Only Administrator)

@@ -904,11 +904,22 @@ a {
   text-transform: uppercase;
 }
 
+@media (min-width: 992px) {
+  .cta-content { max-width: 760px; }
+  .cta-content > p:last-of-type { white-space: nowrap; }
+}
+
 .cta-banner h2 {
   margin: 0 0 22px;
   font-size: clamp(34px, 3.2vw, 40px);
   line-height: 1.05;
   font-weight: 700;
+}
+
+.desktop-heading-break { display: none; }
+
+@media (min-width: 992px) {
+  .desktop-heading-break { display: inline; }
 }
 
 .cta-rocket {
@@ -2841,7 +2852,7 @@ a {
   gap: 70px;
   align-items: center;
   min-height: 430px;
-  padding: 48px 0px;
+  /* padding: 48px 0px; */
   border-radius: 8px;
 }
 
@@ -3966,7 +3977,7 @@ a {
     grid-template-columns: 1fr;
     gap: 34px;
     /* padding: 44px 34px; */
-    padding: 44px 0px;
+    padding: 0px 0px;
   }
 
   .contact-info .section-title {
@@ -5293,12 +5304,12 @@ a {
     padding-bottom: 44px;
   }
 
-  .faq-shell,
-  .contact-shell {
-    padding: 30px 0;
+  .contact-shell,
+  .faq-shell {
+    padding: 0;
     gap: 26px;
     background-size: cover;
-  }
+  } 
 
   .faq-copy,
   .contact-copy {
@@ -6212,6 +6223,68 @@ a {
   .blog-filter-group { grid-template-columns: 1fr; gap: 10px; }
   .blog-toolbar select { height: 48px; font-size: 13px; }
   .blog-toolbar > span { text-align: center; white-space: normal; }
+}
+
+/* Consistent vertical rhythm across homepage sections */
+.about-section,
+.services-section,
+.reviews-section,
+.clients-section,
+.insights-section,
+.portfolio-section,
+.contact-section,
+.faq-section {
+  padding-top: var(--section-space);
+  padding-bottom: var(--section-space);
+}
+
+.clients-panel { padding-top: 0; padding-bottom: 0; }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .about-section,
+  .services-section,
+  .reviews-section,
+  .clients-section,
+  .insights-section,
+  .portfolio-section,
+  .contact-section,
+  .faq-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section,
+  .services-section,
+  .reviews-section,
+  .clients-section,
+  .insights-section,
+  .portfolio-section,
+  .contact-section,
+  .faq-section {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+}
+
+/* Equal title area across service cards */
+.service-card h3 {
+  min-height: 48px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 14px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .service-card h3 {
+    min-height: 44px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 1199px) {

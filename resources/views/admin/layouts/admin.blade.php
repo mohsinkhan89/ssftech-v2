@@ -1139,7 +1139,7 @@
                         <div class="px-2 py-2 mb-1"><strong class="d-block text-dark">{{ Auth::user()->name }}</strong><small class="text-muted">{{ Auth::user()->email }}</small></div>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('admin.profile.show') }}"><i class="fa-regular fa-user"></i> View & Edit Profile</a>
-                        <a class="dropdown-item" href="{{ route('admin.profile.show') }}#password"><i class="fa-solid fa-key"></i> Change Password</a>
+                        {{-- <a class="dropdown-item" href="{{ route('admin.profile.show') }}#password"><i class="fa-solid fa-key"></i> Change Password</a> --}}
                         <a class="dropdown-item" href="{{ route('admin.settings.index') }}"><i class="fa-solid fa-gear"></i> Site Settings</a>
                         <a class="dropdown-item" href="{{ url('/') }}" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
                         <div class="dropdown-divider"></div>

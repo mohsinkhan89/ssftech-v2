@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-lg-6 reveal mm-0 delay-2">
                     <div class="about-image float-soft">
-                        <img src="{{ url('frontend/assets/images/extracted/about-team-shot.png') }}"
+                        <img src="{{ url('frontend/assets/images/extracted/about-team-shot.webp') }}" loading="lazy" decoding="async"
                             alt="Digital team working together">
                         <div class="mission-card">
                             <span><i class="fa-solid fa-bullseye"></i></span>
@@ -268,7 +268,7 @@
                                             </div>
                                         </div>
                                         @if ($testimonial->avatar)
-                                            <img class="review-avatar" src="{{ url($testimonial->avatar) }}"
+                                            <img class="review-avatar" src="{{ url($testimonial->avatar) }}" loading="lazy" decoding="async"
                                                 alt="{{ $testimonial->name }}">
                                         @else
                                             @php
@@ -316,7 +316,7 @@
                                 @foreach($clients as $client)
                                     <div class="client-logo-slide swiper-slide">
                                         <div class="client-logo-card">
-                                            <img src="{{ url($client->image) }}" alt="{{ $client->name }}">
+                                            <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
                                         </div>
                                     </div>
                                 @endforeach
@@ -349,7 +349,7 @@
                 <div class="swiper-wrapper">
                 @foreach($blogs as $blog)
                     <div class="swiper-slide">
-                        <article class="insight-card"><img src="{{ url($blog->image) }}" alt="{{ $blog->title }}"><div class="insight-card-body"><div class="insight-meta"><span class="insight-category"><i class="{{ $blog->icon }}"></i> {{ $blog->category }}</span><span><i class="fa-regular fa-calendar"></i> {{ $blog->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $blog->read_time }}</span></div><h3><a class="blog-title-link" href="{{ route('blog.show',$blog->slug) }}">{{ $blog->title }}</a></h3><p>{{ $blog->excerpt }}</p><a href="{{ route('blog.show',$blog->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a></div></article>
+                        <article class="insight-card"><img src="{{ url($blog->image) }}" alt="{{ $blog->title }}" loading="lazy" decoding="async"><div class="insight-card-body"><div class="insight-meta"><span class="insight-category"><i class="{{ $blog->icon }}"></i> {{ $blog->category }}</span><span><i class="fa-regular fa-calendar"></i> {{ $blog->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $blog->read_time }}</span></div><h3><a class="blog-title-link" href="{{ route('blog.show',$blog->slug) }}">{{ $blog->title }}</a></h3><p>{{ $blog->excerpt }}</p><a href="{{ route('blog.show',$blog->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a></div></article>
                     </div>
                 @endforeach
                 </div>
@@ -401,17 +401,17 @@
                                 <div class="project-visual">
                                     <div class="browser-frame">
                                         <!-- Desktop Layout -->
-                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}"
+                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}" loading="lazy" decoding="async"
                                             alt="{{ $project->title }} desktop preview">
 
                                         <!-- Tablet Layout (Fallback to desktop if not set) -->
-                                        <img class="project-img-tablet"
-                                            src="{{ url($project->image_tablet ?? $project->image_desktop) }}"
+                                        <img class="project-img-tablet" loading="lazy" decoding="async"
+                                            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ url($project->image_tablet ?? $project->image_desktop) }}"
                                             alt="{{ $project->title }} tablet preview">
 
                                         <!-- Mobile Layout (Fallback to desktop if not set) -->
-                                        <img class="project-img-mobile"
-                                            src="{{ url($project->image_mobile ?? $project->image_desktop) }}"
+                                        <img class="project-img-mobile" loading="lazy" decoding="async"
+                                            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ url($project->image_mobile ?? $project->image_desktop) }}"
                                             alt="{{ $project->title }} mobile preview">
                                     </div>
                                 </div>

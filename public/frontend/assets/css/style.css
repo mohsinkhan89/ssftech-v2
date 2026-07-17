@@ -1737,7 +1737,7 @@ a {
   color: #fff;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .58) 34%, rgba(0, 0, 0, .08) 66%, rgba(0, 0, 0, .05) 100%),
-    url("../images/blog/blog-hero-banner.png") center center / cover no-repeat;
+    url("../images/blog/blog-hero-banner.webp") center center / cover no-repeat;
   font-family: inherit;
 }
 
@@ -2828,7 +2828,7 @@ a {
   padding-top: 12px;
   background:
     linear-gradient(90deg, rgba(3, 4, 8, .98), rgba(10, 4, 7, .92)),
-    url("../images/banner/contact-us.png") center / cover no-repeat,
+    url("../images/banner/contact-us.webp") center / cover no-repeat,
     #030304;
   box-shadow: 0 12px 22px rgba(0, 0, 0, .34);
 }

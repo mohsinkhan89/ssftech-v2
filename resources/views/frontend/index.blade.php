@@ -96,10 +96,11 @@
                                 <div class="col-lg-6 col-md-6">
                                     <select class="form-select" name="service" aria-label="Select Service" required>
                                         <option value="">Select Service</option>
-                                        <option value="Web Development">Web Development</option>
-                                        <option value="Digital Marketing">Digital Marketing</option>
-                                        <option value="Graphic Designing">Graphic Designing</option>
-                                        <option value="IT Support">IT Support</option>
+                                        @forelse($services as $service)
+                                            <option value="{{ $service->title }}">{{ $service->title }}</option>
+                                        @empty
+                                            <option value="General Enquiry">General Enquiry</option>
+                                        @endforelse
                                     </select>
                                 </div>
                                 <div class="col-12">
@@ -516,8 +517,14 @@
                                     title="Enter a UK number in this format: +44 7123 456789" required>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <input class="form-control" type="text" name="service" placeholder="Subject"
-                                    aria-label="Subject">
+                                <select class="form-select" name="service" aria-label="Select Service" required>
+                                    <option value="">Select Service</option>
+                                    @forelse($services as $service)
+                                        <option value="{{ $service->title }}">{{ $service->title }}</option>
+                                    @empty
+                                        <option value="General Enquiry">General Enquiry</option>
+                                    @endforelse
+                                </select>
                             </div>
                             <div class="col-12">
                                 <textarea class="form-control" name="message" rows="4" placeholder="Tell us about your project..."

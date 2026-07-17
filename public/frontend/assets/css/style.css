@@ -6268,6 +6268,25 @@ a {
   }
 }
 
+/* Equal title area across service cards */
+.service-card h3 {
+  min-height: 48px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 14px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .service-card h3 {
+    min-height: 44px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 1199px) {
   .reviews-title { max-width: 720px; margin-inline: auto; }
   .reviews-title br { display: none; }

@@ -607,6 +607,7 @@ class AdminController extends Controller
         return $request->validate([
             'title'=>'required|string|max:255', 'slug'=>'required|string|max:255|unique:blogs,slug,'.($blog?->id ?? 'NULL'),
             'category'=>'required|string|max:100', 'icon'=>'required|string|max:100', 'excerpt'=>'required|string|max:1000',
+            'meta_title'=>'nullable|string|max:255', 'meta_description'=>'nullable|string|max:320',
             'description'=>'required|string', 'image'=>($blog ? 'nullable' : 'required').'|image|mimes:jpg,jpeg,png,webp|max:5120',
             'hero_image'=>'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', 'featured_image'=>'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'content_banner'=>'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', 'author_name'=>'required|string|max:255',

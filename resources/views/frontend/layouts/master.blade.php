@@ -2,13 +2,29 @@
 <html lang="en">
 
 <head>
-    @yield('metas')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="@yield('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')">
+    <link rel="canonical" href="@yield('canonical', url()->current())">
     @hasSection('title')
         @yield('title')
     @else
         <title>SSF Tech - Digital Solutions</title>
+    @endif
+    @yield('metas')
+    @hasSection('social_metas')
+        @yield('social_metas')
+    @else
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="SSF Tech">
+        <meta property="og:title" content="SSF Tech - Digital Solutions">
+        <meta property="og:description" content="SSF Tech provides website development, digital design and marketing solutions for growing businesses.">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:image" content="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="SSF Tech - Digital Solutions">
+        <meta name="twitter:description" content="SSF Tech provides website development, digital design and marketing solutions for growing businesses.">
+        <meta name="twitter:image" content="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}">
     @endif
     @yield('css')
 

@@ -66,7 +66,7 @@
             <div class="article-layout">
                 <article class="article-content">
                     @if($article->featured_image)
-                        <img class="article-featured reveal" src="{{ url($article->featured_image) }}" alt="{{ $article->title }}">
+                        <img class="article-featured reveal" src="{{ url($article->featured_image) }}" alt="{{ $article->title }}" loading="lazy" decoding="async">
                     @endif
                     <div class="article-prose reveal">
                         <div class="article-rich-text">{!! $article->description !!}</div>
@@ -77,7 +77,7 @@
                         <div class="article-share"><strong>Share this article:</strong><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Copy link"><i class="fa-solid fa-link"></i></a></div>
 
                         <div class="article-author">
-                            <img src="{{ url('frontend/assets/images/extracted/client-avatar-1.png') }}" alt="{{ $article->author_name }}">
+                            <img src="{{ url('frontend/assets/images/extracted/client-avatar-1.png') }}" alt="{{ $article->author_name }}" loading="lazy" decoding="async">
                             <div><h3>{{ $article->author_name }}</h3><span>{{ $article->author_role }}</span><p>{{ $article->author_bio }}</p></div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         @foreach($relatedArticles as $related)
                             <div class="swiper-slide">
                                 <article class="related-card">
-                                    <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}"></a>
+                                    <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}" loading="lazy" decoding="async"></a>
                                     <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
                                 </article>
                             </div>

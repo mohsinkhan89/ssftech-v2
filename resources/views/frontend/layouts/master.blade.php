@@ -48,6 +48,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,24 +61,6 @@
 </head>
 
 <body>
-    <div class="site-loader" role="status" aria-live="polite" aria-label="Loading SSF Tech">
-        <div class="loader-grid" aria-hidden="true"></div>
-        <div class="loader-core">
-            <div class="loader-orbit">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="loader-mark">
-                <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
-            </div>
-            <div class="loader-copy">
-                <strong>SSF Tech</strong>
-                <small>Initializing digital solutions</small>
-            </div>
-            <div class="loader-progress" aria-hidden="true"><span></span></div>
-        </div>
-    </div>
     @include('frontend.inc.header')
     <main>
         @yield('body')
@@ -87,9 +73,9 @@
     </button>
 
     @yield('js')
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url('frontend/assets/js/main.js') }}?v={{ $siteSetting?->js_version ?: env('ASSET_VERSION', '1.0.0') }}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="{{ url('frontend/assets/js/main.js') }}?v={{ $siteSetting?->js_version ?: env('ASSET_VERSION', '1.0.0') }}"></script>
 </body>
 
 </html>

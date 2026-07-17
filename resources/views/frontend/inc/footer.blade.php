@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-6 footer-about">
                     <a class="brand-lockup footer-brand" href="#home" aria-label="SSF Tech home">
                         <div class="footer-logo">
-                            <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech">
+                            <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech" loading="lazy" decoding="async">
                         </div>
                     </a>
                     <p class="footer-tagline">Innovative technology solutions that empower businesses and drive

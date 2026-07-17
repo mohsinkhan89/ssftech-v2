@@ -392,6 +392,13 @@
       if (portfolioSlider) {
         portfolioSlider.classList.remove("preview-desktop", "preview-tablet", "preview-mobile");
         portfolioSlider.classList.add(`preview-${device}`);
+
+        if (device !== "desktop") {
+          portfolioSlider.querySelectorAll(`.project-img-${device}[data-src]`).forEach((image) => {
+            image.src = image.dataset.src;
+            image.removeAttribute("data-src");
+          });
+        }
       }
     });
   });

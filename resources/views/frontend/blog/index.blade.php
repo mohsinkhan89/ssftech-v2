@@ -55,7 +55,7 @@
                     <div class="blog-list">
                         @forelse($articles as $article)
                             <article class="blog-list-card reveal">
-                                <img src="{{ url($article->image) }}" alt="{{ $article->title }}">
+                                <img src="{{ url($article->image) }}" alt="{{ $article->title }}" loading="lazy" decoding="async">
                                 <div class="blog-list-card-body">
                                     <span class="blog-list-category"><i class="{{ $article->icon }}"></i> {{ $article->category }}</span>
                                     <h2><a class="blog-title-link" href="{{ route('blog.show', $article->slug) }}">{{ $article->title }}</a></h2>
@@ -98,7 +98,7 @@
                             <h3>Popular Posts</h3>
                             @foreach($popularArticles as $article)
                                 <a class="popular-post" href="{{ route('blog.show', $article->slug) }}">
-                                    <img src="{{ url($article->image) }}" alt="{{ $article->title }}">
+                                    <img src="{{ url($article->image) }}" alt="{{ $article->title }}" loading="lazy" decoding="async">
                                     <span><strong>{{ \Illuminate\Support\Str::limit($article->title, 48) }}</strong><small>{{ $article->date }}</small></span>
                                 </a>
                             @endforeach

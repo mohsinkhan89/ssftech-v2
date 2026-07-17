@@ -1018,6 +1018,7 @@
                         <span>Services</span>
                     </a>
                 </li>
+                <li class="nav-item"><a href="{{ route('admin.blogs.index') }}" class="nav-link-custom {{ Request::is('admin/blogs*') ? 'active' : '' }}"><i class="fa-solid fa-newspaper"></i><span>Blogs</span></a></li>
                 <li class="nav-item">
                     <a href="{{ route('admin.testimonials.index') }}"
                         class="nav-link-custom {{ Request::is('admin/testimonials*') ? 'active' : '' }}">

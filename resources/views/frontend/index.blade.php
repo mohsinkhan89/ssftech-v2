@@ -194,6 +194,7 @@
         </div>
     </section>
 
+    @if($services->isNotEmpty())
     <section id="services" class="services-section">
         <div class="container">
             <p class="eyebrow reveal">Our Services</p>
@@ -217,15 +218,16 @@
             <div class="service-pagination"></div>
         </div>
     </section>
+    @endif
 
-
+    @if($testimonials->isNotEmpty())
     <section class="reviews-section section-pad" id="reviews">
         <div class="container">
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="reviews-title">We've helped a lot of businesses but don't just take <br> <span>our word for it</span></h2>
-                    <p class="reviews-text">We're proud to help businesses grow with reliable digital solutions,
+                    <h2 class="section-title light reviews-title">We've helped a lot of businesses but don't just take <span>our word for it</span></h2>
+                    <p class="muted reviews-text">We're proud to help businesses grow with reliable digital solutions,
                         outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
                         makes a real difference.</p>
 
@@ -293,9 +295,10 @@
             </div>
         </div>
     </section>
+    @endif
 
 
-
+    @if($clients->isNotEmpty())
     <section class="clients-section">
         <div class="container">
             <div class="clients-panel reveal">
@@ -325,7 +328,9 @@
             </div>
         </div>
     </section>
+    @endif
 
+    @if($blogs->isNotEmpty())
     <section class="insights-section section-pad" id="blog">
         <div class="container">
             <div class="insights-head reveal">
@@ -339,95 +344,56 @@
                     Articles <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <div class="row g-4 insights-grid">
-                <div class="col-lg-4 col-md-6 reveal">
-                    <article class="insight-card">
-                        <img src="{{ url('frontend/assets/images/blog/web-design-insights.png') }}"
-                            alt="Modern web design workspace">
-                        <div class="insight-card-body">
-                            <div class="insight-meta">
-                                <span class="insight-category"><i class="fa-solid fa-globe"></i> Web Design</span>
-                                <span><i class="fa-regular fa-calendar"></i> 14 Feb 2026</span>
-                                <span><i class="fa-regular fa-clock"></i> 5 min read</span>
-                            </div>
-                            <h3>How Modern Web Design Builds Trust and Conversions</h3>
-                            <p>Discover how clean layouts, speed, and strong UX help businesses turn visitors into
-                                customers.</p>
-                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-lg-4 col-md-6 reveal delay-1">
-                    <article class="insight-card">
-                        <img src="{{ url('frontend/assets/images/blog/marketing-growth.png') }}"
-                            alt="Digital marketing analytics and growth target">
-                        <div class="insight-card-body">
-                            <div class="insight-meta">
-                                <span class="insight-category"><i class="fa-solid fa-bullseye"></i> Marketing</span>
-                                <span><i class="fa-regular fa-calendar"></i> 22 Feb 2026</span>
-                                <span><i class="fa-regular fa-clock"></i> 4 min read</span>
-                            </div>
-                            <h3>Digital Marketing Strategies That Deliver Real Growth</h3>
-                            <p>Explore proven tactics to boost visibility, generate leads, and create measurable business
-                                impact.</p>
-                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-lg-4 col-md-6 reveal delay-2">
-                    <article class="insight-card">
-                        <img src="{{ url('frontend/assets/images/blog/brand-identity.png') }}"
-                            alt="Premium brand identity stationery">
-                        <div class="insight-card-body">
-                            <div class="insight-meta">
-                                <span class="insight-category"><i class="fa-regular fa-id-badge"></i> Branding</span>
-                                <span><i class="fa-regular fa-calendar"></i> 01 Mar 2026</span>
-                                <span><i class="fa-regular fa-clock"></i> 6 min read</span>
-                            </div>
-                            <h3>Building a Brand Identity That Stands Out Online</h3>
-                            <p>Learn how consistent visuals and messaging help position your business for long-term
-                                success.</p>
-                            <a href="#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
+            @if($blogs->isNotEmpty())
+            <div class="insights-slider swiper reveal delay-2">
+                <div class="swiper-wrapper">
+                @foreach($blogs as $blog)
+                    <div class="swiper-slide">
+                        <article class="insight-card"><img src="{{ url($blog->image) }}" alt="{{ $blog->title }}"><div class="insight-card-body"><div class="insight-meta"><span class="insight-category"><i class="{{ $blog->icon }}"></i> {{ $blog->category }}</span><span><i class="fa-regular fa-calendar"></i> {{ $blog->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $blog->read_time }}</span></div><h3><a class="blog-title-link" href="{{ route('blog.show',$blog->slug) }}">{{ $blog->title }}</a></h3><p>{{ $blog->excerpt }}</p><a href="{{ route('blog.show',$blog->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a></div></article>
+                    </div>
+                @endforeach
                 </div>
             </div>
+            @if($blogs->count() > 1)<div class="insights-pagination"></div>@endif
+            @endif
         </div>
     </section>
+    @endif
 
+    @if($projects->isNotEmpty())
     <section class="portfolio-section section-pad" id="portfolio">
         <div class="container">
-            <div class="portfolio-head reveal">
+            <div class="portfolio-head">
                 <div>
-                    <p class="eyebrow">Our Work</p>
-                    <h2 class="section-title">Digital Experiences We've <br> Created for <span>Our Clients</span></h2>
-                    <p class="muted">From modern websites to complete digital solutions, we help businesses achieve
+                    <p class="eyebrow reveal">Our Work</p>
+                    <h2 class="section-title reveal delay-1">Digital Experiences We've <br> Created for <span>Our Clients</span></h2>
+                    <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
                         their goals. Browse our recent work to see what we've created.</p>
                 </div>
-                <a href="#contact" class="btn btn-brand">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-brand reveal delay-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="portfolio-controls reveal delay-1">
+            <div class="portfolio-controls reveal delay-3">
                 <div class="portfolio-tabs" aria-label="Project categories">
-                    <button class="active" type="button" data-filter="all"><i
+                    <button class="active" type="button" data-filter="all" aria-pressed="true"><i
                             class="fa-solid fa-table-cells-large"></i> All
                         Projects</button>
-                    <button type="button" data-filter="website"><i class="fa-solid fa-code"></i>
+                    <button type="button" data-filter="website" aria-pressed="false"><i class="fa-solid fa-code"></i>
                         Websites</button>
-                    <button type="button" data-filter="ecommerce"><i class="fa-solid fa-cart-shopping"></i>
+                    <button type="button" data-filter="ecommerce" aria-pressed="false"><i class="fa-solid fa-cart-shopping"></i>
                         E-Commerce</button>
-                    <button type="button" data-filter="webapp"><i class="fa-solid fa-grip"></i> Web
+                    <button type="button" data-filter="webapp" aria-pressed="false"><i class="fa-solid fa-grip"></i> Web
                         Apps</button>
                 </div>
                 <div class="device-tabs" aria-label="Device preview">
-                    <button class="active" type="button" data-device="desktop"><i class="fa-solid fa-desktop"></i>
+                    <button class="active" type="button" data-device="desktop" aria-pressed="true"><i class="fa-solid fa-desktop"></i>
                         Desktop</button>
-                    <button type="button" data-device="tablet"><i class="fa-solid fa-tablet-screen-button"></i>
+                    <button type="button" data-device="tablet" aria-pressed="false"><i class="fa-solid fa-tablet-screen-button"></i>
                         Tablet</button>
-                    <button type="button" data-device="mobile"><i class="fa-solid fa-mobile-screen-button"></i>
+                    <button type="button" data-device="mobile" aria-pressed="false"><i class="fa-solid fa-mobile-screen-button"></i>
                         Mobile</button>
                 </div>
             </div>
-            <div class="portfolio-slider swiper reveal delay-2">
+            <div class="portfolio-slider swiper reveal delay-4">
                 <div class="swiper-wrapper">
                     @foreach ($projects as $project)
                         <div class="swiper-slide" data-category="{{ $project->category }}">
@@ -461,10 +427,11 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="portfolio-pagination"></div>
+                @if($projects->count() > 1)<div class="portfolio-pagination"></div>@endif
             </div>
         </div>
     </section>
+    @endif
 
     <section id="contact" class="contact-section section-pad">
         <div class="container">
@@ -568,6 +535,7 @@
         </div>
     </section>
 
+    @if($faqs->isNotEmpty())
     <section class="faq-section section-pad">
         <div class="container">
             <div class="faq-shell">
@@ -609,6 +577,7 @@
             </div>
         </div>
     </section>
+    @endif
 @endsection
 @section('js')
     <script>

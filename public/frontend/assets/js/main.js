@@ -8,7 +8,10 @@
   const testimonialsSlider = document.querySelector(".testimonials-slider");
   const reviewsSlider = document.querySelector(".reviews-slider-custom");
   const clientsSlider = document.querySelector(".client-logo-slider");
+  const insightsSlider = document.querySelector(".insights-slider");
+  const relatedSlider = document.querySelector(".related-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
+  const portfolioPagination = document.querySelector(".portfolio-pagination");
   const servicesSlider = document.querySelector(".services-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
@@ -120,6 +123,14 @@
 
   let portfolioSwiper = null;
 
+  function updateCardSliderPagination(slider, pagination) {
+    if (!slider || !pagination) return;
+
+    const cardCount = slider.querySelectorAll(".swiper-slide").length;
+    const cardsPerView = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    pagination.hidden = cardCount <= cardsPerView;
+  }
+
   if (testimonialsSlider && window.Swiper) {
     new window.Swiper(testimonialsSlider, {
       loop: true,
@@ -127,6 +138,7 @@
       spaceBetween: 28,
       speed: 650,
       grabCursor: true,
+      watchOverflow: true,
       autoplay: {
         delay: 4200,
         disableOnInteraction: false,
@@ -245,12 +257,63 @@
     });
   }
 
+  if (insightsSlider && window.Swiper) {
+    new window.Swiper(insightsSlider, {
+      slidesPerView: 1,
+      spaceBetween: 18,
+      speed: 650,
+      grabCursor: true,
+      watchOverflow: true,
+      pagination: {
+        el: ".insights-pagination",
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
+      },
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1200: { slidesPerView: 3, spaceBetween: 24 }
+      }
+    });
+
+    const insightsPagination = document.querySelector(".insights-pagination");
+    const updateInsightsPagination = () => updateCardSliderPagination(insightsSlider, insightsPagination);
+    updateInsightsPagination();
+    window.addEventListener("resize", updateInsightsPagination, { passive: true });
+  }
+
+  if (relatedSlider && window.Swiper) {
+    new window.Swiper(relatedSlider, {
+      slidesPerView: 1,
+      spaceBetween: 18,
+      speed: 650,
+      grabCursor: true,
+      watchOverflow: true,
+      pagination: {
+        el: ".related-pagination",
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
+      },
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1200: { slidesPerView: 3, spaceBetween: 20 }
+      }
+    });
+
+    const relatedPagination = document.querySelector(".related-pagination");
+    const updateRelatedPagination = () => updateCardSliderPagination(relatedSlider, relatedPagination);
+    updateRelatedPagination();
+    window.addEventListener("resize", updateRelatedPagination, { passive: true });
+  }
+
   if (portfolioSlider && window.Swiper) {
     portfolioSwiper = new window.Swiper(portfolioSlider, {
       loop: false,
       spaceBetween: 24,
       speed: 650,
       grabCursor: true,
+      watchOverflow: true,
       autoplay: {
         delay: 3200,
         disableOnInteraction: false,
@@ -261,7 +324,9 @@
       },
       pagination: {
         el: ".portfolio-pagination",
-        clickable: true
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
       },
       breakpoints: {
         0: {
@@ -281,15 +346,28 @@
     if (portfolioSwiper) {
       portfolioSwiper.update();
       portfolioSwiper.slideTo(0);
+
+      if (portfolioPagination) {
+        const visibleCards = portfolioSlider.querySelectorAll(".swiper-slide:not(.is-filtered)").length;
+        const cardsPerView = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+        portfolioPagination.hidden = visibleCards <= cardsPerView;
+      }
     }
   }
+
+  refreshPortfolioSlider();
+  window.addEventListener("resize", refreshPortfolioSlider, { passive: true });
 
   portfolioFilterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const filter = button.dataset.filter || "all";
 
-      portfolioFilterButtons.forEach((item) => item.classList.remove("active"));
+      portfolioFilterButtons.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
       button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
 
       document.querySelectorAll(".portfolio-slider .swiper-slide").forEach((slide) => {
         const shouldShow = filter === "all" || slide.dataset.category === filter;
@@ -304,8 +382,12 @@
     button.addEventListener("click", () => {
       const device = button.dataset.device || "desktop";
 
-      deviceButtons.forEach((item) => item.classList.remove("active"));
+      deviceButtons.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
       button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
 
       if (portfolioSlider) {
         portfolioSlider.classList.remove("preview-desktop", "preview-tablet", "preview-mobile");
@@ -328,6 +410,10 @@
   });
 
   function updateActiveLink() {
+    if (!document.querySelector("#home.hero-section")) {
+      return;
+    }
+
     let current = "home";
 
     sections.forEach((section) => {
@@ -338,7 +424,7 @@
     });
 
     navLinks.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+      link.classList.toggle("active", new URL(link.href, window.location.href).hash === `#${current}`);
     });
   }
 
@@ -364,7 +450,19 @@
   }
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (event) => {
+      const destination = new URL(link.href, window.location.href);
+      const target = destination.hash ? document.querySelector(destination.hash) : null;
+
+      if (target && destination.pathname === window.location.pathname) {
+        event.preventDefault();
+        const headerOffset = header ? header.offsetHeight : 0;
+        const targetTop = destination.hash === "#home" ? 0 : target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+        window.history.replaceState(null, "", destination.hash);
+        window.scrollTo({ top: targetTop, behavior: "smooth" });
+      }
+
       navLinks.forEach((item) => item.classList.remove("active"));
       link.classList.add("active");
 

@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\Testimonial;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\Blog;
 use App\Models\SocialLink;
 use App\Models\SiteSetting;
 use App\Models\User;
@@ -556,6 +557,77 @@ class AdminController extends Controller
     {
         $services = Service::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
         return view('admin.services.index', compact('services'));
+    }
+
+    public function blogsIndex()
+    {
+        $blogs = Blog::latest('published_at')->latest()->get();
+        return view('admin.blogs.index', compact('blogs'));
+    }
+
+    public function blogsCreate() { return view('admin.blogs.create'); }
+
+    public function blogsStore(Request $request)
+    {
+        $data = $this->validateBlog($request);
+        $data['status'] = $request->boolean('status');
+        $data = $this->storeBlogImages($request, $data);
+        Blog::create($data);
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully!');
+    }
+
+    public function blogsEdit(Blog $blog) { return view('admin.blogs.edit', compact('blog')); }
+
+    public function blogsUpdate(Request $request, Blog $blog)
+    {
+        $data = $this->validateBlog($request, $blog);
+        $data['status'] = $request->boolean('status');
+        $data = $this->storeBlogImages($request, $data, $blog);
+        $blog->update($data);
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully!');
+    }
+
+    public function blogsToggleStatus(Blog $blog)
+    {
+        $blog->update(['status' => ! $blog->status]);
+        return back()->with('success', 'Blog status updated successfully!');
+    }
+
+    public function blogsDestroy(Blog $blog)
+    {
+        foreach (['image', 'hero_image', 'featured_image', 'content_banner'] as $field) {
+            if ($blog->{$field} && str_starts_with($blog->{$field}, 'uploads/blogs/')) File::delete(public_path($blog->{$field}));
+        }
+        $blog->delete();
+        return back()->with('success', 'Blog deleted successfully!');
+    }
+
+    private function validateBlog(Request $request, ?Blog $blog = null): array
+    {
+        return $request->validate([
+            'title'=>'required|string|max:255', 'slug'=>'required|string|max:255|unique:blogs,slug,'.($blog?->id ?? 'NULL'),
+            'category'=>'required|string|max:100', 'icon'=>'required|string|max:100', 'excerpt'=>'required|string|max:1000',
+            'description'=>'required|string', 'image'=>($blog ? 'nullable' : 'required').'|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'hero_image'=>'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', 'featured_image'=>'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'content_banner'=>'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', 'author_name'=>'required|string|max:255',
+            'author_role'=>'nullable|string|max:255', 'author_bio'=>'nullable|string|max:1000', 'read_time'=>'required|string|max:50',
+            'tags'=>'nullable|string|max:1000', 'published_at'=>'required|date', 'status'=>'nullable|boolean',
+        ]);
+    }
+
+    private function storeBlogImages(Request $request, array $data, ?Blog $blog = null): array
+    {
+        $path = public_path('uploads/blogs');
+        if (! File::exists($path)) File::makeDirectory($path, 0755, true);
+        foreach (['image', 'hero_image', 'featured_image', 'content_banner'] as $field) {
+            if (! $request->hasFile($field)) continue;
+            if ($blog?->{$field} && str_starts_with($blog->{$field}, 'uploads/blogs/')) File::delete(public_path($blog->{$field}));
+            $file = $request->file($field);
+            $name = time().'_'.$field.'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move($path, $name);
+            $data[$field] = 'uploads/blogs/'.$name;
+        }
+        return $data;
     }
 
     public function servicesCreate()

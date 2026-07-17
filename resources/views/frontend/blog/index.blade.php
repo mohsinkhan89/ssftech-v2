@@ -22,65 +22,75 @@
         <div class="container">
             <div class="blog-catalog-layout">
                 <div class="blog-results">
-                    <div class="blog-toolbar">
+                    <form class="blog-toolbar" action="{{ route('blog.index') }}" method="GET">
+                        @if($search !== '')<input type="hidden" name="search" value="{{ $search }}">@endif
                         <div class="blog-filter-group">
-                            <select aria-label="Filter by category"><option>All Categories</option><option>Web Design</option><option>Development</option><option>Marketing</option><option>Branding</option><option>Technology</option></select>
-                            <select aria-label="Sort articles"><option>Latest</option><option>Oldest</option><option>Most Popular</option></select>
+                            <select name="category" aria-label="Filter by category" onchange="this.form.submit()">
+                                <option value="">All Categories</option>
+                                @foreach($categories as $item)
+                                    <option value="{{ $item['name'] }}" @selected($category === $item['name'])>{{ $item['name'] }} ({{ $item['count'] }})</option>
+                                @endforeach
+                            </select>
+                            <select name="sort" aria-label="Sort articles" onchange="this.form.submit()">
+                                <option value="latest" @selected($sort === 'latest')>Latest</option>
+                                <option value="oldest" @selected($sort === 'oldest')>Oldest</option>
+                            </select>
                         </div>
-                        <span>Showing 1–6 of {{ $articles->count() }} results</span>
-                    </div>
+                        <span>Showing {{ $articles->count() }} results</span>
+                    </form>
 
                     <div class="blog-list">
-                        @foreach($articles as $article)
+                        @forelse($articles as $article)
                             <article class="blog-list-card reveal">
                                 <img src="{{ url($article->image) }}" alt="{{ $article->title }}">
                                 <div class="blog-list-card-body">
                                     <span class="blog-list-category"><i class="{{ $article->icon }}"></i> {{ $article->category }}</span>
-                                    <h2>{{ $article->title }}</h2>
+                                    <h2><a class="blog-title-link" href="{{ route('blog.show', $article->slug) }}">{{ $article->title }}</a></h2>
                                     <p>{{ $article->excerpt }}</p>
                                     <div class="blog-list-footer">
                                         <div><span><i class="fa-regular fa-calendar"></i> {{ $article->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $article->read_time }}</span></div>
-                                        <a href="{{ route('index') }}#contact">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="{{ route('blog.show', $article->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </article>
-                        @endforeach
+                        @empty
+                            <div class="blog-empty-state">
+                                <i class="fa-regular fa-folder-open"></i>
+                                <h2>No articles found</h2>
+                                <p>Try another search term or category.</p>
+                                <a href="{{ route('blog.index') }}" class="btn btn-brand">View All Articles</a>
+                            </div>
+                        @endforelse
                     </div>
-
-                    <nav class="blog-pagination" aria-label="Blog pagination">
-                        <a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><span>…</span><a href="#">8</a><a href="#" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></a>
-                    </nav>
                 </div>
 
                 <aside class="blog-sidebar">
                     <div class="blog-sidebar-card">
                         <h3>Search</h3>
-                        <form class="blog-search" onsubmit="return false;"><input type="search" placeholder="Search articles..." aria-label="Search articles"><button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button></form>
+                        <form class="blog-search" action="{{ route('blog.index') }}" method="GET"><input type="search" name="search" value="{{ $search }}" placeholder="Search articles..." aria-label="Search articles"><button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button></form>
                     </div>
 
-                    <div class="blog-sidebar-card">
-                        <h3>Categories</h3>
-                        @foreach([
-                            ['name' => 'All Categories', 'count' => 24, 'icon' => 'fa-solid fa-table-cells-large'],
-                            ['name' => 'Web Design', 'count' => 6, 'icon' => 'fa-solid fa-laptop-code'],
-                            ['name' => 'Development', 'count' => 5, 'icon' => 'fa-solid fa-code'],
-                            ['name' => 'Marketing', 'count' => 6, 'icon' => 'fa-solid fa-bullhorn'],
-                            ['name' => 'Branding', 'count' => 4, 'icon' => 'fa-solid fa-pen-nib'],
-                            ['name' => 'Technology', 'count' => 3, 'icon' => 'fa-solid fa-microchip'],
-                        ] as $category)
-                            <a class="blog-category-link" href="#"><span><i class="{{ $category['icon'] }}"></i> {{ $category['name'] }}</span><strong>({{ $category['count'] }})</strong></a>
-                        @endforeach
-                    </div>
+                    @if($categories->isNotEmpty())
+                        <div class="blog-sidebar-card">
+                            <h3>Categories</h3>
+                            <a class="blog-category-link" href="{{ route('blog.index') }}"><span><i class="fa-solid fa-table-cells-large"></i> All Categories</span><strong>({{ $categories->sum('count') }})</strong></a>
+                            @foreach($categories as $item)
+                                <a class="blog-category-link" href="{{ route('blog.index', ['category' => $item['name']]) }}"><span><i class="{{ $item['icon'] }}"></i> {{ $item['name'] }}</span><strong>({{ $item['count'] }})</strong></a>
+                            @endforeach
+                        </div>
+                    @endif
 
-                    <div class="blog-sidebar-card">
-                        <h3>Popular Posts</h3>
-                        @foreach($articles->take(5) as $article)
-                            <a class="popular-post" href="#">
-                                <img src="{{ url($article->image) }}" alt="">
-                                <span><strong>{{ \Illuminate\Support\Str::limit($article->title, 48) }}</strong><small>{{ $article->date }}</small></span>
-                            </a>
-                        @endforeach
-                    </div>
+                    @if($popularArticles->isNotEmpty())
+                        <div class="blog-sidebar-card">
+                            <h3>Popular Posts</h3>
+                            @foreach($popularArticles as $article)
+                                <a class="popular-post" href="{{ route('blog.show', $article->slug) }}">
+                                    <img src="{{ url($article->image) }}" alt="{{ $article->title }}">
+                                    <span><strong>{{ \Illuminate\Support\Str::limit($article->title, 48) }}</strong><small>{{ $article->date }}</small></span>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <div class="blog-sidebar-card blog-newsletter">
                         <span class="blog-newsletter-icon"><i class="fa-solid fa-paper-plane"></i></span>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/blog', [FrontendController::class, 'blogIndex'])->name('blog.index');
+Route::get('/blog/{slug}', [FrontendController::class, 'blogShow'])->name('blog.show');
 Route::post('/contact', [FrontendController::class, 'submitContact'])->name('contact.submit');
 
 // Admin Auth Routes (Guest)
@@ -86,6 +87,17 @@ Route::middleware('auth')->group(function () {
         Route::put('/admin/services/{service}', [AdminController::class, 'servicesUpdate'])->name('admin.services.update');
         Route::patch('/admin/services/{service}/toggle-status', [AdminController::class, 'servicesToggleStatus'])->name('admin.services.toggle-status');
         Route::delete('/admin/services/{service}', [AdminController::class, 'servicesDestroy'])->name('admin.services.destroy');
+    });
+
+    // Blogs CRUD
+    Route::get('/admin/blogs', [AdminController::class, 'blogsIndex'])->name('admin.blogs.index');
+    Route::middleware('role:administrator,admin')->group(function () {
+        Route::get('/admin/blogs/create', [AdminController::class, 'blogsCreate'])->name('admin.blogs.create');
+        Route::post('/admin/blogs', [AdminController::class, 'blogsStore'])->name('admin.blogs.store');
+        Route::get('/admin/blogs/{blog}/edit', [AdminController::class, 'blogsEdit'])->name('admin.blogs.edit');
+        Route::put('/admin/blogs/{blog}', [AdminController::class, 'blogsUpdate'])->name('admin.blogs.update');
+        Route::patch('/admin/blogs/{blog}/toggle-status', [AdminController::class, 'blogsToggleStatus'])->name('admin.blogs.toggle-status');
+        Route::delete('/admin/blogs/{blog}', [AdminController::class, 'blogsDestroy'])->name('admin.blogs.destroy');
     });
 
     // Social Links CRUD

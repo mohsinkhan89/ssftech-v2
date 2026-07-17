@@ -3179,7 +3179,7 @@ a {
 
 .footer-contact-item.top-icon span {
   position: relative;
-  top: -20px;
+  top: -12px;
 }
 
 .footer-contact-item {
@@ -3730,7 +3730,7 @@ a {
     padding-top: 130px;
   }
   .footer-contact-item.top-icon span {
-    top: -21px;
+    top: -10px;
   }
   .col-md-4 {
     flex: 0 0 auto;
@@ -5462,7 +5462,7 @@ a {
   }
 
   .footer-contact-item.top-icon span {
-    top: 0;
+    top: -10px;
   }
 
   .footer-contact-item {

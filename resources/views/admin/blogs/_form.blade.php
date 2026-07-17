@@ -6,7 +6,7 @@
  <div class="col-md-6"><label>Category</label><input name="category" class="form-control form-control-custom" value="{{ old('category',$blog->category ?? '') }}" required></div>
  <div class="col-md-6"><label>Font Awesome Icon</label><input name="icon" class="form-control form-control-custom" value="{{ old('icon',$blog->icon ?? 'fa-solid fa-newspaper') }}" required></div>
  <div class="col-12"><label>Short Excerpt</label><textarea name="excerpt" rows="3" class="form-control form-control-custom" required>{{ old('excerpt',$blog->excerpt ?? '') }}</textarea></div>
- <div class="col-12"><label>Blog Description</label><textarea id="blogDescription" name="description" rows="14" class="form-control form-control-custom">{{ old('description',$blog->description ?? '') }}</textarea><small class="text-muted">Rich text content displayed on the blog detail page.</small></div>
+ <div class="col-12"><label>Blog Description</label><textarea id="blogDescription" name="description" rows="14" class="form-control form-control-custom">{{ old('description',$blog->description ?? '') }}</textarea><small class="text-muted">Headings, paragraphs, links, quotes and lists will keep the same styled layout on the blog detail page.</small></div>
  <div class="col-md-6"><label>Card Image {{ $editing?'(leave empty to keep current)':'' }}</label><input type="file" name="image" class="form-control form-control-custom" accept="image/*" {{ $editing?'':'required' }}></div>
  <div class="col-md-6"><label>Hero Banner</label><input type="file" name="hero_image" class="form-control form-control-custom" accept="image/*"></div>
  <div class="col-md-6"><label>Featured Content Image</label><input type="file" name="featured_image" class="form-control form-control-custom" accept="image/*"></div>

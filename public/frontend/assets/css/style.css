@@ -5837,7 +5837,7 @@ a {
   color: #fff;
   font-family: "Poppins", "Segoe UI", Arial, sans-serif;
   background: linear-gradient(90deg, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .58) 34%, rgba(0, 0, 0, .08) 66%, rgba(0, 0, 0, .05) 100%),
-    url("../images/blog/article-hero-marketing.png") center center / cover no-repeat;
+    var(--article-hero-image) center center / cover no-repeat;
 }
 
 .article-hero::after {
@@ -5861,8 +5861,27 @@ a {
 .article-content { min-width: 0; }
 .article-featured { width: 100%; max-height: 430px; display: block; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 30px rgba(15, 23, 42, .08); }
 .article-prose { padding: 22px 26px 0; color: #555d69; font-size: 13px; line-height: 1.7; }
-.article-prose h2 { margin: 22px 0 6px; color: #16191f; font-size: 17px; line-height: 1.35; font-weight: 800; }
+.article-rich-text { overflow-wrap: anywhere; }
+.article-rich-text > :first-child { margin-top: 0; }
+.article-rich-text > :last-child { margin-bottom: 0; }
+.article-prose h2, .article-prose h3, .article-prose h4 { color: #16191f; line-height: 1.35; font-weight: 800; }
+.article-prose h2 { margin: 26px 0 8px; font-size: 19px; }
+.article-prose h3 { margin: 22px 0 7px; font-size: 16px; }
+.article-prose h4 { margin: 18px 0 6px; font-size: 14px; }
 .article-prose p { margin: 0 0 14px; }
+.article-rich-text ul, .article-rich-text ol { margin: 4px 0 18px; padding-left: 22px; }
+.article-rich-text li { margin-bottom: 7px; padding-left: 3px; }
+.article-rich-text li::marker { color: var(--red); font-weight: 700; }
+.article-rich-text a { color: var(--red); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.article-rich-text a:hover { color: #a90810; }
+.article-rich-text strong { color: #252a32; }
+.article-rich-text figure { margin: 20px 0; }
+.article-rich-text img { width: auto; max-width: 100%; height: auto; display: block; margin: 20px auto; border-radius: 10px; }
+.article-rich-text figcaption { margin-top: 8px; color: #858c96; font-size: 10px; text-align: center; }
+.article-rich-text .table { margin: 20px 0; overflow-x: auto; }
+.article-rich-text table { width: 100%; border-collapse: collapse; background: #fff; }
+.article-rich-text th, .article-rich-text td { padding: 10px 12px; border: 1px solid #e2e5ea; text-align: left; }
+.article-rich-text th { background: #f4f5f7; color: #20242b; }
 .article-prose blockquote { display: flex; gap: 20px; align-items: flex-start; margin: 22px 0; padding: 20px 24px; border: 1px solid #e2e5ea; border-radius: 10px; background: #fff; color: #303640; box-shadow: 0 6px 20px rgba(15, 23, 42, .035); }
 .article-rich-text blockquote::before { content: "\f10d"; flex: 0 0 auto; color: var(--red); font-family: "Font Awesome 6 Free"; font-size: 30px; font-weight: 900; }
 .article-prose blockquote > i { color: var(--red); font-size: 32px; }

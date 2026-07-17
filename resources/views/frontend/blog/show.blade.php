@@ -16,19 +16,13 @@
                     <a href="{{ route('index') }}">Home</a><i class="fa-solid fa-chevron-right"></i>
                     <a href="{{ route('blog.index') }}">Blog</a><i class="fa-solid fa-chevron-right"></i><span>Article</span>
                 </div>
-                <h1>
-                    @if($article->slug === 'digital-marketing-growth')
-                        Digital Marketing Strategies<br>That Deliver <span>Real Business Growth</span>
-                    @else
-                        {{ $article->title }}
-                    @endif
-                </h1>
+                <h1>{{ $article->title }}</h1>
                 <p>{{ $article->excerpt }}</p>
                 <div class="article-meta">
                     <span><i class="{{ $article->icon }}"></i> {{ $article->category }}</span>
                     <span><i class="fa-regular fa-calendar"></i> {{ $article->date }}</span>
                     <span><i class="fa-regular fa-clock"></i> {{ $article->read_time }}</span>
-                    <span><i class="fa-regular fa-user"></i> By Sarah Johnson</span>
+                    <span><i class="fa-regular fa-user"></i> By {{ $article->author_name }}</span>
                 </div>
             </div>
         </div>
@@ -46,7 +40,7 @@
                         <div class="article-share"><strong>Share this article:</strong><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Copy link"><i class="fa-solid fa-link"></i></a></div>
 
                         <div class="article-author">
-                            <img src="{{ url('frontend/assets/images/extracted/client-avatar-1.png') }}" alt="Sarah Johnson">
+                            <img src="{{ url('frontend/assets/images/extracted/client-avatar-1.png') }}" alt="{{ $article->author_name }}">
                             <div><h3>{{ $article->author_name }}</h3><span>{{ $article->author_role }}</span><p>{{ $article->author_bio }}</p></div>
                         </div>
                     </div>

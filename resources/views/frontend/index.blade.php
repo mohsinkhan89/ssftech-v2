@@ -224,8 +224,8 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="reviews-title">We've helped a lot of businesses but don't just take <span>our word for it</span></h2>
-                    <p class="reviews-text">We're proud to help businesses grow with reliable digital solutions,
+                    <h2 class="section-title light reviews-title">We've helped a lot of businesses but don't just take <span>our word for it</span></h2>
+                    <p class="muted reviews-text">We're proud to help businesses grow with reliable digital solutions,
                         outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
                         makes a real difference.</p>
 

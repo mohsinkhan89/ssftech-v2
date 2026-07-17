@@ -12,11 +12,13 @@
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('index') }}#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#about">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#industries">Industries</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#reviews">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#contact">Contact Us</a></li>
                 </ul>
                 <a class="btn btn-brand nav-quote" href="{{ route('index') }}#contact">Get A Quote</a>

@@ -194,6 +194,7 @@
         </div>
     </section>
 
+    @if($services->isNotEmpty())
     <section id="services" class="services-section">
         <div class="container">
             <p class="eyebrow reveal">Our Services</p>
@@ -217,8 +218,9 @@
             <div class="service-pagination"></div>
         </div>
     </section>
+    @endif
 
-
+    @if($testimonials->isNotEmpty())
     <section class="reviews-section section-pad" id="reviews">
         <div class="container">
             <div class="reviews-panel reveal">
@@ -293,9 +295,10 @@
             </div>
         </div>
     </section>
+    @endif
 
 
-
+    @if($clients->isNotEmpty())
     <section class="clients-section">
         <div class="container">
             <div class="clients-panel reveal">
@@ -325,7 +328,9 @@
             </div>
         </div>
     </section>
+    @endif
 
+    @if($blogs->isNotEmpty())
     <section class="insights-section section-pad" id="blog">
         <div class="container">
             <div class="insights-head reveal">
@@ -353,7 +358,9 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if($projects->isNotEmpty())
     <section class="portfolio-section section-pad" id="portfolio">
         <div class="container">
             <div class="portfolio-head">
@@ -424,6 +431,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <section id="contact" class="contact-section section-pad">
         <div class="container">
@@ -527,6 +535,7 @@
         </div>
     </section>
 
+    @if($faqs->isNotEmpty())
     <section class="faq-section section-pad">
         <div class="container">
             <div class="faq-shell">
@@ -568,6 +577,7 @@
             </div>
         </div>
     </section>
+    @endif
 @endsection
 @section('js')
     <script>

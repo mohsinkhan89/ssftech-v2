@@ -106,35 +106,6 @@ class FrontendController extends Controller
         $siteSetting = SiteSetting::first();
         $blogs = Blog::where('status', true)->latest('published_at')->get();
 
-        if ($testimonials->isEmpty()) {
-            $testimonials = collect([
-                (object) [
-                    'name' => 'Sarah Thompson',
-                    'designation' => 'Marketing Director',
-                    'company' => 'BrightWave',
-                    'review' => 'Excellent communication, timely delivery, and outstanding results. Truly a reliable partner for our digital journey.',
-                    'rating' => 5,
-                    'avatar' => 'frontend/assets/images/extracted/client-avatar-1.png',
-                ],
-                (object) [
-                    'name' => 'Michael Johnson',
-                    'designation' => 'CEO',
-                    'company' => 'TechNova Solutions',
-                    'review' => 'Their team understood our vision perfectly and delivered a solution that exceeded our expectations. Highly professional and dedicated!',
-                    'rating' => 5,
-                    'avatar' => 'frontend/assets/images/extracted/client-avatar-2.png',
-                ],
-                (object) [
-                    'name' => 'David Patel',
-                    'designation' => 'Founder',
-                    'company' => 'InnovateX',
-                    'review' => 'From strategy to execution, everything was seamless. They transformed our ideas into real business value.',
-                    'rating' => 5,
-                    'avatar' => 'frontend/assets/images/extracted/client-avatar-3.png',
-                ],
-            ]);
-        }
-
         return view('frontend.index', compact('projects', 'clients', 'testimonials', 'happyClients', 'averageRating', 'faqs', 'services', 'socialLinks', 'siteSetting', 'blogs'));
     }
 

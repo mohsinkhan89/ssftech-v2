@@ -6,6 +6,19 @@
 @section('metas')
     <meta name="description" content="Explore SSF Tech insights on web design, development, digital marketing, branding and technology.">
 @endsection
+@section('canonical', route('blog.index'))
+@section('social_metas')
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SSF Tech">
+    <meta property="og:title" content="Our Blog &amp; Insights | SSF Tech">
+    <meta property="og:description" content="Explore SSF Tech insights on web design, development, digital marketing, branding and technology.">
+    <meta property="og:url" content="{{ route('blog.index') }}">
+    @if($popularArticles->isNotEmpty())<meta property="og:image" content="{{ url($popularArticles->first()->image) }}">@endif
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Blog &amp; Insights | SSF Tech">
+    <meta name="twitter:description" content="Explore SSF Tech insights on web design, development, digital marketing, branding and technology.">
+    @if($popularArticles->isNotEmpty())<meta name="twitter:image" content="{{ url($popularArticles->first()->image) }}">@endif
+@endsection
 
 @section('body')
     <section class="blog-hero">

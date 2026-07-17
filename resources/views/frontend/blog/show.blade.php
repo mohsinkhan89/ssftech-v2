@@ -1,11 +1,44 @@
 @extends('frontend.layouts.master')
 
+@php
+    $seoTitle = $article->meta_title ?: $article->title . ' | SSF Tech';
+    $seoDescription = $article->meta_description ?: $article->excerpt;
+    $seoImage = $article->hero_image ?: ($article->featured_image ?: $article->image);
+@endphp
+
 @section('title')
-    <title>{{ $article->title }} | SSF Tech</title>
+    <title>{{ $seoTitle }}</title>
 @endsection
 
 @section('metas')
-    <meta name="description" content="{{ $article->excerpt }}">
+    <meta name="description" content="{{ $seoDescription }}">
+@endsection
+@section('canonical', route('blog.show', $article->slug))
+@section('social_metas')
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="SSF Tech">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:url" content="{{ route('blog.show', $article->slug) }}">
+    <meta property="og:image" content="{{ url($seoImage) }}">
+    <meta property="article:published_time" content="{{ $article->published_at?->toIso8601String() }}">
+    <meta property="article:section" content="{{ $article->category }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
+    <meta name="twitter:image" content="{{ url($seoImage) }}">
+    <script type="application/ld+json">{!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BlogPosting',
+        'headline' => $seoTitle,
+        'description' => $seoDescription,
+        'image' => url($seoImage),
+        'datePublished' => $article->published_at?->toIso8601String(),
+        'dateModified' => $article->updated_at?->toIso8601String(),
+        'author' => ['@type' => 'Person', 'name' => $article->author_name],
+        'publisher' => ['@type' => 'Organization', 'name' => 'SSF Tech'],
+        'mainEntityOfPage' => route('blog.show', $article->slug),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 @endsection
 
 @section('body')

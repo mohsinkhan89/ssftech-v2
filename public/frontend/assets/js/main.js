@@ -129,6 +129,7 @@
       spaceBetween: 28,
       speed: 650,
       grabCursor: true,
+      watchOverflow: true,
       autoplay: {
         delay: 4200,
         disableOnInteraction: false,
@@ -273,6 +274,7 @@
       spaceBetween: 24,
       speed: 650,
       grabCursor: true,
+      watchOverflow: true,
       autoplay: {
         delay: 3200,
         disableOnInteraction: false,
@@ -308,17 +310,25 @@
 
       if (portfolioPagination) {
         const visibleCards = portfolioSlider.querySelectorAll(".swiper-slide:not(.is-filtered)").length;
-        portfolioPagination.hidden = visibleCards <= 3;
+        const cardsPerView = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+        portfolioPagination.hidden = visibleCards <= cardsPerView;
       }
     }
   }
+
+  refreshPortfolioSlider();
+  window.addEventListener("resize", refreshPortfolioSlider, { passive: true });
 
   portfolioFilterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const filter = button.dataset.filter || "all";
 
-      portfolioFilterButtons.forEach((item) => item.classList.remove("active"));
+      portfolioFilterButtons.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
       button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
 
       document.querySelectorAll(".portfolio-slider .swiper-slide").forEach((slide) => {
         const shouldShow = filter === "all" || slide.dataset.category === filter;
@@ -333,8 +343,12 @@
     button.addEventListener("click", () => {
       const device = button.dataset.device || "desktop";
 
-      deviceButtons.forEach((item) => item.classList.remove("active"));
+      deviceButtons.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
       button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
 
       if (portfolioSlider) {
         portfolioSlider.classList.remove("preview-desktop", "preview-tablet", "preview-mobile");

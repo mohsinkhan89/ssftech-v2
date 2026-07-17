@@ -349,7 +349,7 @@
                 @endforeach
                 </div>
             </div>
-            @if($blogs->count() > 3)<div class="insights-pagination"></div>@endif
+            @if($blogs->count() > 1)<div class="insights-pagination"></div>@endif
             @endif
         </div>
     </section>
@@ -367,22 +367,22 @@
             </div>
             <div class="portfolio-controls reveal delay-3">
                 <div class="portfolio-tabs" aria-label="Project categories">
-                    <button class="active" type="button" data-filter="all"><i
+                    <button class="active" type="button" data-filter="all" aria-pressed="true"><i
                             class="fa-solid fa-table-cells-large"></i> All
                         Projects</button>
-                    <button type="button" data-filter="website"><i class="fa-solid fa-code"></i>
+                    <button type="button" data-filter="website" aria-pressed="false"><i class="fa-solid fa-code"></i>
                         Websites</button>
-                    <button type="button" data-filter="ecommerce"><i class="fa-solid fa-cart-shopping"></i>
+                    <button type="button" data-filter="ecommerce" aria-pressed="false"><i class="fa-solid fa-cart-shopping"></i>
                         E-Commerce</button>
-                    <button type="button" data-filter="webapp"><i class="fa-solid fa-grip"></i> Web
+                    <button type="button" data-filter="webapp" aria-pressed="false"><i class="fa-solid fa-grip"></i> Web
                         Apps</button>
                 </div>
                 <div class="device-tabs" aria-label="Device preview">
-                    <button class="active" type="button" data-device="desktop"><i class="fa-solid fa-desktop"></i>
+                    <button class="active" type="button" data-device="desktop" aria-pressed="true"><i class="fa-solid fa-desktop"></i>
                         Desktop</button>
-                    <button type="button" data-device="tablet"><i class="fa-solid fa-tablet-screen-button"></i>
+                    <button type="button" data-device="tablet" aria-pressed="false"><i class="fa-solid fa-tablet-screen-button"></i>
                         Tablet</button>
-                    <button type="button" data-device="mobile"><i class="fa-solid fa-mobile-screen-button"></i>
+                    <button type="button" data-device="mobile" aria-pressed="false"><i class="fa-solid fa-mobile-screen-button"></i>
                         Mobile</button>
                 </div>
             </div>
@@ -420,7 +420,7 @@
                         </div>
                     @endforeach
                 </div>
-                @if($projects->count() > 3)<div class="portfolio-pagination"></div>@endif
+                @if($projects->count() > 1)<div class="portfolio-pagination"></div>@endif
             </div>
         </div>
     </section>

@@ -30,14 +30,14 @@
                     <a href="#terms"><span><i class="fa-solid fa-chevron-right"></i></span>Terms and
                         Conditions</a>
                 </div>
+                @if($footerServices->isNotEmpty())
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Services</h4>
-                    <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>Web Development</a>
-                    <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>Google Ads</a>
-                    <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>Digital
-                        Marketing</a>
-                    <a href="#services"><span><i class="fa-solid fa-chevron-right"></i></span>SEO</a>
+                    @foreach($footerServices as $service)
+                        <a href="{{ route('index') }}#services"><span><i class="fa-solid fa-chevron-right"></i></span>{{ $service->title }}</a>
+                    @endforeach
                 </div>
+                @endif
                 @if($siteSetting?->contact_address || $siteSetting?->contact_phone || $siteSetting?->contact_email)
                 <div class="col-lg-3 col-md-6 footer-contact-social">
                     <h4>Contact Us</h4>

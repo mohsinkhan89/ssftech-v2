@@ -57,11 +57,12 @@
                     <p class="hero-copy hero-anim delay-3">We create high performing websites and digital marketing
                         strategies that help businesses grow, attract more customers and achieve real results.</p>
                     <div class="hero-actions hero-anim delay-4">
-                        <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a>
-                        <a href="#portfolio" class="play-link" aria-label="View our work">
+                        {{-- <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a> --}}
+                        {{-- <a href="#portfolio" class="play-link" aria-label="View our work">
                             <span class="play-circle"><i class="fa-solid fa-play"></i></span>
                             View Our Work
-                        </a>
+                        </a> --}}
+                        <a href="#portfolio" class="btn btn-brand">View Our Work <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -125,7 +126,7 @@
                 <div class="col-lg-6 reveal">
                     <p class="eyebrow">About Us</p>
                     <h2 class="section-title">Your Trusted Partner for <span>Digital Success</span></h2>
-                    <p class="muted">Welcome to SSF Tech, a trusted website development company based in the UK. We turn
+                    <p class="muted">Welcome to SSF Tech, a trusted website & software development company based in the UK. We turn
                         your vision into a captivating website through expert design and development. From sleek, modern
                         interfaces to seamless functionality, we specialise in boosting conversions and creating digital
                         experiences that help your brand succeed online.</p>
@@ -186,7 +187,7 @@
             <div class="cta-banner reveal">
                 <div class="cta-content">
                     <p>Ready to Build Something Amazing?</p>
-                    <h2>Let's build something amazing together.</h2>
+                    <h2>Let's build something<span class="desktop-heading-break"><br></span> amazing together.</h2>
                     <p>Get in touch today and discover how SSF Tech can help your brand grow online.</p>
                     <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a>
                 </div>

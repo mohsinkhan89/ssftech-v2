@@ -9,7 +9,7 @@
 @endsection
 
 @section('body')
-    <section class="article-hero" style="--article-hero-image: url('{{ url($article->hero_image ?? $article->image) }}')">
+    <section class="article-hero {{ $article->hero_image ? 'has-hero-image' : '' }}" @if($article->hero_image) style="--article-hero-image: url('{{ url($article->hero_image) }}')" @endif>
         <div class="container article-hero-inner">
             <div class="article-hero-copy reveal">
                 <div class="blog-breadcrumb">
@@ -32,10 +32,14 @@
         <div class="container">
             <div class="article-layout">
                 <article class="article-content">
-                    <img class="article-featured reveal" src="{{ url($article->featured_image ?? $article->image) }}" alt="{{ $article->title }}">
+                    @if($article->featured_image)
+                        <img class="article-featured reveal" src="{{ url($article->featured_image) }}" alt="{{ $article->title }}">
+                    @endif
                     <div class="article-prose reveal">
                         <div class="article-rich-text">{!! $article->description !!}</div>
-                        <div class="article-content-banner" style="--article-content-image: url('{{ url($article->content_banner ?? $article->image) }}')"><strong>Content that <span>educates</span> today,<br><span>converts</span> tomorrow.</strong></div>
+                        @if($article->content_banner)
+                            <div class="article-content-banner" style="--article-content-image: url('{{ url($article->content_banner) }}')"><strong>Content that <span>educates</span> today,<br><span>converts</span> tomorrow.</strong></div>
+                        @endif
                         <div class="article-tags"><strong>Tags:</strong>@foreach(array_filter(array_map('trim', explode(',', $article->tags ?? ''))) as $tag)<span>{{ $tag }}</span>@endforeach</div>
                         <div class="article-share"><strong>Share this article:</strong><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Copy link"><i class="fa-solid fa-link"></i></a></div>
 

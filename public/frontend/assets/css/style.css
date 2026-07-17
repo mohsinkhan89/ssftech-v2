@@ -6272,11 +6272,12 @@ a {
 .service-card h3 {
   min-height: 48px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  /* align-items: flex-start; */
+  align-items: center;
+  justify-content: start;
   margin-bottom: 14px;
   line-height: 1.35;
-  text-align: center;
+  text-align: start;
 }
 
 @media (max-width: 767px) {

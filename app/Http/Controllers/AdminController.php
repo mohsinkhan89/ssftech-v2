@@ -808,6 +808,24 @@ class AdminController extends Controller
         return redirect()->route('admin.settings.index')->with('success', 'Contact details updated successfully!');
     }
 
+    public function settingsUpdateNotificationEmails(Request $request)
+    {
+        $data = $request->validate([
+            'notification_emails' => ['nullable', 'string', 'max:2000', function ($attribute, $value, $fail) {
+                $emails = array_filter(array_map('trim', preg_split('/[,;\r\n]+/', $value)));
+                foreach ($emails as $email) {
+                    if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $fail("The email address {$email} is not valid.");
+                    }
+                }
+            }],
+        ]);
+
+        SiteSetting::firstOrCreate([])->update($data);
+
+        return redirect()->route('admin.settings.index')->with('success', 'Enquiry notification emails updated successfully!');
+    }
+
     // List Users
     public function usersIndex()
     {

@@ -619,6 +619,7 @@
             document.querySelectorAll('.js-contact-form').forEach(function(form) {
                 const responseDiv = document.querySelector(form.dataset.response);
                 const submitBtn = document.querySelector(form.dataset.button);
+                const responseContainer = form.closest('.hero-form-card, .contact-form-card') || form;
                 const originalButtonHtml = submitBtn ? submitBtn.innerHTML : '';
                 let responseTimer;
 
@@ -629,16 +630,20 @@
                 function showFormResponse(className, message) {
                     clearTimeout(responseTimer);
 
-                    responseDiv.className = className;
+                    if (responseDiv.parentElement !== responseContainer) {
+                        responseContainer.appendChild(responseDiv);
+                    }
+
+                    responseDiv.className = className + ' frontend-alert-in-form';
                     responseDiv.innerHTML = message;
                     responseDiv.classList.remove('d-none');
                     responseDiv.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
                     responseDiv.style.opacity = '1';
-                    responseDiv.style.transform = 'translateY(0)';
+                    responseDiv.style.transform = 'translateX(0)';
 
                     responseTimer = setTimeout(function() {
                         responseDiv.style.opacity = '0';
-                        responseDiv.style.transform = 'translateY(-8px)';
+                        responseDiv.style.transform = 'translateX(calc(100% + 40px))';
 
                         setTimeout(function() {
                             responseDiv.className = 'mb-3 d-none';
@@ -685,7 +690,7 @@
 
                             if (res.status === 200 && res.body.success) {
                                 showFormResponse(
-                                    'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded',
+                                    'alert frontend-alert frontend-alert-success',
                                     '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message
                                 );
                                 form.reset();
@@ -697,7 +702,7 @@
                                     errMsg = res.body.message;
                                 }
                                 showFormResponse(
-                                    'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
+                                    'alert frontend-alert frontend-alert-error',
                                     '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + errMsg
                                 );
                             }
@@ -708,7 +713,7 @@
                             submitBtn.innerHTML = originalButtonHtml;
 
                             showFormResponse(
-                                'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
+                                'alert frontend-alert frontend-alert-error',
                                 '<i class="fa-solid fa-triangle-exclamation me-2"></i> Network error. Please check your connection and try again.'
                             );
                         });

@@ -12,6 +12,9 @@ use App\Models\SocialLink;
 use App\Models\SiteSetting;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class FrontendController extends Controller
 {
@@ -122,11 +125,42 @@ class FrontendController extends Controller
             'phone.regex' => 'Please enter a valid UK phone number in this format: +44 7123 456789.',
         ]);
 
-        Message::create($validated);
+        $enquiry = Message::create($validated);
+        $siteSetting = SiteSetting::first();
+        $emailLogoPath = public_path($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png');
+        if (! is_file($emailLogoPath)) {
+            $emailLogoPath = public_path('frontend/assets/images/logo/ssf-tech-logo-new.png');
+        }
+
+        try {
+            Mail::send('emails.enquiry-customer', compact('enquiry', 'siteSetting', 'emailLogoPath'), function ($mail) use ($enquiry) {
+                $mail->to($enquiry->email, $enquiry->name)
+                    ->subject("Thanks for contacting SSF Tech, {$enquiry->name}");
+            });
+
+            $notificationRecipients = $siteSetting?->notification_emails ?: $siteSetting?->contact_email;
+            $adminEmails = array_values(array_filter(array_map(
+                'trim',
+                preg_split('/[,;\r\n]+/', (string) $notificationRecipients)
+            ), fn ($email) => filter_var($email, FILTER_VALIDATE_EMAIL)));
+
+            if ($adminEmails) {
+                Mail::send('emails.enquiry-admin', compact('enquiry', 'siteSetting', 'emailLogoPath'), function ($mail) use ($enquiry, $adminEmails) {
+                    $mail->to($adminEmails)
+                        ->replyTo($enquiry->email, $enquiry->name)
+                        ->subject("New website enquiry from {$enquiry->name}");
+                });
+            }
+        } catch (Throwable $exception) {
+            Log::warning('Contact enquiry saved, but an email could not be sent.', [
+                'message_id' => $enquiry->id,
+                'error' => $exception->getMessage(),
+            ]);
+        }
 
         return response()->json([
             'success' => true,
-            'message' => 'Your message has been sent successfully!'
+            'message' => "Thanks {$enquiry->name}! Your message has been received. Please check your email for confirmation."
         ]);
     }
 }

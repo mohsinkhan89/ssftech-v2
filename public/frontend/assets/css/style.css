@@ -2969,7 +2969,8 @@ a {
   content: "\f1d8";
   position: absolute;
   right: 48px;
-  top: 40px;
+  /* top: 40px; */
+  top: 15px;
   color: var(--red);
   font-family: "Font Awesome 6 Free";
   font-size: 55px;
@@ -6083,6 +6084,75 @@ a {
 .portfolio-pagination[hidden],
 .insights-pagination[hidden],
 .related-pagination[hidden] { display: none; }
+
+/* Contact form feedback matches dashboard alerts */
+.frontend-alert {
+  position: fixed;
+  top: 92px;
+  right: 24px;
+  z-index: 10050;
+  width: min(430px, calc(100vw - 32px));
+  margin: 0;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: left;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, .16);
+  animation: frontendAlertIn .35s ease both;
+}
+
+@keyframes frontendAlertIn {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.frontend-alert-success {
+  border: 1px solid #a7f3d0;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.frontend-alert-error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.frontend-alert.frontend-alert-in-form {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  left: auto;
+  width: min(390px, calc(100% - 36px));
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .frontend-alert.frontend-alert-in-form {
+    top: 16px;
+    right: 16px;
+    left: auto;
+    width: min(390px, calc(100% - 32px));
+  }
+}
+
+@media (max-width: 575px) {
+  .frontend-alert {
+    top: 78px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
+
+  .frontend-alert.frontend-alert-in-form {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    width: min(390px, calc(100% - 24px));
+    text-align: left;
+  }
+}
 
 /* Responsive blog listing filters */
 .blog-toolbar {

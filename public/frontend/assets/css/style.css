@@ -2210,6 +2210,37 @@ a {
   }
 }
 
+/* Prevent testimonial card borders from being clipped by Swiper */
+.reviews-carousel-shell {
+  padding: 3px;
+  overflow: hidden;
+  border-radius: 37px;
+}
+
+.reviews-slider-custom {
+  width: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.reviews-slider-custom .swiper-wrapper {
+  align-items: stretch;
+}
+
+.reviews-slider-custom .reviews-slide,
+.reviews-slider-custom .review-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .reviews-carousel-shell {
+    padding: 2px;
+    border-radius: 24px;
+  }
+}
+
 @media (max-width: 767px) {
   .blog-hero {
     padding: 135px 0 65px;

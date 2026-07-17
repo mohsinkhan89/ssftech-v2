@@ -15,12 +15,33 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function blogIndex()
+    public function blogIndex(Request $request)
     {
         [$siteSetting, $socialLinks] = $this->frontendSettings();
-        $articles = Blog::where('status', true)->latest('published_at')->get();
+        $activeArticles = Blog::where('status', true)->latest('published_at')->get();
+        $categories = $this->blogCategories($activeArticles);
+        $search = trim((string) $request->query('search'));
+        $category = trim((string) $request->query('category'));
+        $sort = $request->query('sort') === 'oldest' ? 'oldest' : 'latest';
 
-        return view('frontend.blog.index', compact('siteSetting', 'socialLinks', 'articles'));
+        $articles = Blog::where('status', true)
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('excerpt', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
+                        ->orWhere('category', 'like', "%{$search}%");
+                });
+            })
+            ->when($category !== '', fn ($query) => $query->where('category', $category))
+            ->orderBy('published_at', $sort === 'oldest' ? 'asc' : 'desc')
+            ->get();
+        $popularArticles = $activeArticles->take(5);
+
+        return view('frontend.blog.index', compact(
+            'siteSetting', 'socialLinks', 'articles', 'categories', 'popularArticles',
+            'search', 'category', 'sort'
+        ));
     }
 
     public function blogShow(string $slug)
@@ -35,11 +56,25 @@ class FrontendController extends Controller
         $previousArticle = $articleIndex > 0 ? $articles->get($articleIndex - 1) : null;
         $nextArticle = $articleIndex < $articles->count() - 1 ? $articles->get($articleIndex + 1) : null;
         $relatedArticles = $articles->where('slug', '!=', $slug)->take(3);
+        $categories = $this->blogCategories($articles);
 
         return view('frontend.blog.show', compact(
             'siteSetting', 'socialLinks', 'articles', 'article',
-            'previousArticle', 'nextArticle', 'relatedArticles'
+            'previousArticle', 'nextArticle', 'relatedArticles', 'categories'
         ));
+    }
+
+    private function blogCategories($articles)
+    {
+        return $articles
+            ->filter(fn ($article) => filled($article->category))
+            ->groupBy('category')
+            ->map(fn ($items, $name) => [
+                'name' => $name,
+                'count' => $items->count(),
+                'icon' => $items->first()->icon ?: 'fa-solid fa-folder-open',
+            ])
+            ->values();
     }
 
     private function frontendSettings(): array

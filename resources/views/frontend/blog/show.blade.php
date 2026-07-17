@@ -59,7 +59,7 @@
                 @foreach($relatedArticles as $related)
                     <article class="related-card reveal">
                         <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}"></a>
-                        <div><span>{{ $related->category }}</span><h3><a href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
+                        <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
                     </article>
                 @endforeach
             </div>

@@ -8,7 +8,9 @@
   const testimonialsSlider = document.querySelector(".testimonials-slider");
   const reviewsSlider = document.querySelector(".reviews-slider-custom");
   const clientsSlider = document.querySelector(".client-logo-slider");
+  const insightsSlider = document.querySelector(".insights-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
+  const portfolioPagination = document.querySelector(".portfolio-pagination");
   const servicesSlider = document.querySelector(".services-slider");
   const portfolioFilterButtons = document.querySelectorAll(".portfolio-tabs button");
   const deviceButtons = document.querySelectorAll(".device-tabs button");
@@ -245,6 +247,26 @@
     });
   }
 
+  if (insightsSlider && window.Swiper) {
+    new window.Swiper(insightsSlider, {
+      slidesPerView: 1,
+      spaceBetween: 18,
+      speed: 650,
+      grabCursor: true,
+      watchOverflow: true,
+      pagination: {
+        el: ".insights-pagination",
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
+      },
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1200: { slidesPerView: 3, spaceBetween: 24 }
+      }
+    });
+  }
+
   if (portfolioSlider && window.Swiper) {
     portfolioSwiper = new window.Swiper(portfolioSlider, {
       loop: false,
@@ -261,7 +283,9 @@
       },
       pagination: {
         el: ".portfolio-pagination",
-        clickable: true
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
       },
       breakpoints: {
         0: {
@@ -281,6 +305,11 @@
     if (portfolioSwiper) {
       portfolioSwiper.update();
       portfolioSwiper.slideTo(0);
+
+      if (portfolioPagination) {
+        const visibleCards = portfolioSlider.querySelectorAll(".swiper-slide:not(.is-filtered)").length;
+        portfolioPagination.hidden = visibleCards <= 3;
+      }
     }
   }
 

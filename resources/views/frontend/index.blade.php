@@ -224,7 +224,7 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="reviews-title">We've helped a lot of businesses but don't just take <br> <span>our word for it</span></h2>
+                    <h2 class="reviews-title">We've helped a lot of businesses but don't just take <span>our word for it</span></h2>
                     <p class="reviews-text">We're proud to help businesses grow with reliable digital solutions,
                         outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
                         makes a real difference.</p>
@@ -339,28 +339,33 @@
                     Articles <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <div class="row g-4 insights-grid">
+            @if($blogs->isNotEmpty())
+            <div class="insights-slider swiper reveal delay-2">
+                <div class="swiper-wrapper">
                 @foreach($blogs as $blog)
-                    <div class="col-lg-4 col-md-6 reveal {{ $loop->index ? 'delay-'.$loop->index : '' }}">
-                        <article class="insight-card"><img src="{{ url($blog->image) }}" alt="{{ $blog->title }}"><div class="insight-card-body"><div class="insight-meta"><span class="insight-category"><i class="{{ $blog->icon }}"></i> {{ $blog->category }}</span><span><i class="fa-regular fa-calendar"></i> {{ $blog->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $blog->read_time }}</span></div><h3>{{ $blog->title }}</h3><p>{{ $blog->excerpt }}</p><a href="{{ route('blog.show',$blog->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a></div></article>
+                    <div class="swiper-slide">
+                        <article class="insight-card"><img src="{{ url($blog->image) }}" alt="{{ $blog->title }}"><div class="insight-card-body"><div class="insight-meta"><span class="insight-category"><i class="{{ $blog->icon }}"></i> {{ $blog->category }}</span><span><i class="fa-regular fa-calendar"></i> {{ $blog->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $blog->read_time }}</span></div><h3><a class="blog-title-link" href="{{ route('blog.show',$blog->slug) }}">{{ $blog->title }}</a></h3><p>{{ $blog->excerpt }}</p><a href="{{ route('blog.show',$blog->slug) }}">Read More <i class="fa-solid fa-arrow-right"></i></a></div></article>
                     </div>
                 @endforeach
+                </div>
             </div>
+            @if($blogs->count() > 3)<div class="insights-pagination"></div>@endif
+            @endif
         </div>
     </section>
 
     <section class="portfolio-section section-pad" id="portfolio">
         <div class="container">
-            <div class="portfolio-head reveal">
+            <div class="portfolio-head">
                 <div>
-                    <p class="eyebrow">Our Work</p>
-                    <h2 class="section-title">Digital Experiences We've <br> Created for <span>Our Clients</span></h2>
-                    <p class="muted">From modern websites to complete digital solutions, we help businesses achieve
+                    <p class="eyebrow reveal">Our Work</p>
+                    <h2 class="section-title reveal delay-1">Digital Experiences We've <br> Created for <span>Our Clients</span></h2>
+                    <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
                         their goals. Browse our recent work to see what we've created.</p>
                 </div>
-                <a href="#contact" class="btn btn-brand">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-brand reveal delay-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="portfolio-controls reveal delay-1">
+            <div class="portfolio-controls reveal delay-3">
                 <div class="portfolio-tabs" aria-label="Project categories">
                     <button class="active" type="button" data-filter="all"><i
                             class="fa-solid fa-table-cells-large"></i> All
@@ -381,7 +386,7 @@
                         Mobile</button>
                 </div>
             </div>
-            <div class="portfolio-slider swiper reveal delay-2">
+            <div class="portfolio-slider swiper reveal delay-4">
                 <div class="swiper-wrapper">
                     @foreach ($projects as $project)
                         <div class="swiper-slide" data-category="{{ $project->category }}">
@@ -415,7 +420,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="portfolio-pagination"></div>
+                @if($projects->count() > 3)<div class="portfolio-pagination"></div>@endif
             </div>
         </div>
     </section>

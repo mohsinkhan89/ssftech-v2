@@ -104,7 +104,7 @@ class FrontendController extends Controller
         $services = Service::where('status', true)->orderBy('sort_order')->orderBy('created_at')->get();
         $socialLinks = SocialLink::where('status', true)->whereNotNull('url')->where('url', '!=', '')->orderBy('sort_order')->get();
         $siteSetting = SiteSetting::first();
-        $blogs = Blog::where('status', true)->latest('published_at')->take(3)->get();
+        $blogs = Blog::where('status', true)->latest('published_at')->get();
 
         if ($testimonials->isEmpty()) {
             $testimonials = collect([

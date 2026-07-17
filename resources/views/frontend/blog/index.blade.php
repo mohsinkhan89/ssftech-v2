@@ -45,7 +45,7 @@
                                 <img src="{{ url($article->image) }}" alt="{{ $article->title }}">
                                 <div class="blog-list-card-body">
                                     <span class="blog-list-category"><i class="{{ $article->icon }}"></i> {{ $article->category }}</span>
-                                    <h2>{{ $article->title }}</h2>
+                                    <h2><a class="blog-title-link" href="{{ route('blog.show', $article->slug) }}">{{ $article->title }}</a></h2>
                                     <p>{{ $article->excerpt }}</p>
                                     <div class="blog-list-footer">
                                         <div><span><i class="fa-regular fa-calendar"></i> {{ $article->date }}</span><span><i class="fa-regular fa-clock"></i> {{ $article->read_time }}</span></div>

@@ -18,7 +18,9 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#industries">Industries</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#reviews">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
+                    @if($hasActiveBlogs)
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
+                    @endif
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#contact">Contact Us</a></li>
                 </ul>
                 <a class="btn btn-brand nav-quote" href="{{ route('index') }}#contact">Get A Quote</a>

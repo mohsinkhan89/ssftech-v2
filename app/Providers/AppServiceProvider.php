@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('frontend.inc.header', function ($view) {
+            $view->with('hasActiveBlogs', Blog::where('status', true)->exists());
+        });
+
         View::composer('admin.layouts.admin', function ($view) {
             if (! Auth::check()) {
                 return;

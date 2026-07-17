@@ -9,6 +9,7 @@
   const reviewsSlider = document.querySelector(".reviews-slider-custom");
   const clientsSlider = document.querySelector(".client-logo-slider");
   const insightsSlider = document.querySelector(".insights-slider");
+  const relatedSlider = document.querySelector(".related-slider");
   const portfolioSlider = document.querySelector(".portfolio-slider");
   const portfolioPagination = document.querySelector(".portfolio-pagination");
   const servicesSlider = document.querySelector(".services-slider");
@@ -121,6 +122,14 @@
   }
 
   let portfolioSwiper = null;
+
+  function updateCardSliderPagination(slider, pagination) {
+    if (!slider || !pagination) return;
+
+    const cardCount = slider.querySelectorAll(".swiper-slide").length;
+    const cardsPerView = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    pagination.hidden = cardCount <= cardsPerView;
+  }
 
   if (testimonialsSlider && window.Swiper) {
     new window.Swiper(testimonialsSlider, {
@@ -266,6 +275,36 @@
         1200: { slidesPerView: 3, spaceBetween: 24 }
       }
     });
+
+    const insightsPagination = document.querySelector(".insights-pagination");
+    const updateInsightsPagination = () => updateCardSliderPagination(insightsSlider, insightsPagination);
+    updateInsightsPagination();
+    window.addEventListener("resize", updateInsightsPagination, { passive: true });
+  }
+
+  if (relatedSlider && window.Swiper) {
+    new window.Swiper(relatedSlider, {
+      slidesPerView: 1,
+      spaceBetween: 18,
+      speed: 650,
+      grabCursor: true,
+      watchOverflow: true,
+      pagination: {
+        el: ".related-pagination",
+        clickable: true,
+        bulletClass: "client-bullet",
+        bulletActiveClass: "active"
+      },
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1200: { slidesPerView: 3, spaceBetween: 20 }
+      }
+    });
+
+    const relatedPagination = document.querySelector(".related-pagination");
+    const updateRelatedPagination = () => updateCardSliderPagination(relatedSlider, relatedPagination);
+    updateRelatedPagination();
+    window.addEventListener("resize", updateRelatedPagination, { passive: true });
   }
 
   if (portfolioSlider && window.Swiper) {

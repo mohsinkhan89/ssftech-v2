@@ -55,7 +55,7 @@ class FrontendController extends Controller
         $articleIndex = $articles->search(fn ($item) => $item->slug === $slug);
         $previousArticle = $articleIndex > 0 ? $articles->get($articleIndex - 1) : null;
         $nextArticle = $articleIndex < $articles->count() - 1 ? $articles->get($articleIndex + 1) : null;
-        $relatedArticles = $articles->where('slug', '!=', $slug)->take(3);
+        $relatedArticles = $articles->where('slug', '!=', $slug)->values();
         $categories = $this->blogCategories($articles);
 
         return view('frontend.blog.show', compact(

@@ -55,14 +55,21 @@
             </nav>
 
             <div class="related-heading"><h2>Related Articles</h2><a href="{{ route('blog.index') }}">View All Articles <i class="fa-solid fa-arrow-right"></i></a></div>
-            <div class="related-articles">
-                @foreach($relatedArticles as $related)
-                    <article class="related-card reveal">
-                        <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}"></a>
-                        <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
-                    </article>
-                @endforeach
-            </div>
+            @if($relatedArticles->isNotEmpty())
+                <div class="related-slider swiper reveal">
+                    <div class="swiper-wrapper">
+                        @foreach($relatedArticles as $related)
+                            <div class="swiper-slide">
+                                <article class="related-card">
+                                    <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}"></a>
+                                    <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
+                                </article>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                @if($relatedArticles->count() > 1)<div class="related-pagination"></div>@endif
+            @endif
         </div>
     </section>
 @endsection

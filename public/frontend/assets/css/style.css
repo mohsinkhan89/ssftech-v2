@@ -2201,13 +2201,16 @@ a {
 
 @media (max-width: 767px) {
   .blog-hero {
-    min-height: 430px;
     padding: 135px 0 65px;
     background-position: 62% center;
   }
 
   .blog-hero-inner {
     text-align: center;
+  }
+
+  .article-prose {
+    text-align: start;
   }
 
   .blog-hero-copy {
@@ -4498,6 +4501,13 @@ a {
 }
 
 @media (max-width: 575px) {
+  .article-prose blockquote {
+    flex-direction: column;
+  }
+  .blog-list-card-body {
+    align-items: start;
+    text-align: start;
+  }
   .popular-post strong {
     font-size: 12px;
   }
@@ -6065,7 +6075,9 @@ a {
   background: var(--red);
 }
 
-.portfolio-pagination[hidden] { display: none; }
+.portfolio-pagination[hidden],
+.insights-pagination[hidden],
+.related-pagination[hidden] { display: none; }
 
 @media (max-width: 1199px) {
   .reviews-title { max-width: 720px; margin-inline: auto; }
@@ -6185,3 +6197,55 @@ a {
   outline: 2px solid var(--red);
   outline-offset: 3px;
 }
+
+/* Related articles carousel */
+.related-slider {
+  width: auto;
+  margin-right: 352px;
+  overflow: hidden;
+}
+
+.related-slider .swiper-wrapper { align-items: stretch; }
+.related-slider .swiper-slide { height: auto; }
+.related-slider .related-card { height: 100%; }
+
+.related-pagination {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 12px;
+  margin: 28px 352px 0 0;
+}
+
+.related-pagination .client-bullet {
+  width: 6px;
+  height: 6px;
+  display: block;
+  margin: 0 !important;
+  border-radius: 999px;
+  background: #c9cbd1;
+  opacity: 1;
+  cursor: pointer;
+  transition: width .3s ease, background-color .3s ease;
+}
+
+.related-pagination .client-bullet.active {
+  width: 58px;
+  background: var(--red);
+}
+
+@media (max-width: 991px) {
+  .related-slider,
+  .related-pagination { margin-right: 0; }
+}
+
+@media (max-width: 767px) {
+  .related-slider { width: 100%; }
+  .related-slider .related-card { text-align: left; }
+  .related-pagination { margin-top: 24px; }
+}
+
+.related-pagination[hidden] { display: none; }

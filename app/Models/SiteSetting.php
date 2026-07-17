@@ -13,5 +13,6 @@ class SiteSetting extends Model
         'contact_address',
         'contact_phone',
         'contact_email',
+        'notification_emails',
     ];
 }

@@ -6084,6 +6084,29 @@ a {
 .insights-pagination[hidden],
 .related-pagination[hidden] { display: none; }
 
+/* Contact form feedback matches dashboard alerts */
+.frontend-alert {
+  margin: 0 0 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.frontend-alert-success {
+  border: 1px solid #a7f3d0;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.frontend-alert-error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
 /* Responsive blog listing filters */
 .blog-toolbar {
   padding: 14px;

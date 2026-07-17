@@ -84,6 +84,35 @@
 <div class="custom-table-container">
     <div class="row align-items-center g-4">
         <div class="col-lg-4">
+            <h3 class="table-title mb-2"><i class="fa-solid fa-envelope-circle-check text-red me-2"></i> Enquiry Email Notifications</h3>
+            <p class="text-muted small mb-0">New website enquiry details will be sent to these admin email addresses. Add multiple recipients using commas.</p>
+        </div>
+        <div class="col-lg-8">
+            @if(config('mail.default') === 'log')
+                <div class="alert alert-warning py-2 px-3 mb-3"><i class="fa-solid fa-triangle-exclamation me-2"></i>Email delivery is in <strong>log mode</strong>. Configure SMTP in the server <code>.env</code> to deliver emails to inboxes.</div>
+            @endif
+            @if(Auth::user()->role !== 'author')
+                <form action="{{ route('admin.settings.notification-emails') }}" method="POST">@csrf @method('PUT')
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-10">
+                            <label for="notification_emails">Admin Notification Emails</label>
+                            <input type="text" name="notification_emails" id="notification_emails" class="form-control form-control-custom" value="{{ old('notification_emails', $siteSetting->notification_emails) }}" placeholder="admin@example.com, manager@example.com">
+                            @error('notification_emails')<small class="text-danger d-block">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="col-md-2"><button class="btn btn-red w-100" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i> Save</button></div>
+                    </div>
+                </form>
+            @else
+                <small class="text-muted">Notification Emails</small>
+                <strong class="d-block">{{ $siteSetting->notification_emails ?: 'Not set' }}</strong>
+            @endif
+        </div>
+    </div>
+</div>
+
+<div class="custom-table-container">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-4">
             <h3 class="table-title mb-2"><i class="fa-solid fa-code text-red me-2"></i> Asset Versions</h3>
             <p class="text-muted small mb-0">Change a version after updating CSS or JavaScript to clear visitors' browser cache.</p>
         </div>

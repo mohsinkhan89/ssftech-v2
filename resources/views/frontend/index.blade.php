@@ -685,7 +685,7 @@
 
                             if (res.status === 200 && res.body.success) {
                                 showFormResponse(
-                                    'alert alert-success bg-success-subtle border-success-subtle text-success p-3 rounded',
+                                    'alert frontend-alert frontend-alert-success',
                                     '<i class="fa-solid fa-circle-check me-2"></i>' + res.body.message
                                 );
                                 form.reset();
@@ -697,7 +697,7 @@
                                     errMsg = res.body.message;
                                 }
                                 showFormResponse(
-                                    'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
+                                    'alert frontend-alert frontend-alert-error',
                                     '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + errMsg
                                 );
                             }
@@ -708,7 +708,7 @@
                             submitBtn.innerHTML = originalButtonHtml;
 
                             showFormResponse(
-                                'alert alert-danger bg-danger-subtle border-danger-subtle text-danger p-3 rounded',
+                                'alert frontend-alert frontend-alert-error',
                                 '<i class="fa-solid fa-triangle-exclamation me-2"></i> Network error. Please check your connection and try again.'
                             );
                         });

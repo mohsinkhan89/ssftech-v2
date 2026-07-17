@@ -11,7 +11,7 @@
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:Arial,Helvetica,sans-serif;color:#252932;">
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f3f4f6;padding:24px 12px;"><tr><td align="center">
     <table role="presentation" class="email-shell" width="640" cellspacing="0" cellpadding="0" style="width:640px;max-width:100%;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(15,23,42,.09);">
-        <tr><td style="padding:24px 30px;background:linear-gradient(135deg,#050508,#1b0308);border-bottom:4px solid #e40914;"><img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" width="170" alt="SSF Tech" style="display:block;max-width:170px;height:auto;"></td></tr>
+        <tr><td align="center" bgcolor="#050508" style="padding:24px 30px;background-color:#050508;border-bottom:4px solid #e40914;text-align:center;"><img src="{{ $message->embed($emailLogoPath) }}" width="170" alt="SSF Tech" style="display:block;width:170px;max-width:100%;height:auto;margin:0 auto;border:0;"></td></tr>
         <tr><td class="email-pad" style="padding:38px 38px 34px;">
             <div style="color:#e40914;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;">New website enquiry</div>
             <h1 class="email-title" style="margin:10px 0 22px;color:#15171c;font-size:30px;line-height:1.2;">{{ $enquiry->name }} contacted SSF Tech</h1>

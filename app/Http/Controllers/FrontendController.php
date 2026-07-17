@@ -127,9 +127,13 @@ class FrontendController extends Controller
 
         $enquiry = Message::create($validated);
         $siteSetting = SiteSetting::first();
+        $emailLogoPath = public_path($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png');
+        if (! is_file($emailLogoPath)) {
+            $emailLogoPath = public_path('frontend/assets/images/logo/ssf-tech-logo-new.png');
+        }
 
         try {
-            Mail::send('emails.enquiry-customer', compact('enquiry', 'siteSetting'), function ($mail) use ($enquiry) {
+            Mail::send('emails.enquiry-customer', compact('enquiry', 'siteSetting', 'emailLogoPath'), function ($mail) use ($enquiry) {
                 $mail->to($enquiry->email, $enquiry->name)
                     ->subject("Thanks for contacting SSF Tech, {$enquiry->name}");
             });
@@ -141,7 +145,7 @@ class FrontendController extends Controller
             ), fn ($email) => filter_var($email, FILTER_VALIDATE_EMAIL)));
 
             if ($adminEmails) {
-                Mail::send('emails.enquiry-admin', compact('enquiry', 'siteSetting'), function ($mail) use ($enquiry, $adminEmails) {
+                Mail::send('emails.enquiry-admin', compact('enquiry', 'siteSetting', 'emailLogoPath'), function ($mail) use ($enquiry, $adminEmails) {
                     $mail->to($adminEmails)
                         ->replyTo($enquiry->email, $enquiry->name)
                         ->subject("New website enquiry from {$enquiry->name}");

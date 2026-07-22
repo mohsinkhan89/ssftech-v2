@@ -1501,8 +1501,9 @@ a {
   line-height: 1.68;
 }
 
-.review-card strong {
+.review-card .review-author-name {
   display: block;
+  margin: 0;
   color: #fff;
   font-size: 18px;
   line-height: 1.2;
@@ -1644,7 +1645,8 @@ a {
 }
 
 .insight-card:hover > img {
-  transform: scale(1.035);
+  /* transform: scale(1.035); */
+  transform: scale(1.1);
   filter: saturate(1.1);
 }
 
@@ -2637,9 +2639,11 @@ a {
   box-shadow: var(--card-shadow);
 }
 
-.project-meta strong {
+.project-meta .project-title {
+  margin: 0;
   font-size: 14px;
   color: var(--ink);
+  font-weight: 700;
 }
 
 .project-meta span {
@@ -3391,7 +3395,7 @@ a {
   margin-top: 26px;
 }
 
-.follow-us h5 {
+.follow-us h4 {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -3402,7 +3406,7 @@ a {
   text-transform: uppercase;
 }
 
-.follow-us h5::before {
+.follow-us h4::before {
   content: "";
   width: 22px;
   height: 2px;
@@ -4218,7 +4222,7 @@ a {
     font-size: 14px;
   }
 
-  .review-card strong {
+  .review-card .review-author-name {
     font-size: 15px;
   }
 
@@ -5206,7 +5210,7 @@ a {
     line-height: 1.55;
   }
 
-  .review-card strong {
+  .review-card .review-author-name {
     font-size: 14px;
   }
 
@@ -5312,7 +5316,7 @@ a {
     justify-content: center;
   }
 
-  .project-meta strong {
+  .project-meta .project-title {
     font-size: 13px;
   }
 
@@ -5774,7 +5778,7 @@ a {
   -webkit-line-clamp: 3;
 }
 
-.review-card strong {
+.review-card .review-author-name {
   font-size: 18px;
 }
 

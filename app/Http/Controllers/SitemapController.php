@@ -15,7 +15,7 @@ class SitemapController extends Controller
 
                 return in_array('GET', $route->methods(), true)
                     && $route->getName()
-                    && $route->getName() !== 'sitemap'
+                    && ! in_array($route->getName(), ['sitemap', 'llms'], true)
                     && ! str_contains($uri, '{')
                     && ! str_starts_with($uri, 'admin')
                     && $route->getName() !== 'login';

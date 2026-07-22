@@ -13,7 +13,7 @@
                         transformation.</p>
                     @if($socialLinks->isNotEmpty())
                     <div class="follow-us">
-                        <h5>Follow Us</h5>
+                        <h4>Follow Us</h4>
                         <div class="socials">
                             @foreach($socialLinks as $socialLink)
                                 <a href="{{ $socialLink->url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $socialLink->platform }}"><i class="{{ $socialLink->icon }}"></i></a>

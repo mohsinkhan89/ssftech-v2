@@ -77,7 +77,7 @@
                         </div>
                         <form class="contact-form hero-contact-form js-contact-form" id="heroContactForm"
                             data-response="#heroFormResponse" data-button="#heroSubmitBtn">
-                            @csrf
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="row g-3">
                                 <div class="col-lg-6 col-md-6">
                                     <input class="form-control" type="text" name="name" placeholder="Your Name"
@@ -281,10 +281,10 @@
                                                     ->implode('');
                                             @endphp
                                             <span class="review-avatar review-avatar-initials"
-                                                aria-label="{{ $testimonial->name }}">{{ $initials ?: '?' }}</span>
+                                                aria-hidden="true">{{ $initials ?: '?' }}</span>
                                         @endif
                                         <p>{{ $testimonial->review }}</p>
-                                        <strong>{{ $testimonial->name }}</strong>
+                                        <h3 class="review-author-name">{{ $testimonial->name }}</h3>
                                         <small>{{ trim(($testimonial->designation ? $testimonial->designation . ', ' : '') . $testimonial->company, ', ') }}</small>
                                         </article>
                                     </div>
@@ -375,7 +375,7 @@
                 <a href="#contact" class="btn btn-brand reveal delay-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="portfolio-controls reveal delay-3">
-                <div class="portfolio-tabs" aria-label="Project categories">
+                <div class="portfolio-tabs" role="group" aria-label="Project categories">
                     <button class="active" type="button" data-filter="all" aria-pressed="true"><i
                             class="fa-solid fa-table-cells-large"></i> All
                         Projects</button>
@@ -386,7 +386,7 @@
                     <button type="button" data-filter="webapp" aria-pressed="false"><i class="fa-solid fa-grip"></i> Web
                         Apps</button>
                 </div>
-                <div class="device-tabs" aria-label="Device preview">
+                <div class="device-tabs" role="group" aria-label="Device preview">
                     <button class="active" type="button" data-device="desktop" aria-pressed="true"><i class="fa-solid fa-desktop"></i>
                         Desktop</button>
                     <button type="button" data-device="tablet" aria-pressed="false"><i class="fa-solid fa-tablet-screen-button"></i>
@@ -418,7 +418,7 @@
                                     </div>
                                 </div>
                                 <div class="project-meta">
-                                    <strong>{{ $project->title }}</strong>
+                                    <h3 class="project-title">{{ $project->title }}</h3>
                                     <span>{{ $project->category == 'webapp' ? 'Web App' : ($project->category == 'ecommerce' ? 'E-Commerce' : 'Website') }}</span>
                                     <a href="{{ $project->project_url ?? '#contact' }}"
                                         aria-label="View {{ $project->title }} project">
@@ -500,7 +500,7 @@
                     </div>
                     <form class="contact-form js-contact-form" id="contactForm" data-response="#formResponse"
                         data-button="#submitBtn">
-                        @csrf
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="row g-3">
                             <div class="col-lg-6 col-md-6">
                                 <input class="form-control" type="text" name="name" placeholder="Your Name"

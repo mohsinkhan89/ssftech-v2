@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/blog', [FrontendController::class, 'blogIndex'])->name('blog.index');
 Route::get('/blog/{slug}', [FrontendController::class, 'blogShow'])->name('blog.show');

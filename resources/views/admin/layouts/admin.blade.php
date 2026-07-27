@@ -73,15 +73,31 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, .45) transparent;
         }
 
         .sidebar > div:first-child {
             display: flex;
-            flex: 1 1 auto;
-            min-height: 0;
+            flex: 0 0 auto;
             flex-direction: column;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, .35);
+            border-radius: 999px;
         }
 
         .sidebar-brand {
@@ -102,27 +118,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            flex-grow: 1;
-            min-height: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(148, 163, 184, .45) transparent;
-            padding-right: 5px;
-        }
-
-        .nav-menu::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .nav-menu::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .nav-menu::-webkit-scrollbar-thumb {
-            background: rgba(148, 163, 184, .35);
-            border-radius: 999px;
+            flex: 0 0 auto;
         }
 
         .nav-item {
@@ -171,6 +167,7 @@
         .sidebar-footer {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
+            margin-top: auto;
         }
 
         /* Main Content Wrapper (Light Mode friendly) */
@@ -971,60 +968,24 @@
         }
 
         /* Responsive */
-        @media (min-width: 992px) and (max-width: 1399px) {
-            :root {
-                --sidebar-width: 230px;
+        /*
+         * Preserve the large-desktop proportions on common 1280/1366px screens.
+         * At 70% the 1300px viewport gets roughly 1857px of layout space.
+         */
+        @media (min-width: 1200px) and (max-width: 1399px) {
+            html {
+                zoom: .7;
+            }
+
+            body,
+            .main-wrapper {
+                min-height: 142.857vh;
+                min-height: 142.857dvh;
             }
 
             .sidebar {
-                padding: 20px 16px;
-            }
-
-            .sidebar-brand {
-                padding-bottom: 20px;
-                margin-bottom: 16px;
-            }
-
-            .sidebar-brand img {
-                width: 122px;
-            }
-
-            .nav-item {
-                margin-bottom: 4px;
-            }
-
-            .nav-link-custom {
-                gap: 11px;
-                padding: 10px 12px;
-                border-radius: 8px;
-                font-size: 13px;
-            }
-
-            .nav-link-custom i {
-                width: 18px;
-                font-size: 16px;
-            }
-
-            .sidebar-footer {
-                padding-top: 12px;
-            }
-
-            .sidebar-status-card {
-                padding: 10px;
-                font-size: 11px;
-            }
-
-            .sidebar-status-card .mb-3 {
-                margin-bottom: .65rem !important;
-            }
-
-            .main-wrapper {
-                padding: 26px;
-            }
-
-            .header-panel {
-                padding: 16px 22px;
-                margin-bottom: 24px;
+                height: 142.857vh;
+                height: 142.857dvh;
             }
         }
 

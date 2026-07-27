@@ -188,7 +188,7 @@
             <div class="cta-banner reveal">
                 <div class="cta-content">
                     <p>Ready to Build Something Amazing?</p>
-                    <h2>Let's build something<span class="desktop-heading-break"><br></span> amazing together.</h2>
+                    <h2>Let's build something amazing together.</h2>
                     <p>Get in touch today and discover how SSF Tech can help your brand grow online.</p>
                     <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a>
                 </div>

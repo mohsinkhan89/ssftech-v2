@@ -62,6 +62,7 @@
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
+            height: 100dvh;
             position: fixed;
             top: 0;
             left: 0;
@@ -73,6 +74,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .sidebar > div:first-child {
+            display: flex;
+            flex: 1 1 auto;
+            min-height: 0;
+            flex-direction: column;
         }
 
         .sidebar-brand {
@@ -94,6 +103,26 @@
             padding: 0;
             margin: 0;
             flex-grow: 1;
+            min-height: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, .45) transparent;
+            padding-right: 5px;
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .nav-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .nav-menu::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, .35);
+            border-radius: 999px;
         }
 
         .nav-item {
@@ -942,6 +971,63 @@
         }
 
         /* Responsive */
+        @media (min-width: 992px) and (max-width: 1399px) {
+            :root {
+                --sidebar-width: 230px;
+            }
+
+            .sidebar {
+                padding: 20px 16px;
+            }
+
+            .sidebar-brand {
+                padding-bottom: 20px;
+                margin-bottom: 16px;
+            }
+
+            .sidebar-brand img {
+                width: 122px;
+            }
+
+            .nav-item {
+                margin-bottom: 4px;
+            }
+
+            .nav-link-custom {
+                gap: 11px;
+                padding: 10px 12px;
+                border-radius: 8px;
+                font-size: 13px;
+            }
+
+            .nav-link-custom i {
+                width: 18px;
+                font-size: 16px;
+            }
+
+            .sidebar-footer {
+                padding-top: 12px;
+            }
+
+            .sidebar-status-card {
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .sidebar-status-card .mb-3 {
+                margin-bottom: .65rem !important;
+            }
+
+            .main-wrapper {
+                padding: 26px;
+            }
+
+            .header-panel {
+                padding: 16px 22px;
+                margin-bottom: 24px;
+            }
+        }
+
         @media(max-width: 991px) {
             .sidebar {
                 transform: translateX(-100%);

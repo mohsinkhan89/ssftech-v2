@@ -62,6 +62,7 @@
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
+            height: 100dvh;
             position: fixed;
             top: 0;
             left: 0;
@@ -72,7 +73,31 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, .45) transparent;
+        }
+
+        .sidebar > div:first-child {
+            display: flex;
+            flex: 0 0 auto;
+            flex-direction: column;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, .35);
+            border-radius: 999px;
         }
 
         .sidebar-brand {
@@ -93,7 +118,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            flex-grow: 1;
+            flex: 0 0 auto;
         }
 
         .nav-item {
@@ -142,6 +167,7 @@
         .sidebar-footer {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
+            margin-top: auto;
         }
 
         /* Main Content Wrapper (Light Mode friendly) */
@@ -942,6 +968,27 @@
         }
 
         /* Responsive */
+        /*
+         * Preserve the large-desktop proportions on common 1280/1366px screens.
+         * At 70% the 1300px viewport gets roughly 1857px of layout space.
+         */
+        @media (min-width: 1200px) and (max-width: 1399px) {
+            html {
+                zoom: .7;
+            }
+
+            body,
+            .main-wrapper {
+                min-height: 142.857vh;
+                min-height: 142.857dvh;
+            }
+
+            .sidebar {
+                height: 142.857vh;
+                height: 142.857dvh;
+            }
+        }
+
         @media(max-width: 991px) {
             .sidebar {
                 transform: translateX(-100%);

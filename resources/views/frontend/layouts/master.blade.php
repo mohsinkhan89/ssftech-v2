@@ -18,33 +18,53 @@
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="SSF Tech">
         <meta property="og:title" content="SSF Tech - Digital Solutions">
-        <meta property="og:description" content="SSF Tech provides website development, digital design and marketing solutions for growing businesses.">
+        <meta property="og:description"
+            content="SSF Tech provides website development, digital design and marketing solutions for growing businesses.">
         <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:image" content="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}">
+        <meta property="og:image"
+            content="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="SSF Tech - Digital Solutions">
-        <meta name="twitter:description" content="SSF Tech provides website development, digital design and marketing solutions for growing businesses.">
-        <meta name="twitter:image" content="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}">
+        <meta name="twitter:description"
+            content="SSF Tech provides website development, digital design and marketing solutions for growing businesses.">
+        <meta name="twitter:image"
+            content="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}">
     @endif
     @yield('css')
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{{url('frontend/assets/images/favicons/apple-icon-57x57.png')}}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{url('frontend/assets/images/favicons/apple-icon-60x60.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{url('frontend/assets/images/favicons/apple-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{url('frontend/assets/images/favicons/apple-icon-76x76.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{url('frontend/assets/images/favicons/apple-icon-114x114.png')}}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{url('frontend/assets/images/favicons/apple-icon-120x120.png')}}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{url('frontend/assets/images/favicons/apple-icon-144x144.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{url('frontend/assets/images/favicons/apple-icon-152x152.png')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{url('frontend/assets/images/favicons/apple-icon-180x180.png')}}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{url('frontend/assets/images/favicons/android-icon-192x192.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{url('frontend/assets/images/favicons//favicon-32x32.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{url('frontend/assets/images/favicons//favicon-96x96.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url('frontend/assets/images/favicons//favicon-16x16.png')}}">
+    <link rel="apple-touch-icon" sizes="57x57"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url('frontend/assets/images/favicons/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ url('frontend/assets/images/favicons/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url('frontend/assets/images/favicons//favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="{{ url('frontend/assets/images/favicons//favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url('frontend/assets/images/favicons//favicon-16x16.png') }}">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#e40914">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#e40914">
+
+    <meta name="google-site-verification" content="SZc9t7-JMLQQj9BlUEY-gNNaUTyMApJBIqif-uxUOcE" />
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +77,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('frontend/assets/css/style.css') }}?v={{ $siteSetting?->css_version ?: env('ASSET_VERSION', '1.0.0') }}">
+    <link rel="stylesheet"
+        href="{{ url('frontend/assets/css/style.css') }}?v={{ $siteSetting?->css_version ?: env('ASSET_VERSION', '1.0.0') }}">
+
+
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N26X6HPSVM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-N26X6HPSVM');
+    </script>
+
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "xsyk5k9ehk");
+    </script>
 </head>
 
 <body>
@@ -75,7 +122,9 @@
     @yield('js')
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer src="{{ url('frontend/assets/js/main.js') }}?v={{ $siteSetting?->js_version ?: env('ASSET_VERSION', '1.0.0') }}"></script>
+    <script defer
+        src="{{ url('frontend/assets/js/main.js') }}?v={{ $siteSetting?->js_version ?: env('ASSET_VERSION', '1.0.0') }}">
+    </script>
 </body>
 
 </html>

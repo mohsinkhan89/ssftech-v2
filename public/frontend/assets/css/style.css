@@ -1045,6 +1045,10 @@ a {
   transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 
+a.client-logo-card {
+  text-decoration: none;
+}
+
 .client-logo-card i {
   color: var(--red);
   font-size: 26px;

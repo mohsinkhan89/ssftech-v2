@@ -10,6 +10,7 @@ class Client extends Model
         'name',
         'icon',
         'image',
+        'link',
         'status',
     ];
 

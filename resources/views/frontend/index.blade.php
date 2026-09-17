@@ -317,9 +317,15 @@
                             <div class="client-logo-track swiper-wrapper">
                                 @foreach($clients as $client)
                                     <div class="client-logo-slide swiper-slide">
-                                        <div class="client-logo-card">
-                                            <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
-                                        </div>
+                                        @if($client->link)
+                                            <a href="{{ $client->link }}" class="client-logo-card" target="_blank" rel="noopener noreferrer" aria-label="Visit {{ $client->name }}">
+                                                <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
+                                            </a>
+                                        @else
+                                            <div class="client-logo-card">
+                                                <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
+                                            </div>
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>

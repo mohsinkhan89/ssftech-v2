@@ -35,6 +35,7 @@
                     <tr>
                         <th style="width: 150px;">Logo</th>
                         <th>Partner Name</th>
+                        <th>Link</th>
                         <th>Status</th>
                         <th>Created At</th>
                         @if(Auth::user()->role !== 'author')
@@ -56,6 +57,15 @@
                             </td>
                             <td>
                                 <div class="fw-bold">{{ $client->name }}</div>
+                            </td>
+                            <td>
+                                @if($client->link)
+                                    <a href="{{ $client->link }}" target="_blank" rel="noopener noreferrer" class="text-red fw-semibold">
+                                        Visit <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                                    </a>
+                                @else
+                                    <span class="text-muted">No link</span>
+                                @endif
                             </td>
                             <td>
                                 @if(Auth::user()->role !== 'author')

@@ -33,6 +33,12 @@
                     <input type="text" name="name" id="name" class="form-control form-control-custom" placeholder="e.g. AWS, Microsoft, Google Cloud" value="{{ old('name', $client->name) }}" required>
                 </div>
 
+                <div class="mb-3">
+                    <label for="link">Partner Link <span class="text-muted">(optional)</span></label>
+                    <input type="url" name="link" id="link" class="form-control form-control-custom" placeholder="https://example.com" value="{{ old('link', $client->link) }}">
+                    <small class="text-muted d-block mt-2">Only partners with a link will be clickable on the website.</small>
+                </div>
+
                 @if($client->image)
                     <div class="mb-3">
                         <label>Current Logo</label>

@@ -119,6 +119,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/settings', [AdminController::class, 'settingsIndex'])->name('admin.settings.index');
     Route::middleware('role:administrator,admin')->group(function () {
         Route::post('/admin/settings/logo', [AdminController::class, 'settingsUpdateLogo'])->name('admin.settings.logo');
+        Route::post('/admin/settings/footer-logo', [AdminController::class, 'settingsUpdateFooterLogo'])->name('admin.settings.footer-logo');
         Route::put('/admin/settings/asset-versions', [AdminController::class, 'settingsUpdateAssetVersions'])->name('admin.settings.asset-versions');
         Route::put('/admin/settings/contact-details', [AdminController::class, 'settingsUpdateContactDetails'])->name('admin.settings.contact-details');
         Route::put('/admin/settings/notification-emails', [AdminController::class, 'settingsUpdateNotificationEmails'])->name('admin.settings.notification-emails');

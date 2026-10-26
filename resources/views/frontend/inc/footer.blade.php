@@ -13,7 +13,7 @@
             <div class="footer-about">
                 <a class="footer-brand" href="{{ route('index') }}#home" aria-label="SSF Tech home">
                     <span class="footer-logo">
-                        <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech" loading="lazy" decoding="async">
+                        <img src="{{ url($siteSetting?->footer_logo ?: $siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech" loading="lazy" decoding="async">
                     </span>
                 </a>
                 <p class="footer-tagline">Digital products, connected business systems and growth strategies built around the way you work.</p>

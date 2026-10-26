@@ -21,6 +21,21 @@
                     <button class="btn btn-red w-100 mt-4"><i class="fa-solid fa-upload me-2"></i>Update Logo</button>
                 </form>
             @endif
+
+            <hr class="my-4">
+            <h3 class="table-title mb-3"><i class="fa-regular fa-image text-red me-2"></i> Footer Logo</h3>
+            <div class="p-4 rounded-3 text-center mb-4" style="background:#0f172a;">
+                <img src="{{ url($siteSetting->footer_logo ?: $siteSetting->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="Current footer logo" style="max-width:220px;max-height:100px;object-fit:contain;">
+            </div>
+            @if(Auth::user()->role !== 'author')
+                <form action="{{ route('admin.settings.footer-logo') }}" method="POST" enctype="multipart/form-data">@csrf
+                    <label for="footer_logo">Upload Footer Logo</label>
+                    <input type="file" name="footer_logo" id="footer_logo" class="form-control form-control-custom" accept=".png,.jpg,.jpeg,.webp,.svg" required>
+                    <small class="text-muted d-block mt-2">Used only in the website footer. PNG, JPG, WEBP or SVG. Maximum 2MB.</small>
+                    @error('footer_logo')<div class="text-danger small mt-2">{{ $message }}</div>@enderror
+                    <button class="btn btn-red w-100 mt-4"><i class="fa-solid fa-upload me-2"></i>Update Footer Logo</button>
+                </form>
+            @endif
         </div>
     </div>
     <div class="col-lg-7">

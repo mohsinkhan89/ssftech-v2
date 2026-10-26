@@ -4402,8 +4402,8 @@
     max-width: 670px;
     margin: 18px 0 0;
     color: #9da5b2;
-    font-size: 12px;
-    line-height: 1.75
+    font-size: 15px;
+    line-height: 1.9
 }
 
 .ssf-modern .footer-cta>.btn {
@@ -4451,10 +4451,10 @@
 }
 
 .ssf-modern .footer-modern .footer-tagline {
-    max-width: 310px;
+    max-width: 330px;
     margin: 0 0 24px;
     color: #9da5b2;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 1.9
 }
 
@@ -4764,7 +4764,7 @@
     }
 
     .ssf-modern .footer-cta-copy>p:last-child {
-        font-size: 12px;
+        font-size: 14px;
         margin-top: 17px
     }
 

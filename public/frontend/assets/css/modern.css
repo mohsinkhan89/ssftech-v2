@@ -227,3 +227,48 @@
 @media(max-width:1199px){.ssf-modern .hero-stage{grid-template-columns:minmax(0,1fr) 270px;gap:30px}.ssf-modern .modern-hero h1{font-size:68px}.ssf-modern .industries-section .industry-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:991px){.ssf-modern .hero-stage{grid-template-columns:1fr}.ssf-modern .hero-expertise{display:none}.ssf-modern .modern-hero{min-height:780px;height:auto;padding-top:150px}.ssf-modern .modern-hero h1{font-size:72px}.ssf-modern .modern-hero>.container{padding-inline:32px}.ssf-modern .hero-editorial{padding-bottom:50px}.ssf-modern .services-grid>.swiper-wrapper{grid-template-columns:repeat(2,minmax(0,1fr))}.ssf-modern .delivery-heading{align-items:flex-start;flex-direction:column;gap:15px}.ssf-modern .delivery-heading .muted{max-width:600px}.ssf-modern .delivery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ssf-modern .site-header{top:0;left:0;right:0;background:#10141be6}.ssf-modern .navbar-collapse{border-radius:8px}.ssf-modern .site-footer,.ssf-modern .insights-section,.ssf-modern .industries-section{margin:0;border-radius:0}}
 @media(max-width:575px){.ssf-modern .modern-hero{margin:0;border-radius:0;min-height:780px;padding:140px 0 32px}.ssf-modern .modern-hero>.container{padding-inline:22px}.ssf-modern .modern-hero h1{font-size:53px;letter-spacing:-2.4px}.ssf-modern .modern-hero .eyebrow{font-size:9px;letter-spacing:1.6px}.ssf-modern .modern-hero .hero-copy{font-size:14px}.ssf-modern .hero-actions{gap:10px}.ssf-modern .hero-actions .btn{font-size:12px;padding:13px 16px}.ssf-modern .hero-bottom-line{gap:15px}.ssf-modern .hero-bottom-line strong{font-size:15px}.ssf-modern .hero-bottom-line div>span{font-size:9px}.ssf-modern .hero-bottom-line a{font-size:7px}.ssf-modern .services-grid>.swiper-wrapper{grid-template-columns:1fr}.ssf-modern .service-card{min-height:280px}.ssf-modern .industries-section .industry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ssf-modern .delivery-grid{grid-template-columns:1fr}.ssf-modern .delivery-grid article{border-bottom:1px solid #ffffff15;padding-bottom:25px}.ssf-modern .section-title{font-size:35px;letter-spacing:-1.5px}.ssf-modern .cta-banner{padding:27px}.ssf-modern .contact-shell{border-radius:10px}.ssf-modern .footer-invitation h2{letter-spacing:-1.4px}}
+/* Shared interaction system: rising fill, moving arrows and quiet surface depth. */
+.ssf-modern{--motion-ease:cubic-bezier(.22,1,.36,1);--motion-time:480ms}
+.ssf-modern .btn-brand,.ssf-modern .hero-secondary{position:relative;isolation:isolate;overflow:hidden;vertical-align:middle;transition:color 280ms ease,border-color 280ms ease,box-shadow 350ms ease,transform 350ms var(--motion-ease);-webkit-tap-highlight-color:transparent}
+.ssf-modern .btn-brand::before,.ssf-modern .hero-secondary::before{content:"";position:absolute;inset:-1px;z-index:-1;background:#202630;border-radius:60% 60% 0 0;transform:translateY(105%);transition:transform var(--motion-time) var(--motion-ease),border-radius var(--motion-time) var(--motion-ease);pointer-events:none}
+.ssf-modern .hero-secondary::before{background:var(--red)}
+.ssf-modern .btn-brand:is(:hover,:focus-visible){background:var(--red);border-color:#202630;color:#fff;transform:translateY(-2px);box-shadow:0 8px 22px #090d1420}
+.ssf-modern .hero-secondary:is(:hover,:focus-visible){background:#ffffff04;border-color:var(--red);color:#fff;transform:translateY(-2px);box-shadow:0 8px 22px #e4091425}
+.ssf-modern .btn-brand:is(:hover,:focus-visible)::before,.ssf-modern .hero-secondary:is(:hover,:focus-visible)::before{transform:translateY(0);border-radius:0}
+.ssf-modern .btn-brand .button-orb{transition:background 350ms ease,transform 450ms var(--motion-ease)}
+.ssf-modern .btn-brand i,.ssf-modern .hero-secondary i{transition:transform 450ms var(--motion-ease)}
+.ssf-modern .btn-brand:is(:hover,:focus-visible) .button-orb{background:#e40914;transform:rotate(-40deg)}
+.ssf-modern .btn-brand:is(:hover,:focus-visible)>i{transform:translateX(4px)}
+.ssf-modern .hero-secondary:is(:hover,:focus-visible) i{transform:translate(3px,-3px)}
+.ssf-modern .btn-brand:active,.ssf-modern .hero-secondary:active{transform:translateY(0);box-shadow:none}
+.ssf-modern .btn-brand:disabled{opacity:.65;cursor:wait;transform:none;box-shadow:none}
+.ssf-modern .btn-brand:disabled::before{transform:translateY(105%)}
+.ssf-modern .navbar-nav .nav-link{position:relative;transition:color 250ms ease}
+.ssf-modern .navbar-nav .nav-link::after{content:"";display:block;position:absolute;left:11px;right:11px;bottom:5px;height:2px;width:auto;background:var(--red);border-radius:2px;transform:scaleX(0);transform-origin:right;transition:transform 350ms var(--motion-ease)}
+.ssf-modern .navbar-nav .nav-link:is(:hover,:focus-visible)::after,.ssf-modern .navbar-nav .nav-link.active::after{transform:scaleX(1);transform-origin:left}
+.ssf-modern .service-card{isolation:isolate;overflow:hidden;transition:transform 450ms var(--motion-ease),border-color 350ms ease,box-shadow 450ms ease}
+.ssf-modern .service-card::after{content:"";display:block;position:absolute;left:0;right:0;bottom:0;top:auto;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 450ms var(--motion-ease);pointer-events:none}
+.ssf-modern .service-card:is(:hover,:focus-within){transform:translateY(-6px);border-color:#e4091438;box-shadow:0 18px 45px #14171d0c}
+.ssf-modern .service-card:is(:hover,:focus-within)::after{transform:scaleX(1)}
+.ssf-modern .service-icon{transition:background 350ms ease,color 350ms ease,transform 450ms var(--motion-ease),box-shadow 350ms ease}
+.ssf-modern .service-card:is(:hover,:focus-within) .service-icon{background:var(--red);color:#fff;transform:translateY(-3px) rotate(-5deg);box-shadow:0 8px 18px #e4091425}
+.ssf-modern .service-card a i,.ssf-modern .insight-card-body>a i,.ssf-modern .project-meta a i{transition:transform 400ms var(--motion-ease)}
+.ssf-modern .service-card a:is(:hover,:focus-visible) i,.ssf-modern .insight-card-body>a:is(:hover,:focus-visible) i{transform:translateX(5px)}
+.ssf-modern .project-meta a:is(:hover,:focus-visible) i{transform:translate(2px,-2px)}
+.ssf-modern .project-card,.ssf-modern .insight-card{transition:transform 450ms var(--motion-ease),box-shadow 450ms ease,border-color 350ms ease}
+.ssf-modern .project-card:is(:hover,:focus-within),.ssf-modern .insight-card:is(:hover,:focus-within){transform:translateY(-5px);box-shadow:0 18px 42px #090d1412}
+.ssf-modern .insight-card>img{transition:transform 700ms var(--motion-ease)}
+.ssf-modern .insight-card:is(:hover,:focus-within)>img{transform:scale(1.035)}
+.ssf-modern .hero-expertise>a{transition:background 350ms ease}
+.ssf-modern .hero-expertise>a>i{transition:transform 400ms var(--motion-ease),color 300ms ease}
+.ssf-modern .hero-expertise>a:is(:hover,:focus-visible){background:#e4091410}
+.ssf-modern .hero-expertise>a:is(:hover,:focus-visible)>i{transform:translate(3px,-3px);color:#ff6971}
+.ssf-modern .industry-grid>div{transition:background 350ms ease}
+.ssf-modern .industry-grid>div i{transition:transform 450ms var(--motion-ease)}
+.ssf-modern .industry-grid>div:hover i{transform:translateY(-4px)}
+.ssf-modern .footer-links a{transition:color 250ms ease,transform 350ms var(--motion-ease)}
+.ssf-modern .footer-links a:is(:hover,:focus-visible){color:#fff;transform:translateX(5px)}
+.ssf-modern .socials a,.ssf-modern .contact-socials a{transition:background 300ms ease,border-color 300ms ease,color 300ms ease,transform 350ms var(--motion-ease)}
+.ssf-modern .socials a:is(:hover,:focus-visible),.ssf-modern .contact-socials a:is(:hover,:focus-visible){background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px)}
+@media(hover:none){.ssf-modern .btn-brand:hover,.ssf-modern .hero-secondary:hover,.ssf-modern .service-card:hover,.ssf-modern .project-card:hover,.ssf-modern .insight-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.ssf-modern *,.ssf-modern *::before,.ssf-modern *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.ssf-modern .btn-brand:is(:hover,:focus-visible),.ssf-modern .hero-secondary:is(:hover,:focus-visible),.ssf-modern .service-card:is(:hover,:focus-within),.ssf-modern .project-card:is(:hover,:focus-within),.ssf-modern .insight-card:is(:hover,:focus-within){transform:none}}

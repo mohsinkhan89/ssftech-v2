@@ -72,6 +72,43 @@
         </div>
     </section>
 
+    @if($clients->isNotEmpty())
+    <section class="clients-section">
+        <div class="container">
+            <div class="clients-panel reveal">
+                <div class="clients-head">
+                    <p class="eyebrow text-center">Our Partners</p>
+                    <h2 class="section-title text-center">In good company.</h2>
+
+                </div>
+
+                @if($clients->isNotEmpty())
+                    <div class="clients-carousel-wrap">
+                        <div class="client-logo-slider swiper">
+                            <div class="client-logo-track swiper-wrapper">
+                                @foreach($clients as $client)
+                                    <div class="client-logo-slide swiper-slide">
+                                        @if($client->link)
+                                            <a href="{{ $client->link }}" class="client-logo-card" target="_blank" rel="noopener noreferrer" aria-label="Visit {{ $client->name }}">
+                                                <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
+                                            </a>
+                                        @else
+                                            <div class="client-logo-card">
+                                                <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="client-pagination"></div>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
+
     <section id="about" class="section-pad about-section">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -82,6 +119,7 @@
                         your vision into a captivating website through expert design and development. From sleek, modern
                         interfaces to seamless functionality, we specialise in boosting conversions and creating digital
                         experiences that help your brand succeed online.</p>
+                    <div class="about-principles"><span><i class="fa-solid fa-check"></i> Strategy before screens</span><span><i class="fa-solid fa-check"></i> Performance from day one</span><span><i class="fa-solid fa-check"></i> Support beyond launch</span></div>
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-icon"><i class="fa-regular fa-calendar-days"></i></span>
@@ -104,8 +142,8 @@
                 </div>
                 <div class="col-lg-6 reveal mm-0 delay-2">
                     <div class="about-image float-soft">
-                        <img src="{{ url('frontend/assets/images/extracted/about-team-shot.webp') }}" loading="lazy" decoding="async"
-                            alt="Digital team working together">
+                        <img src="{{ url('frontend/assets/images/stock/development-team.webp') }}" loading="lazy" decoding="async"
+                            alt="Software developers working on code in a collaborative office">
                         <div class="mission-card">
                             <span><i class="fa-solid fa-bullseye"></i></span>
                             <strong>Your Growth,<br>Our Mission</strong>
@@ -128,7 +166,7 @@
                     @foreach ($services as $service)
                         <div class="swiper-slide">
                             <article class="service-card">
-                                <span class="service-icon"><i class="{{ $service->icon }}"></i></span>
+                                <div class="service-card-top"><span class="service-icon"><i class="{{ $service->icon }}"></i></span><span class="service-index">0{{ $loop->iteration }} /</span></div>
                                 <h3>{{ $service->title }}</h3>
                                 <p>{{ $service->description }}</p>
                                 <a href="{{ $service->link ?: '#contact' }}">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -142,32 +180,31 @@
     </section>
     @endif
 
-    <section id="industries" class="industries-section">
+    <section id="industries" class="industries-section industry-showcase">
         <div class="container">
-            <p class="eyebrow reveal">Industries We Serve</p>
-            <h2 class="section-title light reveal delay-1">Built for your industry.<br><span>Ready for your ambition.</span></h2>
-            <p class="muted text-white reveal delay-1">Whatever industry you operate in, our team has the experience and
-                knowledge to build a digital solution that fits your goals and your customers.</p>
-            <div class="industry-grid reveal delay-2">
-                <div><i class="fa-solid fa-graduation-cap"></i>Education and<br>Learning</div>
-                <div><i class="fa-solid fa-microphone-lines"></i>On Demand<br>Solutions</div>
-                <div><i class="fa-solid fa-photo-film"></i>Media and<br>Entertainment</div>
-                <div><i class="fa-solid fa-kitchen-set"></i>Food and<br>Drink</div>
-                <div><i class="fa-solid fa-spa"></i>Health and<br>Fitness</div>
-                <div><i class="fa-regular fa-heart"></i>Lifestyle</div>
-                <div><i class="fa-solid fa-truck-fast"></i>Transportation and<br>Logistics</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-wrap">
-        <div class="container">
-            <div class="cta-banner reveal">
-                <div class="cta-content">
-                    <p>Ready to Build Something Amazing?</p>
-                    <h2>Let's build something amazing together.</h2>
-                    <p>Get in touch today and discover how SSF Tech can help your brand grow online.</p>
-                    <a href="#contact" class="btn btn-brand">Get A Quote <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="section-heading-row"><div><p class="eyebrow">Built around your business</p><h2 class="section-title light">Different industries.<br><span>One digital advantage.</span></h2></div><p class="muted">Your customers and challenges are unique. Your digital solution should be too.</p></div>
+            @php
+                $industryShowcase = [
+                    ['Retail & E-commerce', 'fa-cart-shopping', 'Turn browsing into buying.', 'Fast storefronts, intuitive product discovery and a checkout experience built around your customers.', 'E-commerce platforms', 'Payment integrations', 'stock/ecommerce.webp'],
+                    ['Education & Learning', 'fa-graduation-cap', 'Make knowledge more accessible.', 'Learning platforms, course websites and student portals that make every interaction simpler.', 'Learning platforms', 'Student portals', 'stock/education.webp'],
+                    ['Professional Services', 'fa-briefcase', 'Build trust before the first call.', 'Clear, credible websites and practical business applications that help your expertise stand out.', 'Business websites', 'Custom applications', 'stock/professional-services.webp'],
+                    ['Health & Lifestyle', 'fa-heart-pulse', 'Better experiences. Greater care.', 'Welcoming digital experiences that help people discover your services, make enquiries and stay connected.', 'Service websites', 'Booking integrations', 'stock/healthcare.webp'],
+                    ['Transport & Logistics', 'fa-truck-fast', 'Keep your business moving.', 'Booking experiences, operational dashboards and connected systems for a smoother working day.', 'Booking platforms', 'System integrations', 'stock/logistics.webp'],
+                ];
+            @endphp
+            <div class="industry-showcase-grid">
+                <div class="industry-selector" role="tablist" aria-label="Industries" aria-orientation="vertical">
+                    @foreach($industryShowcase as $industry)
+                        <button class="industry-choice {{ $loop->first ? 'active' : '' }}" id="industry-tab-{{ $loop->index }}" data-bs-toggle="tab" data-bs-target="#industry-panel-{{ $loop->index }}" type="button" role="tab" aria-controls="industry-panel-{{ $loop->index }}" aria-selected="{{ $loop->first ? 'true' : 'false' }}"><span>0{{ $loop->iteration }}</span>{{ $industry[0] }}<i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                    @endforeach
+                </div>
+                <div class="tab-content industry-panels">
+                    @foreach($industryShowcase as $industry)
+                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="industry-panel-{{ $loop->index }}" role="tabpanel" aria-labelledby="industry-tab-{{ $loop->index }}" tabindex="0">
+                            <img src="{{ url('frontend/assets/images/'.$industry[6]) }}" alt="" loading="lazy" decoding="async">
+                            <div class="industry-panel-copy"><span class="industry-panel-icon"><i class="fa-solid {{ $industry[1] }}"></i></span><p class="eyebrow">{{ $industry[0] }}</p><h3>{{ $industry[2] }}</h3><p>{{ $industry[3] }}</p><div class="industry-tags"><span>{{ $industry[4] }}</span><span>{{ $industry[5] }}</span></div><a href="#contact">Discuss your project <i class="fa-solid fa-arrow-right"></i></a></div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -179,7 +216,7 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="section-title light reviews-title">We've helped a lot of businesses but don't just take <span>our word for it</span></h2>
+                    <h2 class="section-title light reviews-title">Good work speaks.<br><span>Our clients say it best.</span></h2>
                     <p class="muted reviews-text">We're proud to help businesses grow with reliable digital solutions,
                         outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
                         makes a real difference.</p>
@@ -251,44 +288,6 @@
     @endif
 
 
-    @if($clients->isNotEmpty())
-    <section class="clients-section">
-        <div class="container">
-            <div class="clients-panel reveal">
-                <div class="clients-head">
-                    <p class="eyebrow text-center">Our Partners</p>
-                    <h2 class="section-title text-center">Building Success Through <span>Trusted Partnerships</span></h2>
-                    <p class="clients-copy">We partner with innovative businesses and leading technology providers to
-                        create digital solutions that deliver lasting results.</p>
-                </div>
-
-                @if($clients->isNotEmpty())
-                    <div class="clients-carousel-wrap">
-                        <div class="client-logo-slider swiper">
-                            <div class="client-logo-track swiper-wrapper">
-                                @foreach($clients as $client)
-                                    <div class="client-logo-slide swiper-slide">
-                                        @if($client->link)
-                                            <a href="{{ $client->link }}" class="client-logo-card" target="_blank" rel="noopener noreferrer" aria-label="Visit {{ $client->name }}">
-                                                <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
-                                            </a>
-                                        @else
-                                            <div class="client-logo-card">
-                                                <img src="{{ url($client->image) }}" alt="{{ $client->name }}" loading="lazy" decoding="async">
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="client-pagination"></div>
-                @endif
-            </div>
-        </div>
-    </section>
-    @endif
-
     @if($blogs->isNotEmpty())
     <section class="insights-section section-pad" id="blog">
         <div class="container">
@@ -325,7 +324,7 @@
             <div class="portfolio-head">
                 <div>
                     <p class="eyebrow reveal">Our Work</p>
-                    <h2 class="section-title reveal delay-1">Digital Experiences We've <br> Created for <span>Our Clients</span></h2>
+                    <h2 class="section-title reveal delay-1">Ideas made real.<br><span>Explore our work.</span></h2>
                     <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
                         their goals. Browse our recent work to see what we've created.</p>
                 </div>
@@ -406,12 +405,12 @@
 
     <section id="contact" class="contact-section section-pad">
         <div class="container">
+            <div class="contact-section-heading"><p class="eyebrow">Get In Touch</p><h2 class="section-title">Big ideas start with<br><span>a simple conversation.</span></h2><p class="muted">Tell us what you have in mind. We will help you find the right way forward.</p></div>
             <div class="contact-shell">
                 <div class="contact-info reveal">
-                    <p class="eyebrow">Get In Touch</p>
-                    <h2 class="section-title light">Outshine Your Competitors with <span>Smart Digital Solutions</span></h2>
-                    <p class="contact-copy">Have a project in mind? Get in touch with our team today and let's create a
-                        digital solution that helps your business grow.</p>
+                    <div class="contact-panel-top"><span class="contact-panel-mark"><i class="fa-solid fa-comments"></i></span><span>LET'S CONNECT</span></div>
+                    <h3 class="contact-panel-title">A real team.<br>Ready to listen.</h3>
+                    <p class="contact-copy">From a new website to your next application, it starts with understanding your business.</p>
                     <div class="contact-details">
                         @if($siteSetting?->contact_phone)
                         <div class="contact-detail">
@@ -463,8 +462,8 @@
                     <div class="contact-form-head">
                         <span><i class="fa-regular fa-envelope"></i></span>
                         <div>
-                            <h3>Send Us a Message</h3>
-                            <p>Fill out the form and we'll get back to you shortly.</p>
+                            <h3>Tell us about your project.</h3>
+                            <p>A few details now. Something great next.</p>
                         </div>
                     </div>
                     <form class="contact-form js-contact-form" id="contactForm" data-response="#formResponse"
@@ -472,21 +471,25 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="row g-3">
                             <div class="col-lg-6 col-md-6">
-                                <input class="form-control" type="text" name="name" placeholder="Your Name"
+                                <label class="field-label" for="enquiry-name">Your name<span aria-hidden="true"> *</span></label>
+                                <input id="enquiry-name" class="form-control" type="text" name="name" placeholder="Your Name"
                                     aria-label="Your Name" required>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <input class="form-control" type="email" name="email" placeholder="Your Email"
+                                <label class="field-label" for="enquiry-email">Email address<span aria-hidden="true"> *</span></label>
+                                <input id="enquiry-email" class="form-control" type="email" name="email" placeholder="Your Email"
                                     aria-label="Your Email" autocomplete="email" required>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <input class="form-control uk-phone-mask" type="tel" name="phone"
+                                <label class="field-label" for="enquiry-phone">Phone number<span aria-hidden="true"> *</span></label>
+                                <input id="enquiry-phone" class="form-control uk-phone-mask" type="tel" name="phone"
                                     placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel"
                                     autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$"
                                     title="Enter a UK number in this format: +44 7123 456789" required>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <select class="form-select" name="service" aria-label="Select Service" required>
+                                <label class="field-label" for="enquiry-service">Interested in<span aria-hidden="true"> *</span></label>
+                                <select id="enquiry-service" class="form-select" name="service" aria-label="Select Service" required>
                                     <option value="">Select Service</option>
                                     @forelse($services as $service)
                                         <option value="{{ $service->title }}">{{ $service->title }}</option>
@@ -496,14 +499,16 @@
                                 </select>
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control" name="message" rows="4" placeholder="Tell us about your project..."
+                                <label class="field-label" for="enquiry-message">Project details<span aria-hidden="true"> *</span></label>
+                                <textarea id="enquiry-message" class="form-control" name="message" rows="4" placeholder="Tell us about your project..."
                                     aria-label="Project details" required></textarea>
                             </div>
                             <div class="col-12">
                                 <div id="formResponse" class="mb-3 d-none"></div>
                                 <button class="btn btn-brand" type="submit" id="submitBtn">
-                                    Send Message <i class="fa-solid fa-arrow-right"></i>
+                                    Let&#39;s start a conversation <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span>
                                 </button>
+                                <p class="form-reassurance"><i class="fa-solid fa-lock"></i> Your details are only used to respond to your enquiry.</p>
                             </div>
                         </div>
                     </form>
@@ -515,21 +520,17 @@
     @if($faqs->isNotEmpty())
     <section class="faq-section section-pad" id="faqs">
         <div class="container">
+            <div class="faq-section-heading"><p class="eyebrow">FAQs</p><h2 class="section-title">Good questions.<br><span>Clear answers.</span></h2><p class="muted">Everything you need to know before we build something together.</p></div>
             <div class="faq-shell">
-                <div class="faq-intro reveal">
-                    <p class="eyebrow">FAQ'S</p>
-                    <h2 class="section-title light">Frequently Asked <span>Questions</span></h2>
-                    <p class="faq-copy">Find answers to some of the most common questions about our services, our process
-                        and how we work.</p>
+                <aside class="faq-intro reveal">
+                    <div class="faq-help-photo"><img src="{{ url('frontend/assets/images/stock/professional-services.webp') }}" alt="Developers collaborating in an office" loading="lazy" decoding="async"><span><i class="fa-solid fa-comment-dots"></i> PEOPLE BEHIND THE TECHNOLOGY</span></div>
                     <div class="faq-question-card">
-                        <span class="faq-question-icon"><i class="fa-solid fa-headset"></i></span>
-                        <h3>Still have questions?</h3>
-                        <p>Can't find the answer you're looking for? Our team is here to help!</p>
-                        <a class="btn btn-brand" href="#contact">
-                            Ask a Question <i class="fa-solid fa-arrow-right"></i>
-                        </a>
+                        <span class="faq-help-label">A QUESTION OF YOUR OWN?</span>
+                        <h3>Let's talk it through.</h3>
+                        <p>Every project is different. Tell us about yours and we will help with the details.</p>
+                        <a class="btn btn-brand" href="#contact">Ask our team <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
-                </div>
+                </aside>
                 <div class="faq-content reveal delay-2">
                     <div class="accordion faq-list" id="faqAccordion">
                         @forelse ($faqs as $faq)
@@ -538,7 +539,7 @@
                                     <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#faq{{ $faq->id }}"
                                         aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
-                                        aria-controls="faq{{ $faq->id }}">{{ $faq->question }}</button>
+                                        aria-controls="faq{{ $faq->id }}"><span class="faq-number">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><span class="faq-question-text">{{ $faq->question }}</span><span class="faq-toggle" aria-hidden="true"></span></button>
                                 </h3>
                                 <div id="faq{{ $faq->id }}"
                                     class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"

@@ -272,3 +272,207 @@
 .ssf-modern .socials a:is(:hover,:focus-visible),.ssf-modern .contact-socials a:is(:hover,:focus-visible){background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px)}
 @media(hover:none){.ssf-modern .btn-brand:hover,.ssf-modern .hero-secondary:hover,.ssf-modern .service-card:hover,.ssf-modern .project-card:hover,.ssf-modern .insight-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.ssf-modern *,.ssf-modern *::before,.ssf-modern *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.ssf-modern .btn-brand:is(:hover,:focus-visible),.ssf-modern .hero-secondary:is(:hover,:focus-visible),.ssf-modern .service-card:is(:hover,:focus-within),.ssf-modern .project-card:is(:hover,:focus-within),.ssf-modern .insight-card:is(:hover,:focus-within){transform:none}}
+/* Home section compositions: visual hierarchy, editorial panels and quieter surfaces. */
+.ssf-modern.is-home .clients-section{padding:38px 0;border-bottom:1px solid #e7e3e0;background:#fff}
+.ssf-modern.is-home .clients-panel{display:grid;grid-template-columns:210px minmax(0,1fr);gap:45px;align-items:center}
+.ssf-modern.is-home .clients-head .eyebrow{margin:0 0 9px;text-align:left!important;font-size:9px}
+.ssf-modern.is-home .clients-head .section-title{font-size:23px;letter-spacing:-.7px;text-align:left!important;margin:0}
+.ssf-modern.is-home .clients-carousel-wrap{min-width:0;margin:0}
+.ssf-modern.is-home .client-logo-card{border:0;height:80px;background:transparent;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
+.ssf-modern.is-home .client-logo-card:hover{filter:none;opacity:1;box-shadow:none}
+.ssf-modern.is-home .client-pagination{display:none}
+.ssf-modern .about-principles{display:grid;gap:12px;margin-top:25px;font-size:13px;font-weight:500}
+.ssf-modern .about-principles i{display:inline-grid;place-items:center;background:#fbe9e9;color:var(--red);border-radius:50%;width:22px;height:22px;font-size:9px;margin-right:10px}
+.ssf-modern.is-home .about-image{overflow:visible;border:0;position:relative;padding:0 25px 25px 0}
+.ssf-modern.is-home .about-image:before{content:'';position:absolute;inset:35px 0 0 35px;background:#eae5e2;border-radius:24px;z-index:-1}
+.ssf-modern.is-home .about-image img{border-radius:20px;width:100%;height:490px;object-fit:cover;filter:saturate(.6)}
+.ssf-modern.is-home .mission-card{right:0;bottom:0;left:auto;min-width:210px;background:#14171d;color:#fff;border:6px solid #f6f4f2;border-radius:18px;padding:25px;box-shadow:none}
+.ssf-modern.is-home .mission-card span{color:#ff6971}
+.ssf-modern.is-home .stats-grid{margin-top:30px}
+.ssf-modern.is-home .services-section{background:#efedeb;padding:90px 0}
+.ssf-modern.is-home .services-grid>.swiper-wrapper{grid-template-columns:repeat(6,minmax(0,1fr));gap:22px}
+.ssf-modern.is-home .services-grid .swiper-slide{grid-column:span 2}
+.ssf-modern.is-home .services-grid .swiper-slide:nth-child(-n+2){grid-column:span 3}
+.ssf-modern.is-home .services-grid .swiper-slide:first-child .service-card{background:#161b24;border-color:#161b24;color:#fff}
+.ssf-modern.is-home .services-grid .swiper-slide:first-child h3{color:#fff}
+.ssf-modern.is-home .services-grid .swiper-slide:first-child p{color:#b9bfca}
+.ssf-modern.is-home .services-grid .swiper-slide:first-child a{color:#ff747b}
+.ssf-modern.is-home .service-card{padding:34px;border-radius:16px;min-height:310px}
+.ssf-modern .service-card-top{display:flex;align-items:center;justify-content:space-between}
+.ssf-modern .service-index{font-family:var(--display-font);font-size:13px;letter-spacing:2px;color:#a1a0a5}
+.ssf-modern.is-home .service-card h3{margin-top:30px}
+.ssf-modern.is-home .service-card a{margin-top:auto;padding-top:15px;display:flex;justify-content:space-between}
+.ssf-modern .section-heading-row{display:flex;align-items:flex-end;justify-content:space-between;gap:50px;margin-bottom:45px}
+.ssf-modern .section-heading-row>.muted{max-width:340px;margin-bottom:5px;color:#aab0bc}
+.ssf-modern .industry-showcase{background:#10141c;padding:100px 0}
+.ssf-modern .industry-showcase-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;align-items:center}
+.ssf-modern .industry-selector{display:flex;flex-direction:column}
+.ssf-modern .industry-choice{display:flex;align-items:center;gap:24px;background:none;color:#8c94a2;border:0;border-bottom:1px solid #ffffff17;text-align:left;padding:28px 0;font-family:var(--display-font);font-size:21px;transition:color .3s,padding .35s}
+.ssf-modern .industry-choice>span{font:10px 'DM Sans',sans-serif;letter-spacing:1px;color:#737b89}
+.ssf-modern .industry-choice>i{font-size:12px;margin-left:auto;opacity:0;transform:translate(-8px,6px);transition:opacity .3s,transform .35s}
+.ssf-modern .industry-choice.active,.ssf-modern .industry-choice:hover{color:#fff;padding-left:12px}
+.ssf-modern .industry-choice.active>span{color:#ff5860}
+.ssf-modern .industry-choice.active>i{opacity:1;transform:none;color:#ff5860}
+.ssf-modern .industry-panels .tab-pane{position:relative;min-height:480px;overflow:hidden;border-radius:20px;background:#242a34}
+.ssf-modern .industry-panels .tab-pane>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;filter:saturate(.55)}
+.ssf-modern .industry-panels .tab-pane:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#10141cf5, #10141c85 65%,transparent)}
+.ssf-modern .industry-panel-copy{position:relative;z-index:1;padding:45px;display:flex;flex-direction:column;justify-content:flex-end;min-height:480px}
+.ssf-modern .industry-panel-icon{width:50px;height:50px;display:grid;place-items:center;background:#e40914;color:#fff;border-radius:12px;font-size:21px;margin-bottom:35px}
+.ssf-modern .industry-panel-copy .eyebrow{color:#ff969c;margin-bottom:12px;font-size:9px}
+.ssf-modern .industry-panel-copy h3{color:#fff;font-size:32px;line-height:1.2;letter-spacing:-1px;max-width:400px}
+.ssf-modern .industry-panel-copy>p:not(.eyebrow){font-size:13px;line-height:1.8;color:#c3c7d0;margin:15px 0 20px}
+.ssf-modern .industry-tags{display:flex;gap:8px;flex-wrap:wrap}
+.ssf-modern .industry-tags>span{font-size:9px;border:1px solid #ffffff30;border-radius:50px;padding:7px 12px;color:#d4d8df}
+.ssf-modern .industry-panel-copy>a{font-size:12px;font-weight:600;color:#fff;text-decoration:none;margin-top:26px;display:flex;align-items:center;gap:20px}
+.ssf-modern.is-home .reviews-section{background:#f6f4f2;padding:100px 0}
+.ssf-modern.is-home .reviews-panel{background:transparent;padding:0;border-radius:0;grid-template-columns:1fr 1fr;gap:70px;min-height:0;align-items:center}
+.ssf-modern.is-home .reviews-title{color:#14171d;font-size:46px;letter-spacing:-1.5px}
+.ssf-modern.is-home .reviews-text{color:#72747a;line-height:1.85}
+.ssf-modern.is-home .reviews-copy .eyebrow{color:#b90710}
+.ssf-modern.is-home .review-stats{gap:20px;margin-top:32px;border-top:1px solid #e1dcda;padding-top:25px}
+.ssf-modern.is-home .review-stat{display:flex;flex-direction:column;align-items:flex-start;margin:0;padding:0;border:0;gap:7px}
+.ssf-modern.is-home .review-stat>span{display:none}
+.ssf-modern.is-home .review-stat strong{font:600 28px var(--display-font);color:#14171d}
+.ssf-modern.is-home .review-stat small{font-size:10px;color:#72747a}
+.ssf-modern.is-home .reviews-stage{padding:0;min-height:0}
+.ssf-modern.is-home .reviews-slider-custom{border-radius:18px}
+.ssf-modern.is-home .review-card,.ssf-modern.is-home .swiper-slide-active .review-card{display:flex;align-items:flex-start;flex-direction:column;text-align:left;background:#fff;border:1px solid #e8e3e0;border-radius:18px;box-shadow:none;padding:36px;min-height:360px}
+.ssf-modern.is-home .review-card-head{width:100%;justify-content:space-between}
+.ssf-modern.is-home .review-quote{color:#e40914;font-size:30px}
+.ssf-modern.is-home .review-stars{color:#e40914}
+.ssf-modern.is-home .review-avatar{width:50px;height:50px;margin:20px 0 5px;border:0;box-shadow:none;font-size:16px;order:2}
+.ssf-modern.is-home .review-card p{font:500 21px/1.6 var(--display-font);color:#252b35;margin:25px 0 10px;max-width:none;display:block;-webkit-line-clamp:unset;overflow:visible}
+.ssf-modern.is-home .review-author-name{order:3;color:#14171d;margin:12px 0 3px;font-size:16px}
+.ssf-modern.is-home .review-card small{order:4;color:#777b84;font-size:11px;padding:0;margin:0}
+.ssf-modern.is-home .review-card small:after,.ssf-modern.is-home .reviews-carousel-shell:before,.ssf-modern.is-home .reviews-carousel-shell:after{display:none}
+.ssf-modern.is-home .review-pagination{justify-content:flex-start;margin-top:20px}
+.ssf-modern.is-home .insights-section{background:#fff;color:#14171d}
+.ssf-modern.is-home .insights-head .section-title{color:#14171d}
+.ssf-modern.is-home .insights-head p{color:#72747a}
+.ssf-modern.is-home .insights-head .eyebrow{color:#b90710}
+.ssf-modern.is-home .insight-card{border:1px solid #e8e3e0;border-radius:16px;background:#f6f4f2}
+.ssf-modern.is-home .insight-card>img{height:230px;object-fit:cover}
+.ssf-modern.is-home .insight-card h3{font-size:23px;line-height:1.35}
+.ssf-modern.is-home .delivery-grid article{position:relative;padding-top:35px}
+.ssf-modern.is-home .delivery-grid article:before{content:'';position:absolute;top:-5px;left:0;width:9px;height:9px;background:#e40914;box-shadow:0 0 0 6px #14171d;border-radius:50%}
+.ssf-modern.is-home .contact-shell{background:#fff;border:1px solid #e7e3e0;border-radius:22px;padding:55px;gap:55px}
+.ssf-modern.is-home .contact-info .section-title{color:#14171d}
+.ssf-modern.is-home .contact-info .eyebrow{color:#b90710}
+.ssf-modern.is-home .contact-copy{color:#72747a}
+.ssf-modern.is-home .contact-detail strong,.ssf-modern.is-home .contact-detail a{color:#252b35}
+.ssf-modern.is-home .contact-detail small,.ssf-modern.is-home .contact-socials p{color:#72747a}
+.ssf-modern.is-home .contact-form-card{background:#f6f4f2;padding:32px;border-radius:16px}
+.ssf-modern.is-home .contact-form .form-control,.ssf-modern.is-home .contact-form .form-select{background:#fff}
+.ssf-modern.is-home .faq-list .accordion-item{background:#fff;border:1px solid #e8e3e0;border-radius:12px;margin-bottom:12px;padding:0 24px;overflow:hidden}
+.ssf-modern.is-home .faq-list .accordion-button{padding:24px 0;font-size:15px}
+.ssf-modern.is-home .faq-question-card{background:#14171d;border:0;text-align:left;padding:28px}
+.ssf-modern.is-home .faq-question-card h3,.ssf-modern.is-home .faq-question-card p{color:#fff}
+.ssf-modern.is-home .faq-question-icon{display:none}
+@media(max-width:991px){.ssf-modern.is-home .clients-panel{grid-template-columns:1fr;gap:18px}.ssf-modern.is-home .clients-head{display:flex;align-items:center;gap:20px}.ssf-modern.is-home .clients-head .eyebrow{margin:0}.ssf-modern.is-home .about-image img{height:400px}.ssf-modern.is-home .services-grid>.swiper-wrapper{grid-template-columns:repeat(2,minmax(0,1fr))}.ssf-modern.is-home .services-grid .swiper-slide,.ssf-modern.is-home .services-grid .swiper-slide:nth-child(-n+2){grid-column:auto}.ssf-modern .industry-showcase-grid{grid-template-columns:1fr;gap:30px}.ssf-modern .industry-selector{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 25px}.ssf-modern .industry-choice{font-size:17px;padding:20px 0;gap:12px}.ssf-modern .section-heading-row{flex-direction:column;align-items:flex-start;gap:15px}.ssf-modern .section-heading-row>.muted{max-width:550px}.ssf-modern.is-home .reviews-panel{grid-template-columns:1fr;gap:35px}.ssf-modern.is-home .contact-shell{padding:30px;gap:30px}}
+@media(max-width:575px){.ssf-modern.is-home .services-grid>.swiper-wrapper{grid-template-columns:1fr}.ssf-modern.is-home .services-section,.ssf-modern .industry-showcase,.ssf-modern.is-home .reviews-section{padding:70px 0}.ssf-modern.is-home .clients-head .section-title{font-size:20px}.ssf-modern.is-home .about-image img{height:340px}.ssf-modern .industry-selector{grid-template-columns:1fr}.ssf-modern .industry-choice{padding:17px 0;font-size:18px}.ssf-modern .industry-panel-copy{padding:28px;min-height:460px}.ssf-modern .industry-panel-copy h3{font-size:30px}.ssf-modern.is-home .reviews-title{font-size:35px}.ssf-modern.is-home .review-card,.ssf-modern.is-home .swiper-slide-active .review-card{padding:26px}.ssf-modern.is-home .review-card p{font-size:19px}.ssf-modern.is-home .contact-shell{padding:24px 18px}.ssf-modern.is-home .contact-form-card{padding:22px 16px}.ssf-modern.is-home .faq-list .accordion-item{padding:0 18px}.ssf-modern.is-home .service-card{padding:28px}}
+.ssf-modern.is-home .review-bullet{background:#c9c5c3;opacity:1}
+.ssf-modern.is-home .review-bullet.active{background:var(--red)}
+.ssf-modern .industry-choice{scroll-margin-top:130px}
+.ssf-modern .industry-choice:focus-visible{outline-offset:-3px}
+@media(prefers-reduced-motion:reduce){.ssf-modern *,.ssf-modern *::before,.ssf-modern *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+/* Full-bleed process banner; fixed desktop background creates scroll depth. */
+.ssf-modern .delivery-section{
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  background-color:#090c13;
+  background-image:url('../images/banner/ready-to-elevate.webp');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  padding-block:110px;
+}
+.ssf-modern .delivery-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(7,10,17,.92),rgba(7,10,17,.73) 60%,rgba(7,10,17,.55));
+  pointer-events:none;
+}
+.ssf-modern .delivery-section .section-title{color:#fff}
+.ssf-modern .delivery-heading .muted,.ssf-modern .delivery-grid p{color:#d0d3dc}
+.ssf-modern .delivery-grid{border-color:#ffffff35}
+.ssf-modern.is-home .delivery-grid article::before{box-shadow:0 0 0 6px #10121c}
+@media(max-width:991px),(hover:none){
+  .ssf-modern .delivery-section{background-attachment:scroll;background-position:65% center;padding-block:75px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ssf-modern .delivery-section{background-attachment:scroll}
+}
+/* Locally hosted photography, selected for SSF Tech's services. */
+.ssf-modern .delivery-section{background-image:url('../images/stock/process-development.webp');background-position:center 45%}
+.ssf-modern .delivery-section::before{background:linear-gradient(90deg,rgba(7,10,17,.94),rgba(7,10,17,.83) 55%,rgba(7,10,17,.64))}
+.ssf-modern.is-home .about-image img{object-position:52% center}
+.ssf-modern .industry-panels .tab-pane>img{opacity:.65;filter:saturate(.75)}
+/* Contact and FAQ: focused conversation spaces with clear form hierarchy. */
+.ssf-modern.is-home .contact-section{padding:100px 0;background:#f0eeec}
+.ssf-modern .contact-section-heading,.ssf-modern .faq-section-heading{max-width:760px;margin-bottom:44px}
+.ssf-modern .contact-section-heading .section-title,.ssf-modern .faq-section-heading .section-title{margin-bottom:20px}
+.ssf-modern.is-home .contact-shell{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;padding:0;border:1px solid #e5e1df;border-radius:24px;background:#fff;overflow:hidden;align-items:stretch;box-shadow:0 18px 55px #151a2205}
+.ssf-modern.is-home .contact-info{position:relative;padding:42px;background:radial-gradient(ellipse at 0 100%,#e4091418,transparent 60%),#141820;overflow:hidden}
+.ssf-modern .contact-panel-top{display:flex;align-items:center;gap:13px;font-size:9px;letter-spacing:2px;font-weight:700;color:#aeb6c5;margin-bottom:32px}
+.ssf-modern .contact-panel-mark{display:grid;place-items:center;width:43px;height:43px;border-radius:12px;background:#e40914;color:#fff;font-size:18px}
+.ssf-modern .contact-panel-title{font-family:var(--display-font);font-size:36px;font-weight:500;letter-spacing:-1px;color:#fff;line-height:1.2;margin-bottom:18px}
+.ssf-modern.is-home .contact-copy{color:#aeb6c5;font-size:13px;line-height:1.85;max-width:350px}
+.ssf-modern.is-home .contact-details{display:grid;grid-template-columns:1fr;gap:0;margin-top:25px}
+.ssf-modern.is-home .contact-detail{padding:18px 0;border-bottom:1px solid #ffffff12;gap:15px;align-items:center}
+.ssf-modern.is-home .contact-detail>span{width:37px;height:37px;border:1px solid #ffffff18;background:#ffffff05;border-radius:10px;flex-shrink:0;color:#ff6971;font-size:14px;box-shadow:none}
+.ssf-modern.is-home .contact-detail small{color:#8f98a8;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.ssf-modern.is-home .contact-detail strong,.ssf-modern.is-home .contact-detail a{color:#f4f5f7;font-size:13px;font-weight:500;line-height:1.7;overflow-wrap:anywhere}
+.ssf-modern.is-home .contact-socials{margin-top:27px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.ssf-modern.is-home .contact-socials p{font-size:10px;letter-spacing:1px;color:#aeb6c5;margin:0;text-transform:uppercase}
+.ssf-modern.is-home .contact-socials a{width:34px;height:34px;border:1px solid #ffffff20;border-radius:50%;background:transparent;color:#d6dae2;box-shadow:none;font-size:12px}
+.ssf-modern.is-home .contact-form-card{background:#fff;border-radius:0;padding:48px;align-self:center}
+.ssf-modern.is-home .contact-form-head{margin-bottom:30px;display:block}
+.ssf-modern.is-home .contact-form-head>span{display:none}
+.ssf-modern.is-home .contact-form-head h3{font-size:27px;letter-spacing:-.8px;margin-bottom:8px}
+.ssf-modern.is-home .contact-form-head p{font-size:13px;color:#84868d}
+.ssf-modern .field-label{display:block;font-size:11px;font-weight:600;color:#343b46;margin:0 0 9px}
+.ssf-modern .field-label>span{color:#c90812}
+.ssf-modern.is-home .contact-form .row{--bs-gutter-y:22px;--bs-gutter-x:18px}
+.ssf-modern.is-home .contact-form .form-control,.ssf-modern.is-home .contact-form .form-select{background:#f8f8f9;border:1px solid #e6e7eb;border-radius:9px;min-height:50px;padding:13px 15px;font-size:12px;box-shadow:none}
+.ssf-modern.is-home .contact-form textarea.form-control{min-height:130px;resize:vertical}
+.ssf-modern.is-home .contact-form .form-control:focus,.ssf-modern.is-home .contact-form .form-select:focus{background:#fff;border-color:#e40914;box-shadow:0 0 0 3px #e409140a}
+.ssf-modern.is-home .contact-form .btn-brand{width:100%;justify-content:space-between;margin-top:5px;padding:13px 18px;font-size:13px;border-radius:9px}
+.ssf-modern .form-reassurance{display:flex;justify-content:center;align-items:center;gap:7px;color:#858a93;font-size:9px;margin:16px 0 0;line-height:1.7}
+.ssf-modern .form-reassurance i{font-size:9px;color:#a0a5ae}
+.ssf-modern.is-home .faq-section{padding:100px 0;background:#fff}
+.ssf-modern .faq-section-heading{max-width:none;text-align:center;margin-bottom:50px}
+.ssf-modern .faq-section-heading .section-title{margin-inline:auto}
+.ssf-modern.is-home .faq-shell{display:grid;grid-template-columns:360px minmax(0,1fr);gap:60px;align-items:start;overflow:visible}
+.ssf-modern.is-home .faq-intro{border-radius:18px;overflow:hidden;border:1px solid #e7e4e2;background:#f6f4f2}
+.ssf-modern .faq-help-photo{height:210px;position:relative;overflow:hidden}
+.ssf-modern .faq-help-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#10151dd9,transparent 80%)}
+.ssf-modern .faq-help-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:saturate(.65)}
+.ssf-modern .faq-help-photo>span{position:absolute;bottom:20px;left:24px;right:20px;z-index:1;font-size:8px;letter-spacing:1.4px;color:#fff;display:flex;align-items:center;gap:9px}
+.ssf-modern .faq-help-photo i{font-size:14px;color:#ff6971}
+.ssf-modern.is-home .faq-question-card{background:transparent;border-radius:0;margin:0;padding:28px;text-align:left;box-shadow:none}
+.ssf-modern.is-home .faq-question-card:before,.ssf-modern.is-home .faq-question-card:after{display:none}
+.ssf-modern .faq-help-label{font-size:8px;color:#b90710;letter-spacing:1.5px;font-weight:700}
+.ssf-modern.is-home .faq-question-card h3{color:#171c25;font-size:25px;font-weight:500;letter-spacing:-.7px;margin:14px 0 12px}
+.ssf-modern.is-home .faq-question-card p{color:#737985;font-size:12px;line-height:1.85}
+.ssf-modern.is-home .faq-question-card .btn{margin-top:12px;width:100%;justify-content:space-between;font-size:12px}
+.ssf-modern.is-home .faq-list .accordion-item{padding:0;border:1px solid #e6e7eb;background:#fafafa;border-radius:12px;margin-bottom:13px;transition:border-color .25s,background .25s,box-shadow .25s}
+.ssf-modern.is-home .faq-list .accordion-item:has(.accordion-button:not(.collapsed)){background:#fff;border-color:#e4091435;box-shadow:0 8px 25px #14171d04}
+.ssf-modern.is-home .faq-list .accordion-button{display:flex;gap:18px;align-items:center;padding:23px 24px;background:transparent;color:#232a35;font:500 15px/1.5 var(--display-font);box-shadow:none;border-radius:0}
+.ssf-modern.is-home .faq-list .accordion-button:before,.ssf-modern.is-home .faq-list .accordion-button:after{display:none}
+.ssf-modern .faq-number{font:500 10px 'DM Sans',sans-serif;color:#a0a4ad;flex-shrink:0;letter-spacing:1px}
+.ssf-modern .faq-question-text{flex:1}
+.ssf-modern .faq-toggle{width:27px;height:27px;border-radius:50%;border:1px solid #e1e3e8;display:grid;place-items:center;position:relative;flex-shrink:0;transition:background .3s,border-color .3s,transform .3s}
+.ssf-modern .faq-toggle:before,.ssf-modern .faq-toggle:after{content:'';position:absolute;width:9px;height:1px;background:#7c8490;transition:transform .3s,background .3s}
+.ssf-modern .faq-toggle:after{transform:rotate(90deg)}
+.ssf-modern .accordion-button:not(.collapsed) .faq-toggle{background:#e40914;border-color:#e40914}
+.ssf-modern .accordion-button:not(.collapsed) .faq-toggle:before,.ssf-modern .accordion-button:not(.collapsed) .faq-toggle:after{background:#fff;transform:rotate(0)}
+.ssf-modern .accordion-button:not(.collapsed) .faq-number{color:#e40914}
+.ssf-modern.is-home .faq-list .accordion-body{padding:0 65px 25px 57px;color:#77808d;font-size:13px;line-height:1.9}
+@media(max-width:991px){.ssf-modern.is-home .contact-shell{grid-template-columns:1fr}.ssf-modern.is-home .contact-info{padding:35px}.ssf-modern.is-home .contact-details{grid-template-columns:1fr 1fr;gap:0 25px}.ssf-modern.is-home .contact-copy{max-width:600px}.ssf-modern.is-home .contact-form-card{padding:35px}.ssf-modern.is-home .faq-shell{grid-template-columns:280px minmax(0,1fr);gap:30px}.ssf-modern.is-home .faq-list .accordion-button{padding:20px 18px;gap:12px;font-size:14px}.ssf-modern.is-home .faq-list .accordion-body{padding:0 25px 22px 47px}}
+@media(max-width:767px){.ssf-modern.is-home .faq-shell{grid-template-columns:1fr}.ssf-modern.is-home .faq-intro{display:grid;grid-template-columns:1fr 1fr;order:2}.ssf-modern .faq-help-photo{height:100%;min-height:260px}.ssf-modern.is-home .faq-content{order:1}}
+@media(max-width:575px){.ssf-modern.is-home .contact-section,.ssf-modern.is-home .faq-section{padding:70px 0}.ssf-modern.is-home .contact-info,.ssf-modern.is-home .contact-form-card{padding:28px 22px}.ssf-modern.is-home .contact-shell{border-radius:16px}.ssf-modern.is-home .contact-details{grid-template-columns:1fr}.ssf-modern .contact-panel-title{font-size:32px}.ssf-modern.is-home .contact-form-head h3{font-size:24px}.ssf-modern.is-home .faq-intro{grid-template-columns:1fr}.ssf-modern .faq-help-photo{height:210px;min-height:0}.ssf-modern .faq-section-heading{text-align:left;margin-bottom:32px}.ssf-modern.is-home .faq-list .accordion-body{padding-left:47px;padding-right:22px}.ssf-modern .form-reassurance{font-size:8px}.ssf-modern .contact-section-heading{margin-bottom:30px}}
+@media(prefers-reduced-motion:reduce){.ssf-modern *,.ssf-modern *::before,.ssf-modern *::after{transition:none!important;animation:none!important}}

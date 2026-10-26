@@ -15,6 +15,15 @@ class Service extends Model
 
     protected $fillable = ['title', 'description', 'icon', 'link', 'sort_order', 'status', 'category'];
 
+    public function cardImagePath(): string
+    {
+        $image = config('service_images.services')[$this->title]
+            ?? config('service_images.defaults')[$this->category]
+            ?? 'development-team';
+
+        return 'frontend/assets/images/stock/'.$image.'.webp';
+    }
+
     protected $casts = [
         'sort_order' => 'integer',
         'status' => 'boolean',

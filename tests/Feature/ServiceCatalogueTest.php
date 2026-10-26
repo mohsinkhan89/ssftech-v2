@@ -16,6 +16,10 @@ class ServiceCatalogueTest extends TestCase
         $this->assertSame(8, Service::where('category', 'erp')->count());
         $this->assertSame(12, Service::where('category', 'marketing')->count());
 
+        foreach (Service::all() as $service) {
+            $this->assertFileExists(public_path($service->cardImagePath()));
+        }
+
         $response = $this->get('/');
         $response->assertOk()
             ->assertSee('id="service-tab-crm"', false)

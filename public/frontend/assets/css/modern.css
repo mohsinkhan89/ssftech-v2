@@ -604,3 +604,21 @@
 @media(max-width:991px){.ssf-modern .service-category-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.ssf-modern.is-home .service-category-panels .services-grid>.swiper-wrapper{grid-template-columns:repeat(2,minmax(0,1fr))}.ssf-modern .service-category-intro{align-items:flex-start;flex-direction:column;gap:18px}}
 @media(max-width:575px){.ssf-modern .service-category-tab{padding:16px 12px;gap:8px;font-size:10px}.ssf-modern .service-category-tab>i{font-size:15px}.ssf-modern .service-category-tab small{min-width:20px;height:20px}.ssf-modern.is-home .service-category-panels .services-grid>.swiper-wrapper{grid-template-columns:1fr}.ssf-modern .service-category-intro h3{font-size:25px}}
 @media(prefers-reduced-motion:reduce){.ssf-modern .service-category-tab{transition:none}}
+/* Photo-led service cards with consistent crops and room for descriptions. */
+.ssf-modern.is-home .service-category-panels .service-card-with-image{padding:0;overflow:hidden;min-height:0;border-radius:16px}
+.ssf-modern .service-card-image{position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;background:#e8e5e2;flex-shrink:0}
+.ssf-modern .service-card-image:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,13,22,.45),transparent 65%);pointer-events:none}
+.ssf-modern .service-card-image img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.8);transition:transform 700ms var(--motion-ease),filter 500ms ease}
+.ssf-modern .service-image-category{position:absolute;z-index:1;left:20px;bottom:16px;padding:6px 10px;background:#ffffffeb;color:#232a35;border:1px solid #ffffff30;border-radius:30px;font-size:8px;font-weight:600;letter-spacing:.4px}
+.ssf-modern .service-card-content{display:flex;flex-direction:column;flex:1;padding:25px;min-height:300px}
+.ssf-modern.is-home .service-card-with-image .service-card-top{margin-top:-45px;position:relative;z-index:2;align-items:flex-end}
+.ssf-modern.is-home .service-card-with-image .service-card-top .service-icon{width:45px;height:45px;margin-left:auto;border:4px solid #fff;box-sizing:content-box;order:2;box-shadow:none;border-radius:13px;font-size:19px}
+.ssf-modern.is-home .service-card-with-image .service-index{padding-top:34px;font-size:10px;order:1}
+.ssf-modern.is-home .service-card-with-image h3{margin-top:20px;line-height:1.3}
+.ssf-modern.is-home .service-card-with-image p{font-size:13px;line-height:1.8;margin-bottom:20px}
+.ssf-modern.is-home .service-card-with-image a{border-top:1px solid #e8e5e2;padding-top:18px;font-size:11px}
+.ssf-modern.is-home .services-grid .swiper-slide:first-child .service-card-with-image .service-icon{border-color:#161b24}
+.ssf-modern.is-home .services-grid .swiper-slide:first-child .service-card-with-image a{border-color:#ffffff20}
+.ssf-modern .service-card-with-image:is(:hover,:focus-within) .service-card-image img{transform:scale(1.055);filter:saturate(1)}
+@media(max-width:575px){.ssf-modern .service-card-content{padding:23px;min-height:280px}.ssf-modern .service-image-category{left:18px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){.ssf-modern .service-card-image img{transition:none}.ssf-modern .service-card-with-image:is(:hover,:focus-within) .service-card-image img{transform:none}}

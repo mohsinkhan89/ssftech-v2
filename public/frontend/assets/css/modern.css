@@ -530,3 +530,55 @@
 .ssf-modern.is-home .insights-head .eyebrow {
   color: #ff7880;
 }
+/* Full-width at the top; a centered floating navigation bar after scrolling. */
+.ssf-modern .site-header {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  border-radius: 0;
+  transition: width 450ms var(--motion-ease), max-width 450ms var(--motion-ease),
+    top 450ms var(--motion-ease), border-radius 450ms var(--motion-ease),
+    background 300ms ease, box-shadow 300ms ease;
+}
+
+.ssf-modern .site-header .navbar {
+  transition: padding 350ms var(--motion-ease);
+}
+
+.ssf-modern .site-header.scrolled {
+  top: 16px;
+  width: calc(100% - 48px);
+  max-width: 1320px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 60px;
+  background: rgba(17, 20, 27, .96);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ssf-modern .site-header.scrolled .navbar {
+  padding-block: 10px;
+}
+
+@media (max-width: 991px) {
+  .ssf-modern .site-header.scrolled {
+    top: 10px;
+    width: calc(100% - 24px);
+    border-radius: 18px;
+  }
+
+  .ssf-modern .site-header.scrolled .container {
+    padding-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ssf-modern .site-header,
+  .ssf-modern .site-header .navbar {
+    transition: none;
+  }
+}

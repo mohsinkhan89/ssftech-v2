@@ -476,3 +476,57 @@
 @media(max-width:767px){.ssf-modern.is-home .faq-shell{grid-template-columns:1fr}.ssf-modern.is-home .faq-intro{display:grid;grid-template-columns:1fr 1fr;order:2}.ssf-modern .faq-help-photo{height:100%;min-height:260px}.ssf-modern.is-home .faq-content{order:1}}
 @media(max-width:575px){.ssf-modern.is-home .contact-section,.ssf-modern.is-home .faq-section{padding:70px 0}.ssf-modern.is-home .contact-info,.ssf-modern.is-home .contact-form-card{padding:28px 22px}.ssf-modern.is-home .contact-shell{border-radius:16px}.ssf-modern.is-home .contact-details{grid-template-columns:1fr}.ssf-modern .contact-panel-title{font-size:32px}.ssf-modern.is-home .contact-form-head h3{font-size:24px}.ssf-modern.is-home .faq-intro{grid-template-columns:1fr}.ssf-modern .faq-help-photo{height:210px;min-height:0}.ssf-modern .faq-section-heading{text-align:left;margin-bottom:32px}.ssf-modern.is-home .faq-list .accordion-body{padding-left:47px;padding-right:22px}.ssf-modern .form-reassurance{font-size:8px}.ssf-modern .contact-section-heading{margin-bottom:30px}}
 @media(prefers-reduced-motion:reduce){.ssf-modern *,.ssf-modern *::before,.ssf-modern *::after{transition:none!important;animation:none!important}}
+/* Keep the FAQ help card alongside the questions without covering the header. */
+@media (min-width: 768px) {
+  .ssf-modern.is-home .faq-section {
+    overflow: visible;
+  }
+
+  .ssf-modern.is-home .faq-intro {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+}
+/* Highlight the open FAQ using the SSF Tech brand colour. */
+.ssf-modern.is-home .faq-list .accordion-item:has(.accordion-button:not(.collapsed)) {
+  background: var(--red);
+  border-color: var(--red);
+  box-shadow: 0 8px 24px rgba(228, 9, 20, .12);
+}
+
+.ssf-modern.is-home .faq-list .accordion-button:not(.collapsed),
+.ssf-modern.is-home .faq-list .accordion-button:not(.collapsed) .faq-number {
+  color: #fff;
+}
+
+.ssf-modern.is-home .faq-list .accordion-item:has(.accordion-button:not(.collapsed)) .accordion-body {
+  color: #fff;
+}
+
+.ssf-modern.is-home .faq-list .accordion-button:not(.collapsed) .faq-toggle {
+  background: rgba(255, 255, 255, .16);
+  border-color: rgba(255, 255, 255, .35);
+}
+
+.ssf-modern.is-home .faq-list .accordion-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -5px;
+}
+/* Match the industry showcase's dark backdrop in the home blog section. */
+.ssf-modern.is-home .insights-section {
+  background: #10141c;
+  color: #fff;
+}
+
+.ssf-modern.is-home .insights-head .section-title {
+  color: #fff;
+}
+
+.ssf-modern.is-home .insights-head p {
+  color: #aab0bc;
+}
+
+.ssf-modern.is-home .insights-head .eyebrow {
+  color: #ff7880;
+}

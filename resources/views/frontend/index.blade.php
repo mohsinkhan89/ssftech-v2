@@ -113,7 +113,7 @@
         <div class="container">
             <div class="about-refined-heading">
                 <p class="eyebrow reveal">About Us</p>
-                <h2 class="section-title reveal delay-1">The right thinking.<br><span>The right digital partner.</span></h2>
+                <h2 class="section-title reveal delay-1">The right thinking. <span>The right digital partner.</span></h2>
                 <p class="muted reveal delay-1">We bring your business and technology together, with digital solutions shaped around your goals.</p>
             </div>
             <div class="about-refined-grid">
@@ -139,9 +139,11 @@
     @if($services->isNotEmpty())
     <section id="services" class="services-section">
         <div class="container">
-            <p class="eyebrow reveal">Our Services</p>
-            <h2 class="section-title reveal delay-1">Serious technology.<br><span>Real-world solutions.</span></h2>
-            <p class="muted reveal delay-1">From websites and business systems to customer relationships and digital marketing. Explore the expertise your next stage needs.</p>
+            <div class="services-section-heading">
+                <p class="eyebrow reveal">Our Services</p>
+                <h2 class="section-title reveal delay-1">Serious technology. <span>Real-world solutions.</span></h2>
+                <p class="muted reveal delay-1">From websites and business systems to customer relationships and digital marketing. Explore the expertise your next stage needs.</p>
+            </div>
             @php
                 $serviceCategories = collect(\App\Models\Service::CATEGORIES)->filter(fn ($label, $key) => $services->contains('category', $key));
                 $categorySummaries = [
@@ -406,7 +408,7 @@
 
     <section id="contact" class="contact-section section-pad">
         <div class="container">
-            <div class="contact-section-heading"><p class="eyebrow">Get In Touch</p><h2 class="section-title">Big ideas start with<br><span>a simple conversation.</span></h2><p class="muted">Tell us what you have in mind. We will help you find the right way forward.</p></div>
+            <div class="contact-section-heading"><p class="eyebrow">Get In Touch</p><h2 class="section-title">Big ideas start with <span>a simple conversation.</span></h2><p class="muted">Tell us what you have in mind. We will help you find the right way forward.</p></div>
             <div class="contact-shell">
                 <div class="contact-info reveal">
                     <div class="contact-panel-top"><span class="contact-panel-mark"><i class="fa-solid fa-comments"></i></span><span>LET'S CONNECT</span></div>

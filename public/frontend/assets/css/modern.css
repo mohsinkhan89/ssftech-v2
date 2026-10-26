@@ -661,3 +661,28 @@
 .ssf-modern .about-refined-heading .section-title{font-size:clamp(34px,3.4vw,54px);font-weight:600;line-height:1.15;letter-spacing:-1.8px;max-width:900px;margin-bottom:16px}
 .ssf-modern .about-refined-heading>.muted{font-size:15px;line-height:1.95;margin-bottom:0}
 @media(max-width:575px){.ssf-modern .about-refined-heading{margin-bottom:30px}.ssf-modern .about-refined-heading .section-title{font-size:35px;letter-spacing:-1.5px}}
+/* Match the FAQ heading alignment across the main conversion sections. */
+.ssf-modern .services-section-heading,
+.ssf-modern .about-refined-heading,
+.ssf-modern .contact-section-heading{max-width:none;text-align:center;margin-left:auto;margin-right:auto}
+.ssf-modern .services-section-heading{margin-bottom:42px}
+.ssf-modern .services-section-heading .section-title,
+.ssf-modern .about-refined-heading .section-title,
+.ssf-modern .contact-section-heading .section-title{max-width:none;margin-left:auto;margin-right:auto;margin-bottom:16px}
+.ssf-modern .services-section-heading>.muted,
+.ssf-modern .about-refined-heading>.muted,
+.ssf-modern .contact-section-heading>.muted{max-width:760px;margin-left:auto;margin-right:auto}
+.ssf-modern .services-section-heading .eyebrow,
+.ssf-modern .about-refined-heading .eyebrow,
+.ssf-modern .contact-section-heading .eyebrow{margin-bottom:24px}
+@media(min-width:768px){
+  .ssf-modern .services-section-heading .section-title,
+  .ssf-modern .about-refined-heading .section-title,
+  .ssf-modern .contact-section-heading .section-title{white-space:nowrap;font-size:clamp(32px,3.35vw,52px);letter-spacing:-1.7px}
+}
+@media(max-width:767px){
+  .ssf-modern .services-section-heading,
+  .ssf-modern .about-refined-heading,
+  .ssf-modern .contact-section-heading,
+  .ssf-modern .faq-section-heading{text-align:center}
+}

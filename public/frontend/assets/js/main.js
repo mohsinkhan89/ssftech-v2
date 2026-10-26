@@ -438,6 +438,56 @@
   updateActiveLink();
   window.addEventListener("scroll", updateActiveLink, { passive: true });
 
+  const statNumbers = document.querySelectorAll(".stat-number[data-count]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateStat(number) {
+    const target = Number(number.dataset.count);
+    if (!Number.isFinite(target) || number.dataset.counted === "true") {
+      return;
+    }
+
+    number.dataset.counted = "true";
+    if (prefersReducedMotion) {
+      number.textContent = target.toLocaleString();
+      return;
+    }
+
+    const duration = 1400;
+    const startTime = performance.now();
+    number.textContent = "0";
+
+    function updateCount(currentTime) {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
+      number.textContent = Math.round(target * easedProgress).toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      }
+    }
+
+    requestAnimationFrame(updateCount);
+  }
+
+  if ("IntersectionObserver" in window) {
+    const statObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateStat(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.65 }
+    );
+
+    statNumbers.forEach((number) => statObserver.observe(number));
+  } else {
+    statNumbers.forEach(animateStat);
+  }
+
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
       (entries) => {

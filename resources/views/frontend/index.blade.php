@@ -123,9 +123,9 @@
                     <div class="about-refined-points"><span><i class="fa-solid fa-check"></i> Thoughtful design</span><span><i class="fa-solid fa-check"></i> Connected systems</span><span><i class="fa-solid fa-check"></i> Ongoing support</span></div>
                     <a class="btn btn-brand" href="#contact">Let's talk about your business <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                     <div class="about-refined-stats">
-                        <div><strong>5<span>+</span></strong><small>Years of experience</small></div>
-                        <div><strong>150<span>+</span></strong><small>Happy clients</small></div>
-                        <div><strong>250<span>+</span></strong><small>Projects delivered</small></div>
+                        <div class="about-stat"><span class="about-stat-index">01</span><strong><span class="stat-number" data-count="5">5</span><span class="stat-plus">+</span></strong><small>Years of experience</small></div>
+                        <div class="about-stat"><span class="about-stat-index">02</span><strong><span class="stat-number" data-count="150">150</span><span class="stat-plus">+</span></strong><small>Happy clients</small></div>
+                        <div class="about-stat"><span class="about-stat-index">03</span><strong><span class="stat-number" data-count="250">250</span><span class="stat-plus">+</span></strong><small>Projects delivered</small></div>
                     </div>
                 </div>
                 <div class="about-refined-photo reveal">
@@ -526,7 +526,7 @@
     @if($faqs->isNotEmpty())
     <section class="faq-section section-pad" id="faqs">
         <div class="container">
-            <div class="faq-section-heading"><p class="eyebrow">FAQs</p><h2 class="section-title">Good questions.<br><span>Clear answers.</span></h2><p class="muted">Everything you need to know before we build something together.</p></div>
+            <div class="faq-section-heading"><p class="eyebrow">FAQs</p><h2 class="section-title">Good questions. <span>Clear answers.</span></h2><p class="muted">Everything you need to know before we build something together.</p></div>
             <div class="faq-shell">
                 <aside class="faq-intro reveal">
                     <div class="faq-help-photo"><img src="{{ url('frontend/assets/images/stock/professional-services.webp') }}" alt="Developers collaborating in an office" loading="lazy" decoding="async"><span><i class="fa-solid fa-comment-dots"></i> PEOPLE BEHIND THE TECHNOLOGY</span></div>

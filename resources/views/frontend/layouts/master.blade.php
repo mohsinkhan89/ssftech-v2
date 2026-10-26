@@ -125,7 +125,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer
-        src="{{ url('frontend/assets/js/main.js') }}?v={{ $siteSetting?->js_version ?: env('ASSET_VERSION', '1.0.0') }}">
+        src="{{ url('frontend/assets/js/main.js') }}?v={{ filemtime(public_path('frontend/assets/js/main.js')) }}">
     </script>
 </body>
 

@@ -16,14 +16,14 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#about">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#industries">Industries</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#reviews">Reviews</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#portfolio">Portfolio</a></li>
                     @if($hasActiveBlogs)
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a></li>
                     @endif
-                    <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#contact">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#faqs">FAQs</a></li>
                 </ul>
-                <a class="btn btn-brand nav-quote" href="{{ route('index') }}#contact">Get A Quote</a>
+                <a class="btn btn-brand nav-quote" href="{{ route('index') }}#contact">Let's talk <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
             </div>
         </div>
     </nav>

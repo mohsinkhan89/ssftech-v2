@@ -1,9 +1,13 @@
-<footer class="site-footer">
+<footer class="site-footer" id="site-footer">
     <div class="container">
+        <div class="footer-invitation">
+            <div><p class="eyebrow">Your ambition. Our expertise.</p><h2>Have a big idea?<br><span>Let&#39;s make it work.</span></h2></div>
+            <a class="btn btn-brand" href="{{ route('index') }}#contact">Start a conversation <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
+        </div>
         <div class="footer-shell">
             <div class="row g-4 footer-main">
                 <div class="col-lg-3 col-md-6 footer-about">
-                    <a class="brand-lockup footer-brand" href="#home" aria-label="SSF Tech home">
+                    <a class="brand-lockup footer-brand" href="{{ route('index') }}#home" aria-label="SSF Tech home">
                         <div class="footer-logo">
                             <img src="{{ url($siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech" loading="lazy" decoding="async">
                         </div>
@@ -24,11 +28,10 @@
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links footer-links-about">
                     <h4>About Us</h4>
-                    <a href="#about"><span><i class="fa-solid fa-chevron-right"></i></span>About Us</a>
-                    <a href="#contact"><span><i class="fa-solid fa-chevron-right"></i></span>Contact Us</a>
-                    <a href="#privacy"><span><i class="fa-solid fa-chevron-right"></i></span>Privacy Policy</a>
-                    <a href="#terms"><span><i class="fa-solid fa-chevron-right"></i></span>Terms and
-                        Conditions</a>
+                    <a href="{{ route('index') }}#about"><span><i class="fa-solid fa-chevron-right"></i></span>About Us</a>
+                    <a href="{{ route('index') }}#contact"><span><i class="fa-solid fa-chevron-right"></i></span>Contact Us</a>
+                    <a href="{{ route('index') }}#portfolio">Our Work</a>
+                    <a href="{{ route('index') }}#faqs">FAQs</a>
                 </div>
                 @if($footerServices->isNotEmpty())
                 <div class="col-lg-3 col-md-6 footer-links">
@@ -72,7 +75,7 @@
             <div class="footer-bottom-decor footer-bottom-decor-left"></div>
             <div class="footer-bottom-copy">
                 <span class="footer-bottom-badge"><i class="fa-solid fa-shield-halved"></i></span>
-                <p>&copy; Copyright 2026 - All rights reserved</p>
+                <p>&copy; {{ date('Y') }} SSF Tech. All rights reserved.</p>
                 <small>SSF Tech is a leading technology division under SSF Group, delivering cutting-edge solutions
                     with
                     excellence.</small>

@@ -26,7 +26,7 @@
                 @foreach($services as $service)
                     <tr>
                         <td><div class="avatar-initial" style="background:linear-gradient(135deg,#e40914,#7f1d1d)"><i class="{{ $service->icon }}"></i></div></td>
-                        <td><div class="fw-bold">{{ $service->title }}</div><small class="text-muted">{{ $service->link ?: '#contact' }}</small></td>
+                        <td><div class="fw-bold">{{ $service->title }}</div><small class="text-muted">{{ \App\Models\Service::CATEGORIES[$service->category] ?? $service->category }}</small><br><small class="text-muted">{{ $service->link ?: '#contact' }}</small></td>
                         <td style="max-width:460px">{{ \Illuminate\Support\Str::limit($service->description, 130) }}</td>
                         <td>{{ $service->sort_order }}</td>
                         <td>

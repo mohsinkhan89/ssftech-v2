@@ -159,23 +159,39 @@
         <div class="container">
             <p class="eyebrow reveal">Our Services</p>
             <h2 class="section-title reveal delay-1">Serious technology.<br><span>Real-world solutions.</span></h2>
-            <p class="muted reveal delay-1">We offer a complete range of services to help your brand grow online, from
-                the very first line of code through to ongoing support.</p>
-            <div class="services-grid reveal delay-2">
-                <div class="swiper-wrapper">
-                    @foreach ($services as $service)
-                        <div class="swiper-slide">
-                            <article class="service-card">
-                                <div class="service-card-top"><span class="service-icon"><i class="{{ $service->icon }}"></i></span><span class="service-index">0{{ $loop->iteration }} /</span></div>
-                                <h3>{{ $service->title }}</h3>
-                                <p>{{ $service->description }}</p>
-                                <a href="{{ $service->link ?: '#contact' }}">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </article>
-                        </div>
-                    @endforeach
-                </div>
+            <p class="muted reveal delay-1">From websites and business systems to customer relationships and digital marketing. Explore the expertise your next stage needs.</p>
+            @php
+                $serviceCategories = collect(\App\Models\Service::CATEGORIES)->filter(fn ($label, $key) => $services->contains('category', $key));
+                $categorySummaries = [
+                    'development' => ['Build your digital foundation.', 'Websites, applications and connected experiences built around your users.', 'fa-laptop-code'],
+                    'crm' => ['Better relationships. Smarter sales.', 'Connect customer data, automate follow-ups and give your team a clearer view of every opportunity.', 'fa-address-book'],
+                    'erp' => ['One business. Connected operations.', 'Bring finance, people, inventory and everyday workflows together in systems built for your organisation.', 'fa-building-columns'],
+                    'marketing' => ['Get discovered. Build demand.', 'Strategy, creative content and measurable campaigns to help the right customers find your business.', 'fa-bullseye'],
+                ];
+            @endphp
+            <div class="service-category-tabs" role="tablist" aria-label="Service categories">
+                @foreach($serviceCategories as $key => $label)
+                    <button class="service-category-tab {{ $loop->first ? 'active' : '' }}" type="button" role="tab" id="service-tab-{{ $key }}" data-bs-toggle="tab" data-bs-target="#service-panel-{{ $key }}" aria-controls="service-panel-{{ $key }}" aria-selected="{{ $loop->first ? 'true' : 'false' }}"><i class="fa-solid {{ $categorySummaries[$key][2] }}"></i><span>{{ $label }}</span><small>{{ $services->where('category', $key)->count() }}</small></button>
+                @endforeach
             </div>
-
+            <div class="tab-content service-category-panels">
+                @foreach($serviceCategories as $key => $label)
+                    <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="service-panel-{{ $key }}" role="tabpanel" aria-labelledby="service-tab-{{ $key }}" tabindex="0">
+                        <div class="service-category-intro"><div><p class="eyebrow">{{ $label }}</p><h3>{{ $categorySummaries[$key][0] }}</h3><p>{{ $categorySummaries[$key][1] }}</p></div><a href="#contact" class="service-category-cta">Discuss your requirements <i class="fa-solid fa-arrow-right"></i></a></div>
+                        <div class="services-grid">
+                            <div class="swiper-wrapper">
+                                @foreach($services->where('category', $key) as $service)
+                                    <div class="swiper-slide"><article class="service-card">
+                                        <div class="service-card-top"><span class="service-icon"><i class="{{ $service->icon }}"></i></span><span class="service-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }} /</span></div>
+                                        <h3>{{ $service->title }}</h3><p>{{ $service->description }}</p>
+                                        <a href="{{ $service->link ?: '#contact' }}">Let's talk <i class="fa-solid fa-arrow-right"></i></a>
+                                    </article></div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
     @endif
@@ -491,11 +507,16 @@
                                 <label class="field-label" for="enquiry-service">Interested in<span aria-hidden="true"> *</span></label>
                                 <select id="enquiry-service" class="form-select" name="service" aria-label="Select Service" required>
                                     <option value="">Select Service</option>
-                                    @forelse($services as $service)
-                                        <option value="{{ $service->title }}">{{ $service->title }}</option>
-                                    @empty
-                                        <option value="General Enquiry">General Enquiry</option>
-                                    @endforelse
+                                    @foreach(\App\Models\Service::CATEGORIES as $key => $label)
+                                        @if($services->where('category', $key)->isNotEmpty())
+                                            <optgroup label="{{ $label }}">
+                                                @foreach($services->where('category', $key) as $service)
+                                                    <option value="{{ $service->title }}">{{ $service->title }}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @endif
+                                    @endforeach
+                                    @if($services->isEmpty())<option value="General Enquiry">General Enquiry</option>@endif
                                 </select>
                             </div>
                             <div class="col-12">

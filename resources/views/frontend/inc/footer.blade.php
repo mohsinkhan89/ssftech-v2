@@ -36,8 +36,10 @@
                 @if($footerServices->isNotEmpty())
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Services</h4>
-                    @foreach($footerServices as $service)
-                        <a href="{{ route('index') }}#services"><span><i class="fa-solid fa-chevron-right"></i></span>{{ $service->title }}</a>
+                    @foreach(\App\Models\Service::CATEGORIES as $key => $label)
+                        @if($footerServices->contains('category', $key))
+                            <a href="{{ route('index') }}#services">{{ $label }}</a>
+                        @endif
                     @endforeach
                 </div>
                 @endif

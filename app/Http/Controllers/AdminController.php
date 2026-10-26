@@ -679,6 +679,7 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string|max:255',
+            'category' => 'required|in:development,crm,erp,marketing',
             'description' => 'required|string',
             'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],
             'link' => ['nullable', 'string', 'max:255', 'regex:/^(#|\/|https?:\/\/)/i'],

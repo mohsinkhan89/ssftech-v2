@@ -109,46 +109,28 @@
     </section>
     @endif
 
-    <section id="about" class="section-pad about-section">
+    <section id="about" class="section-pad about-section about-refined">
         <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6 reveal">
-                    <p class="eyebrow">About Us</p>
-                    <h2 class="section-title">More than a website.<br><span>A competitive edge.</span></h2>
-                    <p class="muted">Welcome to SSF Tech, a trusted website & software development company based in the UK. We turn
-                        your vision into a captivating website through expert design and development. From sleek, modern
-                        interfaces to seamless functionality, we specialise in boosting conversions and creating digital
-                        experiences that help your brand succeed online.</p>
-                    <div class="about-principles"><span><i class="fa-solid fa-check"></i> Strategy before screens</span><span><i class="fa-solid fa-check"></i> Performance from day one</span><span><i class="fa-solid fa-check"></i> Support beyond launch</span></div>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-icon"><i class="fa-regular fa-calendar-days"></i></span>
-                            <div class="about-points">
-                                <strong>5+</strong>
-                                <small>Years Experience</small>
-                            </div>
-                        </div>
-                        <div class="stat-item"><span class="stat-icon"><i class="fa-solid fa-users"></i></span>
-                            <div class="about-points">
-                                <strong>150+</strong><small>Happy Clients</small>
-                            </div>
-                        </div>
-                        <div class="stat-item"><span class="stat-icon"><i class="fa-solid fa-award"></i></span>
-                            <div class="about-points">
-                                <strong>250+</strong><small>Projects Delivered</small>
-                            </div>
-                        </div>
+            <div class="about-refined-heading">
+                <p class="eyebrow reveal">About Us</p>
+                <h2 class="section-title reveal delay-1">The right thinking.<br><span>The right digital partner.</span></h2>
+                <p class="muted reveal delay-1">We bring your business and technology together, with digital solutions shaped around your goals.</p>
+            </div>
+            <div class="about-refined-grid">
+                <div class="about-refined-content reveal delay-2">
+                    <p class="about-refined-description">We are SSF Tech, a UK-based website and software development company. We help businesses build a stronger digital presence and connect the systems that keep them moving.</p>
+                    <p class="about-refined-description">From websites and e-commerce to CRM, ERP and digital marketing, you get practical expertise shaped around your goals.</p>
+                    <div class="about-refined-points"><span><i class="fa-solid fa-check"></i> Thoughtful design</span><span><i class="fa-solid fa-check"></i> Connected systems</span><span><i class="fa-solid fa-check"></i> Ongoing support</span></div>
+                    <a class="btn btn-brand" href="#contact">Let's talk about your business <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <div class="about-refined-stats">
+                        <div><strong>5<span>+</span></strong><small>Years of experience</small></div>
+                        <div><strong>150<span>+</span></strong><small>Happy clients</small></div>
+                        <div><strong>250<span>+</span></strong><small>Projects delivered</small></div>
                     </div>
                 </div>
-                <div class="col-lg-6 reveal mm-0 delay-2">
-                    <div class="about-image float-soft">
-                        <img src="{{ url('frontend/assets/images/stock/development-team.webp') }}" loading="lazy" decoding="async"
-                            alt="Software developers working on code in a collaborative office">
-                        <div class="mission-card">
-                            <span><i class="fa-solid fa-bullseye"></i></span>
-                            <strong>Your Growth,<br>Our Mission</strong>
-                        </div>
-                    </div>
+                <div class="about-refined-photo reveal">
+                    <img src="{{ url('frontend/assets/images/stock/development-team.webp') }}" alt="Software developers building digital products together" loading="lazy" decoding="async" width="1600" height="1068">
+                    <div class="about-image-caption"><span>PEOPLE. PURPOSE. TECHNOLOGY.</span><p>Good ideas deserve<br>great execution.</p></div>
                 </div>
             </div>
         </div>

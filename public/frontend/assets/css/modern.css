@@ -4961,6 +4961,7 @@
 }
 
 /* Clean cinematic hero — intentionally card-free. */
+.ssf-modern.is-home .clients-description { max-width:245px; margin:12px 0 0; color:#707786; font-size:12px; line-height:1.65 }
 .ssf-modern.is-home .modern-hero { position:relative; isolation:isolate; min-height:860px; border:1px solid rgba(255,255,255,.08); box-shadow:0 30px 80px rgba(4,8,15,.24) }
 .ssf-modern.is-home .modern-hero:before { display:block; content:''; position:absolute; z-index:1; width:620px; height:620px; top:-310px; left:38%; border-radius:50%; background:radial-gradient(circle,rgba(228,9,20,.23),rgba(228,9,20,0) 68%); filter:blur(10px); pointer-events:none }
 .ssf-modern.is-home .modern-hero:after { display:block; content:''; position:absolute; z-index:1; inset:0; background:linear-gradient(90deg,rgba(3,7,13,.91) 0%,rgba(3,7,13,.7) 42%,rgba(3,7,13,.22) 76%,rgba(228,9,20,.06)); pointer-events:none }
@@ -4996,4 +4997,43 @@
     .ssf-modern.is-home .modern-hero .hero-copy { font-size:14px; line-height:1.7 }
     .ssf-modern.is-home .hero-actions { flex-direction:column; align-items:stretch }
     .ssf-modern.is-home .hero-actions .btn { justify-content:center; width:100% }
+}
+
+/* Content-led hero with a modern, functional quote form. */
+.ssf-modern.is-home .hero-stage { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(380px,.85fr); gap:70px; align-items:center }
+.ssf-modern.is-home .hero-editorial { max-width:760px }
+.ssf-modern.is-home .modern-hero h1 { max-width:760px; font-size:clamp(56px,5.1vw,84px); line-height:.98 }
+.ssf-modern.is-home .modern-hero .hero-copy strong { display:inline-block; margin-bottom:5px; color:#fff; font:600 18px/1.5 var(--display-font) }
+
+.ssf-modern.is-home .hero-quote-card { position:relative; z-index:4; width:100%; max-width:510px; margin-left:auto; padding:30px; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:24px; background:linear-gradient(145deg,rgba(24,29,40,.88),rgba(8,13,22,.82)); box-shadow:0 30px 75px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.07); backdrop-filter:blur(22px) }
+.ssf-modern.is-home .hero-quote-card:before { content:''; position:absolute; width:220px; height:220px; top:-150px; right:-90px; border-radius:50%; background:radial-gradient(circle,rgba(228,9,20,.24),transparent 70%); pointer-events:none }
+.ssf-modern.is-home .hero-quote-card:after { content:''; position:absolute; inset:auto 26px 0; height:2px; background:linear-gradient(90deg,transparent,#e40914,transparent); opacity:.75 }
+.ssf-modern.is-home .hero-form-head { position:relative; display:flex; align-items:center; gap:14px; margin-bottom:24px }
+.ssf-modern.is-home .hero-form-head>span { display:grid; place-items:center; width:48px; height:48px; flex:0 0 48px; border:1px solid rgba(255,255,255,.12); border-radius:14px; background:rgba(228,9,20,.14); color:#ff6069; box-shadow:0 10px 24px rgba(228,9,20,.14) }
+.ssf-modern.is-home .hero-form-head small { display:block; margin-bottom:3px; color:#9da6b5; font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase }
+.ssf-modern.is-home .hero-form-head h3 { margin:0; color:#fff; font:600 25px/1.2 var(--display-font); letter-spacing:-.6px }
+.ssf-modern.is-home .hero-quote-card .form-control,.ssf-modern.is-home .hero-quote-card .form-select { min-height:50px; padding:12px 14px; border:1px solid rgba(255,255,255,.12); border-radius:12px; background:rgba(255,255,255,.055); color:#fff; font-size:12px; box-shadow:none; transition:border-color .25s,background .25s,box-shadow .25s }
+.ssf-modern.is-home .hero-quote-card textarea.form-control { min-height:105px; resize:vertical }
+.ssf-modern.is-home .hero-quote-card .form-control::placeholder { color:#8f98a8 }
+.ssf-modern.is-home .hero-quote-card .form-select { color:#aeb6c4 }
+.ssf-modern.is-home .hero-quote-card .form-select option { color:#151923; background:#fff }
+.ssf-modern.is-home .hero-quote-card .form-control:focus,.ssf-modern.is-home .hero-quote-card .form-select:focus { border-color:rgba(255,73,82,.72); background:rgba(255,255,255,.075); box-shadow:0 0 0 4px rgba(228,9,20,.1) }
+.ssf-modern.is-home .hero-quote-card .btn { width:100%; min-height:51px; justify-content:center; border-radius:999px; box-shadow:0 13px 30px rgba(228,9,20,.27) }
+.ssf-modern.is-home .hero-quote-card .btn:hover { transform:translateY(-3px); box-shadow:0 18px 38px rgba(228,9,20,.4) }
+
+@media(max-width:1199px) {
+    .ssf-modern.is-home .hero-stage { grid-template-columns:minmax(0,1fr) 420px; gap:42px }
+    .ssf-modern.is-home .modern-hero h1 { font-size:clamp(54px,5.7vw,74px) }
+}
+@media(max-width:991px) {
+    .ssf-modern.is-home .modern-hero { height:auto; min-height:0; padding-block:150px 45px }
+    .ssf-modern.is-home .hero-stage { grid-template-columns:1fr; gap:42px }
+    .ssf-modern.is-home .hero-editorial { max-width:780px; padding-bottom:0 }
+    .ssf-modern.is-home .hero-quote-card { max-width:680px; margin:0 }
+}
+@media(max-width:575px) {
+    .ssf-modern.is-home .hero-stage { gap:34px }
+    .ssf-modern.is-home .modern-hero h1 { font-size:45px }
+    .ssf-modern.is-home .hero-quote-card { padding:22px 18px; border-radius:19px }
+    .ssf-modern.is-home .hero-form-head h3 { font-size:22px }
 }

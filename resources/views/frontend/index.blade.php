@@ -50,17 +50,42 @@
         <div class="container position-relative">
             <div class="hero-stage">
             <div class="hero-editorial">
-                <p class="eyebrow hero-anim">Design. Develop. Make an impact.</p>
-                <h1 class="hero-anim delay-1">We build digital.<br><span>You build<br>what&#39;s next.</span></h1>
-                <p class="hero-copy hero-anim delay-2">From your first idea to your next big launch. We design and develop websites, e-commerce platforms and applications that work harder for your business.</p>
+                <p class="eyebrow hero-anim">Smarter Digital Solutions</p>
+                <h1 class="hero-anim delay-1">Creating Digital Experiences That <span>Deliver Results</span></h1>
+                <p class="hero-copy hero-anim delay-2"><strong>You dream, we design, we deliver.</strong><br>We create high performing websites and digital marketing strategies that help businesses grow, attract more customers and achieve real results.</p>
                 <div class="hero-actions hero-anim delay-3">
-                    <a href="#services" class="btn btn-brand">Explore our services <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="#portfolio" class="btn hero-secondary">Discover our work <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="#portfolio" class="btn btn-brand">View Our Work <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
+            </div>
+            <div class="hero-form-card hero-quote-card hero-anim delay-3">
+                <div class="hero-form-head">
+                    <span><i class="fa-solid fa-paper-plane"></i></span>
+                    <div><small>Start your project</small><h3>Get a Free Quote</h3></div>
+                </div>
+                <form class="contact-form hero-contact-form js-contact-form" id="heroContactForm" data-response="#heroFormResponse" data-button="#heroSubmitBtn">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="row g-3">
+                        <div class="col-md-6"><input class="form-control" type="text" name="name" placeholder="Your Name" aria-label="Your Name" required></div>
+                        <div class="col-md-6"><input class="form-control" type="email" name="email" placeholder="Your Email" aria-label="Your Email" autocomplete="email" required></div>
+                        <div class="col-md-6"><input class="form-control uk-phone-mask" type="tel" name="phone" placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel" autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$" title="Enter a UK number in this format: +44 7123 456789" required></div>
+                        <div class="col-md-6">
+                            <select class="form-select" name="service" aria-label="Select Service" required>
+                                <option value="">Select Service</option>
+                                @foreach($services as $service)<option value="{{ $service->title }}">{{ $service->title }}</option>@endforeach
+                                @if($services->isEmpty())<option value="General Enquiry">General Enquiry</option>@endif
+                            </select>
+                        </div>
+                        <div class="col-12"><textarea class="form-control" name="message" rows="3" placeholder="Tell us about your project..." aria-label="Project details" required></textarea></div>
+                        <div class="col-12">
+                            <div id="heroFormResponse" class="mb-3 d-none"></div>
+                            <button class="btn btn-brand" type="submit" id="heroSubmitBtn">Request Quote <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></button>
+                        </div>
+                    </div>
+                </form>
             </div>
             </div>
             <div class="hero-bottom-line">
-                <div><strong>You dream. We deliver.</strong><span>Web development & digital solutions &middot; UK</span></div>
+                <div><strong>You dream, we design, we deliver.</strong><span>Web development &amp; digital marketing &middot; UK</span></div>
                 <a href="#about">Scroll to discover <span><i class="fa-solid fa-arrow-down"></i></span></a>
             </div>
         </div>
@@ -72,8 +97,8 @@
             <div class="clients-panel reveal">
                 <div class="clients-head">
                     <p class="eyebrow text-center">Our Partners</p>
-                    <h2 class="section-title text-center">In good company.</h2>
-
+                    <h2 class="section-title text-center">Building Success Through Trusted Partnerships</h2>
+                    <p class="clients-description">We partner with innovative businesses and leading technology providers to create digital solutions that deliver lasting results.</p>
                 </div>
 
                 @if($clients->isNotEmpty())
@@ -107,15 +132,12 @@
         <div class="container">
             <div class="about-refined-heading">
                 <p class="eyebrow reveal">About Us</p>
-                <h2 class="section-title reveal delay-1">The right thinking. <span>The right digital partner.</span></h2>
-                <p class="muted reveal delay-1">We bring your business and technology together, with digital solutions shaped around your goals.</p>
+                <h2 class="section-title reveal delay-1">Your Trusted Partner for <span>Digital Success</span></h2>
+                <p class="muted reveal delay-1">Welcome to SSF Tech, a trusted website &amp; software development company based in the UK.</p>
             </div>
             <div class="about-refined-grid">
                 <div class="about-refined-content reveal delay-2">
-                    <p class="about-refined-description">We are SSF Tech, a UK-based website and software development company. We help businesses build a stronger digital presence and connect the systems that keep them moving.</p>
-                    <p class="about-refined-description">From websites and e-commerce to CRM, ERP and digital marketing, you get practical expertise shaped around your goals.</p>
-                    <div class="about-refined-points"><span><i class="fa-solid fa-check"></i> Thoughtful design</span><span><i class="fa-solid fa-check"></i> Connected systems</span><span><i class="fa-solid fa-check"></i> Ongoing support</span></div>
-                    <a class="btn btn-brand" href="#contact">Let's talk about your business <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <p class="about-refined-description">We turn your vision into a captivating website through expert design and development. From sleek, modern interfaces to seamless functionality, we specialise in boosting conversions and creating digital experiences that help your brand succeed online.</p>
                     <div class="about-refined-stats">
                         <div class="about-stat"><span class="about-stat-index">01</span><strong><span class="stat-number" data-count="5">5</span><span class="stat-plus">+</span></strong><small>Years of experience</small></div>
                         <div class="about-stat"><span class="about-stat-index">02</span><strong><span class="stat-number" data-count="150">150</span><span class="stat-plus">+</span></strong><small>Happy clients</small></div>
@@ -135,8 +157,8 @@
         <div class="container">
             <div class="services-section-heading">
                 <p class="eyebrow reveal">Our Services</p>
-                <h2 class="section-title reveal delay-1">Serious technology. <span>Real-world solutions.</span></h2>
-                <p class="muted reveal delay-1">From websites and business systems to customer relationships and digital marketing. Explore the expertise your next stage needs.</p>
+                <h2 class="section-title reveal delay-1">Bespoke Digital Solutions for <span>Every Business</span></h2>
+                <p class="muted reveal delay-1">We offer a complete range of services to help your brand grow online, from the very first line of code through to ongoing support.</p>
             </div>
             @php
                 $serviceCategories = collect(\App\Models\Service::CATEGORIES)->filter(fn ($label, $key) => $services->contains('category', $key));
@@ -179,7 +201,7 @@
 
     <section id="industries" class="industries-section industry-showcase">
         <div class="container">
-            <div class="section-heading-row"><div><p class="eyebrow">Built around your business</p><h2 class="section-title light">Different industries.<br><span>One digital advantage.</span></h2></div><p class="muted">Your customers and challenges are unique. Your digital solution should be too.</p></div>
+            <div class="section-heading-row"><div><p class="eyebrow">Industries We Serve</p><h2 class="section-title light">Helping Businesses Thrive<br><span>Across Every Industry</span></h2></div><p class="muted">Whatever industry you operate in, our team has the experience and knowledge to build a digital solution that fits your goals and your customers.</p></div>
             @php
                 $industryShowcase = [
                     ['Retail & E-commerce', 'fa-cart-shopping', 'Turn browsing into buying.', 'Fast storefronts, intuitive product discovery and a checkout experience built around your customers.', 'E-commerce platforms', 'Payment integrations', 'stock/ecommerce.webp'],
@@ -213,8 +235,8 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="section-title light reviews-title">Good work speaks.<br><span>Our clients say it best.</span></h2>
-                    <p class="muted reviews-text">We're proud to help businesses grow with reliable digital solutions,
+                    <h2 class="section-title light reviews-title">We&#39;ve helped a lot of businesses<br><span>but don&#39;t just take our word for it</span></h2>
+                    <p class="muted reviews-text">We&#39;re proud to help businesses grow with reliable digital solutions,
                         outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
                         makes a real difference.</p>
 
@@ -321,7 +343,7 @@
             <div class="portfolio-head">
                 <div>
                     <p class="eyebrow reveal">Our Work</p>
-                    <h2 class="section-title reveal delay-1">Ideas made real.<br><span>Explore our work.</span></h2>
+                    <h2 class="section-title reveal delay-1">Digital Experiences We&#39;ve Created<br><span>for Our Clients</span></h2>
                     <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
                         their goals. Browse our recent work to see what we've created.</p>
                 </div>
@@ -402,12 +424,12 @@
 
     <section id="contact" class="contact-section section-pad">
         <div class="container">
-            <div class="contact-section-heading"><p class="eyebrow">Get In Touch</p><h2 class="section-title">Big ideas start with <span>a simple conversation.</span></h2><p class="muted">Tell us what you have in mind. We will help you find the right way forward.</p></div>
+            <div class="contact-section-heading"><p class="eyebrow">Get In Touch</p><h2 class="section-title">Outshine Your Competitors with <span>Smart Digital Solutions</span></h2><p class="muted">Have a project in mind? Get in touch with our team today and let&#39;s create a digital solution that helps your business grow.</p></div>
             <div class="contact-shell">
                 <div class="contact-info reveal">
                     <div class="contact-panel-top"><span class="contact-panel-mark"><i class="fa-solid fa-comments"></i></span><span>LET'S CONNECT</span></div>
-                    <h3 class="contact-panel-title">A real team.<br>Ready to listen.</h3>
-                    <p class="contact-copy">From a new website to your next application, it starts with understanding your business.</p>
+                    <h3 class="contact-panel-title">Send Us a Message</h3>
+                    <p class="contact-copy">Fill out the form and we&#39;ll get back to you shortly.</p>
                     <div class="contact-details">
                         @if($siteSetting?->contact_phone)
                         <div class="contact-detail">
@@ -459,8 +481,8 @@
                     <div class="contact-form-head">
                         <span><i class="fa-regular fa-envelope"></i></span>
                         <div>
-                            <h3>Tell us about your project.</h3>
-                            <p>A few details now. Something great next.</p>
+                            <h3>Send Us a Message</h3>
+                            <p>Fill out the form and we&#39;ll get back to you shortly.</p>
                         </div>
                     </div>
                     <form class="contact-form js-contact-form" id="contactForm" data-response="#formResponse"
@@ -508,7 +530,7 @@
                             <div class="col-12">
                                 <div id="formResponse" class="mb-3 d-none"></div>
                                 <button class="btn btn-brand" type="submit" id="submitBtn">
-                                    Let&#39;s start a conversation <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span>
+                                    Send Message <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span>
                                 </button>
                                 <p class="form-reassurance"><i class="fa-solid fa-lock"></i> Your details are only used to respond to your enquiry.</p>
                             </div>
@@ -522,15 +544,15 @@
     @if($faqs->isNotEmpty())
     <section class="faq-section section-pad" id="faqs">
         <div class="container">
-            <div class="faq-section-heading"><p class="eyebrow">FAQs</p><h2 class="section-title">Good questions. <span>Clear answers.</span></h2><p class="muted">Everything you need to know before we build something together.</p></div>
+            <div class="faq-section-heading"><p class="eyebrow">FAQ&#39;S</p><h2 class="section-title">Frequently Asked <span>Questions</span></h2><p class="muted">Find answers to some of the most common questions about our services, our process and how we work.</p></div>
             <div class="faq-shell">
                 <aside class="faq-intro reveal">
                     <div class="faq-help-photo"><img src="{{ url('frontend/assets/images/stock/professional-services.webp') }}" alt="Developers collaborating in an office" loading="lazy" decoding="async"><span><i class="fa-solid fa-comment-dots"></i> PEOPLE BEHIND THE TECHNOLOGY</span></div>
                     <div class="faq-question-card">
-                        <span class="faq-help-label">A QUESTION OF YOUR OWN?</span>
-                        <h3>Let's talk it through.</h3>
-                        <p>Every project is different. Tell us about yours and we will help with the details.</p>
-                        <a class="btn btn-brand" href="#contact">Ask our team <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <span class="faq-help-label">STILL HAVE QUESTIONS?</span>
+                        <h3>Still have questions?</h3>
+                        <p>Can&#39;t find the answer you&#39;re looking for? Our team is here to help!</p>
+                        <a class="btn btn-brand" href="#contact">Ask a Question <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </aside>
                 <div class="faq-content reveal delay-2">

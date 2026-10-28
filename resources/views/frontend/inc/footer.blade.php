@@ -16,7 +16,7 @@
                         <img src="{{ url($siteSetting?->footer_logo ?: $siteSetting?->logo ?: 'frontend/assets/images/logo/ssf-tech-logo-new.png') }}" alt="SSF Tech" loading="lazy" decoding="async">
                     </span>
                 </a>
-                <p class="footer-tagline">Digital products, connected business systems and growth strategies built around the way you work.</p>
+                <p class="footer-tagline">Innovative technology solutions that empower businesses and drive digital transformation.</p>
                 <span class="footer-status"><i></i> Available for new projects</span>
             </div>
 

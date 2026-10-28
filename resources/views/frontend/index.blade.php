@@ -58,12 +58,6 @@
                     <a href="#portfolio" class="btn hero-secondary">Discover our work <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
-            <aside class="hero-expertise" aria-label="Our expertise">
-                <div class="expertise-caption"><span class="live-dot"></span> THE SSF TECH ADVANTAGE</div>
-                <a href="#services"><span class="expertise-number">01 / BUILD</span><strong>Development that<br>means business.</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                <a href="#portfolio"><span class="expertise-number">02 / EXPERIENCE</span><strong>Designed to stand out.<br>Built to perform.</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                <div class="expertise-note"><i class="fa-solid fa-code"></i> Your idea. Our next challenge.</div>
-            </aside>
             </div>
             <div class="hero-bottom-line">
                 <div><strong>You dream. We deliver.</strong><span>Web development & digital solutions &middot; UK</span></div>

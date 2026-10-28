@@ -289,6 +289,7 @@
       speed: 650,
       grabCursor: true,
       watchOverflow: true,
+      centerInsufficientSlides: true,
       pagination: {
         el: ".related-pagination",
         clickable: true,

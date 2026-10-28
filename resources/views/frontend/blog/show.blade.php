@@ -86,27 +86,29 @@
                 @include('frontend.blog.sidebar')
             </div>
 
-            <nav class="article-navigation reveal" aria-label="Article navigation">
-                <div>@if($previousArticle)<small>Previous Post</small><a href="{{ route('blog.show', $previousArticle->slug) }}"><i class="fa-solid fa-arrow-left"></i> {{ $previousArticle->title }}</a>@endif</div>
-                <div>@if($nextArticle)<small>Next Post</small><a href="{{ route('blog.show', $nextArticle->slug) }}">{{ $nextArticle->title }} <i class="fa-solid fa-arrow-right"></i></a>@endif</div>
-            </nav>
-
-            <div class="related-heading"><h2>Related Articles</h2><a href="{{ route('blog.index') }}">View All Articles <i class="fa-solid fa-arrow-right"></i></a></div>
-            @if($relatedArticles->isNotEmpty())
-                <div class="related-slider swiper reveal">
-                    <div class="swiper-wrapper">
-                        @foreach($relatedArticles as $related)
-                            <div class="swiper-slide">
-                                <article class="related-card">
-                                    <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}" loading="lazy" decoding="async"></a>
-                                    <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
-                                </article>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @if($relatedArticles->count() > 1)<div class="related-pagination"></div>@endif
-            @endif
         </div>
     </section>
+
+    @if($relatedArticles->isNotEmpty())
+    <section class="related-section section-pad">
+        <div class="container">
+            <div class="related-heading">
+                <div><p class="eyebrow">More Insights</p><h2>Related <span>Articles</span></h2></div>
+            </div>
+            <div class="related-slider swiper reveal">
+                <div class="swiper-wrapper">
+                    @foreach($relatedArticles as $related)
+                        <div class="swiper-slide">
+                            <article class="related-card">
+                                <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}" loading="lazy" decoding="async"></a>
+                                <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
+                            </article>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @if($relatedArticles->count() > 1)<div class="related-pagination"></div>@endif
+        </div>
+    </section>
+    @endif
 @endsection

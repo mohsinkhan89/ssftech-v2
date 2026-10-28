@@ -5176,7 +5176,7 @@
 
 @media(max-width:575px) {
     .ssf-modern.is-home .services-section {
-        margin-inline: 7px;
+        margin-inline: auto;
         padding: 68px 0 76px;
         border-radius: 22px
     }
@@ -7445,9 +7445,14 @@
 @media(max-width:575px) {
     html,
     body.ssf-modern { width:100%; max-width:100%; overflow-x:clip }
-    .ssf-modern.is-home main,
-    .ssf-modern.is-home section { max-width:100%; overflow-x:clip }
-    .ssf-modern.is-home .container { width:100%; max-width:100%; padding-inline:18px }
+    .ssf-modern:is(.is-home,.is-inner) main,
+    .ssf-modern:is(.is-home,.is-inner) section { width:100%; max-width:100%; overflow-x:clip }
+    .ssf-modern:is(.is-home,.is-inner) .container {
+        width:100%;
+        max-width:100%;
+        margin-inline:auto;
+        padding-inline:18px;
+    }
 
     .ssf-modern:is(.is-home,.is-inner) .site-header {
         position:fixed;
@@ -7493,6 +7498,19 @@
     .ssf-modern.is-inner .site-header:not(.scrolled) .navbar { min-height:88px; padding:14px 0 }
     .ssf-modern.is-inner .site-header:not(.scrolled) .container { padding-inline:18px }
     .ssf-modern.is-inner .site-header:not(.scrolled) .header-logo { width:112px; height:44px }
+    .ssf-modern.is-inner .blog-hero-copy,
+    .ssf-modern.is-inner .article-hero-copy,
+    .ssf-modern.is-inner .blog-catalog-layout,
+    .ssf-modern.is-inner .blog-results,
+    .ssf-modern.is-inner .article-layout,
+    .ssf-modern.is-inner .article-content,
+    .ssf-modern.is-inner .related-section { width:100%; max-width:100%; min-width:0 }
+    .ssf-modern.is-inner .blog-hero h1,
+    .ssf-modern.is-inner .article-hero h1 {
+        max-width:100%;
+        overflow-wrap:break-word;
+        word-break:normal;
+    }
     .ssf-modern:is(.is-home,.is-inner) .navbar-toggler {
         display:flex!important;
         visibility:visible!important;

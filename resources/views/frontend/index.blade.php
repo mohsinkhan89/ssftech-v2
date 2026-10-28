@@ -191,7 +191,7 @@
                                         <div class="service-card-content">
                                         <div class="service-card-top"><span class="service-icon"><i class="{{ $service->icon }}"></i></span><span class="service-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }} /</span></div>
                                         <h3>{{ $service->title }}</h3><p>{{ $service->description }}</p>
-                                        <a href="{{ $service->link ?: '#contact' }}">Let's talk <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="#contact" class="js-select-service" data-service="{{ $service->title }}">Let's talk <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </article></div>
                                 @endforeach

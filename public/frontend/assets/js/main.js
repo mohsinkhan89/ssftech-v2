@@ -17,6 +17,24 @@
   const deviceButtons = document.querySelectorAll(".device-tabs button");
   const cookieConsent = document.getElementById("cookieConsent");
 
+  document.querySelectorAll(".js-select-service[data-service]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const serviceName = link.dataset.service?.trim();
+      const serviceSelect = document.getElementById("enquiry-service");
+
+      if (!serviceName || !serviceSelect) return;
+
+      const matchingOption = Array.from(serviceSelect.options).find(
+        (option) => option.value.trim() === serviceName
+      );
+
+      if (matchingOption) {
+        serviceSelect.value = matchingOption.value;
+        serviceSelect.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    });
+  });
+
   if (cookieConsent) {
     const consentMatch = document.cookie.match(/(?:^|; )ssf_cookie_consent=([^;]*)/);
     const savedConsent = consentMatch ? decodeURIComponent(consentMatch[1]) : null;

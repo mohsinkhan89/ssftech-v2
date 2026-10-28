@@ -1,14 +1,5 @@
 <footer class="site-footer footer-modern" id="site-footer">
     <div class="container">
-        <div class="footer-cta">
-            <div class="footer-cta-copy">
-                <p class="eyebrow">Your ambition. Our expertise.</p>
-                <h2>Let&#39;s build what&#39;s <span>next.</span></h2>
-                <p>Tell us where you want to take your business. We will bring the strategy, technology and team to move it forward.</p>
-            </div>
-            <a class="btn btn-brand" href="{{ route('index') }}#contact">Start a conversation <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
-        </div>
-
         <div class="footer-main-grid">
             <div class="footer-about">
                 <a class="footer-brand" href="{{ route('index') }}#home" aria-label="SSF Tech home">

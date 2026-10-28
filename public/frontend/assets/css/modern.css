@@ -4350,7 +4350,8 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: 60px 0 clamp(120px, 13vw, 220px);
+    /* padding: 60px 0 clamp(120px, 13vw, 220px); */
+    padding: 20px 0 clamp(120px, 13vw, 220px);
     background: radial-gradient(circle at 78% 8%, rgba(228, 9, 20, .13), transparent 26%), #0d1118;
     border-top: 0;
     color: #aeb5c1
@@ -6981,4 +6982,48 @@
 
 @media(max-width:575px) {
     .ssf-modern.is-home .contact-form .hero-form-action { width:100% }
+}
+
+/* Tighter vertical rhythm across homepage content sections. */
+.ssf-modern.is-home .about-refined,
+.ssf-modern.is-home .services-section,
+.ssf-modern.is-home .industry-showcase,
+.ssf-modern.is-home .reviews-section,
+.ssf-modern.is-home .insights-section,
+.ssf-modern.is-home .portfolio-section,
+.ssf-modern.is-home .delivery-section,
+.ssf-modern.is-home .contact-section,
+.ssf-modern.is-home .faq-section {
+    padding-top:82px;
+    padding-bottom:82px;
+}
+
+@media(max-width:991px) {
+    .ssf-modern.is-home .about-refined,
+    .ssf-modern.is-home .services-section,
+    .ssf-modern.is-home .industry-showcase,
+    .ssf-modern.is-home .reviews-section,
+    .ssf-modern.is-home .insights-section,
+    .ssf-modern.is-home .portfolio-section,
+    .ssf-modern.is-home .delivery-section,
+    .ssf-modern.is-home .contact-section,
+    .ssf-modern.is-home .faq-section {
+        padding-top:68px;
+        padding-bottom:68px;
+    }
+}
+
+@media(max-width:575px) {
+    .ssf-modern.is-home .about-refined,
+    .ssf-modern.is-home .services-section,
+    .ssf-modern.is-home .industry-showcase,
+    .ssf-modern.is-home .reviews-section,
+    .ssf-modern.is-home .insights-section,
+    .ssf-modern.is-home .portfolio-section,
+    .ssf-modern.is-home .delivery-section,
+    .ssf-modern.is-home .contact-section,
+    .ssf-modern.is-home .faq-section {
+        padding-top:56px;
+        padding-bottom:56px;
+    }
 }

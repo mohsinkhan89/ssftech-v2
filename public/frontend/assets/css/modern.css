@@ -6767,3 +6767,22 @@
     content:none;
     display:none;
 }
+
+/* Normalize partner artwork to the same visual frame as the Tax Wise logo. */
+.ssf-modern.is-home .client-logo-card img {
+    display:block;
+    width:150px;
+    height:52px;
+    max-width:100%;
+    max-height:none;
+    object-fit:cover;
+    /* object-fit:contain; */
+    object-position:center;
+}
+
+@media(max-width:575px) {
+    .ssf-modern.is-home .client-logo-card img {
+        width:135px;
+        height:48px;
+    }
+}

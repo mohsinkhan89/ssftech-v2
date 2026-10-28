@@ -5415,7 +5415,8 @@
     height: 46px;
     border: 1px solid rgba(255, 255, 255, .12);
     border-radius: 14px;
-    background: rgba(228, 9, 20, .13);
+    /* background: rgba(228, 9, 20, .13); */
+    background: #eee;
     color: #ff6971;
     font-size: 12px;
     font-weight: 700
@@ -5651,6 +5652,44 @@
 .ssf-modern.is-home .hero-actions .btn:hover .button-orb,
 .ssf-modern.is-home .hero-actions .btn:hover>i {
     transform: translateX(4px)
+}
+
+/* Carry the Client Reviews badge style through all following homepage sections. */
+.ssf-modern.is-home .insights-head .eyebrow,
+.ssf-modern.is-home .portfolio-head .eyebrow,
+.ssf-modern.is-home .delivery-heading .eyebrow,
+.ssf-modern.is-home .contact-section-heading .eyebrow,
+.ssf-modern.is-home .faq-section-heading .eyebrow {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    width:auto;
+    margin-bottom:18px;
+    padding:7px 11px;
+    border:1px solid rgba(228,9,20,.12);
+    border-radius:999px;
+    background:#fff1f2;
+    color:#c70812;
+    font-size:9px;
+    line-height:1.2;
+    letter-spacing:1.5px;
+    box-shadow:none;
+    backdrop-filter:none;
+}
+.ssf-modern.is-home .insights-head .eyebrow:before,
+.ssf-modern.is-home .portfolio-head .eyebrow:before,
+.ssf-modern.is-home .delivery-heading .eyebrow:before,
+.ssf-modern.is-home .contact-section-heading .eyebrow:before,
+.ssf-modern.is-home .faq-section-heading .eyebrow:before {
+    content:'';
+    display:block;
+    width:6px;
+    height:6px;
+    margin:0;
+    flex:0 0 6px;
+    border-radius:50%;
+    background:#e40914;
+    box-shadow:0 0 0 4px rgba(228,9,20,.1);
 }
 
 .ssf-modern.is-home .hero-bottom-line {
@@ -6530,7 +6569,7 @@
     padding: 42px;
     border: 1px solid rgba(255, 255, 255, .75);
     border-radius: 24px;
-    background: linear-gradient(145deg, #fff, #f6f3f2);
+    background: #eee;
     box-shadow: none
 }
 
@@ -6705,4 +6744,26 @@
     .ssf-modern.is-home .review-stat small {
         font-size: 8px
     }
+}
+
+/* Final badge alignment fixes for portfolio and dark sections. */
+.ssf-modern.is-home .portfolio-head .eyebrow {
+    justify-self:start;
+    align-self:start;
+    width:max-content;
+    max-width:100%;
+}
+
+.ssf-modern.is-home .insights-head .eyebrow,
+.ssf-modern.is-home .delivery-heading .eyebrow {
+    border-color:rgba(255,255,255,.2);
+    background:transparent;
+    color:#ff7880;
+    box-shadow:none;
+    backdrop-filter:none;
+}
+
+.ssf-modern.is-home .insights-head .eyebrow:after {
+    content:none;
+    display:none;
 }

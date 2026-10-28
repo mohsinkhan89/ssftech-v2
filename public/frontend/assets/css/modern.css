@@ -7694,4 +7694,14 @@
     .ssf-modern .cookie-consent-copy p { font-size:10px; line-height:1.45 }
     .ssf-modern .cookie-consent-actions { grid-column:1; gap:7px }
     .ssf-modern .cookie-consent-actions button { min-height:38px; padding:0 9px; font-size:10px; border-radius:7px }
+
+    .ssf-modern .footer-main-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        column-gap:24px;
+        row-gap:30px;
+    }
+    .ssf-modern .footer-modern .footer-about,
+    .ssf-modern .footer-modern .footer-contact-social { grid-column:1 / -1 }
+    .ssf-modern .footer-modern .footer-links { min-width:0 }
+    .ssf-modern .footer-modern .footer-links a { gap:8px; font-size:11px }
 }

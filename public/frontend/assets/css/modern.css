@@ -1071,8 +1071,8 @@
 }
 
 .ssf-modern .header-logo {
-    width: 148px;
-    height: 50px
+    width: auto;
+    height: 70px
 }
 
 .ssf-modern .btn-brand,
@@ -3555,11 +3555,13 @@
 }
 
 .ssf-modern .site-header.scrolled {
+    padding: 0px;
     top: 16px;
     width: calc(100% - 48px);
     max-width: 1320px;
     border: 1px solid rgba(255, 255, 255, .1);
-    border-radius: 60px;
+    /* border-radius: 60px; */
+    border-radius: 10px;
     background: rgba(17, 20, 27, .96);
     box-shadow: 0 12px 36px rgba(0, 0, 0, .18);
     backdrop-filter: blur(16px);
@@ -3567,7 +3569,7 @@
 }
 
 .ssf-modern .site-header.scrolled .navbar {
-    padding-block: 10px;
+    padding-block: 0px;
 }
 
 @media (max-width: 991px) {
@@ -4837,4 +4839,70 @@
         animation: none;
         background-position: 0 0
     }
+}
+
+/* Modern SSF services directory. */
+.ssf-modern.is-home .services-section {
+    position: relative;
+    margin: 26px 18px;
+    padding: 100px 0 110px;
+    overflow: hidden;
+    border: 1px solid #ebe7e5;
+    border-radius: 34px;
+    background: radial-gradient(circle at 8% 0, rgba(228,9,20,.09), transparent 25%), linear-gradient(145deg,#f8f6f5,#fff 58%,#f7f5f4)
+}
+.ssf-modern.is-home .services-section:before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(16,24,44,.055) .8px,transparent .8px); background-size:22px 22px; mask-image:linear-gradient(90deg,black,transparent 58%); pointer-events:none }
+.ssf-modern.is-home .services-section>.container { position:relative; z-index:1 }
+.ssf-modern.is-home .services-section-heading { max-width:900px; margin:0 auto 46px; text-align:center }
+.ssf-modern.is-home .services-section-heading .eyebrow { display:inline-flex; align-items:center; padding:8px 13px; margin-bottom:17px; border:1px solid rgba(228,9,20,.13); border-radius:999px; background:#fff; box-shadow:0 8px 22px rgba(16,24,44,.04) }
+.ssf-modern.is-home .services-section-heading .section-title { margin-bottom:18px; color:#10182c; font-size:clamp(40px,4vw,62px); line-height:1.05; letter-spacing:-.05em }
+.ssf-modern.is-home .services-section-heading .section-title span { color:#e40914 }
+.ssf-modern.is-home .services-section-heading>.muted { max-width:720px; margin-inline:auto; color:#697181; font-size:15px; line-height:1.8 }
+
+.ssf-modern.is-home .service-category-tabs { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; max-width:1000px; margin:0 auto 28px; padding:7px; border:1px solid #e7e3e1; border-radius:999px; background:rgba(255,255,255,.82); box-shadow:0 14px 38px rgba(16,24,44,.055); backdrop-filter:blur(14px) }
+.ssf-modern.is-home .service-category-tab { flex:1 1 180px; justify-content:center; min-height:52px; padding:11px 17px; border:0; border-radius:999px; background:transparent; color:#616979; transition:color .3s,background .3s,transform .35s,box-shadow .35s }
+.ssf-modern.is-home .service-category-tab>i { color:#bd1119; font-size:16px }
+.ssf-modern.is-home .service-category-tab small { margin-left:3px; background:#f0edeb }
+.ssf-modern.is-home .service-category-tab.active { background:#111827; color:#fff; box-shadow:0 10px 25px rgba(16,24,39,.18) }
+.ssf-modern.is-home .service-category-tab.active>i { color:#ff5f68 }
+.ssf-modern.is-home .service-category-tab.active small { background:rgba(255,255,255,.12); color:#fff }
+.ssf-modern.is-home .service-category-tab:not(.active):hover { transform:translateY(-2px); background:#fff1f2; color:#b90710 }
+
+.ssf-modern.is-home .service-category-intro { position:relative; margin:0 0 28px; padding:34px 38px; overflow:hidden; border:1px solid rgba(255,255,255,.08); border-radius:24px; background:radial-gradient(circle at 88% 15%,rgba(228,9,20,.21),transparent 28%),linear-gradient(135deg,#111827,#080d16); box-shadow:0 24px 55px rgba(16,24,44,.14) }
+.ssf-modern.is-home .service-category-intro:after { content:''; position:absolute; width:190px; height:190px; right:-65px; bottom:-120px; border:1px solid rgba(255,255,255,.09); border-radius:50% }
+.ssf-modern.is-home .service-category-intro .eyebrow { color:#ff747c }
+.ssf-modern.is-home .service-category-intro h3 { color:#fff; font-size:31px; letter-spacing:-1.1px }
+.ssf-modern.is-home .service-category-intro p:not(.eyebrow) { color:#aeb6c5; font-size:14px }
+.ssf-modern.is-home .service-category-cta { position:relative; z-index:2; min-height:47px; padding:12px 21px; border-radius:999px; background:#e40914; color:#fff; box-shadow:0 12px 28px rgba(228,9,20,.28); transition:transform .35s,box-shadow .35s }
+.ssf-modern.is-home .service-category-cta:hover { transform:translateY(-4px); box-shadow:0 18px 38px rgba(228,9,20,.38) }
+.ssf-modern.is-home .service-category-cta i { transition:transform .3s }
+.ssf-modern.is-home .service-category-cta:hover i { transform:translateX(4px) }
+
+.ssf-modern.is-home .service-category-panels .services-grid { margin-top:0 }
+.ssf-modern.is-home .service-category-panels .services-grid>.swiper-wrapper { gap:22px }
+.ssf-modern.is-home .service-category-panels .service-card-with-image { border:1px solid #e7e3e1; border-radius:22px; background:#fff; box-shadow:0 12px 35px rgba(16,24,44,.055); transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .4s,border-color .3s }
+.ssf-modern.is-home .service-category-panels .service-card-with-image:is(:hover,:focus-within) { transform:translateY(-9px); border-color:rgba(228,9,20,.22); box-shadow:0 25px 55px rgba(16,24,44,.12) }
+.ssf-modern.is-home .service-card-image { aspect-ratio:16/9.5 }
+.ssf-modern.is-home .service-card-image:after { background:linear-gradient(0deg,rgba(7,12,20,.58),transparent 68%) }
+.ssf-modern.is-home .service-image-category { padding:7px 11px; border-radius:999px; backdrop-filter:blur(8px) }
+.ssf-modern.is-home .service-card-content { min-height:310px; padding:26px }
+.ssf-modern.is-home .service-card-with-image h3 { color:#111827; font-size:22px }
+.ssf-modern.is-home .service-card-with-image p { color:#687181 }
+.ssf-modern.is-home .service-card-with-image a { display:flex; align-items:center; justify-content:space-between; margin-top:auto; color:#b90710; font-weight:700 }
+.ssf-modern.is-home .service-card-with-image a i { display:grid; place-items:center; width:32px; height:32px; border-radius:50%; background:#fff0f1; transition:transform .3s,background .3s,color .3s }
+.ssf-modern.is-home .service-card-with-image:hover a i { transform:translateX(3px); background:#e40914; color:#fff }
+
+@media(max-width:991px) {
+    .ssf-modern.is-home .services-section { margin-inline:10px; padding:80px 0 88px; border-radius:28px }
+    .ssf-modern.is-home .service-category-tabs { border-radius:24px }
+    .ssf-modern.is-home .service-category-intro { align-items:flex-start; padding:30px }
+}
+@media(max-width:575px) {
+    .ssf-modern.is-home .services-section { margin-inline:7px; padding:68px 0 76px; border-radius:22px }
+    .ssf-modern.is-home .services-section-heading .section-title { font-size:39px }
+    .ssf-modern.is-home .service-category-tabs { display:grid; grid-template-columns:1fr 1fr; padding:6px; border-radius:20px }
+    .ssf-modern.is-home .service-category-tab { min-width:0; min-height:48px; padding:10px; border-radius:15px }
+    .ssf-modern.is-home .service-category-intro { padding:25px 22px; border-radius:20px }
+    .ssf-modern.is-home .service-category-intro h3 { font-size:27px }
+    .ssf-modern.is-home .service-category-cta { width:100%; justify-content:center }
 }

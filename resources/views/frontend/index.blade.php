@@ -78,7 +78,7 @@
                         <div class="col-12"><textarea class="form-control" name="message" rows="3" placeholder="Tell us about your project..." aria-label="Project details" required></textarea></div>
                         <div class="col-12">
                             <div id="heroFormResponse" class="mb-3 d-none"></div>
-                            <button class="btn btn-brand" type="submit" id="heroSubmitBtn">Request Quote <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></button>
+                            <button class="btn btn-brand hero-form-action" type="submit" id="heroSubmitBtn">Request Quote <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></button>
                         </div>
                     </div>
                 </form>
@@ -531,10 +531,9 @@
                             </div>
                             <div class="col-12">
                                 <div id="formResponse" class="mb-3 d-none"></div>
-                                <button class="btn btn-brand" type="submit" id="submitBtn">
+                                <button class="btn btn-brand hero-form-action" type="submit" id="submitBtn">
                                     Send Message <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span>
                                 </button>
-                                <p class="form-reassurance"><i class="fa-solid fa-lock"></i> Your details are only used to respond to your enquiry.</p>
                             </div>
                         </div>
                     </form>

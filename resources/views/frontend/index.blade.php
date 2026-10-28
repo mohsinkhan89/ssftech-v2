@@ -54,7 +54,7 @@
                 <h1 class="hero-anim delay-1">We build digital.<br><span>You build<br>what&#39;s next.</span></h1>
                 <p class="hero-copy hero-anim delay-2">From your first idea to your next big launch. We design and develop websites, e-commerce platforms and applications that work harder for your business.</p>
                 <div class="hero-actions hero-anim delay-3">
-                    <a href="#services" class="btn btn-brand"><span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span> Explore our services</a>
+                    <a href="#services" class="btn btn-brand">Explore our services <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                     <a href="#portfolio" class="btn hero-secondary">Discover our work <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>

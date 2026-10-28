@@ -443,13 +443,14 @@
 
   function animateStat(number) {
     const target = Number(number.dataset.count);
+    const decimals = Math.max(0, Number.parseInt(number.dataset.decimals || "0", 10) || 0);
     if (!Number.isFinite(target) || number.dataset.counted === "true") {
       return;
     }
 
     number.dataset.counted = "true";
     if (prefersReducedMotion) {
-      number.textContent = target.toLocaleString();
+      number.textContent = target.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
       return;
     }
 
@@ -460,7 +461,7 @@
     function updateCount(currentTime) {
       const progress = Math.min((currentTime - startTime) / duration, 1);
       const easedProgress = 1 - Math.pow(1 - progress, 4);
-      number.textContent = Math.round(target * easedProgress).toLocaleString();
+      number.textContent = (target * easedProgress).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
       if (progress < 1) {
         requestAnimationFrame(updateCount);

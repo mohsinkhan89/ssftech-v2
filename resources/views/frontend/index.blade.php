@@ -245,18 +245,18 @@
 
                     <div class="review-stats">
                         <div class="review-stat">
-                            <span><i class="fa-regular fa-face-smile"></i></span>
-                            <strong>{{ $happyClients }}+</strong>
+                            <span class="review-stat-index">01</span>
+                            <strong><span class="stat-number" data-count="{{ $happyClients }}">{{ $happyClients }}</span><span class="stat-plus">+</span></strong>
                             <small>Happy Clients</small>
                         </div>
                         <div class="review-stat">
-                            <span><i class="fa-regular fa-star"></i></span>
-                            <strong>{{ $averageRating }}/5</strong>
+                            <span class="review-stat-index">02</span>
+                            <strong><span class="stat-number" data-count="{{ $averageRating }}" data-decimals="1">{{ $averageRating }}</span><span class="stat-plus">/5</span></strong>
                             <small>Client Rating</small>
                         </div>
                         <div class="review-stat">
-                            <span><i class="fa-solid fa-award"></i></span>
-                            <strong>98%</strong>
+                            <span class="review-stat-index">03</span>
+                            <strong><span class="stat-number" data-count="98">98</span><span class="stat-plus">%</span></strong>
                             <small>Project Success Rate</small>
                         </div>
                     </div>

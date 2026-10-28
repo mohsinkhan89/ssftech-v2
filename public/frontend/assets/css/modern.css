@@ -982,6 +982,28 @@
     }
 }
 
+/* Keep the listing sidebar useful for both short and long article lists. */
+@media(min-width:992px) {
+    .ssf-modern.is-inner .blog-catalog .blog-sidebar {
+        position:sticky;
+        top:105px;
+        align-self:start;
+        max-height:calc(100vh - 125px);
+        padding-right:7px;
+        overflow-x:hidden;
+        overflow-y:auto;
+        overscroll-behavior:contain;
+        scrollbar-width:thin;
+        scrollbar-color:rgba(228,9,20,.38) transparent;
+    }
+    .ssf-modern.is-inner .blog-catalog .blog-sidebar::-webkit-scrollbar { width:5px }
+    .ssf-modern.is-inner .blog-catalog .blog-sidebar::-webkit-scrollbar-track { background:transparent }
+    .ssf-modern.is-inner .blog-catalog .blog-sidebar::-webkit-scrollbar-thumb {
+        border-radius:7px;
+        background:rgba(228,9,20,.38);
+    }
+}
+
 
 @media(prefers-reduced-motion:reduce) {
 

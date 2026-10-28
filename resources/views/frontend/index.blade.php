@@ -130,13 +130,13 @@
 
     <section id="about" class="section-pad about-section about-refined">
         <div class="container">
-            <div class="about-refined-heading">
-                <p class="eyebrow reveal">About Us</p>
-                <h2 class="section-title reveal delay-1">Your Trusted Partner for <span>Digital Success</span></h2>
-                <p class="muted reveal delay-1">Welcome to SSF Tech, a trusted website &amp; software development company based in the UK.</p>
-            </div>
             <div class="about-refined-grid">
                 <div class="about-refined-content reveal delay-2">
+                    <div class="about-refined-heading">
+                        <p class="eyebrow">About Us</p>
+                        <h2 class="section-title">Your Trusted Partner for <span>Digital Success</span></h2>
+                        <p class="muted">Welcome to SSF Tech, a trusted website &amp; software development company based in the UK.</p>
+                    </div>
                     <p class="about-refined-description">We turn your vision into a captivating website through expert design and development. From sleek, modern interfaces to seamless functionality, we specialise in boosting conversions and creating digital experiences that help your brand succeed online.</p>
                     <div class="about-refined-stats">
                         <div class="about-stat"><span class="about-stat-index">01</span><strong><span class="stat-number" data-count="5">5</span><span class="stat-plus">+</span></strong><small>Years of experience</small></div>
@@ -144,9 +144,14 @@
                         <div class="about-stat"><span class="about-stat-index">03</span><strong><span class="stat-number" data-count="250">250</span><span class="stat-plus">+</span></strong><small>Projects delivered</small></div>
                     </div>
                 </div>
-                <div class="about-refined-photo reveal">
-                    <img src="{{ url('frontend/assets/images/stock/development-team.webp') }}" alt="Software developers building digital products together" loading="lazy" decoding="async" width="1600" height="1068">
-                    <div class="about-image-caption"><span>PEOPLE. PURPOSE. TECHNOLOGY.</span><p>Good ideas deserve<br>great execution.</p></div>
+                <div class="about-visual-pair reveal" aria-label="The SSF Tech team at work">
+                    <figure class="about-visual-main">
+                        <img src="{{ url('frontend/assets/images/stock/development-team.webp') }}" alt="Software developers building digital products together" loading="lazy" decoding="async" width="1600" height="1068">
+                    </figure>
+                    <figure class="about-visual-secondary">
+                        <img src="{{ url('frontend/assets/images/extracted/about-team-shot.webp') }}" alt="SSF Tech team planning a digital project" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="about-visual-label"><span>People. Purpose. Technology.</span><strong>Good ideas deserve<br>great execution.</strong></div>
                 </div>
             </div>
         </div>

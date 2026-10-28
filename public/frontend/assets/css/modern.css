@@ -7036,3 +7036,13 @@
 .ssf-modern.is-home .hero-form-action {
     border-radius:7px;
 }
+
+/* Square-off the Our Services category navigation. */
+.ssf-modern.is-home .service-category-tabs,
+.ssf-modern.is-home .service-category-tab {
+    border-radius:7px;
+}
+
+.ssf-modern.is-home .service-category-cta {
+    border-radius:7px;
+}

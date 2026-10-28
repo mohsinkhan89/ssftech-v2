@@ -97,7 +97,7 @@
             <div class="clients-panel reveal">
                 <div class="clients-head">
                     <p class="eyebrow text-center">Our Partners</p>
-                    <h2 class="section-title text-center">Building Success Through Trusted Partnerships</h2>
+                    <h2 class="section-title text-center">Building Success Through <span>Trusted Partnerships</span></h2>
                     <p class="clients-description">We partner with innovative businesses and leading technology providers to create digital solutions that deliver lasting results.</p>
                 </div>
 

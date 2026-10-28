@@ -350,7 +350,6 @@
                     <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
                         their goals. Browse our recent work to see what we've created.</p>
                 </div>
-                <a href="#contact" class="btn btn-brand reveal delay-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="portfolio-controls reveal delay-3">
                 <div class="portfolio-tabs" role="group" aria-label="Project categories">

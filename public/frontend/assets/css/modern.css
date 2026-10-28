@@ -6787,3 +6787,115 @@
         height:48px;
     }
 }
+
+/* Refined portfolio showcase aligned with the modern homepage. */
+.ssf-modern.is-home .portfolio-section {
+    position:relative;
+    padding:110px 0;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 94% 8%,rgba(228,9,20,.08),transparent 24%),
+        linear-gradient(180deg,#f8f7f6 0%,#fff 48%,#f7f5f4 100%);
+}
+.ssf-modern.is-home .portfolio-section:before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(rgba(16,24,44,.055) .75px,transparent .75px);
+    background-size:23px 23px;
+    mask-image:linear-gradient(90deg,transparent,#000 70%,transparent);
+    pointer-events:none;
+}
+.ssf-modern.is-home .portfolio-section>.container { position:relative; z-index:1 }
+.ssf-modern.is-home .portfolio-head { column-gap:48px; margin-bottom:38px }
+.ssf-modern.is-home .portfolio-head .section-title {
+    max-width:880px;
+    margin-bottom:20px;
+    white-space:normal;
+    text-wrap:balance;
+}
+.ssf-modern.is-home .portfolio-head .muted { max-width:650px; color:#697181; font-size:15px; line-height:1.8 }
+.ssf-modern.is-home .portfolio-head .btn-brand { min-height:52px; padding:12px 22px; border-radius:999px; box-shadow:0 14px 32px rgba(228,9,20,.2) }
+.ssf-modern.is-home .portfolio-head .btn-brand:hover { transform:translateY(-3px); box-shadow:0 20px 40px rgba(228,9,20,.28) }
+
+.ssf-modern.is-home .portfolio-controls { margin-bottom:32px; padding:8px; border:1px solid #e6e2df; border-radius:18px; background:rgba(255,255,255,.78); box-shadow:0 14px 40px rgba(16,24,44,.055); backdrop-filter:blur(14px) }
+.ssf-modern.is-home .portfolio-tabs,
+.ssf-modern.is-home .device-tabs { gap:5px; padding:0; border:0; border-radius:12px; background:transparent; box-shadow:none }
+.ssf-modern.is-home .portfolio-tabs button,
+.ssf-modern.is-home .device-tabs button { min-height:44px; padding:0 17px; border-radius:11px; color:#606978; font-size:12px; font-weight:700; transition:background .25s,color .25s,transform .25s,box-shadow .25s }
+.ssf-modern.is-home .portfolio-tabs button:hover,
+.ssf-modern.is-home .device-tabs button:hover { color:#10182c; background:#f3f0ee }
+.ssf-modern.is-home .portfolio-tabs button.active,
+.ssf-modern.is-home .device-tabs button.active,
+.ssf-modern.is-home .portfolio-tabs button[aria-pressed="true"],
+.ssf-modern.is-home .device-tabs button[aria-pressed="true"] { color:#fff; background:#e40914; box-shadow:0 9px 20px rgba(228,9,20,.22) }
+
+.ssf-modern.is-home .portfolio-slider { padding:8px 5px 46px }
+.ssf-modern.is-home .project-card { padding:10px 10px 0; overflow:hidden; border:1px solid #e5e1df; border-radius:24px; background:#fff; box-shadow:0 16px 45px rgba(16,24,44,.07) }
+.ssf-modern.is-home .project-card:is(:hover,:focus-within) { transform:translateY(-7px); border-color:rgba(228,9,20,.22); box-shadow:0 28px 60px rgba(16,24,44,.13) }
+.ssf-modern.is-home .project-visual { min-height:310px; padding:26px 26px 0; overflow:hidden; border-radius:17px; background:linear-gradient(145deg,#edf0f4,#e4e7ec) }
+.ssf-modern.is-home .browser-frame { border-width:7px; border-bottom-width:12px; border-radius:13px 13px 7px 7px; box-shadow:0 22px 38px rgba(16,24,44,.2); transition:width .3s,aspect-ratio .3s,border-radius .3s,transform .6s cubic-bezier(.22,1,.36,1) }
+.ssf-modern.is-home .project-card:hover .browser-frame { transform:translateY(-5px) }
+.ssf-modern.is-home .project-meta { min-height:84px; margin:0; padding:18px 12px; border:0; border-radius:0; background:transparent; box-shadow:none }
+.ssf-modern.is-home .project-meta .project-title { color:#10182c; font-size:17px; font-weight:600; letter-spacing:-.02em }
+.ssf-modern.is-home .project-meta>span { padding:7px 11px; border-radius:999px; background:#fff0f1; color:#c70812; font-size:9px; letter-spacing:.06em; text-transform:uppercase }
+.ssf-modern.is-home .project-meta>a { display:grid; place-items:center; width:38px; height:38px; border-radius:50%; background:#10182c; color:#fff; font-size:13px; transition:background .25s,transform .3s }
+.ssf-modern.is-home .project-meta>a:hover { transform:rotate(8deg); background:#e40914; color:#fff }
+.ssf-modern.is-home .portfolio-pagination { margin-top:24px }
+.ssf-modern.is-home .portfolio-pagination .swiper-pagination-bullet { background:#aeb3bc }
+.ssf-modern.is-home .portfolio-pagination .swiper-pagination-bullet-active { background:#e40914 }
+
+@media(max-width:767px) {
+    .ssf-modern.is-home .portfolio-section { padding:78px 0 }
+    .ssf-modern.is-home .portfolio-head { gap:24px; margin-bottom:30px }
+    .ssf-modern.is-home .portfolio-head .btn-brand { width:auto }
+    .ssf-modern.is-home .portfolio-controls { align-items:stretch; padding:7px }
+    .ssf-modern.is-home .portfolio-tabs,
+    .ssf-modern.is-home .device-tabs { width:100%; overflow-x:auto; scrollbar-width:none }
+    .ssf-modern.is-home .portfolio-tabs::-webkit-scrollbar,
+    .ssf-modern.is-home .device-tabs::-webkit-scrollbar { display:none }
+    .ssf-modern.is-home .portfolio-tabs button,
+    .ssf-modern.is-home .device-tabs button { flex:0 0 auto }
+    .ssf-modern.is-home .project-visual { min-height:250px; padding:20px 16px 0 }
+    .ssf-modern.is-home .project-meta { grid-template-columns:1fr auto; gap:8px }
+    .ssf-modern.is-home .project-meta>span { grid-column:1; grid-row:2; justify-self:start }
+    .ssf-modern.is-home .project-meta>a { grid-column:2; grid-row:1 / span 2 }
+}
+
+/* Center the portfolio introduction and tighten project-card proportions. */
+.ssf-modern.is-home .portfolio-head {
+    display:block;
+    max-width:900px;
+    margin:0 auto 38px;
+    text-align:center;
+}
+.ssf-modern.is-home .portfolio-head>div { display:block }
+.ssf-modern.is-home .portfolio-head .eyebrow {
+    display:inline-flex;
+    margin:0 auto 18px;
+    justify-self:auto;
+}
+.ssf-modern.is-home .portfolio-head .section-title {
+    max-width:850px;
+    margin:0 auto 18px;
+    text-align:center;
+}
+.ssf-modern.is-home .portfolio-head .muted {
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+}
+.ssf-modern.is-home .project-visual {
+    min-height:240px;
+    padding:14px 14px 0;
+}
+.ssf-modern.is-home .portfolio-slider.preview-tablet .project-visual { min-height:250px }
+.ssf-modern.is-home .portfolio-slider.preview-mobile .project-visual { min-height:265px }
+.ssf-modern.is-home .project-meta { min-height:76px; padding:15px 10px }
+
+@media(max-width:767px) {
+    .ssf-modern.is-home .portfolio-head { margin-bottom:28px }
+    .ssf-modern.is-home .project-visual { min-height:210px; padding:12px 10px 0 }
+    .ssf-modern.is-home .portfolio-slider.preview-tablet .project-visual { min-height:235px }
+    .ssf-modern.is-home .portfolio-slider.preview-mobile .project-visual { min-height:250px }
+}

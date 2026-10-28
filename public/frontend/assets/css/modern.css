@@ -4640,13 +4640,20 @@
 
 .ssf-modern .footer-modern .footer-bottom p {
     margin: 0;
-    color: #7f8794;
-    font-size: 9px;
-    letter-spacing: .3px
+    color: #bfc4cd;
+    font-size: 13px;
+    line-height: 1.65;
+    letter-spacing: .1px
+}
+
+.ssf-modern .footer-modern .footer-bottom .footer-copyright {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700
 }
 
 .ssf-modern .footer-company-note {
-    max-width: 560px;
+    max-width: 740px;
     text-align: right;
     line-height: 1.6
 }

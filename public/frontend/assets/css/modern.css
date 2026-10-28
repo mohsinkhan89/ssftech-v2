@@ -5207,3 +5207,83 @@
     background:#e40914;
     box-shadow:0 0 0 4px rgba(228,9,20,.1);
 }
+
+/* Premium testimonial section aligned with the homepage visual system. */
+.ssf-modern.is-home .reviews-section {
+    position:relative;
+    padding:110px 0;
+    overflow:hidden;
+    background:#fff;
+}
+.ssf-modern.is-home .reviews-section:before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:linear-gradient(rgba(16,24,44,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(16,24,44,.025) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:linear-gradient(90deg,#000,transparent 75%);
+    pointer-events:none;
+}
+.ssf-modern.is-home .reviews-section>.container { position:relative; z-index:1 }
+.ssf-modern.is-home .reviews-panel { grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:80px }
+.ssf-modern.is-home .reviews-copy .eyebrow {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    width:auto;
+    margin:0 0 20px;
+    padding:7px 11px;
+    border:1px solid rgba(228,9,20,.12);
+    border-radius:999px;
+    background:#fff1f2;
+    color:#c70812;
+    font-size:9px;
+    letter-spacing:1.5px;
+}
+.ssf-modern.is-home .reviews-copy .eyebrow:before {
+    content:'';
+    width:6px;
+    height:6px;
+    flex:0 0 6px;
+    border-radius:50%;
+    background:#e40914;
+    box-shadow:0 0 0 4px rgba(228,9,20,.1);
+}
+.ssf-modern.is-home .reviews-title { margin:0 0 22px; color:#10182c !important; text-wrap:balance }
+.ssf-modern.is-home .reviews-title span { color:#e40914 }
+.ssf-modern.is-home .reviews-text { max-width:590px; margin:0; color:#687181; font-size:15px; line-height:1.85 }
+.ssf-modern.is-home .review-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:38px; padding:24px 0 0; border-top:1px solid #e6e2e0 }
+.ssf-modern.is-home .review-stat { position:relative; padding:0 20px 0 0 }
+.ssf-modern.is-home .review-stat:not(:last-child):after { content:''; position:absolute; top:3px; right:15px; width:1px; height:48px; background:#e6e2e0 }
+.ssf-modern.is-home .review-stat strong { color:#10182c; font-size:30px }
+.ssf-modern.is-home .review-stat small { color:#747d8c; font-size:9px; letter-spacing:.08em; text-transform:uppercase }
+.ssf-modern.is-home .reviews-carousel-shell { position:relative }
+.ssf-modern.is-home .reviews-carousel-shell { padding:1px }
+.ssf-modern.is-home .reviews-carousel-shell:before { display:none }
+.ssf-modern.is-home .reviews-slider-custom { position:relative; z-index:1; width:100%; border-radius:24px; box-shadow:0 25px 65px rgba(16,24,44,.12) }
+.ssf-modern.is-home .reviews-slide { padding:1px; box-sizing:border-box }
+.ssf-modern.is-home .review-card,
+.ssf-modern.is-home .swiper-slide-active .review-card { min-height:390px; padding:42px; border:1px solid rgba(255,255,255,.75); border-radius:24px; background:linear-gradient(145deg,#fff,#f6f3f2); box-shadow:none }
+.ssf-modern.is-home .review-quote { display:grid; place-items:center; width:52px; height:52px; border-radius:50%; background:#fff0f1; color:#e40914; font-size:20px }
+.ssf-modern.is-home .review-stars { padding-top:10px; color:#e40914; letter-spacing:3px }
+.ssf-modern.is-home .review-card p { margin:30px 0 12px; color:#242b39; font-size:20px; line-height:1.65 }
+.ssf-modern.is-home .review-avatar { margin-top:auto }
+.ssf-modern.is-home .review-pagination { margin-top:28px; justify-content:center }
+.ssf-modern.is-home .review-pagination .swiper-pagination-bullet { background:#10182c; opacity:.2 }
+.ssf-modern.is-home .review-pagination .swiper-pagination-bullet-active { width:26px; border-radius:999px; background:#e40914; opacity:1 }
+
+@media(max-width:991px) {
+    .ssf-modern.is-home .reviews-panel { grid-template-columns:1fr; gap:50px }
+    .ssf-modern.is-home .reviews-copy { max-width:720px }
+}
+@media(max-width:575px) {
+    .ssf-modern.is-home .reviews-section { padding:78px 0 }
+    .ssf-modern.is-home .review-stats { gap:12px }
+    .ssf-modern.is-home .review-stat { padding-right:8px }
+    .ssf-modern.is-home .review-stat:not(:last-child):after { right:2px }
+    .ssf-modern.is-home .review-stat strong { font-size:24px }
+    .ssf-modern.is-home .review-card,
+    .ssf-modern.is-home .swiper-slide-active .review-card { min-height:380px; padding:28px 24px }
+    .ssf-modern.is-home .review-card p { font-size:18px }
+    .ssf-modern.is-home .reviews-carousel-shell { padding:1px }
+}

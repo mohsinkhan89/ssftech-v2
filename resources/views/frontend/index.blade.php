@@ -240,10 +240,8 @@
             <div class="reviews-panel reveal">
                 <div class="reviews-copy">
                     <p class="eyebrow">Client Reviews</p>
-                    <h2 class="section-title light reviews-title">We&#39;ve helped a lot of businesses<br><span>but don&#39;t just take our word for it</span></h2>
-                    <p class="muted reviews-text">We&#39;re proud to help businesses grow with reliable digital solutions,
-                        outstanding service and lasting partnerships. Our clients trust us to deliver quality work that
-                        makes a real difference.</p>
+                    <h2 class="section-title light reviews-title">Results that earn trust.<br><span>Relationships that last.</span></h2>
+                    <p class="muted reviews-text">Great digital work is measured by the difference it makes. Here&#39;s what our clients say about the ideas, communication and results we bring to every project.</p>
 
                     <div class="review-stats">
                         <div class="review-stat">

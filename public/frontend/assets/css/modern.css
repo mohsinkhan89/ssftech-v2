@@ -5152,3 +5152,58 @@
 @media(max-width:400px) {
     .ssf-modern.is-home h2.section-title { font-size:29px !important }
 }
+
+/* Match the About Us label with the Our Partners badge. */
+.ssf-modern.is-home .about-refined-content .about-refined-heading .eyebrow {
+    display:inline-flex;
+    align-items:center;
+    align-self:flex-start;
+    gap:8px;
+    width:auto;
+    margin:0 0 18px;
+    padding:7px 11px;
+    border:1px solid rgba(228,9,20,.12);
+    border-radius:999px;
+    background:#fff1f2;
+    color:#c70812;
+    font-size:9px;
+    letter-spacing:1.5px;
+    box-shadow:none;
+}
+.ssf-modern.is-home .about-refined-content .about-refined-heading .eyebrow:before {
+    content:'';
+    width:6px;
+    height:6px;
+    margin:0;
+    flex:0 0 6px;
+    border-radius:50%;
+    background:#e40914;
+    box-shadow:0 0 0 4px rgba(228,9,20,.1);
+}
+
+/* Use the same badge treatment for Our Services. */
+.ssf-modern.is-home .services-section-heading .eyebrow {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    width:auto;
+    margin:0 0 18px;
+    padding:7px 11px;
+    border:1px solid rgba(228,9,20,.12);
+    border-radius:999px;
+    background:#fff1f2;
+    color:#c70812;
+    font-size:9px;
+    letter-spacing:1.5px;
+    box-shadow:none;
+}
+.ssf-modern.is-home .services-section-heading .eyebrow:before {
+    content:'';
+    width:6px;
+    height:6px;
+    margin:0;
+    flex:0 0 6px;
+    border-radius:50%;
+    background:#e40914;
+    box-shadow:0 0 0 4px rgba(228,9,20,.1);
+}

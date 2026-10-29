@@ -10886,11 +10886,11 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
 .ssf-modern.is-home .portfolio-controls {
     margin-bottom: 32px;
     padding: 8px;
-    border: 1px solid #e6e2df;
     border-radius: 18px;
+    /* border: 1px solid #e6e2df;
     background: rgba(255, 255, 255, .78);
     box-shadow: 0 14px 40px rgba(16, 24, 44, .055);
-    backdrop-filter: blur(14px)
+    backdrop-filter: blur(14px) */
 }
 
 .ssf-modern.is-home .portfolio-tabs,

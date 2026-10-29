@@ -2428,7 +2428,8 @@ a.client-logo-card {
 .portfolio-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   gap: 22px;
   flex-wrap: wrap;
   margin-bottom: 30px;

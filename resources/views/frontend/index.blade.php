@@ -233,6 +233,69 @@
         </div>
     </section>
 
+    @if($projects->isNotEmpty())
+    <section class="portfolio-section section-pad" id="portfolio">
+        <div class="container">
+            <div class="portfolio-head">
+                <div>
+                    <p class="eyebrow reveal">Our Work</p>
+                    <h2 class="section-title reveal delay-1">Digital Experiences We&#39;ve Created<br><span>for Our Clients</span></h2>
+                    <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
+                        their goals. Browse our recent work to see what we've created.</p>
+                </div>
+            </div>
+            <div class="portfolio-controls reveal delay-3">
+                <div class="device-tabs" role="group" aria-label="Device preview">
+                    <button class="active" type="button" data-device="desktop" aria-pressed="true"><i class="fa-solid fa-desktop"></i>
+                        Desktop</button>
+                    <button type="button" data-device="tablet" aria-pressed="false"><i class="fa-solid fa-tablet-screen-button"></i>
+                        Tablet</button>
+                    <button type="button" data-device="mobile" aria-pressed="false"><i class="fa-solid fa-mobile-screen-button"></i>
+                        Mobile</button>
+                </div>
+            </div>
+            <div class="portfolio-slider swiper reveal delay-4">
+                <div class="swiper-wrapper">
+                    @foreach ($projects as $project)
+                        <div class="swiper-slide" data-category="{{ $project->category }}">
+                            <article class="project-card" data-project-url="{{ $project->project_url ?? '#contact' }}">
+                                <div class="project-visual">
+                                    <div class="browser-frame">
+                                        <!-- Desktop Layout -->
+                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}" loading="lazy" decoding="async"
+                                            alt="{{ $project->title }} desktop preview">
+
+                                        <!-- Tablet Layout (Fallback to desktop if not set) -->
+                                        <img class="project-img-tablet" loading="lazy" decoding="async"
+                                            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ url($project->image_tablet ?? $project->image_desktop) }}"
+                                            alt="{{ $project->title }} tablet preview">
+
+                                        <!-- Mobile Layout (Fallback to desktop if not set) -->
+                                        <img class="project-img-mobile" loading="lazy" decoding="async"
+                                            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ url($project->image_mobile ?? $project->image_desktop) }}"
+                                            alt="{{ $project->title }} mobile preview">
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <h3 class="project-title">{{ $project->title }}</h3>
+                                    <span>{{ $project->category == 'webapp' ? 'Web App' : ($project->category == 'ecommerce' ? 'E-Commerce' : 'Website') }}</span>
+                                    <a href="{{ $project->project_url ?? '#contact' }}"
+                                        aria-label="View {{ $project->title }} project">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    @endforeach
+                </div>
+                @if($projects->count() > 1)<div class="portfolio-pagination"></div>@endif
+            </div>
+        </div>
+    </section>
+    @endif
+
+    @include('frontend.partials.delivery-process')
+
     @if($testimonials->isNotEmpty())
     <section class="reviews-section section-pad" id="reviews">
         <div class="container">
@@ -339,68 +402,7 @@
     </section>
     @endif
 
-    @if($projects->isNotEmpty())
-    <section class="portfolio-section section-pad" id="portfolio">
-        <div class="container">
-            <div class="portfolio-head">
-                <div>
-                    <p class="eyebrow reveal">Our Work</p>
-                    <h2 class="section-title reveal delay-1">Digital Experiences We&#39;ve Created<br><span>for Our Clients</span></h2>
-                    <p class="muted reveal delay-2">From modern websites to complete digital solutions, we help businesses achieve
-                        their goals. Browse our recent work to see what we've created.</p>
-                </div>
-            </div>
-            <div class="portfolio-controls reveal delay-3">
-                <div class="device-tabs" role="group" aria-label="Device preview">
-                    <button class="active" type="button" data-device="desktop" aria-pressed="true"><i class="fa-solid fa-desktop"></i>
-                        Desktop</button>
-                    <button type="button" data-device="tablet" aria-pressed="false"><i class="fa-solid fa-tablet-screen-button"></i>
-                        Tablet</button>
-                    <button type="button" data-device="mobile" aria-pressed="false"><i class="fa-solid fa-mobile-screen-button"></i>
-                        Mobile</button>
-                </div>
-            </div>
-            <div class="portfolio-slider swiper reveal delay-4">
-                <div class="swiper-wrapper">
-                    @foreach ($projects as $project)
-                        <div class="swiper-slide" data-category="{{ $project->category }}">
-                            <article class="project-card" data-project-url="{{ $project->project_url ?? '#contact' }}">
-                                <div class="project-visual">
-                                    <div class="browser-frame">
-                                        <!-- Desktop Layout -->
-                                        <img class="project-img-desktop" src="{{ url($project->image_desktop) }}" loading="lazy" decoding="async"
-                                            alt="{{ $project->title }} desktop preview">
-
-                                        <!-- Tablet Layout (Fallback to desktop if not set) -->
-                                        <img class="project-img-tablet" loading="lazy" decoding="async"
-                                            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ url($project->image_tablet ?? $project->image_desktop) }}"
-                                            alt="{{ $project->title }} tablet preview">
-
-                                        <!-- Mobile Layout (Fallback to desktop if not set) -->
-                                        <img class="project-img-mobile" loading="lazy" decoding="async"
-                                            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ url($project->image_mobile ?? $project->image_desktop) }}"
-                                            alt="{{ $project->title }} mobile preview">
-                                    </div>
-                                </div>
-                                <div class="project-meta">
-                                    <h3 class="project-title">{{ $project->title }}</h3>
-                                    <span>{{ $project->category == 'webapp' ? 'Web App' : ($project->category == 'ecommerce' ? 'E-Commerce' : 'Website') }}</span>
-                                    <a href="{{ $project->project_url ?? '#contact' }}"
-                                        aria-label="View {{ $project->title }} project">
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                </div>
-                            </article>
-                        </div>
-                    @endforeach
-                </div>
-                @if($projects->count() > 1)<div class="portfolio-pagination"></div>@endif
-            </div>
-        </div>
-    </section>
-    @endif
-
-    @include('frontend.partials.delivery-process')
+   
 
     <section id="contact" class="contact-section section-pad">
         <div class="container">

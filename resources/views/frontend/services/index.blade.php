@@ -27,13 +27,14 @@
                     <p>One experienced team for the customer experiences, business systems and digital growth strategies behind a stronger organisation.</p>
                     <div class="services-page-hero-actions">
                         <a class="btn btn-brand" href="#main-services">Explore our services <span class="button-orb"><i class="fa-solid fa-arrow-down"></i></span></a>
-                        <a class="services-page-text-link" href="{{ route('index') }}#contact">Start your project <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="btn btn-brand services-page-outline-cta" href="{{ route('index') }}#contact">Start your project <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </div>
-                <div class="services-page-summary reveal delay-2">
-                    <span>Complete digital support</span><strong>{{ $serviceCategories->count() }}</strong>
-                    <p>Core areas of expertise, brought together by one dedicated team.</p>
-                    <div>@foreach($serviceCategories as $key => $label)<a href="#category-{{ $key }}"><i class="fa-solid fa-check"></i>{{ $label }}</a>@endforeach</div>
+                <div class="services-page-hero-visual reveal delay-2">
+                    <img src="{{ url('frontend/assets/images/stock/development-team.webp') }}" alt="SSF Tech digital services team" decoding="async">
+                    <span class="services-page-hero-visual-icon"><i class="fa-solid fa-layer-group"></i></span>
+                    <div class="services-page-hero-visual-copy"><small>One experienced team</small><strong>{{ $serviceCategories->count() }} core services.<br>Built around your goals.</strong></div>
+                    <div class="services-page-hero-tags">@foreach($serviceCategories as $key => $label)<a href="#category-{{ $key }}">{{ $label }}</a>@endforeach</div>
                 </div>
             </div>
         </div>

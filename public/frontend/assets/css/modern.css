@@ -51,6 +51,12 @@
 
 /* Final tablet treatment for all newly added services pages. */
 @media (min-width:576px) and (max-width:991px) {
+     .ssf-modern.is-inner .blog-list {
+        grid-template-columns: 1fr 1fr;
+    }
+    .ssf-modern.is-inner .blog-list-card {
+        grid-template-columns: 1fr!important;
+    }
     body.ssf-modern.is-inner .services-page-hero,
     body.ssf-modern.is-inner .service-detail-hero,
     body.ssf-modern.is-inner .single-service-hero {
@@ -11877,8 +11883,9 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     }
 
     .ssf-modern.is-inner .blog-list-footer {
-        align-items: flex-start;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
         gap: 13px
     }
 
@@ -12351,10 +12358,6 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
         width: 100%;
         margin: 0 0 10px !important;
         padding: 0;
-    }
-
-    .ssf-modern:is(.is-home, .is-inner) .navbar-collapse .nav-item:last-child {
-        grid-column: 1 / -1
     }
 
     .ssf-modern:is(.is-home, .is-inner) .navbar-collapse .nav-link {
@@ -13015,6 +13018,115 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     .ssf-modern .nav-services-chevron,
     .ssf-modern .nav-services-dropdown {
         display: none;
+    }
+}
+
+/* Final responsive treatment for blog listing and article pages. */
+@media (max-width:991px) {
+    body.ssf-modern.is-inner .blog-hero-copy,
+    body.ssf-modern.is-inner .article-hero-copy {
+        width: 100%;
+        max-width: 760px;
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .blog-hero .blog-breadcrumb,
+    body.ssf-modern.is-inner .article-hero .blog-breadcrumb,
+    body.ssf-modern.is-inner .article-meta {
+        width: fit-content;
+        max-width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        justify-content: center;
+    }
+
+    body.ssf-modern.is-inner .blog-hero h1,
+    body.ssf-modern.is-inner .article-hero h1,
+    body.ssf-modern.is-inner .blog-hero-copy > p,
+    body.ssf-modern.is-inner .article-hero-copy > p {
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .blog-catalog-layout,
+    body.ssf-modern.is-inner .article-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    body.ssf-modern.is-inner .blog-sidebar,
+    body.ssf-modern.is-inner .article-sidebar {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (max-width:575px) {
+    body.ssf-modern.is-inner .blog-hero,
+    body.ssf-modern.is-inner .article-hero {
+        padding: 118px 0 48px;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .blog-hero h1,
+    body.ssf-modern.is-inner .article-hero h1 {
+        font-size: clamp(36px, 10vw, 44px);
+    }
+
+    body.ssf-modern.is-inner .article-meta {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    body.ssf-modern.is-inner .blog-toolbar,
+    body.ssf-modern.is-inner .blog-filter-group {
+        width: 100%;
+    }
+
+    body.ssf-modern.is-inner .blog-filter-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    body.ssf-modern.is-inner .blog-toolbar > span {
+        width: 100%;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .blog-list-card-body {
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .blog-list-category {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    body.ssf-modern.is-inner .blog-list-footer {
+        align-items: center;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .blog-list-footer > div {
+        justify-content: center;
+    }
+
+    body.ssf-modern.is-inner .blog-sidebar,
+    body.ssf-modern.is-inner .article-sidebar {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.ssf-modern.is-inner .blog-sidebar-card > h3 {
+        text-align: center;
+    }
+
+    body.ssf-modern.is-inner .related-section .related-heading,
+    body.ssf-modern.is-inner .related-section .related-heading h2 {
+        text-align: center;
     }
 }
 

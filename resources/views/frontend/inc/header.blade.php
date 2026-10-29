@@ -47,7 +47,6 @@
                             </div>
                         @endif
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#industries">Industries</a></li>
 
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#portfolio">Portfolio</a></li>
                     @if($hasActiveBlogs)

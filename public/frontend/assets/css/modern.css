@@ -13018,6 +13018,65 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     }
 }
 
+/* Keep Industries We Serve stacked only on mobile. */
+@media (max-width:575px) {
+    body.ssf-modern.is-home .industry-showcase .section-heading-row {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    body.ssf-modern.is-home .industry-showcase .section-heading-row > div {
+        width: 100%;
+    }
+
+    body.ssf-modern.is-home .industry-showcase .section-heading-row .eyebrow {
+        margin-right: auto;
+        margin-left: 0;
+    }
+
+    body.ssf-modern.is-home .industry-showcase .section-heading-row .section-title,
+    body.ssf-modern.is-home .industry-showcase .section-heading-row .muted {
+        max-width: 100%;
+        margin-right: auto;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    body.ssf-modern.is-home .industry-showcase-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    body.ssf-modern.is-home .industry-selector,
+    body.ssf-modern.is-home .industry-panels {
+        width: 100%;
+        min-width: 0;
+    }
+
+    body.ssf-modern.is-home .industry-selector {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.ssf-modern.is-home .industry-choice {
+        width: 100%;
+        padding: 18px 4px;
+    }
+
+    body.ssf-modern.is-home .industry-panels .tab-pane,
+    body.ssf-modern.is-home .industry-panel-copy {
+        width: 100%;
+        min-height: 440px;
+    }
+
+    body.ssf-modern.is-home .industry-panels .tab-pane {
+        border-radius: 20px;
+    }
+
+    body.ssf-modern.is-home .industry-panel-copy {
+        padding: 28px 24px;
+    }
+}
+
 /* Final tablet precedence layer. */
 @media (min-width:576px) and (max-width:991px) {
     body.ssf-modern.is-inner .single-service-feature,
@@ -13048,7 +13107,8 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     }
 
     body.ssf-modern.is-inner .single-service-feature-copy > .eyebrow {
-        margin-inline: auto;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     body.ssf-modern.is-inner .single-service-feature-copy h2 {
@@ -13059,7 +13119,8 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
 
     body.ssf-modern.is-inner .single-service-feature-copy > p:not(.eyebrow) {
         max-width: 590px;
-        margin-inline: auto;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     body.ssf-modern.is-inner .single-service-feature-copy ul {
@@ -13071,7 +13132,8 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
 
     body.ssf-modern.is-inner .single-service-feature-copy > .btn {
         display: inline-flex;
-        margin-inline: auto;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     body.ssf-modern.is-inner .single-service-related-head {
@@ -13084,7 +13146,8 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     }
 
     body.ssf-modern.is-inner .single-service-related-head .eyebrow {
-        margin-inline: auto;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     body.ssf-modern.is-inner .single-service-related-head h2 {
@@ -13093,7 +13156,8 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     }
 
     body.ssf-modern.is-inner .single-service-related-head > .single-service-related-cta {
-        margin-inline: auto;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     body.ssf-modern.is-inner .single-service-related-grid {

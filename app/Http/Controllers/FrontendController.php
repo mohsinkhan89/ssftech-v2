@@ -33,6 +33,26 @@ class FrontendController extends Controller
         ));
     }
 
+    public function servicesShow(string $category)
+    {
+        abort_unless(array_key_exists($category, Service::CATEGORIES), 404);
+
+        [$siteSetting, $socialLinks] = $this->frontendSettings();
+        $services = Service::where('status', true)
+            ->where('category', $category)
+            ->orderBy('sort_order')
+            ->orderBy('created_at')
+            ->get();
+
+        abort_if($services->isEmpty(), 404);
+
+        $categoryLabel = Service::CATEGORIES[$category];
+
+        return view('frontend.services.show', compact(
+            'siteSetting', 'socialLinks', 'services', 'category', 'categoryLabel'
+        ));
+    }
+
     public function blogIndex(Request $request)
     {
         [$siteSetting, $socialLinks] = $this->frontendSettings();

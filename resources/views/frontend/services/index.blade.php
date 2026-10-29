@@ -58,7 +58,7 @@
                             <div class="services-page-main-content">
                                 <p class="eyebrow">{{ $label }}</p><h3>{{ $content[1] }}</h3><p>{{ $content[2] }}</p>
                                 <ul><li><i class="fa-solid fa-check"></i>{{ $content[3] }}</li><li><i class="fa-solid fa-check"></i>{{ $content[4] }}</li></ul>
-                                <a class="btn btn-brand services-page-card-cta" href="{{ route('index') }}#contact">Discuss {{ $label }} <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
+                                <a class="btn btn-brand services-page-card-cta" href="{{ route('services.show', $key) }}">Explore {{ $label }} <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                             </div>
                         </article>
                     @endforeach

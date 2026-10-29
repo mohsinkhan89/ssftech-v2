@@ -12,6 +12,73 @@
     color: var(--ink)
 }
 
+/* Service category detail pages. */
+body.ssf-modern.is-inner .service-detail-hero { position: relative; padding: 150px 0 76px; overflow: hidden; color: #fff; background: radial-gradient(circle at 82% 20%,rgba(228,9,20,.23),transparent 29%),linear-gradient(120deg,#050912,#0b101a 62%,#21070b) }
+body.ssf-modern.is-inner .service-detail-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(90deg,#000,transparent 88%) }
+body.ssf-modern.is-inner .service-detail-hero>.container { position: relative; z-index: 1 }
+body.ssf-modern.is-inner .service-detail-hero-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(380px,.95fr); gap: 68px; align-items: center }
+body.ssf-modern.is-inner .service-detail-hero .blog-breadcrumb { justify-content: flex-start; margin-bottom: 30px }
+body.ssf-modern.is-inner .service-detail-hero-copy>.eyebrow { display: inline-flex; color: #ff6971 }
+body.ssf-modern.is-inner .service-detail-hero h1 { max-width: 740px; margin: 17px 0 22px; font: 600 clamp(48px,5vw,74px)/1.02 var(--display-font); letter-spacing: -.055em }
+body.ssf-modern.is-inner .service-detail-hero-copy>p:not(.eyebrow) { max-width: 650px; color: #b7bfcc; font-size: 15px; line-height: 1.8 }
+body.ssf-modern.is-inner .service-detail-hero-visual { position: relative; height: 440px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 25px; background: #111722; box-shadow: 0 28px 70px rgba(0,0,0,.28) }
+body.ssf-modern.is-inner .service-detail-hero-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 35%,rgba(5,9,16,.78)) }
+body.ssf-modern.is-inner .service-detail-hero-visual>img { width: 100%; height: 100%; object-fit: cover }
+body.ssf-modern.is-inner .service-detail-hero-visual>span { position: absolute; top: 22px; right: 22px; z-index: 2; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 15px; background: #e40914; color: #fff; font-size: 19px; box-shadow: 0 14px 30px rgba(228,9,20,.32) }
+body.ssf-modern.is-inner .service-detail-hero-visual>div { position: absolute; right: 25px; bottom: 24px; left: 25px; z-index: 2; display: grid; gap: 4px }
+body.ssf-modern.is-inner .service-detail-hero-visual small { color: #ff6971; font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase }
+body.ssf-modern.is-inner .service-detail-hero-visual strong { color: #fff; font: 600 22px/1.2 var(--display-font) }
+
+body.ssf-modern.is-inner .service-detail-list { padding: 85px 0; background: #f8f7f6 }
+body.ssf-modern.is-inner .service-detail-list .services-section-heading { max-width: 880px; margin: 0 auto 44px; text-align: center }
+body.ssf-modern.is-inner .service-detail-list .services-section-heading .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; padding: 7px 11px; border: 1px solid rgba(228,9,20,.12); border-radius: 999px; background: #fff1f2; color: #c70812; font-size: 9px; letter-spacing: 1.5px }
+body.ssf-modern.is-inner .service-detail-list .services-section-heading .eyebrow::before { content: ''; width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; background: #e40914; box-shadow: 0 0 0 4px rgba(228,9,20,.1) }
+body.ssf-modern.is-inner .service-detail-list .section-title { width: 100%; margin: 0 auto 17px; color: #10182c; font-size: clamp(40px,4vw,60px); line-height: 1.05; letter-spacing: -.05em; white-space: normal!important; text-wrap: balance }
+body.ssf-modern.is-inner .service-detail-list .section-title span { color: #e40914 }
+body.ssf-modern.is-inner .service-detail-list .muted { max-width: 690px; margin: 0 auto; color: #697181; line-height: 1.8 }
+body.ssf-modern.is-inner .service-detail-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px }
+body.ssf-modern.is-inner .service-detail-card { overflow: hidden; border: 1px solid #e6e2df; border-radius: 20px; background: #fff; box-shadow: 0 15px 42px rgba(16,24,44,.06); scroll-margin-top: 110px; transition: transform .35s ease,box-shadow .35s ease,border-color .3s ease }
+body.ssf-modern.is-inner .service-detail-card:hover { transform: translateY(-7px); border-color: rgba(228,9,20,.25); box-shadow: 0 26px 60px rgba(16,24,44,.12) }
+body.ssf-modern.is-inner .service-detail-card-image { position: relative; height: 215px; overflow: hidden; background: #111722 }
+body.ssf-modern.is-inner .service-detail-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease }
+body.ssf-modern.is-inner .service-detail-card:hover .service-detail-card-image img { transform: scale(1.05) }
+body.ssf-modern.is-inner .service-detail-card-image>span { position: absolute; right: 16px; bottom: 16px; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: #e40914; color: #fff }
+body.ssf-modern.is-inner .service-detail-card-image>small { position: absolute; top: 16px; left: 16px; padding: 7px 9px; border-radius: 8px; background: rgba(10,15,24,.75); color: #fff; font-size: 9px; backdrop-filter: blur(10px) }
+body.ssf-modern.is-inner .service-detail-card-body { display: flex; min-height: 280px; padding: 25px; flex-direction: column; align-items: flex-start }
+body.ssf-modern.is-inner .service-detail-card-body .eyebrow { margin: 0 0 12px; font-size: 8px }
+body.ssf-modern.is-inner .service-detail-card-body h3 { margin: 0 0 11px; color: #141a25; font: 600 23px/1.2 var(--display-font); letter-spacing: -.03em }
+body.ssf-modern.is-inner .service-detail-card-body>p:not(.eyebrow) { color: #697181; font-size: 12px; line-height: 1.75 }
+body.ssf-modern.is-inner .service-detail-card-body>.btn { width: auto; min-height: 46px; margin-top: auto; padding: 7px 8px 7px 16px; gap: 11px; border-radius: 7px; font-size: 10px }
+body.ssf-modern.is-inner .service-detail-card-body>.btn .button-orb { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px; background: rgba(255,255,255,.17) }
+
+body.ssf-modern.is-inner .service-detail-cta { padding: 75px 0; background: #fff }
+body.ssf-modern.is-inner .service-detail-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 42px 46px; overflow: hidden; border: 1px solid #e6e2df; border-radius: 24px; background: radial-gradient(circle at 88% 20%,rgba(228,9,20,.11),transparent 28%),linear-gradient(135deg,#fff,#faf8f7); box-shadow: 0 22px 65px rgba(16,24,44,.08) }
+body.ssf-modern.is-inner .service-detail-cta h2 { max-width: 760px; margin: 10px 0; color: #121822; font: 600 clamp(32px,3.3vw,48px)/1.08 var(--display-font); letter-spacing: -.045em }
+body.ssf-modern.is-inner .service-detail-cta p:not(.eyebrow) { margin: 0; color: #697181 }
+body.ssf-modern.is-inner .service-detail-cta .btn { flex: 0 0 auto }
+
+@media(max-width:991px) {
+    body.ssf-modern.is-inner .service-detail-hero { padding: 130px 0 60px }
+    body.ssf-modern.is-inner .service-detail-hero-grid { grid-template-columns: 1fr; gap: 34px }
+    body.ssf-modern.is-inner .service-detail-hero-visual { height: 380px }
+    body.ssf-modern.is-inner .service-detail-list { padding: 58px 0 }
+    body.ssf-modern.is-inner .service-detail-grid { grid-template-columns: repeat(2,minmax(0,1fr)) }
+    body.ssf-modern.is-inner .service-detail-cta-inner { align-items: flex-start; flex-direction: column; padding: 34px }
+}
+
+@media(max-width:575px) {
+    body.ssf-modern.is-inner .service-detail-hero { padding: 115px 0 46px }
+    body.ssf-modern.is-inner .service-detail-hero h1 { font-size: 42px }
+    body.ssf-modern.is-inner .service-detail-hero-visual { height: 300px; border-radius: 18px }
+    body.ssf-modern.is-inner .service-detail-list { padding: 46px 0 }
+    body.ssf-modern.is-inner .service-detail-list .section-title { font-size: 35px }
+    body.ssf-modern.is-inner .service-detail-grid { grid-template-columns: 1fr }
+    body.ssf-modern.is-inner .service-detail-card-image { height: 200px }
+    body.ssf-modern.is-inner .service-detail-cta { padding: 48px 0 }
+    body.ssf-modern.is-inner .service-detail-cta-inner { padding: 26px 22px; border-radius: 18px }
+    body.ssf-modern.is-inner .service-detail-cta .btn { width: 100% }
+}
+
 /* Match the homepage Our Services heading and keep it inside the container. */
 body.ssf-modern.is-inner .services-page-overview .services-section-heading {
     width: 100%;

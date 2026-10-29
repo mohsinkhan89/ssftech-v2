@@ -11,6 +11,7 @@ Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 Route::get('/llms.txt', LlmsController::class)->name('llms');
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/services', [FrontendController::class, 'servicesIndex'])->name('services.index');
+Route::get('/services/{category}', [FrontendController::class, 'servicesShow'])->name('services.show');
 Route::get('/blog', [FrontendController::class, 'blogIndex'])->name('blog.index');
 Route::get('/blog/{slug}', [FrontendController::class, 'blogShow'])->name('blog.show');
 Route::post('/contact', [FrontendController::class, 'submitContact'])->name('contact.submit');

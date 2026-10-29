@@ -23,7 +23,6 @@
             <div class="services-page-hero-grid">
                 <div class="services-page-hero-copy reveal">
                     <div class="blog-breadcrumb"><a href="{{ route('index') }}">Home</a><i class="fa-solid fa-chevron-right"></i><span>Services</span></div>
-                    <p class="eyebrow">Smarter digital solutions</p>
                     <h1>Everything your business needs to <span>move forward.</span></h1>
                     <p>One experienced team for the customer experiences, business systems and digital growth strategies behind a stronger organisation.</p>
                     <div class="services-page-hero-actions">
@@ -59,7 +58,7 @@
                             <div class="services-page-main-content">
                                 <p class="eyebrow">{{ $label }}</p><h3>{{ $content[1] }}</h3><p>{{ $content[2] }}</p>
                                 <ul><li><i class="fa-solid fa-check"></i>{{ $content[3] }}</li><li><i class="fa-solid fa-check"></i>{{ $content[4] }}</li></ul>
-                                <a href="{{ route('index') }}#contact">Discuss {{ $label }} <i class="fa-solid fa-arrow-right"></i></a>
+                                <a class="btn btn-brand services-page-card-cta" href="{{ route('index') }}#contact">Discuss {{ $label }} <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
                             </div>
                         </article>
                     @endforeach
@@ -81,6 +80,12 @@
     </main>
 
     <section class="services-page-cta">
-        <div class="container"><div class="services-page-cta-inner"><div><p class="eyebrow">You dream, we design, we deliver.</p><h2>Not sure which service is right for you?</h2><p>Tell us what you want to achieve. We’ll recommend the clearest route forward.</p></div><a class="btn btn-brand" href="{{ route('index') }}#contact">Get a free quote <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a></div></div>
+        <div class="container">
+            <div class="services-page-cta-inner">
+                <span class="services-page-cta-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                <div class="services-page-cta-copy"><p class="eyebrow">You dream, we design, we deliver.</p><h2>Not sure which service is right for you?</h2><p>Tell us what you want to achieve. We’ll recommend the clearest route forward.</p></div>
+                <a class="btn btn-brand" href="{{ route('index') }}#contact">Get a free quote <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a>
+            </div>
+        </div>
     </section>
 @endsection

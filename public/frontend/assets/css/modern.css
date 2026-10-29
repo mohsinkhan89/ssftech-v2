@@ -60,7 +60,7 @@ body.ssf-modern.is-inner .services-page-hero-visual-icon {
 body.ssf-modern.is-inner .services-page-hero-visual-copy {
     position: absolute;
     right: 18px;
-    bottom: 60px;
+    bottom: 100px;
     left: 18px;
     z-index: 2;
     display: grid;
@@ -90,14 +90,14 @@ body.ssf-modern.is-inner .services-page-hero-visual-copy strong {
 
 body.ssf-modern.is-inner .services-page-hero-tags {
     position: absolute;
-    right: 22px;
-    bottom: 20px;
-    left: 22px;
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
     z-index: 2;
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    overflow: visible
 }
 
 body.ssf-modern.is-inner .services-page-hero-tags::-webkit-scrollbar {
@@ -105,14 +105,20 @@ body.ssf-modern.is-inner .services-page-hero-tags::-webkit-scrollbar {
 }
 
 body.ssf-modern.is-inner .services-page-hero-tags a {
-    flex: 0 0 auto;
-    padding: 7px 10px;
+    display: flex;
+    min-width: 0;
+    min-height: 34px;
+    padding: 8px 10px;
+    align-items: center;
+    justify-content: center;
     border: 1px solid rgba(255, 255, 255, .22);
-    border-radius: 999px;
+    border-radius: 7px;
     background: rgba(7, 11, 18, .9);
     color: #fff;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
     box-shadow: 0 7px 18px rgba(0, 0, 0, .18);
     backdrop-filter: blur(10px)
 }
@@ -138,9 +144,9 @@ body.ssf-modern.is-inner .services-page-hero-tags a:hover {
     }
 
     body.ssf-modern.is-inner .services-page-hero-visual-copy {
-        right: 18px;
-        bottom: 72px;
-        left: 18px
+        right: 14px;
+        bottom: 108px;
+        left: 14px
     }
 
     body.ssf-modern.is-inner .services-page-hero-visual-copy strong {
@@ -148,9 +154,14 @@ body.ssf-modern.is-inner .services-page-hero-tags a:hover {
     }
 
     body.ssf-modern.is-inner .services-page-hero-tags {
-        right: 16px;
-        bottom: 16px;
-        left: 16px
+        right: 14px;
+        bottom: 14px;
+        left: 14px
+    }
+
+    body.ssf-modern.is-inner .services-page-hero-tags a {
+        padding-inline: 7px;
+        font-size: 9px
     }
 }
 

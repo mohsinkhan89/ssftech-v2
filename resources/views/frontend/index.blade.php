@@ -182,7 +182,6 @@
             <div class="tab-content service-category-panels">
                 @foreach($serviceCategories as $key => $label)
                     <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="service-panel-{{ $key }}" role="tabpanel" aria-labelledby="service-tab-{{ $key }}" tabindex="0">
-                        <div class="service-category-intro"><div><p class="eyebrow">{{ $label }}</p><h3>{{ $categorySummaries[$key][0] }}</h3><p>{{ $categorySummaries[$key][1] }}</p></div><a href="#contact" class="service-category-cta">Discuss your requirements <i class="fa-solid fa-arrow-right"></i></a></div>
                         <div class="services-grid">
                             <div class="swiper-wrapper">
                                 @foreach($services->where('category', $key) as $service)

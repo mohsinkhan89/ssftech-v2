@@ -352,17 +352,6 @@
                 </div>
             </div>
             <div class="portfolio-controls reveal delay-3">
-                <div class="portfolio-tabs" role="group" aria-label="Project categories">
-                    <button class="active" type="button" data-filter="all" aria-pressed="true"><i
-                            class="fa-solid fa-table-cells-large"></i> All
-                        Projects</button>
-                    <button type="button" data-filter="website" aria-pressed="false"><i class="fa-solid fa-code"></i>
-                        Websites</button>
-                    <button type="button" data-filter="ecommerce" aria-pressed="false"><i class="fa-solid fa-cart-shopping"></i>
-                        E-Commerce</button>
-                    <button type="button" data-filter="webapp" aria-pressed="false"><i class="fa-solid fa-grip"></i> Web
-                        Apps</button>
-                </div>
                 <div class="device-tabs" role="group" aria-label="Device preview">
                     <button class="active" type="button" data-device="desktop" aria-pressed="true"><i class="fa-solid fa-desktop"></i>
                         Desktop</button>

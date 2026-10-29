@@ -3988,7 +3988,7 @@ a.client-logo-card {
   }
 
   .portfolio-controls {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
 

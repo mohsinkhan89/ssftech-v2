@@ -7116,6 +7116,11 @@
 }
 
 @media(max-width:991px) {
+    .ssf-modern.is-home .portfolio-controls {
+        box-shadow: none!important;
+        border: 0!important;
+        background: transparent !important;
+    }
     .ssf-modern.is-home .reviews-panel {
         grid-template-columns: 1fr;
         gap: 50px

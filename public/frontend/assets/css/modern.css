@@ -12,6 +12,60 @@
     color: var(--ink)
 }
 
+/* Shared homepage process section: one source and one visual treatment. */
+body.ssf-modern .delivery-section.delivery-shared {
+    position: relative;
+    width: auto;
+    margin: 26px 18px;
+    padding: 60px 0;
+    overflow: hidden;
+    border-radius: 34px;
+    color: #fff;
+    background-color: #080c14;
+    background-image: url('../images/stock/process-development.webp');
+    background-position: center 45%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: 0 28px 75px rgba(7,11,19,.2);
+}
+body.ssf-modern .delivery-section.delivery-shared::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: radial-gradient(rgba(255,255,255,.05) .8px,transparent .8px),radial-gradient(circle at 86% 12%,rgba(228,9,20,.2),transparent 28%),linear-gradient(90deg,rgba(5,9,16,.94),rgba(5,9,16,.76) 58%,rgba(5,9,16,.67));
+    background-size: 22px 22px,auto,auto;
+    opacity: 1;
+}
+body.ssf-modern .delivery-section.delivery-shared>.container { position: relative; z-index: 1 }
+body.ssf-modern .delivery-section.delivery-shared .delivery-heading { display: flex; justify-content: space-between; align-items: end; gap: 50px; margin-bottom: 52px }
+body.ssf-modern .delivery-section.delivery-shared .delivery-heading .eyebrow { display: inline-flex; padding: 8px 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; background: rgba(255,255,255,.045); color: #ff747c; backdrop-filter: blur(10px) }
+body.ssf-modern .delivery-section.delivery-shared .delivery-heading .section-title { margin: 0; color: #fff; font-size: clamp(40px,4.2vw,64px); line-height: 1.04; letter-spacing: -.05em }
+body.ssf-modern .delivery-section.delivery-shared .delivery-heading .section-title span { color: #ff5860 }
+body.ssf-modern .delivery-section.delivery-shared .delivery-heading .muted { max-width: 390px; margin: 0; color: #aeb6c5; font-size: 15px; line-height: 1.8 }
+body.ssf-modern .delivery-section.delivery-shared .delivery-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; border: 0 }
+body.ssf-modern .delivery-section.delivery-shared .delivery-grid article { position: relative; min-height: 270px; padding: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); backdrop-filter: blur(14px); transition: transform .4s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s,box-shadow .4s }
+body.ssf-modern .delivery-section.delivery-shared .delivery-grid article:hover { transform: translateY(-9px); border-color: rgba(228,9,20,.42); background: linear-gradient(145deg,rgba(228,9,20,.14),rgba(255,255,255,.035)); box-shadow: 0 24px 45px rgba(0,0,0,.22) }
+body.ssf-modern .delivery-section.delivery-shared .delivery-grid article>span { display: inline-grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: #eee; color: #ff6971; font-size: 12px; font-weight: 700 }
+body.ssf-modern .delivery-section.delivery-shared .delivery-grid h3 { margin: 42px 0 14px; color: #fff; font-size: 22px }
+body.ssf-modern .delivery-section.delivery-shared .delivery-grid p { color: #aeb6c5; line-height: 1.75 }
+
+@media(max-width:991px) {
+    body.ssf-modern .delivery-section.delivery-shared { margin-inline: 10px; padding: 50px 0; border-radius: 28px; background-attachment: scroll; background-position: 65% center }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-heading { flex-direction: column; align-items: center; gap: 18px; margin-bottom: 38px; text-align: center }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-heading .muted { max-width: 570px; margin-inline: auto }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-grid { grid-template-columns: repeat(2,minmax(0,1fr)) }
+}
+
+@media(max-width:575px) {
+    body.ssf-modern .delivery-section.delivery-shared { margin-inline: 7px; padding: 42px 0; border-radius: 22px }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-heading { margin-bottom: 34px }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-heading .section-title { font-size: 40px }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-grid { grid-template-columns: 1fr }
+    body.ssf-modern .delivery-section.delivery-shared .delivery-grid article { min-height: 235px }
+}
+
 /* Final services-page actions and light quote panel. */
 body.ssf-modern.is-inner .services-page-main-content>.services-page-card-cta {
     display: inline-flex;
@@ -154,25 +208,27 @@ body.ssf-modern.is-inner .services-page-cta .btn {
 .ssf-modern.is-inner .services-page-main-content>a i { transition: transform .2s ease }
 .ssf-modern.is-inner .services-page-main-content>a:hover i { transform: translateX(4px) }
 
-.ssf-modern.is-inner .services-page-process { position: relative; margin: 24px 18px; padding: 88px 0; overflow: hidden; border-radius: 30px; color: #fff; background: #080c14 url('../images/stock/process-development.webp') center/cover no-repeat }
-.ssf-modern.is-inner .services-page-process::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 86% 12%,rgba(228,9,20,.2),transparent 28%),linear-gradient(90deg,rgba(5,9,16,.95),rgba(5,9,16,.72)); }
+.ssf-modern.is-inner .services-page-process { position: relative; margin: 26px 18px; padding: 60px 0; overflow: hidden; border-radius: 34px; color: #fff; background-color: #080c14; background-image: url('../images/stock/process-development.webp'); background-position: center 45%; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; box-shadow: 0 28px 75px rgba(7,11,19,.2) }
+.ssf-modern.is-inner .services-page-process::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.05) .8px,transparent .8px),radial-gradient(circle at 86% 12%,rgba(228,9,20,.2),transparent 28%),linear-gradient(90deg,rgba(5,9,16,.94),rgba(5,9,16,.76) 58%,rgba(5,9,16,.67)); background-size: 22px 22px,auto,auto; opacity: 1 }
 .ssf-modern.is-inner .services-page-process>.container { position: relative; z-index: 1 }
-.ssf-modern.is-inner .services-page-process .delivery-heading { display: grid; grid-template-columns: 1fr 390px; gap: 50px; align-items: end; margin-bottom: 42px }
-.ssf-modern.is-inner .services-page-process .delivery-heading .section-title { margin: 14px 0 0; color: #fff; font-size: clamp(40px,4.2vw,62px); line-height: 1.04; letter-spacing: -.05em }
+.ssf-modern.is-inner .services-page-process .delivery-heading { display: flex; justify-content: space-between; gap: 50px; align-items: end; margin-bottom: 52px }
+.ssf-modern.is-inner .services-page-process .delivery-heading .eyebrow { display: inline-flex; padding: 8px 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; background: rgba(255,255,255,.045); color: #ff747c; backdrop-filter: blur(10px) }
+.ssf-modern.is-inner .services-page-process .delivery-heading .section-title { margin: 14px 0 0; color: #fff; font-size: clamp(40px,4.2vw,64px); line-height: 1.04; letter-spacing: -.05em }
 .ssf-modern.is-inner .services-page-process .delivery-heading .section-title span { color: #ff5860 }
-.ssf-modern.is-inner .services-page-process .delivery-heading .muted { margin: 0; color: #aeb6c5; line-height: 1.8 }
+.ssf-modern.is-inner .services-page-process .delivery-heading .muted { max-width: 390px; margin: 0; color: #aeb6c5; font-size: 15px; line-height: 1.8 }
 .ssf-modern.is-inner .services-page-process .delivery-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px }
-.ssf-modern.is-inner .services-page-process .delivery-grid article { min-height: 245px; padding: 25px; border: 1px solid rgba(255,255,255,.1); border-radius: 18px; background: linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); backdrop-filter: blur(14px) }
-.ssf-modern.is-inner .services-page-process .delivery-grid article>span { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #eee; color: #e40914; font-size: 11px; font-weight: 700 }
-.ssf-modern.is-inner .services-page-process .delivery-grid h3 { margin: 38px 0 12px; color: #fff; font-size: 20px }
-.ssf-modern.is-inner .services-page-process .delivery-grid p { color: #aeb6c5; font-size: 12px; line-height: 1.7 }
+.ssf-modern.is-inner .services-page-process .delivery-grid article { position: relative; min-height: 270px; padding: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); backdrop-filter: blur(14px); transition: transform .4s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s,box-shadow .4s }
+.ssf-modern.is-inner .services-page-process .delivery-grid article:hover { transform: translateY(-9px); border-color: rgba(228,9,20,.42); background: linear-gradient(145deg,rgba(228,9,20,.14),rgba(255,255,255,.035)); box-shadow: 0 24px 45px rgba(0,0,0,.22) }
+.ssf-modern.is-inner .services-page-process .delivery-grid article>span { display: inline-grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: #eee; color: #ff6971; font-size: 12px; font-weight: 700 }
+.ssf-modern.is-inner .services-page-process .delivery-grid h3 { margin: 42px 0 14px; color: #fff; font-size: 22px }
+.ssf-modern.is-inner .services-page-process .delivery-grid p { color: #aeb6c5; line-height: 1.75 }
 
 @media(max-width:991px) {
     .ssf-modern.is-inner .services-page-overview { padding: 60px 0 }
     .ssf-modern.is-inner .services-page-main-grid { grid-template-columns: 1fr }
     .ssf-modern.is-inner .services-page-main-card { grid-template-columns: 38% minmax(0,1fr); min-height: 330px }
-    .ssf-modern.is-inner .services-page-process { margin-inline: 10px; padding: 60px 0 }
-    .ssf-modern.is-inner .services-page-process .delivery-heading { grid-template-columns: 1fr; gap: 18px; text-align: center }
+    .ssf-modern.is-inner .services-page-process { margin-inline: 10px; padding: 50px 0; border-radius: 28px; background-attachment: scroll; background-position: 65% center }
+    .ssf-modern.is-inner .services-page-process .delivery-heading { flex-direction: column; align-items: center; gap: 18px; text-align: center }
     .ssf-modern.is-inner .services-page-process .delivery-heading .muted { max-width: 570px; margin-inline: auto }
     .ssf-modern.is-inner .services-page-process .delivery-grid { grid-template-columns: repeat(2,minmax(0,1fr)) }
 }
@@ -184,9 +240,9 @@ body.ssf-modern.is-inner .services-page-cta .btn {
     .ssf-modern.is-inner .services-page-main-card { grid-template-columns: 1fr }
     .ssf-modern.is-inner .services-page-main-visual { min-height: 220px }
     .ssf-modern.is-inner .services-page-main-content { padding: 24px }
-    .ssf-modern.is-inner .services-page-process { margin-inline: 7px; padding: 48px 0; border-radius: 22px }
+    .ssf-modern.is-inner .services-page-process { margin-inline: 7px; padding: 42px 0; border-radius: 22px }
     .ssf-modern.is-inner .services-page-process .delivery-grid { grid-template-columns: 1fr }
-    .ssf-modern.is-inner .services-page-process .delivery-grid article { min-height: 220px }
+    .ssf-modern.is-inner .services-page-process .delivery-grid article { min-height: 235px }
 }
 
 /* Dedicated services listing page. */

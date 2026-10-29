@@ -12,6 +12,49 @@
     color: var(--ink)
 }
 
+/* Keep individual service pages on the same homepage design system. */
+body.ssf-modern.is-inner .single-service-overview .eyebrow,
+body.ssf-modern.is-inner .single-service-feature-copy>.eyebrow,
+body.ssf-modern.is-inner .single-service-related-head .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 0 18px;
+    padding: 7px 11px;
+    border: 1px solid rgba(228,9,20,.12);
+    border-radius: 999px;
+    background: #fff1f2;
+    color: #c70812;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+body.ssf-modern.is-inner .single-service-overview .eyebrow::before,
+body.ssf-modern.is-inner .single-service-feature-copy>.eyebrow::before,
+body.ssf-modern.is-inner .single-service-related-head .eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background: #e40914;
+    box-shadow: 0 0 0 4px rgba(228,9,20,.1);
+}
+
+body.ssf-modern.is-inner .single-service-main .btn,
+body.ssf-modern.is-inner .single-service-hero .btn {
+    border-radius: 7px;
+}
+
+body.ssf-modern.is-inner .single-service-main .button-orb,
+body.ssf-modern.is-inner .single-service-hero .button-orb {
+    border-radius: 6px;
+}
+
 /* Individual service detail pages. */
 body.ssf-modern.is-inner .single-service-hero { position: relative; padding: 150px 0 78px; overflow: hidden; color: #fff; background: radial-gradient(circle at 82% 18%,rgba(228,9,20,.24),transparent 29%),linear-gradient(118deg,#050912,#0b101a 62%,#21070b) }
 body.ssf-modern.is-inner .single-service-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(90deg,#000,transparent 88%) }

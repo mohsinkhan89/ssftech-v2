@@ -52,4 +52,6 @@
             <section class="single-service-related section-pad"><div class="container"><div class="single-service-related-head"><div><p class="eyebrow">Explore more</p><h2>Related <span>{{ $categoryLabel }}</span> services</h2></div><a href="{{ route('services.show', $category) }}">View all services <i class="fa-solid fa-arrow-right"></i></a></div><div class="single-service-related-grid">@foreach($relatedServices as $related)<a class="single-service-related-card" href="{{ route('services.detail', [$category, \Illuminate\Support\Str::slug($related->title)]) }}"><img src="{{ url($related->cardImagePath()) }}" alt="{{ $related->title }}" loading="lazy"><span><i class="{{ $related->icon }}"></i></span><div><small>{{ $categoryLabel }}</small><h3>{{ $related->title }}</h3><p>{{ \Illuminate\Support\Str::limit($related->description, 105) }}</p><strong>View service <i class="fa-solid fa-arrow-right"></i></strong></div></a>@endforeach</div></div></section>
         @endif
     </main>
+
+    @include('frontend.partials.services-quote-cta')
 @endsection

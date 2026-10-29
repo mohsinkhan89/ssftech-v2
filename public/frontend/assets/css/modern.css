@@ -2544,7 +2544,7 @@ body.ssf-modern.is-inner .services-page-cta .btn {
     font-weight: 700
 }
 
-body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta {
+body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-service-hero) .services-page-outline-cta {
     display: inline-flex;
     min-height: 52px;
     padding: 15px 23px;
@@ -2560,13 +2560,13 @@ body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta {
     transition: color .25s ease, background .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease
 }
 
-body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta .button-orb {
+body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-service-hero) .services-page-outline-cta .button-orb {
     background: #ffffff20;
     color: #fff;
     transition: background .25s ease, transform .25s ease
 }
 
-body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta:hover {
+body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-service-hero) .services-page-outline-cta:hover {
     border-color: #e40914;
     background: transparent;
     color: #fff;
@@ -2574,18 +2574,18 @@ body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta:hover {
     box-shadow: 0 14px 32px rgba(228, 9, 20, .28)
 }
 
-body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta::before {
+body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-service-hero) .services-page-outline-cta::before {
     background: #e40914;
     transform: translateY(105%);
     transition: transform 420ms cubic-bezier(.22, 1, .36, 1), border-radius 420ms cubic-bezier(.22, 1, .36, 1)
 }
 
-body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta:is(:hover, :focus-visible)::before {
+body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-service-hero) .services-page-outline-cta:is(:hover, :focus-visible)::before {
     transform: translateY(0);
     border-radius: 0
 }
 
-body.ssf-modern.is-inner .services-page-hero .services-page-outline-cta:hover .button-orb {
+body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-service-hero) .services-page-outline-cta:hover .button-orb {
     background: rgba(255, 255, 255, .18);
     transform: translateX(2px)
 }

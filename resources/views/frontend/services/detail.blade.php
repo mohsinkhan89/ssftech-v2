@@ -17,7 +17,7 @@
                     <p class="eyebrow">{{ $categoryLabel }}</p>
                     <h1>{{ $selectedService->title }}</h1>
                     <p>{{ $selectedService->description }}</p>
-                    <div class="services-page-hero-actions"><a class="btn btn-brand" href="{{ route('index') }}#contact">Discuss your project <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a><a class="services-page-text-link" href="#service-overview">Explore the service <i class="fa-solid fa-arrow-down"></i></a></div>
+                    <div class="services-page-hero-actions"><a class="btn btn-brand" href="{{ route('index') }}#contact">Discuss your project <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a><a class="btn btn-brand services-page-outline-cta" href="#service-overview">Explore the service <span class="button-orb"><i class="fa-solid fa-arrow-down"></i></span></a></div>
                 </div>
                 <div class="single-service-hero-visual reveal delay-2">
                     <img src="{{ url($selectedService->cardImagePath()) }}" alt="{{ $selectedService->title }}" decoding="async">

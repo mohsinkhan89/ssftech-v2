@@ -26,7 +26,7 @@
                     <p class="eyebrow">{{ $categoryLabel }}</p>
                     <h1>{{ $categoryContent[1] }}</h1>
                     <p>{{ $categoryContent[2] }}</p>
-                    <div class="services-page-hero-actions"><a class="btn btn-brand" href="#available-services">Explore services <span class="button-orb"><i class="fa-solid fa-arrow-down"></i></span></a><a class="services-page-text-link" href="{{ route('index') }}#contact">Discuss your project <i class="fa-solid fa-arrow-right"></i></a></div>
+                    <div class="services-page-hero-actions"><a class="btn btn-brand" href="#available-services">Explore services <span class="button-orb"><i class="fa-solid fa-arrow-down"></i></span></a><a class="btn btn-brand services-page-outline-cta" href="{{ route('index') }}#contact">Discuss your project <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a></div>
                 </div>
                 <div class="service-detail-hero-visual reveal delay-2"><img src="{{ url($categoryContent[3]) }}" alt="{{ $categoryLabel }} team" decoding="async"><span><i class="fa-solid {{ $categoryContent[0] }}"></i></span><div><small>Specialist expertise</small><strong>{{ $services->count() }} services available</strong></div></div>
             </div>

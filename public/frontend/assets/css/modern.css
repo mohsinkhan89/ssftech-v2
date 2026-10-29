@@ -8268,7 +8268,7 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
     .ssf-modern .footer-main-grid {
         grid-template-columns: 1fr;
         gap: 34px;
-        padding: 38px 0 32px
+        padding: 0px 0 32px
     }
 
     .ssf-modern .footer-modern .footer-about {

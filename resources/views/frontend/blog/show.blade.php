@@ -73,40 +73,37 @@
                         @if($article->content_banner)
                             <div class="article-content-banner" style="--article-content-image: url('{{ url($article->content_banner) }}')"><strong>Content that <span>educates</span> today,<br><span>converts</span> tomorrow.</strong></div>
                         @endif
-                        <div class="article-tags"><strong>Tags:</strong>@foreach(array_filter(array_map('trim', explode(',', $article->tags ?? ''))) as $tag)<span>{{ $tag }}</span>@endforeach</div>
                         <div class="article-share"><strong>Share this article:</strong><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Copy link"><i class="fa-solid fa-link"></i></a></div>
 
-                        <div class="article-author">
-                            <img src="{{ url('frontend/assets/images/extracted/client-avatar-1.png') }}" alt="{{ $article->author_name }}" loading="lazy" decoding="async">
-                            <div><h3>{{ $article->author_name }}</h3><span>{{ $article->author_role }}</span><p>{{ $article->author_bio }}</p></div>
-                        </div>
                     </div>
                 </article>
 
                 @include('frontend.blog.sidebar')
             </div>
 
-            <nav class="article-navigation reveal" aria-label="Article navigation">
-                <div>@if($previousArticle)<small>Previous Post</small><a href="{{ route('blog.show', $previousArticle->slug) }}"><i class="fa-solid fa-arrow-left"></i> {{ $previousArticle->title }}</a>@endif</div>
-                <div>@if($nextArticle)<small>Next Post</small><a href="{{ route('blog.show', $nextArticle->slug) }}">{{ $nextArticle->title }} <i class="fa-solid fa-arrow-right"></i></a>@endif</div>
-            </nav>
-
-            <div class="related-heading"><h2>Related Articles</h2><a href="{{ route('blog.index') }}">View All Articles <i class="fa-solid fa-arrow-right"></i></a></div>
-            @if($relatedArticles->isNotEmpty())
-                <div class="related-slider swiper reveal">
-                    <div class="swiper-wrapper">
-                        @foreach($relatedArticles as $related)
-                            <div class="swiper-slide">
-                                <article class="related-card">
-                                    <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}" loading="lazy" decoding="async"></a>
-                                    <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
-                                </article>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @if($relatedArticles->count() > 1)<div class="related-pagination"></div>@endif
-            @endif
         </div>
     </section>
+
+    @if($relatedArticles->isNotEmpty())
+    <section class="related-section section-pad">
+        <div class="container">
+            <div class="related-heading">
+                <div><p class="eyebrow">More Insights</p><h2>Related <span>Articles</span></h2></div>
+            </div>
+            <div class="related-slider swiper reveal">
+                <div class="swiper-wrapper">
+                    @foreach($relatedArticles as $related)
+                        <div class="swiper-slide">
+                            <article class="related-card">
+                                <a href="{{ route('blog.show', $related->slug) }}"><img src="{{ url($related->image) }}" alt="{{ $related->title }}" loading="lazy" decoding="async"></a>
+                                <div><span>{{ $related->category }}</span><h3><a class="blog-title-link" href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3><small><i class="fa-regular fa-calendar"></i> {{ $related->date }} &nbsp; <i class="fa-regular fa-clock"></i> {{ $related->read_time }}</small></div>
+                            </article>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @if($relatedArticles->count() > 1)<div class="related-pagination"></div>@endif
+        </div>
+    </section>
+    @endif
 @endsection

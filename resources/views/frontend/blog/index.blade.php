@@ -105,12 +105,12 @@
                         </div>
                     @endif
 
-                    <div class="blog-sidebar-card blog-newsletter">
+                    <!-- <div class="blog-sidebar-card blog-newsletter">
                         <span class="blog-newsletter-icon"><i class="fa-solid fa-paper-plane"></i></span>
                         <h3>Subscribe to Our Newsletter</h3>
                         <p>Get the latest insights and updates delivered straight to your inbox.</p>
                         <form onsubmit="return false;"><input type="email" placeholder="Enter your email address" aria-label="Email address"><button type="submit">Subscribe Now <i class="fa-solid fa-arrow-right"></i></button></form>
-                    </div>
+                    </div> -->
                 </aside>
             </div>
         </div>

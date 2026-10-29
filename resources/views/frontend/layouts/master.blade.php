@@ -79,6 +79,8 @@
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
     <link rel="stylesheet"
         href="{{ url('frontend/assets/css/style.css') }}?v={{ $siteSetting?->css_version ?: env('ASSET_VERSION', '1.0.0') }}">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('frontend/assets/css/modern.css') }}?v={{ filemtime(public_path('frontend/assets/css/modern.css')) }}">
 
 
         <!-- Google tag (gtag.js) -->
@@ -107,7 +109,7 @@
     </script>
 </head>
 
-<body>
+<body class="ssf-modern {{ request()->routeIs('index') ? 'is-home' : 'is-inner' }}">
     @include('frontend.inc.header')
     <main>
         @yield('body')
@@ -123,7 +125,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer
-        src="{{ url('frontend/assets/js/main.js') }}?v={{ $siteSetting?->js_version ?: env('ASSET_VERSION', '1.0.0') }}">
+        src="{{ url('frontend/assets/js/main.js') }}?v={{ filemtime(public_path('frontend/assets/js/main.js')) }}">
     </script>
 </body>
 

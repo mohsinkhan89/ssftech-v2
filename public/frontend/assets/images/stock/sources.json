@@ -1,0 +1,65 @@
+{
+  "license": "https://www.pexels.com/license/",
+  "photos": [
+    {
+      "file": "development-team.webp",
+      "photographer": "Mikhail Nilov",
+      "source": "https://www.pexels.com/photo/people-using-computers-at-work-7988079/"
+    },
+    {
+      "file": "ecommerce.webp",
+      "photographer": "Mikhail Nilov",
+      "source": "https://www.pexels.com/photo/person-purchasing-goods-online-6612276/"
+    },
+    {
+      "file": "education.webp",
+      "photographer": "Alena Darmel",
+      "source": "https://www.pexels.com/photo/students-busy-using-laptops-in-the-classroom-7742816/"
+    },
+    {
+      "file": "professional-services.webp",
+      "photographer": "Mikhail Nilov",
+      "source": "https://www.pexels.com/photo/men-in-the-office-working-on-their-computer-7988116/"
+    },
+    {
+      "file": "healthcare.webp",
+      "photographer": "Ivan S",
+      "source": "https://www.pexels.com/photo/a-doctor-working-on-his-laptop-4989174/"
+    },
+    {
+      "file": "logistics.webp",
+      "photographer": "Tiger Lily",
+      "source": "https://www.pexels.com/photo/men-standing-in-a-warehouse-talking-4480986/"
+    },
+    {
+      "file": "process-development.webp",
+      "photographer": "cottonbro studio",
+      "source": "https://www.pexels.com/photo/programmer-working-in-office-6805152/"
+    },
+    {
+      "file": "crm-collaboration.webp",
+      "photographer": "Kindel Media",
+      "source": "https://www.pexels.com/photo/business-people-working-together-in-front-of-their-laptops-7651734/"
+    },
+    {
+      "file": "business-analytics.webp",
+      "photographer": "Mikhail Nilov",
+      "source": "https://www.pexels.com/photo/marketing-businessman-man-person-6930597/"
+    },
+    {
+      "file": "marketing-strategy.webp",
+      "photographer": "olia danilevich",
+      "source": "https://www.pexels.com/photo/persons-using-laptops-on-table-with-charts-8145328/"
+    },
+    {
+      "file": "customer-support.webp",
+      "photographer": "MART PRODUCTION",
+      "source": "https://www.pexels.com/photo/a-woman-working-in-customer-support-7709145/"
+    },
+    {
+      "file": "creative-design.webp",
+      "photographer": "Kawe Rodrigues",
+      "source": "https://www.pexels.com/photo/graphic-designer-drawing-on-tablet-16313504/"
+    }
+  ]
+}

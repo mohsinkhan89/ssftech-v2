@@ -17,6 +17,81 @@
   const deviceButtons = document.querySelectorAll(".device-tabs button");
   const cookieConsent = document.getElementById("cookieConsent");
 
+  const showNavService = (link) => {
+    const category = link.dataset.serviceCategory;
+    const targetId = link.dataset.serviceTarget;
+    const categoryTab = document.getElementById(`service-tab-${category}`);
+    const target = targetId ? document.getElementById(targetId) : null;
+
+    if (!target) return false;
+
+    if (categoryTab) {
+      if (window.bootstrap?.Tab) {
+        window.bootstrap.Tab.getOrCreateInstance(categoryTab).show();
+      } else {
+        categoryTab.click();
+      }
+    }
+
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      target.classList.add("service-card-highlight");
+      window.setTimeout(() => target.classList.remove("service-card-highlight"), 1800);
+    }, 180);
+
+    return true;
+  };
+
+  document.querySelectorAll("[data-service-nav]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (showNavService(link)) event.preventDefault();
+    });
+  });
+
+  document.querySelectorAll(".nav-services-dropdown").forEach((menu) => {
+    const categoryButtons = menu.querySelectorAll("[data-mega-category]");
+    const panels = menu.querySelectorAll("[data-mega-panel]");
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.megaCategory;
+
+        categoryButtons.forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle("active", isActive);
+          item.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.toggle("active", panel.dataset.megaPanel === category);
+        });
+      });
+    });
+  });
+
+  if (window.location.hash.startsWith("#service-")) {
+    const initialServiceLink = document.querySelector(`[data-service-target="${window.location.hash.slice(1)}"]`);
+    if (initialServiceLink) window.setTimeout(() => showNavService(initialServiceLink), 120);
+  }
+
+  document.querySelectorAll(".js-select-service[data-service]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const serviceName = link.dataset.service?.trim();
+      const serviceSelect = document.getElementById("enquiry-service");
+
+      if (!serviceName || !serviceSelect) return;
+
+      const matchingOption = Array.from(serviceSelect.options).find(
+        (option) => option.value.trim() === serviceName
+      );
+
+      if (matchingOption) {
+        serviceSelect.value = matchingOption.value;
+        serviceSelect.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    });
+  });
+
   if (cookieConsent) {
     const consentMatch = document.cookie.match(/(?:^|; )ssf_cookie_consent=([^;]*)/);
     const savedConsent = consentMatch ? decodeURIComponent(consentMatch[1]) : null;
@@ -289,6 +364,7 @@
       speed: 650,
       grabCursor: true,
       watchOverflow: true,
+      centerInsufficientSlides: true,
       pagination: {
         el: ".related-pagination",
         clickable: true,
@@ -438,6 +514,57 @@
   updateActiveLink();
   window.addEventListener("scroll", updateActiveLink, { passive: true });
 
+  const statNumbers = document.querySelectorAll(".stat-number[data-count]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateStat(number) {
+    const target = Number(number.dataset.count);
+    const decimals = Math.max(0, Number.parseInt(number.dataset.decimals || "0", 10) || 0);
+    if (!Number.isFinite(target) || number.dataset.counted === "true") {
+      return;
+    }
+
+    number.dataset.counted = "true";
+    if (prefersReducedMotion) {
+      number.textContent = target.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      return;
+    }
+
+    const duration = 1400;
+    const startTime = performance.now();
+    number.textContent = "0";
+
+    function updateCount(currentTime) {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
+      number.textContent = (target * easedProgress).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      }
+    }
+
+    requestAnimationFrame(updateCount);
+  }
+
+  if ("IntersectionObserver" in window) {
+    const statObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateStat(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.65 }
+    );
+
+    statNumbers.forEach((number) => statObserver.observe(number));
+  } else {
+    statNumbers.forEach(animateStat);
+  }
+
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -505,9 +632,4 @@
     });
   }
 
-  document.querySelectorAll("form").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-    });
-  });
 })();

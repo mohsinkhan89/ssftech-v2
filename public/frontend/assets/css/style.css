@@ -258,7 +258,6 @@ a {
 }
 
 .site-header {
-  padding: 18px 0;
   background: transparent;
   transition: padding .25s ease, background .25s ease, box-shadow .25s ease;
   backdrop-filter: none;
@@ -382,7 +381,7 @@ a {
 }
 
 .btn-brand i {
-  margin-left: 8px;
+  /* margin-left: 8px; */
 }
 
 .hero-section {
@@ -1311,7 +1310,7 @@ a.client-logo-card {
   height: 38px;
   display: grid;
   place-items: center;
-  color: var(--red);
+  color: var(--black);
   font-size: 28px;
   line-height: 1;
 }
@@ -2429,7 +2428,8 @@ a.client-logo-card {
 .portfolio-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   gap: 22px;
   flex-wrap: wrap;
   margin-bottom: 30px;
@@ -3500,7 +3500,7 @@ a.client-logo-card {
   margin: 0;
   color: #f0f0f0;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .footer-bottom small {
@@ -3989,7 +3989,7 @@ a.client-logo-card {
   }
 
   .portfolio-controls {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
 
@@ -6342,6 +6342,7 @@ a.client-logo-card {
   .service-card h3 {
     min-height: 44px;
     justify-content: center;
+    text-align: center;
     margin-bottom: 10px;
   }
 }

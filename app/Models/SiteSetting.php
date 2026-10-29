@@ -8,6 +8,7 @@ class SiteSetting extends Model
 {
     protected $fillable = [
         'logo',
+        'footer_logo',
         'css_version',
         'js_version',
         'contact_address',

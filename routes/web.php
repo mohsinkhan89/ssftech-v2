@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 Route::get('/llms.txt', LlmsController::class)->name('llms');
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/services', [FrontendController::class, 'servicesIndex'])->name('services.index');
+Route::get('/services/{category}/{service}', [FrontendController::class, 'serviceDetail'])->name('services.detail');
+Route::get('/services/{category}', [FrontendController::class, 'servicesShow'])->name('services.show');
 Route::get('/blog', [FrontendController::class, 'blogIndex'])->name('blog.index');
 Route::get('/blog/{slug}', [FrontendController::class, 'blogShow'])->name('blog.show');
 Route::post('/contact', [FrontendController::class, 'submitContact'])->name('contact.submit');
@@ -119,6 +122,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/settings', [AdminController::class, 'settingsIndex'])->name('admin.settings.index');
     Route::middleware('role:administrator,admin')->group(function () {
         Route::post('/admin/settings/logo', [AdminController::class, 'settingsUpdateLogo'])->name('admin.settings.logo');
+        Route::post('/admin/settings/footer-logo', [AdminController::class, 'settingsUpdateFooterLogo'])->name('admin.settings.footer-logo');
         Route::put('/admin/settings/asset-versions', [AdminController::class, 'settingsUpdateAssetVersions'])->name('admin.settings.asset-versions');
         Route::put('/admin/settings/contact-details', [AdminController::class, 'settingsUpdateContactDetails'])->name('admin.settings.contact-details');
         Route::put('/admin/settings/notification-emails', [AdminController::class, 'settingsUpdateNotificationEmails'])->name('admin.settings.notification-emails');

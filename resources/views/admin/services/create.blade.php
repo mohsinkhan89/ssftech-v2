@@ -8,6 +8,12 @@
     @if($errors->any())<div class="alert alert-danger rounded-3 p-3 mb-4"><ul class="mb-0">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
     <form action="{{ route('admin.services.store') }}" method="POST">@csrf
         <div class="row g-3">
+            <div class="col-12"><label for="category">Service Category</label><select id="category" name="category" class="form-select form-control-custom" required>
+                @foreach(\App\Models\Service::CATEGORIES as $value => $label)
+                    <option value="{{ $value }}" @selected(old('category', 'development') === $value)>{{ $label }}</option>
+                @endforeach
+            </select></div>
+
             <div class="col-md-7"><label for="title">Service Title</label><input type="text" name="title" id="title" class="form-control form-control-custom" value="{{ old('title') }}" required></div>
             <div class="col-md-5"><label for="icon">Font Awesome Icon Class</label><input type="text" name="icon" id="icon" class="form-control form-control-custom" value="{{ old('icon', 'fa-solid fa-gear') }}" required><small class="text-muted">Example: fa-solid fa-laptop-code</small></div>
             <div class="col-12"><label for="description">Description</label><textarea name="description" id="description" rows="5" class="form-control form-control-custom" required>{{ old('description') }}</textarea></div>

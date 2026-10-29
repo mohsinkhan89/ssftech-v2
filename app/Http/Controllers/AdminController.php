@@ -679,6 +679,7 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string|max:255',
+            'category' => 'required|in:development,crm,erp,marketing',
             'description' => 'required|string',
             'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],
             'link' => ['nullable', 'string', 'max:255', 'regex:/^(#|\/|https?:\/\/)/i'],
@@ -779,6 +780,30 @@ class AdminController extends Controller
         $siteSetting->update(['logo' => 'uploads/settings/' . $logoName]);
 
         return redirect()->route('admin.settings.index')->with('success', 'Site logo updated successfully!');
+    }
+
+    public function settingsUpdateFooterLogo(Request $request)
+    {
+        $request->validate([
+            'footer_logo' => 'required|image|mimes:png,jpg,jpeg,webp,svg|max:2048',
+        ]);
+
+        $siteSetting = SiteSetting::firstOrCreate([]);
+        $destinationPath = public_path('uploads/settings');
+        if (! File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true);
+        }
+
+        if ($siteSetting->footer_logo && str_contains($siteSetting->footer_logo, 'uploads/settings') && File::exists(public_path($siteSetting->footer_logo))) {
+            File::delete(public_path($siteSetting->footer_logo));
+        }
+
+        $logo = $request->file('footer_logo');
+        $logoName = time() . '_footer_logo_' . uniqid() . '.' . $logo->getClientOriginalExtension();
+        $logo->move($destinationPath, $logoName);
+        $siteSetting->update(['footer_logo' => 'uploads/settings/' . $logoName]);
+
+        return redirect()->route('admin.settings.index')->with('success', 'Footer logo updated successfully!');
     }
 
     public function settingsUpdateAssetVersions(Request $request)

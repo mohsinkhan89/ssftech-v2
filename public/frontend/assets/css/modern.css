@@ -1140,7 +1140,8 @@ body.ssf-modern.is-inner .service-detail-card-body {
     min-height: 250px;
     padding: 25px;
     flex-direction: column;
-    align-items: flex-start
+    align-items: center;
+    text-align: center
 }
 
 body.ssf-modern.is-inner .service-detail-card-body .eyebrow {
@@ -1165,6 +1166,8 @@ body.ssf-modern.is-inner .service-detail-card-body>.btn {
     width: auto;
     min-height: 46px;
     margin-top: auto;
+    margin-inline: auto;
+    align-self: center;
     padding: 7px 8px 7px 16px;
     gap: 11px;
     border-radius: 7px;

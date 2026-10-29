@@ -9449,6 +9449,17 @@
         overflow: visible
     }
 
+    body.ssf-modern.is-inner .blog-sidebar>.blog-sidebar-card:first-child,
+    body.ssf-modern.is-inner .article-sidebar>.blog-sidebar-card:first-child {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    body.ssf-modern.is-inner .blog-sidebar>.blog-sidebar-card:first-child .blog-search,
+    body.ssf-modern.is-inner .article-sidebar>.blog-sidebar-card:first-child .blog-search {
+        width: 100%;
+    }
+
     body.ssf-modern:is(.is-home, .is-inner) .navbar-toggler {
         background: transparent !important;
         box-shadow: none !important

@@ -12,6 +12,22 @@
     color: var(--ink)
 }
 
+@media(max-width:575px) {
+    body.ssf-modern.is-inner .service-detail-list .services-section-heading .section-title {
+        width: 100%;
+        max-width: 100%;
+        font-size: 32px;
+        line-height: 1.1;
+        white-space: normal !important;
+        overflow-wrap: break-word;
+        text-wrap: balance;
+    }
+
+    body.ssf-modern.is-inner .service-detail-list .services-section-heading .section-title span {
+        white-space: normal !important;
+    }
+}
+
 /* Visual hero card for the main services listing. */
 body.ssf-modern.is-inner .services-page-hero-visual {
     position: relative;

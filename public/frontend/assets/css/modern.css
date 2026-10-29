@@ -2187,7 +2187,8 @@ body.ssf-modern.is-inner .services-page-cta .btn {
     display: flex;
     padding: 30px;
     flex-direction: column;
-    align-items: flex-start
+    align-items: center;
+    text-align: center
 }
 
 .ssf-modern.is-inner .services-page-main-content .eyebrow {
@@ -2211,6 +2212,7 @@ body.ssf-modern.is-inner .services-page-cta .btn {
 
 .ssf-modern.is-inner .services-page-main-content ul {
     display: grid;
+    width: 100%;
     gap: 8px;
     margin: 19px 0 22px;
     padding: 17px 0 0;
@@ -2221,9 +2223,11 @@ body.ssf-modern.is-inner .services-page-cta .btn {
 .ssf-modern.is-inner .services-page-main-content li {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 9px;
     color: #424b58;
-    font-size: 11px
+    font-size: 11px;
+    text-align: center
 }
 
 .ssf-modern.is-inner .services-page-main-content li i {
@@ -2234,6 +2238,7 @@ body.ssf-modern.is-inner .services-page-cta .btn {
 .ssf-modern.is-inner .services-page-main-content>a {
     display: inline-flex;
     align-items: center;
+    align-self: center;
     gap: 9px;
     margin-top: auto;
     color: #c90913;

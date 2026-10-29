@@ -144,6 +144,38 @@ body.ssf-modern.is-inner .services-page-cta-background>.services-page-cta-copy {
     text-align: left;
 }
 
+body.ssf-modern.is-inner .services-page-cta-background .services-page-cta-copy>.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 0 18px;
+    padding: 7px 11px;
+    border: 1px solid rgba(228,9,20,.12);
+    border-radius: 999px;
+    background: #fff1f2;
+    color: #c70812;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: none;
+}
+
+body.ssf-modern.is-inner .services-page-cta-background .services-page-cta-copy>.eyebrow::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 0;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background: #e40914;
+    box-shadow: 0 0 0 4px rgba(228,9,20,.1);
+}
+
 body.ssf-modern.is-inner .services-page-cta-background>.btn {
     grid-column: 2;
     grid-row: 1 / 3;

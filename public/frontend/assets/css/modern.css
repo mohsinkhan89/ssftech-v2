@@ -5230,7 +5230,7 @@
 
 @media(max-width:991px) {
     .ssf-modern .footer-modern {
-        padding-top: 55px
+        padding-top: 0
     }
 
     .ssf-modern .footer-cta {
@@ -7116,6 +7116,10 @@
 }
 
 @media(max-width:991px) {
+    .ssf-modern .footer-modern .footer-bottom {
+        flex-direction: column;
+        gap: 5px;
+    }
     .ssf-modern.is-home .portfolio-controls {
         box-shadow: none!important;
         border: 0!important;
@@ -9376,6 +9380,50 @@
     body.ssf-modern.is-home .service-category-tabs {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         display: grid;
+    }
+
+    body.ssf-modern.is-home .delivery-section {
+        margin-inline: 10px;
+        padding: 72px 0;
+        border-radius: 28px;
+        background-position: center;
+    }
+
+    body.ssf-modern.is-home .delivery-section>.container {
+        padding-inline: 28px;
+    }
+
+    body.ssf-modern.is-home .delivery-heading {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 20px;
+        margin-bottom: 38px;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-home .delivery-heading .section-title {
+        font-size: clamp(38px, 6vw, 48px);
+    }
+
+    body.ssf-modern.is-home .delivery-heading .muted {
+        max-width: 560px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    body.ssf-modern.is-home .delivery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    body.ssf-modern.is-home .delivery-grid article {
+        min-height: 230px;
+        padding: 24px;
+    }
+
+    body.ssf-modern.is-home .delivery-grid h3 {
+        margin-top: 32px;
     }
 
     body.ssf-modern.is-home .contact-shell {

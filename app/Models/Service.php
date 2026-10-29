@@ -19,9 +19,9 @@ class Service extends Model
     {
         $image = config('service_images.services')[$this->title]
             ?? config('service_images.defaults')[$this->category]
-            ?? 'development-team';
+            ?? 'web-development';
 
-        return 'frontend/assets/images/stock/'.$image.'.webp';
+        return 'frontend/assets/images/service-stock/'.$image.'.webp';
     }
 
     protected $casts = [

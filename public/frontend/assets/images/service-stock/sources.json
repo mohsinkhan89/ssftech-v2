@@ -1,0 +1,194 @@
+﻿[
+    {
+        "title":  "Web Development",
+        "slug":  "web-development",
+        "source":  "https://www.pexels.com/photo/29502371/",
+        "image":  "https://images.pexels.com/photos/29502371/pexels-photo-29502371.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "E-Commerce Development",
+        "slug":  "e-commerce-development",
+        "source":  "https://www.pexels.com/photo/6207757/",
+        "image":  "https://images.pexels.com/photos/6207757/pexels-photo-6207757.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Web Application Development",
+        "slug":  "web-application-development",
+        "source":  "https://www.pexels.com/photo/6348122/",
+        "image":  "https://images.pexels.com/photos/6348122/pexels-photo-6348122.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "API Development \u0026 Integration",
+        "slug":  "api-development-and-integration",
+        "source":  "https://www.pexels.com/photo/6612284/",
+        "image":  "https://images.pexels.com/photos/6612284/pexels-photo-6612284.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Website Maintenance \u0026 Support",
+        "slug":  "website-maintenance-and-support",
+        "source":  "https://www.pexels.com/photo/5453847/",
+        "image":  "https://images.pexels.com/photos/5453847/pexels-photo-5453847.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Custom CRM Development",
+        "slug":  "custom-crm-development",
+        "source":  "https://www.pexels.com/photo/7643742/",
+        "image":  "https://images.pexels.com/photos/7643742/pexels-photo-7643742.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "CRM Setup \u0026 Implementation",
+        "slug":  "crm-setup-and-implementation",
+        "source":  "https://www.pexels.com/photo/6476252/",
+        "image":  "https://images.pexels.com/photos/6476252/pexels-photo-6476252.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Sales \u0026 Lead Automation",
+        "slug":  "sales-and-lead-automation",
+        "source":  "https://www.pexels.com/photo/5453841/",
+        "image":  "https://images.pexels.com/photos/5453841/pexels-photo-5453841.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "CRM Integration \u0026 Data Migration",
+        "slug":  "crm-integration-and-data-migration",
+        "source":  "https://www.pexels.com/photo/8192015/",
+        "image":  "https://images.pexels.com/photos/8192015/pexels-photo-8192015.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Customer Service \u0026 Support CRM",
+        "slug":  "customer-service-and-support-crm",
+        "source":  "https://www.pexels.com/photo/7709215/",
+        "image":  "https://images.pexels.com/photos/7709215/pexels-photo-7709215.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "CRM Reporting \u0026 Analytics",
+        "slug":  "crm-reporting-and-analytics",
+        "source":  "https://www.pexels.com/photo/7709199/",
+        "image":  "https://images.pexels.com/photos/7709199/pexels-photo-7709199.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "CRM Training \u0026 Support",
+        "slug":  "crm-training-and-support",
+        "source":  "https://www.pexels.com/photo/8867202/",
+        "image":  "https://images.pexels.com/photos/8867202/pexels-photo-8867202.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Custom ERP Development",
+        "slug":  "custom-erp-development",
+        "source":  "https://www.pexels.com/photo/38136632/",
+        "image":  "https://images.pexels.com/photos/38136632/pexels-photo-38136632.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "ERP Implementation \u0026 Migration",
+        "slug":  "erp-implementation-and-migration",
+        "source":  "https://www.pexels.com/photo/4484150/",
+        "image":  "https://images.pexels.com/photos/4484150/pexels-photo-4484150.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Finance \u0026 Accounting Systems",
+        "slug":  "finance-and-accounting-systems",
+        "source":  "https://www.pexels.com/photo/4487359/",
+        "image":  "https://images.pexels.com/photos/4487359/pexels-photo-4487359.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Inventory \u0026 Warehouse Management",
+        "slug":  "inventory-and-warehouse-management",
+        "source":  "https://www.pexels.com/photo/4484149/",
+        "image":  "https://images.pexels.com/photos/4484149/pexels-photo-4484149.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "HR \u0026 Payroll Systems",
+        "slug":  "hr-and-payroll-systems",
+        "source":  "https://www.pexels.com/photo/34054482/",
+        "image":  "https://images.pexels.com/photos/34054482/pexels-photo-34054482.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Procurement \u0026 Supply Chain",
+        "slug":  "procurement-and-supply-chain",
+        "source":  "https://www.pexels.com/photo/32048365/",
+        "image":  "https://images.pexels.com/photos/32048365/pexels-photo-32048365.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Manufacturing \u0026 Production Planning",
+        "slug":  "manufacturing-and-production-planning",
+        "source":  "https://www.pexels.com/photo/6016365/",
+        "image":  "https://images.pexels.com/photos/6016365/pexels-photo-6016365.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "ERP Integration \u0026 Support",
+        "slug":  "erp-integration-and-support",
+        "source":  "https://www.pexels.com/photo/6476255/",
+        "image":  "https://images.pexels.com/photos/6476255/pexels-photo-6476255.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Digital Marketing Strategy",
+        "slug":  "digital-marketing-strategy",
+        "source":  "https://www.pexels.com/photo/3861957/",
+        "image":  "https://images.pexels.com/photos/3861957/pexels-photo-3861957.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Search Engine Optimisation (SEO)",
+        "slug":  "search-engine-optimisation-seo",
+        "source":  "https://www.pexels.com/photo/7108091/",
+        "image":  "https://images.pexels.com/photos/7108091/pexels-photo-7108091.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Local SEO \u0026 Business Profiles",
+        "slug":  "local-seo-and-business-profiles",
+        "source":  "https://www.pexels.com/photo/3183171/",
+        "image":  "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "PPC \u0026 Search Advertising",
+        "slug":  "ppc-and-search-advertising",
+        "source":  "https://www.pexels.com/photo/7013068/",
+        "image":  "https://images.pexels.com/photos/7013068/pexels-photo-7013068.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Paid Social Advertising",
+        "slug":  "paid-social-advertising",
+        "source":  "https://www.pexels.com/photo/6483592/",
+        "image":  "https://images.pexels.com/photos/6483592/pexels-photo-6483592.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Social Media Management",
+        "slug":  "social-media-management",
+        "source":  "https://www.pexels.com/photo/35730228/",
+        "image":  "https://images.pexels.com/photos/35730228/pexels-photo-35730228.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Content Marketing \u0026 Copywriting",
+        "slug":  "content-marketing-and-copywriting",
+        "source":  "https://www.pexels.com/photo/15635241/",
+        "image":  "https://images.pexels.com/photos/15635241/pexels-photo-15635241.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Email Marketing \u0026 Automation",
+        "slug":  "email-marketing-and-automation",
+        "source":  "https://www.pexels.com/photo/6801649/",
+        "image":  "https://images.pexels.com/photos/6801649/pexels-photo-6801649.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Brand Identity \u0026 Creative Design",
+        "slug":  "brand-identity-and-creative-design",
+        "source":  "https://www.pexels.com/photo/36706460/",
+        "image":  "https://images.pexels.com/photos/36706460/pexels-photo-36706460.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Video Marketing \u0026 Motion Content",
+        "slug":  "video-marketing-and-motion-content",
+        "source":  "https://www.pexels.com/photo/6805152/",
+        "image":  "https://images.pexels.com/photos/6805152/pexels-photo-6805152.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Conversion Rate Optimisation",
+        "slug":  "conversion-rate-optimisation",
+        "source":  "https://www.pexels.com/photo/7988079/",
+        "image":  "https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    },
+    {
+        "title":  "Marketing Analytics \u0026 Reporting",
+        "slug":  "marketing-analytics-and-reporting",
+        "source":  "https://www.pexels.com/photo/32755772/",
+        "image":  "https://images.pexels.com/photos/32755772/pexels-photo-32755772.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=750\u0026w=1200"
+    }
+]

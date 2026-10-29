@@ -9312,8 +9312,8 @@
     left: 50%;
     z-index: 1100;
     display: grid;
-    grid-template-columns: 230px minmax(0, 1fr);
-    width: min(760px, calc(100vw - 40px));
+    grid-template-columns: 260px minmax(0, 1fr);
+    width: min(920px, calc(100vw - 48px));
     max-height: min(520px, 72vh);
     padding: 10px;
     overflow-y: auto;
@@ -9374,7 +9374,7 @@
 
 .ssf-modern .nav-services-panels {
     min-width: 0;
-    padding: 14px 16px 16px;
+    padding: 18px 22px 20px;
 }
 
 .ssf-modern .nav-services-panel {
@@ -9411,7 +9411,7 @@
 .ssf-modern .nav-services-links {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px 8px;
+    gap: 6px 12px;
 }
 
 @keyframes navMegaPanelIn {

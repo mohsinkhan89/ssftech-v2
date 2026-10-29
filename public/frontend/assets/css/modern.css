@@ -12,6 +12,83 @@
     color: var(--ink)
 }
 
+/* Match the homepage Our Services heading and keep it inside the container. */
+body.ssf-modern.is-inner .services-page-overview .services-section-heading {
+    width: 100%;
+    max-width: 900px;
+    min-width: 0;
+    margin: 0 auto 46px;
+    padding-inline: 0;
+    text-align: center;
+}
+
+body.ssf-modern.is-inner .services-page-overview .services-section-heading .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 0 18px;
+    padding: 7px 11px;
+    border: 1px solid rgba(228,9,20,.12);
+    border-radius: 999px;
+    background: #fff1f2;
+    color: #c70812;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    box-shadow: none;
+}
+
+body.ssf-modern.is-inner .services-page-overview .services-section-heading .eyebrow::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 0;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background: #e40914;
+    box-shadow: 0 0 0 4px rgba(228,9,20,.1);
+}
+
+body.ssf-modern.is-inner .services-page-overview .services-section-heading .section-title {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    min-width: 0;
+    margin: 0 auto 18px;
+    color: #10182c;
+    font-size: clamp(40px,4vw,62px);
+    line-height: 1.05;
+    letter-spacing: -.05em;
+    white-space: normal !important;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-wrap: balance;
+}
+
+body.ssf-modern.is-inner .services-page-overview .services-section-heading .section-title span {
+    color: #e40914;
+}
+
+body.ssf-modern.is-inner .services-page-overview .services-section-heading>.muted {
+    max-width: 720px;
+    margin-inline: auto;
+    color: #697181;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+@media(max-width:991px) {
+    body.ssf-modern.is-inner .services-page-overview .services-section-heading { max-width: 100%; padding-inline: 12px }
+    body.ssf-modern.is-inner .services-page-overview .services-section-heading .section-title { max-width: 100%; font-size: clamp(38px,6vw,54px) }
+}
+
+@media(max-width:575px) {
+    body.ssf-modern.is-inner .services-page-overview .services-section-heading { padding-inline: 0 }
+    body.ssf-modern.is-inner .services-page-overview .services-section-heading .section-title { font-size: 36px; letter-spacing: -1.5px }
+}
+
 /* Compact CTA with imagery and shapes blended into the card background. */
 body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background {
     position: relative;

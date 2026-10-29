@@ -15,6 +15,12 @@
 /* Compact CTA with imagery and shapes blended into the card background. */
 body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background {
     position: relative;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 40px;
+    row-gap: 14px;
     isolation: isolate;
     min-height: 0;
     overflow: hidden;
@@ -48,6 +54,25 @@ body.ssf-modern.is-inner .services-page-cta-background>.btn {
     z-index: 2;
 }
 
+body.ssf-modern.is-inner .services-page-cta-background>.services-page-cta-icon {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+}
+
+body.ssf-modern.is-inner .services-page-cta-background>.services-page-cta-copy {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 100%;
+    text-align: left;
+}
+
+body.ssf-modern.is-inner .services-page-cta-background>.btn {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+}
+
 body.ssf-modern.is-inner .services-page-cta-bg-shape {
     position: absolute;
     z-index: 1;
@@ -78,11 +103,17 @@ body.ssf-modern.is-inner .services-page-cta-bg-shape.shape-two {
 }
 
 @media(max-width:991px) {
+    body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background { grid-template-columns: 1fr auto }
+    body.ssf-modern.is-inner .services-page-cta-background>.btn { grid-column: 2; grid-row: 1 / 3 }
     body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background::after { width: 55%; opacity: .2 }
     body.ssf-modern.is-inner .services-page-cta-bg-shape.shape-one { right: 5% }
 }
 
 @media(max-width:575px) {
+    body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background { grid-template-columns: 1fr; gap: 16px }
+    body.ssf-modern.is-inner .services-page-cta-background>.services-page-cta-icon,
+    body.ssf-modern.is-inner .services-page-cta-background>.services-page-cta-copy,
+    body.ssf-modern.is-inner .services-page-cta-background>.btn { grid-column: 1; grid-row: auto }
     body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background::after { width: 100%; opacity: .12; mask-image: linear-gradient(180deg,transparent,#000) }
     body.ssf-modern.is-inner .services-page-cta-bg-shape.shape-one { top: -95px; right: -55px }
     body.ssf-modern.is-inner .services-page-cta-bg-shape.shape-two { right: -35px; bottom: -85px }

@@ -14,6 +14,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Throwable;
 
 class FrontendController extends Controller
@@ -50,6 +51,33 @@ class FrontendController extends Controller
 
         return view('frontend.services.show', compact(
             'siteSetting', 'socialLinks', 'services', 'category', 'categoryLabel'
+        ));
+    }
+
+    public function serviceDetail(string $category, string $service)
+    {
+        abort_unless(array_key_exists($category, Service::CATEGORIES), 404);
+
+        [$siteSetting, $socialLinks] = $this->frontendSettings();
+        $categoryServices = Service::where('status', true)
+            ->where('category', $category)
+            ->orderBy('sort_order')
+            ->orderBy('created_at')
+            ->get();
+        $selectedService = $categoryServices->first(
+            fn ($item) => Str::slug($item->title) === $service
+        );
+
+        abort_unless($selectedService, 404);
+
+        $categoryLabel = Service::CATEGORIES[$category];
+        $relatedServices = $categoryServices
+            ->where('id', '!=', $selectedService->id)
+            ->take(3);
+
+        return view('frontend.services.detail', compact(
+            'siteSetting', 'socialLinks', 'selectedService', 'category',
+            'categoryLabel', 'relatedServices'
         ));
     }
 

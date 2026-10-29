@@ -45,7 +45,7 @@
                     @foreach($services as $service)
                         <article class="service-detail-card reveal" id="service-{{ $service->id }}" data-service-card data-service-category="{{ $category }}">
                             <div class="service-detail-card-image"><img src="{{ url($service->cardImagePath()) }}" alt="{{ $service->title }}" loading="lazy" decoding="async"><span><i class="{{ $service->icon }}"></i></span><small>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</small></div>
-                            <div class="service-detail-card-body"><p class="eyebrow">{{ $categoryLabel }}</p><h3>{{ $service->title }}</h3><p>{{ $service->description }}</p><a class="btn btn-brand" href="{{ route('index') }}#contact">Discuss this service <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a></div>
+                            <div class="service-detail-card-body"><p class="eyebrow">{{ $categoryLabel }}</p><h3>{{ $service->title }}</h3><p>{{ $service->description }}</p><a class="btn btn-brand" href="{{ route('services.detail', [$category, \Illuminate\Support\Str::slug($service->title)]) }}">View service <span class="button-orb"><i class="fa-solid fa-arrow-right"></i></span></a></div>
                         </article>
                     @endforeach
                 </div>

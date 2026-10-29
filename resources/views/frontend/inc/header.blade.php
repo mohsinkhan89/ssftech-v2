@@ -36,7 +36,7 @@
                                             <div class="nav-services-panel-head"><small>Explore</small><strong>{{ $categoryLabel }}</strong></div>
                                             <div class="nav-services-links">
                                                 @foreach($navServices->where('category', $categoryKey) as $navService)
-                                                    <a href="{{ route('services.show', $navService->category) }}#service-{{ $navService->id }}" data-service-nav data-service-category="{{ $navService->category }}" data-service-target="service-{{ $navService->id }}">
+                                                    <a href="{{ route('services.detail', [$navService->category, \Illuminate\Support\Str::slug($navService->title)]) }}">
                                                         <i class="{{ $navService->icon }}"></i><span>{{ $navService->title }}</span>
                                                     </a>
                                                 @endforeach

@@ -17,6 +17,61 @@
   const deviceButtons = document.querySelectorAll(".device-tabs button");
   const cookieConsent = document.getElementById("cookieConsent");
 
+  const showNavService = (link) => {
+    const category = link.dataset.serviceCategory;
+    const targetId = link.dataset.serviceTarget;
+    const categoryTab = document.getElementById(`service-tab-${category}`);
+    const target = targetId ? document.getElementById(targetId) : null;
+
+    if (!categoryTab || !target) return false;
+
+    if (window.bootstrap?.Tab) {
+      window.bootstrap.Tab.getOrCreateInstance(categoryTab).show();
+    } else {
+      categoryTab.click();
+    }
+
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      target.classList.add("service-card-highlight");
+      window.setTimeout(() => target.classList.remove("service-card-highlight"), 1800);
+    }, 180);
+
+    return true;
+  };
+
+  document.querySelectorAll("[data-service-nav]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (showNavService(link)) event.preventDefault();
+    });
+  });
+
+  document.querySelectorAll(".nav-services-dropdown").forEach((menu) => {
+    const categoryButtons = menu.querySelectorAll("[data-mega-category]");
+    const panels = menu.querySelectorAll("[data-mega-panel]");
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.megaCategory;
+
+        categoryButtons.forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle("active", isActive);
+          item.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.toggle("active", panel.dataset.megaPanel === category);
+        });
+      });
+    });
+  });
+
+  if (window.location.hash.startsWith("#service-")) {
+    const initialServiceLink = document.querySelector(`[data-service-target="${window.location.hash.slice(1)}"]`);
+    if (initialServiceLink) window.setTimeout(() => showNavService(initialServiceLink), 120);
+  }
+
   document.querySelectorAll(".js-select-service[data-service]").forEach((link) => {
     link.addEventListener("click", () => {
       const serviceName = link.dataset.service?.trim();

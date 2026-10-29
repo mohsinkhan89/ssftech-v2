@@ -186,7 +186,7 @@
                         <div class="services-grid">
                             <div class="swiper-wrapper">
                                 @foreach($services->where('category', $key) as $service)
-                                    <div class="swiper-slide"><article class="service-card service-card-with-image">
+                                    <div class="swiper-slide" id="service-{{ $service->id }}" data-service-card data-service-category="{{ $key }}"><article class="service-card service-card-with-image">
                                         <div class="service-card-image"><img src="{{ url($service->cardImagePath()) }}" alt="" loading="lazy" decoding="async" width="1000" height="600"><span class="service-image-category">{{ $label }}</span></div>
                                         <div class="service-card-content">
                                         <div class="service-card-top"><span class="service-icon"><i class="{{ $service->icon }}"></i></span><span class="service-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }} /</span></div>

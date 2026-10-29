@@ -25,7 +25,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('frontend.inc.header', function ($view) {
-            $view->with('hasActiveBlogs', Blog::where('status', true)->exists());
+            $view->with([
+                'hasActiveBlogs' => Blog::where('status', true)->exists(),
+                'navServices' => Service::where('status', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('created_at')
+                    ->get(),
+            ]);
         });
 
         View::composer('frontend.inc.footer', function ($view) {

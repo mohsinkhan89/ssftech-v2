@@ -73,13 +73,8 @@
                         @if($article->content_banner)
                             <div class="article-content-banner" style="--article-content-image: url('{{ url($article->content_banner) }}')"><strong>Content that <span>educates</span> today,<br><span>converts</span> tomorrow.</strong></div>
                         @endif
-                        <div class="article-tags"><strong>Tags:</strong>@foreach(array_filter(array_map('trim', explode(',', $article->tags ?? ''))) as $tag)<span>{{ $tag }}</span>@endforeach</div>
                         <div class="article-share"><strong>Share this article:</strong><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Copy link"><i class="fa-solid fa-link"></i></a></div>
 
-                        <div class="article-author">
-                            <img src="{{ url('frontend/assets/images/extracted/client-avatar-1.png') }}" alt="{{ $article->author_name }}" loading="lazy" decoding="async">
-                            <div><h3>{{ $article->author_name }}</h3><span>{{ $article->author_role }}</span><p>{{ $article->author_bio }}</p></div>
-                        </div>
                     </div>
                 </article>
 

@@ -15,7 +15,7 @@
                     <li class="nav-item"><a class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}#about">About Us</a></li>
                     <li class="nav-item nav-services-item">
-                        <a class="nav-link" href="{{ route('index') }}#services" aria-haspopup="true">Services <i class="fa-solid fa-chevron-down nav-services-chevron"></i></a>
+                        <a class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}" href="{{ route('services.index') }}" aria-haspopup="true">Services <i class="fa-solid fa-chevron-down nav-services-chevron"></i></a>
                         @if($navServices->isNotEmpty())
                             @php
                                 $navServiceGroups = collect(\App\Models\Service::CATEGORIES)
@@ -36,7 +36,7 @@
                                             <div class="nav-services-panel-head"><small>Explore</small><strong>{{ $categoryLabel }}</strong></div>
                                             <div class="nav-services-links">
                                                 @foreach($navServices->where('category', $categoryKey) as $navService)
-                                                    <a href="{{ route('index') }}#service-{{ $navService->id }}" data-service-nav data-service-category="{{ $navService->category }}" data-service-target="service-{{ $navService->id }}">
+                                                    <a href="{{ route('services.index') }}#category-{{ $navService->category }}" data-service-nav data-service-category="{{ $navService->category }}" data-service-target="category-{{ $navService->category }}">
                                                         <i class="{{ $navService->icon }}"></i><span>{{ $navService->title }}</span>
                                                     </a>
                                                 @endforeach

@@ -23,12 +23,14 @@
     const categoryTab = document.getElementById(`service-tab-${category}`);
     const target = targetId ? document.getElementById(targetId) : null;
 
-    if (!categoryTab || !target) return false;
+    if (!target) return false;
 
-    if (window.bootstrap?.Tab) {
-      window.bootstrap.Tab.getOrCreateInstance(categoryTab).show();
-    } else {
-      categoryTab.click();
+    if (categoryTab) {
+      if (window.bootstrap?.Tab) {
+        window.bootstrap.Tab.getOrCreateInstance(categoryTab).show();
+      } else {
+        categoryTab.click();
+      }
     }
 
     window.setTimeout(() => {

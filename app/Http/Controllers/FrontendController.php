@@ -18,6 +18,21 @@ use Throwable;
 
 class FrontendController extends Controller
 {
+    public function servicesIndex()
+    {
+        [$siteSetting, $socialLinks] = $this->frontendSettings();
+        $services = Service::where('status', true)
+            ->orderBy('sort_order')
+            ->orderBy('created_at')
+            ->get();
+        $serviceCategories = collect(Service::CATEGORIES)
+            ->filter(fn ($label, $key) => $services->contains('category', $key));
+
+        return view('frontend.services.index', compact(
+            'siteSetting', 'socialLinks', 'services', 'serviceCategories'
+        ));
+    }
+
     public function blogIndex(Request $request)
     {
         [$siteSetting, $socialLinks] = $this->frontendSettings();

@@ -9498,6 +9498,11 @@
         max-width: 100%
     }
 
+    body.ssf-modern .section-pad {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+
     body.ssf-modern .footer-main-grid {
         grid-template-columns: 1.2fr 1fr;
         gap: 36px 48px

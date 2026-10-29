@@ -12,6 +12,198 @@
     color: var(--ink)
 }
 
+/* Final tablet treatment for all newly added services pages. */
+@media (min-width:576px) and (max-width:991px) {
+    body.ssf-modern.is-inner .services-page-hero,
+    body.ssf-modern.is-inner .service-detail-hero,
+    body.ssf-modern.is-inner .single-service-hero {
+        padding:130px 0 58px;
+    }
+
+    body.ssf-modern.is-inner .services-page-hero-grid,
+    body.ssf-modern.is-inner .service-detail-hero-grid,
+    body.ssf-modern.is-inner .single-service-hero-grid {
+        grid-template-columns:1fr;
+        gap:34px;
+    }
+
+    body.ssf-modern.is-inner .services-page-hero-copy,
+    body.ssf-modern.is-inner .service-detail-hero-copy,
+    body.ssf-modern.is-inner .single-service-hero-copy {
+        display:flex;
+        width:100%;
+        max-width:720px;
+        min-width:0;
+        margin-inline:auto;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    body.ssf-modern.is-inner :is(.services-page-hero,.service-detail-hero,.single-service-hero) .blog-breadcrumb {
+        width:max-content;
+        max-width:100%;
+        margin:0 auto 28px;
+        justify-content:center;
+    }
+
+    body.ssf-modern.is-inner :is(.services-page-hero-copy,.service-detail-hero-copy,.single-service-hero-copy)>.eyebrow {
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner :is(.services-page-hero,.service-detail-hero,.single-service-hero) h1 {
+        width:100%;
+        max-width:720px;
+        margin-inline:auto;
+        font-size:clamp(48px,7vw,62px);
+        line-height:1.03;
+        text-align:center;
+        white-space:normal;
+        overflow-wrap:break-word;
+        text-wrap:balance;
+    }
+
+    body.ssf-modern.is-inner :is(.services-page-hero-copy,.service-detail-hero-copy,.single-service-hero-copy)>p:not(.eyebrow) {
+        max-width:620px;
+        margin-inline:auto;
+        text-align:center;
+    }
+
+    body.ssf-modern.is-inner :is(.services-page-hero,.service-detail-hero,.single-service-hero) .services-page-hero-actions {
+        justify-content:center;
+    }
+
+    body.ssf-modern.is-inner .services-page-hero-visual,
+    body.ssf-modern.is-inner .service-detail-hero-visual,
+    body.ssf-modern.is-inner .single-service-hero-visual {
+        width:100%;
+        max-width:680px;
+        height:400px;
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .services-page-overview,
+    body.ssf-modern.is-inner .service-detail-list,
+    body.ssf-modern.is-inner .single-service-overview,
+    body.ssf-modern.is-inner .single-service-feature,
+    body.ssf-modern.is-inner .single-service-related {
+        padding:56px 0;
+    }
+
+    body.ssf-modern.is-inner .services-page-overview .services-section-heading,
+    body.ssf-modern.is-inner .service-detail-list .services-section-heading {
+        width:100%;
+        max-width:720px;
+        margin:0 auto 36px;
+        padding-inline:12px;
+        text-align:center;
+    }
+
+    body.ssf-modern.is-inner .services-page-overview .services-section-heading .section-title,
+    body.ssf-modern.is-inner .service-detail-list .services-section-heading .section-title {
+        max-width:100%;
+        font-size:clamp(38px,6vw,52px);
+        white-space:normal!important;
+        text-wrap:balance;
+    }
+
+    body.ssf-modern.is-inner .services-page-main-grid {
+        /* grid-template-columns:1fr; */
+        grid-template-columns:1fr 1fr;
+        max-width:760px;
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .services-page-hero-visual-copy strong br {
+        display: none;
+    }
+
+    body.ssf-modern.is-inner .services-page-main-card {
+        /* grid-template-columns:38% minmax(0,1fr); */
+        grid-template-columns: 1fr;
+        min-height:330px;
+    }
+
+    body.ssf-modern.is-inner .service-detail-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:18px;
+    }
+
+    body.ssf-modern.is-inner .single-service-overview-grid,
+    body.ssf-modern.is-inner .single-service-feature-grid {
+        grid-template-columns:1fr;
+        gap:36px;
+    }
+
+    body.ssf-modern.is-inner .single-service-overview-grid {
+        max-width:760px;
+        margin-inline:auto;
+        padding:38px;
+    }
+
+    body.ssf-modern.is-inner .single-service-overview-copy,
+    body.ssf-modern.is-inner .single-service-feature-copy {
+        padding:0;
+        text-align:center;
+    }
+
+    body.ssf-modern.is-inner .single-service-overview-copy>.eyebrow,
+    body.ssf-modern.is-inner .single-service-feature-copy>.eyebrow {
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .single-service-overview-copy h2,
+    body.ssf-modern.is-inner .single-service-feature-copy h2,
+    body.ssf-modern.is-inner .single-service-overview-copy>p,
+    body.ssf-modern.is-inner .single-service-feature-copy>p {
+        margin-inline:auto;
+        text-align:center;
+    }
+
+    body.ssf-modern.is-inner .single-service-feature-visual {
+        width:100%;
+        max-width:680px;
+        height:420px;
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .single-service-feature-copy ul {
+        max-width:680px;
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .single-service-feature-copy>.btn {
+        display:flex;
+        width:max-content;
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .single-service-related-head {
+        align-items:center;
+        text-align:center;
+        flex-direction:column;
+    }
+
+    body.ssf-modern.is-inner .single-service-related-head .eyebrow,
+    body.ssf-modern.is-inner .single-service-related-head>.single-service-related-cta {
+        margin-inline:auto;
+    }
+
+    body.ssf-modern.is-inner .single-service-related-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    body.ssf-modern.is-inner .services-page-cta,
+    body.ssf-modern.is-inner .service-detail-cta {
+        padding:56px 0;
+    }
+
+    body.ssf-modern.is-inner .services-page-cta-inner.services-page-cta-background,
+    body.ssf-modern.is-inner .service-detail-cta-inner {
+        padding:34px;
+    }
+}
+
 @media(max-width:575px) {
     body.ssf-modern.is-inner .service-detail-hero-copy {
         display: flex;

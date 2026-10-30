@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     public const CATEGORIES = [
-        'development' => 'Development & Design',
+        'development' => 'Design & Development',
         'crm' => 'CRM Solutions',
         'erp' => 'ERP Systems',
         'marketing' => 'Digital Marketing',

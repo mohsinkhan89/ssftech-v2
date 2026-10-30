@@ -9892,7 +9892,41 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
 }
 
 .ssf-modern.is-home .hero-quote-card .form-select {
-    color: #aeb6c4
+    color: #aeb6c4;
+    padding-right: 42px;
+    appearance: none;
+    background-image: none
+}
+
+.ssf-modern.is-home .service-select-wrap {
+    position: relative
+}
+
+.ssf-modern.is-home .service-select-wrap .form-select {
+    padding-right: 42px;
+    appearance: none;
+    background-image: none
+}
+
+.ssf-modern.is-home .service-select-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    display: grid;
+    width: 18px;
+    height: 18px;
+    place-items: center;
+    color: #e40914;
+    font-size: 11px;
+    pointer-events: none;
+    transform: translateY(-50%) rotate(0deg);
+    transform-origin: center;
+    transition: transform .25s ease, color .25s ease
+}
+
+.ssf-modern.is-home .service-select-wrap.is-open .service-select-icon {
+    color: #ff4d56;
+    transform: translateY(-50%) rotate(180deg)
 }
 
 .ssf-modern.is-home .hero-quote-card .form-select option {

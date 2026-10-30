@@ -69,11 +69,14 @@
                         <div class="col-md-6"><input class="form-control" type="email" name="email" placeholder="Your Email" aria-label="Your Email" autocomplete="email" required></div>
                         <div class="col-md-6"><input class="form-control uk-phone-mask" type="tel" name="phone" placeholder="+44 7123 456789" aria-label="UK Phone Number" inputmode="tel" autocomplete="tel" maxlength="15" pattern="^\+44\s\d{4}\s\d{6}$" title="Enter a UK number in this format: +44 7123 456789" required></div>
                         <div class="col-md-6">
-                            <select class="form-select" name="service" aria-label="Select Service" required>
-                                <option value="">Select Service</option>
-                                @foreach($services as $service)<option value="{{ $service->title }}">{{ $service->title }}</option>@endforeach
-                                @if($services->isEmpty())<option value="General Enquiry">General Enquiry</option>@endif
-                            </select>
+                            <div class="service-select-wrap">
+                                <select class="form-select" name="service" aria-label="Select Service" required>
+                                    <option value="">Select Service</option>
+                                    @foreach($services as $service)<option value="{{ $service->title }}">{{ $service->title }}</option>@endforeach
+                                    @if($services->isEmpty())<option value="General Enquiry">General Enquiry</option>@endif
+                                </select>
+                                <span class="service-select-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                            </div>
                         </div>
                         <div class="col-12"><textarea class="form-control" name="message" rows="3" placeholder="Tell us about your project..." aria-label="Project details" required></textarea></div>
                         <div class="col-12">
@@ -490,19 +493,22 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <label class="field-label" for="enquiry-service">Interested in<span aria-hidden="true"> *</span></label>
-                                <select id="enquiry-service" class="form-select" name="service" aria-label="Select Service" required>
-                                    <option value="">Select Service</option>
-                                    @foreach(\App\Models\Service::CATEGORIES as $key => $label)
-                                        @if($services->where('category', $key)->isNotEmpty())
-                                            <optgroup label="{{ $label }}">
-                                                @foreach($services->where('category', $key) as $service)
-                                                    <option value="{{ $service->title }}">{{ $service->title }}</option>
-                                                @endforeach
-                                            </optgroup>
-                                        @endif
-                                    @endforeach
-                                    @if($services->isEmpty())<option value="General Enquiry">General Enquiry</option>@endif
-                                </select>
+                                <div class="service-select-wrap">
+                                    <select id="enquiry-service" class="form-select" name="service" aria-label="Select Service" required>
+                                        <option value="">Select Service</option>
+                                        @foreach(\App\Models\Service::CATEGORIES as $key => $label)
+                                            @if($services->where('category', $key)->isNotEmpty())
+                                                <optgroup label="{{ $label }}">
+                                                    @foreach($services->where('category', $key) as $service)
+                                                        <option value="{{ $service->title }}">{{ $service->title }}</option>
+                                                    @endforeach
+                                                </optgroup>
+                                            @endif
+                                        @endforeach
+                                        @if($services->isEmpty())<option value="General Enquiry">General Enquiry</option>@endif
+                                    </select>
+                                    <span class="service-select-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                                </div>
                             </div>
                             <div class="col-12">
                                 <label class="field-label" for="enquiry-message">Project details<span aria-hidden="true"> *</span></label>
@@ -596,6 +602,32 @@
 
                 input.addEventListener('blur', function() {
                     input.value = formatUkPhone(input.value);
+                });
+            });
+
+            document.querySelectorAll('.service-select-wrap').forEach(function(wrapper) {
+                const select = wrapper.querySelector('select');
+
+                select.addEventListener('pointerdown', function() {
+                    wrapper.classList.toggle('is-open');
+                });
+
+                select.addEventListener('change', function() {
+                    wrapper.classList.remove('is-open');
+                });
+
+                select.addEventListener('blur', function() {
+                    wrapper.classList.remove('is-open');
+                });
+
+                select.addEventListener('keydown', function(event) {
+                    if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === ' ') {
+                        wrapper.classList.add('is-open');
+                    }
+
+                    if (event.key === 'Escape' || event.key === 'Tab') {
+                        wrapper.classList.remove('is-open');
+                    }
                 });
             });
 

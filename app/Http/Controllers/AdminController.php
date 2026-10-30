@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -654,7 +655,7 @@ class AdminController extends Controller
 
     public function servicesUpdate(Request $request, Service $service)
     {
-        $data = $this->validateService($request);
+        $data = $this->validateService($request, $service);
         $data['status'] = $request->boolean('status');
         $service->update($data);
 
@@ -675,10 +676,15 @@ class AdminController extends Controller
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully!');
     }
 
-    private function validateService(Request $request): array
+    private function validateService(Request $request, ?Service $service = null): array
     {
         $data = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('services', 'title')->ignore($service?->id),
+            ],
             'category' => 'required|in:development,crm,erp,marketing',
             'description' => 'required|string',
             'icon' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9 -]+$/i'],

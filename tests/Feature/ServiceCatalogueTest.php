@@ -12,6 +12,7 @@ class ServiceCatalogueTest extends TestCase
 
     public function test_expanded_catalogue_is_available_in_homepage_and_enquiry_form(): void
     {
+        $this->assertSame(7, Service::where('category', 'development')->count());
         $this->assertSame(7, Service::where('category', 'crm')->count());
         $this->assertSame(8, Service::where('category', 'erp')->count());
         $this->assertSame(12, Service::where('category', 'marketing')->count());
@@ -26,8 +27,10 @@ class ServiceCatalogueTest extends TestCase
             ->assertSee('id="service-tab-erp"', false)
             ->assertSee('id="service-tab-marketing"', false)
             ->assertSee('<optgroup label="CRM Solutions">', false)
+            ->assertSee('UI/UX Design')
+            ->assertSee('Mobile App Development')
             ->assertSee('Custom CRM Development')
-            ->assertSee('Inventory &amp; Warehouse Management', false)
+            ->assertSee('Inventory &amp; Warehouse System Development', false)
             ->assertSee('Search Engine Optimisation (SEO)');
     }
 

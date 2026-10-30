@@ -98,12 +98,15 @@
 
     if (!savedConsent) {
       cookieConsent.hidden = false;
+    } else {
+      document.documentElement.dataset.cookieConsent = savedConsent;
     }
 
     cookieConsent.querySelectorAll("[data-cookie-choice]").forEach((button) => {
       button.addEventListener("click", () => {
         const choice = button.dataset.cookieChoice;
-        document.cookie = `ssf_cookie_consent=${encodeURIComponent(choice)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+        const secureAttribute = window.location.protocol === "https:" ? "; Secure" : "";
+        document.cookie = `ssf_cookie_consent=${encodeURIComponent(choice)}; Max-Age=31536000; Path=/; SameSite=Lax${secureAttribute}`;
         document.documentElement.dataset.cookieConsent = choice;
         window.dispatchEvent(new CustomEvent("ssf:cookie-consent", { detail: { choice } }));
         cookieConsent.classList.add("is-hiding");

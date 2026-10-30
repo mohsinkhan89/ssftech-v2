@@ -62,8 +62,8 @@
                     <span><i class="fa-solid fa-paper-plane"></i></span>
                     <div><small>Start your project</small><h3>Get a Free Quote</h3></div>
                 </div>
-                <form class="contact-form hero-contact-form js-contact-form" id="heroContactForm" data-response="#heroFormResponse" data-button="#heroSubmitBtn">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <form class="contact-form hero-contact-form js-contact-form" id="heroContactForm" action="{{ route('contact.submit', [], false) }}" method="POST" data-response="#heroFormResponse" data-button="#heroSubmitBtn">
+                    @csrf
                     <div class="row g-3">
                         <div class="col-md-6"><input class="form-control" type="text" name="name" placeholder="Your Name" aria-label="Your Name" required></div>
                         <div class="col-md-6"><input class="form-control" type="email" name="email" placeholder="Your Email" aria-label="Your Email" autocomplete="email" required></div>
@@ -470,9 +470,9 @@
                             <p>Fill out the form and we&#39;ll get back to you shortly.</p>
                         </div>
                     </div>
-                    <form class="contact-form js-contact-form" id="contactForm" data-response="#formResponse"
+                    <form class="contact-form js-contact-form" id="contactForm" action="{{ route('contact.submit', [], false) }}" method="POST" data-response="#formResponse"
                         data-button="#submitBtn">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-lg-6 col-md-6">
                                 <label class="field-label" for="enquiry-name">Your name<span aria-hidden="true"> *</span></label>
@@ -635,6 +635,7 @@
                 const responseDiv = document.querySelector(form.dataset.response);
                 const submitBtn = document.querySelector(form.dataset.button);
                 const responseContainer = form.closest('.hero-form-card, .contact-form-card') || form;
+                const responseAnchor = responseContainer.querySelector('.contact-form-head, .hero-form-head');
                 const originalButtonHtml = submitBtn ? submitBtn.innerHTML : '';
                 let responseTimer;
 
@@ -645,26 +646,32 @@
                 function showFormResponse(className, message) {
                     clearTimeout(responseTimer);
 
-                    if (responseDiv.parentElement !== responseContainer) {
+                    if (responseAnchor) {
+                        responseAnchor.insertAdjacentElement('afterend', responseDiv);
+                    } else if (responseDiv.parentElement !== responseContainer) {
                         responseContainer.appendChild(responseDiv);
                     }
 
                     responseDiv.className = className + ' frontend-alert-in-form';
                     responseDiv.innerHTML = message;
-                    responseDiv.classList.remove('d-none');
-                    responseDiv.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-                    responseDiv.style.opacity = '1';
-                    responseDiv.style.transform = 'translateX(0)';
+                    responseDiv.classList.add('d-none');
+
+                    requestAnimationFrame(function() {
+                        responseDiv.classList.remove('d-none');
+
+                        requestAnimationFrame(function() {
+                            responseDiv.classList.add('is-visible');
+                        });
+                    });
 
                     responseTimer = setTimeout(function() {
-                        responseDiv.style.opacity = '0';
-                        responseDiv.style.transform = 'translateX(calc(100% + 40px))';
+                        responseDiv.classList.remove('is-visible');
 
                         setTimeout(function() {
                             responseDiv.className = 'mb-3 d-none';
                             responseDiv.innerHTML = '';
-                        }, 350);
-                    }, 3500);
+                        }, 450);
+                    }, 10000);
                 }
 
                 form.addEventListener('submit', function(e) {
@@ -688,17 +695,27 @@
 
                     const formData = new FormData(form);
 
-                    fetch('{{ route('contact.submit') }}', {
+                    const csrfToken = form.querySelector('input[name="_token"]')?.value
+                        || document.querySelector('meta[name="csrf-token"]')?.content;
+
+                    fetch(form.getAttribute('action'), {
                             method: 'POST',
+                            credentials: 'same-origin',
                             headers: {
-                                'X-Requested-With': 'XMLHttpRequest'
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'X-CSRF-TOKEN': csrfToken,
+                                'Accept': 'application/json'
                             },
                             body: formData
                         })
-                        .then(response => response.json().then(data => ({
-                            status: response.status,
-                            body: data
-                        })))
+                        .then(async response => {
+                            const data = await response.json().catch(() => ({}));
+
+                            return {
+                                status: response.status,
+                                body: data
+                            };
+                        })
                         .then(res => {
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalButtonHtml;

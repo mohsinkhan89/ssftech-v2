@@ -6168,7 +6168,7 @@ a.client-logo-card {
   font-weight: 600;
   line-height: 1.6;
   text-align: left;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, .16);
+  /* box-shadow: 0 16px 40px rgba(15, 23, 42, .16); */
   animation: frontendAlertIn .35s ease both;
 }
 
@@ -6190,19 +6190,33 @@ a.client-logo-card {
 }
 
 .frontend-alert.frontend-alert-in-form {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  left: auto;
-  width: min(390px, calc(100% - 36px));
+  position: relative;
+  inset: auto;
+  width: 100%;
+  max-height: 0;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  animation: none;
+  transition: max-height .4s ease, margin .4s ease, padding .4s ease, opacity .3s ease, transform .4s ease;
+}
+
+.frontend-alert.frontend-alert-in-form.is-visible {
+  max-height: 180px;
+  margin: -12px 0 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
   .frontend-alert.frontend-alert-in-form {
-    top: 16px;
-    right: 16px;
-    left: auto;
-    width: min(390px, calc(100% - 32px));
+    inset: auto;
+    width: 100%;
   }
 }
 
@@ -6215,10 +6229,8 @@ a.client-logo-card {
   }
 
   .frontend-alert.frontend-alert-in-form {
-    top: 12px;
-    right: 12px;
-    left: auto;
-    width: min(390px, calc(100% - 24px));
+    inset: auto;
+    width: 100%;
     text-align: left;
   }
 }

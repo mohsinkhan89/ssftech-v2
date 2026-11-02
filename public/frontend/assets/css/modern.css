@@ -9007,7 +9007,8 @@ body.ssf-modern.is-inner :is(.services-page-hero, .service-detail-hero, .single-
 
     .ssf-modern .footer-company-note {
         max-width: none;
-        text-align: left
+        /* text-align: left */
+        text-align: center
     }
 
     .ssf-modern .footer-wordmark {
